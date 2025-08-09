@@ -1,8 +1,40 @@
+/* ================== Imports ================== */
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+/* ================== Theme ================== */
 @theme inline {
     --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply text-pretty antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+        @apply bg-black text-white dark:bg-white dark:text-black;
+    }
+
+    *:focus,
+    *:focus-visible,
+    *:target,
+    *:visited,
+    *:active,
+    *:focus-within {
+        @apply ring-0 outline-0;
+    }
+
+    * {
+        @apply touch-manipulation antialiased;
+    }
+}
+
+/* Designed & developed by captainscor.ch (https://captainscor.ch) */
