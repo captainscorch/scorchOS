@@ -33,6 +33,8 @@ jobs:
 
       - name: Install Node Dependencies
         run: npm ci
+        env:
+          FONTAWESOME_PACKAGE_TOKEN: ${{ secrets.FONTAWESOME_PACKAGE_TOKEN }}
 
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
