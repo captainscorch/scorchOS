@@ -1,0 +1,23 @@
+{
+    "home": {
+        "tagline": {
+            "prefix": "Hi, tagsüber manage ich",
+            "middle": "und nachts entwickle ich",
+            "suffix": "."
+        },
+        "about": {
+            "skills": "Skills",
+            "lastSeen": "Kassel, Deutschland"
+        },
+        "navigation": {
+            "viewPortfolio": "Portfolio"
+        },
+        "pastWork": {
+            "title": "Projekte"
+        }
+    },
+    "languages": {
+        "en": "EN",
+        "de": "DE"
+    }
+}

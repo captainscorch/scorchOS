@@ -8,7 +8,7 @@
 
 # scorchOS
 
-scorchOS is my personal website and portfolio, simulating a nostalgic OS.
+scorchOS is my personal website and portfolio, simulating a nostalgic OS (that part is still work in progress and coming soon).
 
 ## License
 

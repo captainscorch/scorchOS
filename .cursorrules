@@ -14,7 +14,7 @@ PHP/Laravel
 - Follow PSR-12 coding standards.
 - Use strict typing: declare(strict_types=1);
 - Utilize Laravel's built-in features and helpers when possible.
-- Use the new Laravel 11 app layout without Kernel, etc. as this has been deprecated.
+- Use the new Laravel 12 app layout without Kernel, as this has been deprecated.
 - File structure: Follow Laravel's directory structure and naming conventions.
 - Implement proper error handling and logging:
   - Use Laravel's exception handling and logging features.
@@ -41,6 +41,8 @@ Inertia.js
 Dependencies
 - Laravel (latest stable version)
 - Composer for dependency management
+- TailwindCSS for styling and responsive design
+- Vite for asset bundling and Vue integration
 
 Laravel Best Practices
 - Use Eloquent ORM instead of raw SQL queries when possible.

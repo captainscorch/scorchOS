@@ -1,0 +1,23 @@
+{
+    "home": {
+        "tagline": {
+            "prefix": "Hey, I'm running",
+            "middle": "by day and building",
+            "suffix": " by night."
+        },
+        "about": {
+            "skills": "Skills",
+            "lastSeen": "Kassel, Germany"
+        },
+        "navigation": {
+            "viewPortfolio": "Portfolio"
+        },
+        "pastWork": {
+            "title": "Past work"
+        }
+    },
+    "languages": {
+        "en": "EN",
+        "de": "DE"
+    }
+}
