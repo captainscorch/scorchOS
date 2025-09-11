@@ -88,11 +88,68 @@ const closeCard = () => {
     isCardOpen.value = false;
 };
 
+// Mobile detection
+const isMobile = ref(false);
+
+const checkMobile = () => {
+    isMobile.value = window.innerWidth <= 767;
+};
+
+// Mobile thumbnail preview
+const activeThumbnailIndex = ref<number | null>(null);
+const activeSpecialThumbnail = ref<string | null>(null);
+
+const toggleThumbnail = (index: number) => {
+    if (isMobile.value && activeThumbnailIndex.value === index) {
+        const link = pastWorkLinks[index];
+        if (link) {
+            window.open(link.url, '_blank');
+        }
+        return;
+    }
+
+    if (activeThumbnailIndex.value === index) {
+        activeThumbnailIndex.value = null;
+    } else {
+        activeThumbnailIndex.value = index;
+        activeSpecialThumbnail.value = null;
+    }
+};
+
+const toggleSpecialThumbnail = (type: string) => {
+    if (isMobile.value && activeSpecialThumbnail.value === type) {
+        const url =
+            type === 'unlimited'
+                ? 'https://unlimited.studio/?utm_campaign=watermark&utm_medium=website&utm_source=captainscor.ch'
+                : 'https://lyftd.app/?utm_campaign=watermark&utm_medium=website&utm_source=captainscor.ch';
+        window.open(url, '_blank');
+        return;
+    }
+
+    if (activeSpecialThumbnail.value === type) {
+        activeSpecialThumbnail.value = null;
+    } else {
+        activeSpecialThumbnail.value = type;
+        activeThumbnailIndex.value = null;
+    }
+};
+
+const closeThumbnail = () => {
+    activeThumbnailIndex.value = null;
+    activeSpecialThumbnail.value = null;
+};
+
 const profileRef = ref<HTMLElement | null>(null);
 
 const handleClickOutside = (event: Event) => {
     if (profileRef.value && !profileRef.value.contains(event.target as Node)) {
         closeCard();
+    }
+
+    // Only close thumbnails if clicking outside of thumbnail links
+    const target = event.target as HTMLElement;
+    if (!target.closest('.link-with-thumbnail')) {
+        closeThumbnail();
     }
 };
 
@@ -119,6 +176,9 @@ onMounted(() => {
     updateClock();
     clockInterval = setInterval(updateClock, 1000);
     document.addEventListener('click', handleClickOutside);
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 });
 
 onUnmounted(() => {
@@ -126,6 +186,7 @@ onUnmounted(() => {
         clearInterval(clockInterval);
     }
     document.removeEventListener('click', handleClickOutside);
+    window.removeEventListener('resize', checkMobile);
 });
 </script>
 
@@ -139,8 +200,10 @@ onUnmounted(() => {
                 {{ t('home.tagline.prefix') }}
                 <a
                     class="link-with-thumbnail growing-border inline-flex items-center py-1 hover:cursor-ne-resize"
+                    :class="{ 'is-active': activeSpecialThumbnail === 'unlimited' }"
                     href="https://unlimited.studio/?utm_campaign=watermark&utm_medium=website&utm_source=captainscor.ch"
                     target="_blank"
+                    @click.prevent="toggleSpecialThumbnail('unlimited')"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +283,7 @@ onUnmounted(() => {
                             </g>
                         </g>
                     </svg>
-                    <div class="thumbnail-preview-wrapper large">
+                    <div class="thumbnail-preview-wrapper large thumb-below-mobile" :class="{ 'is-active': activeSpecialThumbnail === 'unlimited' }">
                         <img
                             class="thumbnail-preview"
                             src="/img/projects/unlimitedstudio-thumbnail.webp"
@@ -233,8 +296,10 @@ onUnmounted(() => {
                 {{ t('home.tagline.middle') }}
                 <a
                     class="link-with-thumbnail growing-border inline-flex items-center py-1 hover:cursor-ne-resize"
+                    :class="{ 'is-active': activeSpecialThumbnail === 'lyftd' }"
                     href="https://lyftd.app/?utm_campaign=watermark&utm_medium=website&utm_source=captainscor.ch"
                     target="_blank"
+                    @click.prevent="toggleSpecialThumbnail('lyftd')"
                 >
                     <svg
                         class="svg-logo h-[0.85em] w-auto fill-teal-black dark:fill-off-white"
@@ -252,7 +317,7 @@ onUnmounted(() => {
                             </g>
                         </g>
                     </svg>
-                    <div class="thumbnail-preview-wrapper large">
+                    <div class="thumbnail-preview-wrapper large thumb-below-mobile" :class="{ 'is-active': activeSpecialThumbnail === 'lyftd' }">
                         <img class="thumbnail-preview" src="/img/projects/lyftd-thumbnail.webp" alt="lyftd" width="300" height="300" />
                     </div> </a
                 >{{ t('home.tagline.suffix') }}
@@ -340,15 +405,17 @@ onUnmounted(() => {
                     <span class="font-medium"
                         ><FontAwesomeIcon icon="fa-sharp fa-light fa-briefcase" class="mr-2" />{{ t('home.pastWork.title') }}</span
                     >
-                    <div class="flex flex-row gap-8 pl-1">
+                    <div class="flex flex-row justify-between gap-8 pl-1 md:justify-end">
                         <div class="flex flex-col gap-1">
                             <div v-for="(link, index) in pastWorkLinks.slice(0, 4)" :key="link.url" :class="index < 3 ? 'pb-0.5 text-sm' : 'text-sm'">
                                 <a
                                     :href="link.url"
                                     target="_blank"
                                     class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
+                                    :class="{ 'is-active': activeThumbnailIndex === index }"
+                                    @click.prevent="toggleThumbnail(index)"
                                     >– {{ link.label }}
-                                    <div class="thumbnail-preview-wrapper">
+                                    <div class="thumbnail-preview-wrapper left-column" :class="{ 'is-active': activeThumbnailIndex === index }">
                                         <img class="thumbnail-preview" :src="link.image" :alt="link.alt" width="300" height="300" />
                                     </div>
                                 </a>
@@ -360,8 +427,10 @@ onUnmounted(() => {
                                     :href="link.url"
                                     target="_blank"
                                     class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
+                                    :class="{ 'is-active': activeThumbnailIndex === index + 4 }"
+                                    @click.prevent="toggleThumbnail(index + 4)"
                                     >– {{ link.label }}
-                                    <div class="thumbnail-preview-wrapper">
+                                    <div class="thumbnail-preview-wrapper right-column" :class="{ 'is-active': activeThumbnailIndex === index + 4 }">
                                         <img class="thumbnail-preview" :src="link.image" :alt="link.alt" width="300" height="300" />
                                     </div>
                                 </a>

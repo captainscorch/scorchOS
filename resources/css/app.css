@@ -214,18 +214,18 @@
 
 .growing-border:hover {
     color: white;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: -1rem;
-    margin-right: -1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
 }
 
 .dark .growing-border:hover {
     color: var(--color-teal-black);
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: -1rem;
-    margin-right: -1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -239,6 +239,20 @@
 
     .growing-border:hover::after {
         height: 100%;
+    }
+
+    .growing-border:hover {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+
+    .dark .growing-border:hover {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
     }
 }
 
@@ -304,26 +318,47 @@
     border-radius: 12px;
 }
 
-.link-with-thumbnail:hover .thumbnail-preview-wrapper {
-    opacity: 1;
-    transform: translate(-50%, -180px);
+@media (min-width: 768px) {
+    .link-with-thumbnail:hover .thumbnail-preview-wrapper {
+        opacity: 1;
+        transform: translate(-50%, -180px);
+    }
+
+    .link-with-thumbnail:hover .thumbnail-preview-wrapper.large {
+        transform: translate(-50%, -150px);
+    }
 }
 
-.link-with-thumbnail:hover .thumbnail-preview-wrapper.large {
-    transform: translate(-50%, -150px);
-}
-
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .thumbnail-preview {
         max-width: 220px !important;
     }
+
     .link-with-thumbnail:hover .thumbnail-preview-wrapper.thumb-below-mobile {
         opacity: 1;
-        transform: translate(-50%, 30px);
+        left: 0;
+        transform: translate(0%, 55px);
     }
-    .link-with-thumbnail:hover .thumbnail-preview-wrapper {
+
+    .link-with-thumbnail.is-active .thumbnail-preview-wrapper.large.is-active {
         opacity: 1;
-        transform: translate(-50%, -160px);
+        transform: translate(-50%, -135px);
+        pointer-events: auto;
+    }
+
+    .link-with-thumbnail.is-active .thumbnail-preview-wrapper.left-column.is-active {
+        opacity: 1;
+        transform: translate(0%, -135px);
+        left: 0;
+        pointer-events: auto;
+    }
+
+    .link-with-thumbnail.is-active .thumbnail-preview-wrapper.right-column.is-active {
+        opacity: 1;
+        transform: translate(0%, -135px);
+        left: auto;
+        right: 0;
+        pointer-events: auto;
     }
 }
 
