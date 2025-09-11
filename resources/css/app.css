@@ -55,41 +55,6 @@
     --color-teal-black: #040e0c;
 }
 
-@layer base {
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        @apply bg-[linear-gradient(160deg,_#f2f0ef_0%,_rgb(242,240,239)_50%,_rgb(229_228_228)_80%,_rgb(42_177_147_/_100%)_100%)] font-sans text-pretty text-teal-black antialiased dark:bg-[linear-gradient(160deg,_#040e0c_0%,_rgb(1_2_2)_50%,_rgb(9_28_25)_80%,_rgb(42_177_147_/_35%)_100%)] dark:text-off-white;
-        text-rendering: optimizeLegibility;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    ::selection {
-        @apply bg-teal-black text-off-white;
-    }
-
-    .dark ::selection {
-        @apply bg-off-white text-teal-black;
-    }
-
-    *:focus,
-    *:focus-visible,
-    *:target,
-    *:visited,
-    *:active,
-    *:focus-within {
-        @apply ring-0 outline-0;
-    }
-
-    * {
-        @apply touch-manipulation antialiased;
-    }
-}
-
 :root {
     --background: #f2f0ef;
     --foreground: oklch(0.145 0 0);
@@ -162,11 +127,37 @@
 }
 
 @layer base {
-    * {
-        @apply border-border outline-ring/50;
+    html {
+        scroll-behavior: smooth;
     }
+
     body {
-        @apply bg-background text-foreground;
+        @apply bg-background bg-[linear-gradient(160deg,_#f2f0ef_0%,_rgb(242,240,239)_50%,_rgb(229_228_228)_80%,_rgb(42_177_147_/_100%)_100%)] font-sans text-pretty text-teal-black antialiased dark:bg-[linear-gradient(160deg,_#040e0c_0%,_rgb(1_2_2)_50%,_rgb(9_28_25)_80%,_rgb(42_177_147_/_35%)_100%)] dark:text-off-white;
+        text-rendering: optimizeLegibility;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    ::selection {
+        @apply bg-teal-black text-off-white;
+    }
+
+    .dark ::selection {
+        @apply bg-off-white text-teal-black;
+    }
+
+    *:focus,
+    *:focus-visible,
+    *:target,
+    *:visited,
+    *:active,
+    *:focus-within {
+        @apply ring-0 outline-0;
+    }
+
+    * {
+        @apply touch-manipulation border-border antialiased outline-ring/50;
     }
 }
 
@@ -180,7 +171,7 @@
         padding-right 150ms ease-in-out,
         margin-left 150ms ease-in-out,
         margin-right 150ms ease-in-out;
-    z-index: 1;
+    z-index: inherit;
 }
 
 .growing-border::after {
@@ -228,7 +219,7 @@
     margin-right: -0.5rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 991px) {
     .growing-border {
         border-bottom: 4px solid transparent;
     }
@@ -318,7 +309,7 @@
     border-radius: 12px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 991px) {
     .link-with-thumbnail:hover .thumbnail-preview-wrapper {
         opacity: 1;
         transform: translate(-50%, -180px);
@@ -328,8 +319,12 @@
         transform: translate(-50%, -150px);
     }
 }
+@media (max-width: 990px) {
+    .thumbnail-preview-wrapper {
+        left: 0;
+        right: 0;
+    }
 
-@media (max-width: 767px) {
     .thumbnail-preview {
         max-width: 220px !important;
     }
@@ -337,7 +332,14 @@
     .link-with-thumbnail:hover .thumbnail-preview-wrapper.thumb-below-mobile {
         opacity: 1;
         left: 0;
-        transform: translate(0%, 55px);
+        right: auto;
+        transform: translate(0%, 75px);
+    }
+
+    .link-with-thumbnail.is-active .thumbnail-preview-wrapper.large.is-active {
+        opacity: 1;
+        transform: translate(-50%, -135px);
+        pointer-events: auto;
     }
 
     .link-with-thumbnail.is-active .thumbnail-preview-wrapper.large.is-active {
@@ -350,6 +352,7 @@
         opacity: 1;
         transform: translate(0%, -135px);
         left: 0;
+        right: auto;
         pointer-events: auto;
     }
 
@@ -358,7 +361,17 @@
         transform: translate(0%, -135px);
         left: auto;
         right: 0;
+        left: auto;
         pointer-events: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .link-with-thumbnail:hover .thumbnail-preview-wrapper.thumb-below-mobile {
+        opacity: 1;
+        left: 0;
+        right: auto;
+        transform: translate(0%, 55px);
     }
 }
 

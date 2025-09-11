@@ -195,11 +195,11 @@ onUnmounted(() => {
     <div
         class="mx-auto h-[calc(100vH+100px)] min-h-dvh [max-width:1580px] px-8 md:h-full md:px-20 lg:px-40 [@media(min-width:1600px)]:max-w-[1600px] [@media(min-width:1920px)]:max-w-[1920px]"
     >
-        <header class="flex h-[360px] min-h-[50dvH] items-start justify-start py-12 md:items-center md:py-4">
+        <header class="flex h-[360px] min-h-[50dvH] items-start justify-start py-12 md:items-center md:pt-36">
             <h1 class="font-teal-black font-work-sans text-3xl leading-[130%] font-bold md:text-[clamp(2.25rem,5vw,5.8rem)] md:leading-[150%]">
                 {{ t('home.tagline.prefix') }}
                 <a
-                    class="link-with-thumbnail growing-border inline-flex items-center py-1 hover:cursor-ne-resize"
+                    class="link-with-thumbnail growing-border z-10 inline-flex items-center py-1 hover:cursor-ne-resize"
                     :class="{ 'is-active': activeSpecialThumbnail === 'unlimited' }"
                     href="https://unlimited.studio/?utm_campaign=watermark&utm_medium=website&utm_source=captainscor.ch"
                     target="_blank"
@@ -295,7 +295,7 @@ onUnmounted(() => {
                 </a>
                 {{ t('home.tagline.middle') }}
                 <a
-                    class="link-with-thumbnail growing-border inline-flex items-center py-1 hover:cursor-ne-resize"
+                    class="link-with-thumbnail growing-border z-5 inline-flex items-center py-1 hover:cursor-ne-resize"
                     :class="{ 'is-active': activeSpecialThumbnail === 'lyftd' }"
                     href="https://lyftd.app/?utm_campaign=watermark&utm_medium=website&utm_source=captainscor.ch"
                     target="_blank"
@@ -405,7 +405,7 @@ onUnmounted(() => {
                     <span class="font-medium"
                         ><FontAwesomeIcon icon="fa-sharp fa-light fa-briefcase" class="mr-2" />{{ t('home.pastWork.title') }}</span
                     >
-                    <div class="flex flex-row justify-between gap-8 pl-1 md:justify-end">
+                    <div class="flex w-full flex-row justify-between gap-8 pl-1 md:justify-end">
                         <div class="flex flex-col gap-1">
                             <div v-for="(link, index) in pastWorkLinks.slice(0, 4)" :key="link.url" :class="index < 3 ? 'pb-0.5 text-sm' : 'text-sm'">
                                 <a
