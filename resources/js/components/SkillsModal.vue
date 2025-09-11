@@ -303,7 +303,7 @@ const skillsData = {
     designTools: ['Figma', 'Adobe CC', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'],
     openSource: [
         {
-            name: 'Laravel Cashier',
+            project: 'Laravel Cashier',
             url: 'https://github.com/laravel/cashier-stripe/pull/1766',
             description: 'Prevent address lock in Checkout',
         },
@@ -371,7 +371,7 @@ ${skillsData.designTools.map((tool) => `  "${tool}"`).join(',\n')}
 
 // 05 OPEN SOURCE CONTRIBUTIONS
 const openSourceContributions = [
-${skillsData.openSource.map((contrib) => `  {\n    name: "${contrib.name}",\n    url: "${contrib.url}",\n    description: "${contrib.description}"\n  }`).join(',\n')}
+${skillsData.openSource.map((contrib) => `  {\n    project: "${contrib.project}",\n    url: "${contrib.url}",\n    description: "${contrib.description}"\n  }`).join(',\n')}
 ];
 
 // Export all skills
