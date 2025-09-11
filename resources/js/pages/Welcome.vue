@@ -36,6 +36,22 @@ const switchLanguage = (lang: string) => {
     setLocale(lang);
 };
 
+const pastWorkLinks = [
+    { url: 'https://way.food', label: 'way.food', image: '/img/projects/wayfood-thumbnail.webp', alt: 'way.food' },
+    { url: 'https://icemaenner.com', label: 'Icemänner', image: '/img/projects/icemaenner-thumbnail.webp', alt: 'Icemänner' },
+    { url: 'https://www.hubner-group.com', label: 'HÜBNER Group', image: '/img/projects/hubner-group-thumbnail.webp', alt: 'HÜBNER Group' },
+    { url: 'https://theloz.co', label: 'theloz.co', image: '/img/projects/loz-thumbnail.webp', alt: 'The Loz' },
+    { url: 'https://cale-design.com', label: 'cale design', image: '/img/projects/caledesign-thumbnail.webp', alt: 'cale design' },
+    {
+        url: 'https://tamplenplasticsurgery.com',
+        label: 'Tamplen',
+        image: '/img/projects/tamplenplasticsurgery-thumbnail.webp',
+        alt: 'Tamplen Plastic Surgery',
+    },
+    { url: 'https://pawsomepet.co', label: 'Pawsome', image: '/img/projects/pawsome-thumbnail.webp', alt: 'Pawsome' },
+    { url: 'https://dixxhardseltzer.com', label: 'Dixx', image: '/img/projects/dixxhardseltzer-thumbnail.webp', alt: 'Dixx Hard Seltzer' },
+];
+
 // Clock functionality
 const currentTime = ref('');
 const timezone = ref('');
@@ -326,141 +342,27 @@ onUnmounted(() => {
                     >
                     <div class="flex flex-row gap-8 pl-1">
                         <div class="flex flex-col gap-1">
-                            <div class="pb-0.5 text-sm">
+                            <div v-for="(link, index) in pastWorkLinks.slice(0, 4)" :key="link.url" :class="index < 3 ? 'pb-0.5 text-sm' : 'text-sm'">
                                 <a
-                                    href="https://way.food"
+                                    :href="link.url"
                                     target="_blank"
                                     class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    >– way.food
+                                    >– {{ link.label }}
                                     <div class="thumbnail-preview-wrapper">
-                                        <img
-                                            class="thumbnail-preview"
-                                            src="/img/projects/wayfood-thumbnail.webp"
-                                            alt="way.food"
-                                            width="300"
-                                            height="300"
-                                        />
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="pb-0.5 text-sm">
-                                <a
-                                    href="https://icemaenner.com"
-                                    target="_blank"
-                                    class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    >– Icemänner
-                                    <div class="thumbnail-preview-wrapper">
-                                        <img
-                                            class="thumbnail-preview"
-                                            src="/img/projects/icemaenner-thumbnail.webp"
-                                            alt="Icemänner"
-                                            width="300"
-                                            height="300"
-                                        />
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="pb-0.5 text-sm">
-                                <a
-                                    href="https://www.hubner-group.com"
-                                    target="_blank"
-                                    class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    >– HÜBNER Group
-                                    <div class="thumbnail-preview-wrapper">
-                                        <img
-                                            class="thumbnail-preview"
-                                            src="/img/projects/hubner-group-thumbnail.webp"
-                                            alt="HÜBNER Group"
-                                            width="300"
-                                            height="300"
-                                        />
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="text-sm">
-                                <a
-                                    href="https://theloz.co"
-                                    target="_blank"
-                                    class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    >– theloz.co
-                                    <div class="thumbnail-preview-wrapper">
-                                        <img
-                                            class="thumbnail-preview"
-                                            src="/img/projects/loz-thumbnail.webp"
-                                            alt="The Loz"
-                                            width="300"
-                                            height="300"
-                                        />
+                                        <img class="thumbnail-preview" :src="link.image" :alt="link.alt" width="300" height="300" />
                                     </div>
                                 </a>
                             </div>
                         </div>
                         <div class="flex flex-col gap-1">
-                            <div class="text-sm">
+                            <div v-for="(link, index) in pastWorkLinks.slice(4, 8)" :key="link.url" :class="index < 3 ? 'pb-0.5 text-sm' : 'text-sm'">
                                 <a
-                                    href="https://cale-design.com"
+                                    :href="link.url"
                                     target="_blank"
                                     class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    >– cale design
+                                    >– {{ link.label }}
                                     <div class="thumbnail-preview-wrapper">
-                                        <img
-                                            class="thumbnail-preview"
-                                            src="/img/projects/caledesign-thumbnail.webp"
-                                            alt="cale design"
-                                            width="300"
-                                            height="300"
-                                        />
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="text-sm">
-                                <a
-                                    href="https://tamplenplasticsurgery.com"
-                                    target="_blank"
-                                    class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    >– Tamplen
-                                    <div class="thumbnail-preview-wrapper">
-                                        <img
-                                            class="thumbnail-preview"
-                                            src="/img/projects/tamplenplasticsurgery-thumbnail.webp"
-                                            alt="Tamplen Plastic Surgery"
-                                            width="300"
-                                            height="300"
-                                        />
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="pb-0.5 text-sm">
-                                <a
-                                    href="https://pawsomepet.co"
-                                    target="_blank"
-                                    class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    >– Pawsome
-                                    <div class="thumbnail-preview-wrapper">
-                                        <img
-                                            class="thumbnail-preview"
-                                            src="/img/projects/pawsome-thumbnail.webp"
-                                            alt="Pawsome"
-                                            width="300"
-                                            height="300"
-                                        />
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="text-sm">
-                                <a
-                                    href="https://dixxhardseltzer.com"
-                                    target="_blank"
-                                    class="link-with-thumbnail border-b border-b-teal-black/50 leading-[135%] transition-all hover:cursor-ne-resize hover:border-b-brand md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    >– Dixx
-                                    <div class="thumbnail-preview-wrapper">
-                                        <img
-                                            class="thumbnail-preview"
-                                            src="/img/projects/dixxhardseltzer-thumbnail.webp"
-                                            alt="Dixx Hard Seltzer"
-                                            width="300"
-                                            height="300"
-                                        />
+                                        <img class="thumbnail-preview" :src="link.image" :alt="link.alt" width="300" height="300" />
                                     </div>
                                 </a>
                             </div>
