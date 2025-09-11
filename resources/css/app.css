@@ -61,7 +61,7 @@
     }
 
     body {
-        @apply bg-[linear-gradient(145deg,_rgba(#f2f0ef,1)_0%,_rgb(242,240,239)_50%,_rgb(229_228_228)_80%,_rgb(42_177_147_/_100%)_100%)] font-sans text-pretty text-teal-black antialiased dark:bg-[linear-gradient(145deg,_rgba(#040e0c,1)_0%,_rgb(1_2_2)_50%,_rgb(9_28_25)_80%,_rgb(42_177_147_/_35%)_100%)] dark:text-off-white;
+        @apply bg-[linear-gradient(160deg,_#f2f0ef_0%,_rgb(242,240,239)_50%,_rgb(229_228_228)_80%,_rgb(42_177_147_/_100%)_100%)] font-sans text-pretty text-teal-black antialiased dark:bg-[linear-gradient(160deg,_#040e0c_0%,_rgb(1_2_2)_50%,_rgb(9_28_25)_80%,_rgb(42_177_147_/_35%)_100%)] dark:text-off-white;
         text-rendering: optimizeLegibility;
         background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -91,7 +91,7 @@
 }
 
 :root {
-    --background: oklch(1 0 0);
+    --background: #f2f0ef;
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
@@ -127,7 +127,7 @@
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
+    --background: #040e0c;
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.145 0 0);
     --card-foreground: oklch(0.985 0 0);
