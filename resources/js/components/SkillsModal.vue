@@ -301,6 +301,13 @@ const skillsData = {
         misc: ['Homebrew', 'Prompt Engineering', 'Agents', 'MCP', 'Cursor'],
     },
     designTools: ['Figma', 'Adobe CC', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'],
+    openSource: [
+        {
+            name: 'Laravel Cashier',
+            url: 'https://github.com/laravel/cashier-stripe/pull/1766',
+            description: 'Prevent address lock in Checkout',
+        },
+    ],
 };
 
 const formatSkillsAsCode = () => {
@@ -362,8 +369,13 @@ const designTools = [
 ${skillsData.designTools.map((tool) => `  "${tool}"`).join(',\n')}
 ];
 
+// 05 OPEN SOURCE CONTRIBUTIONS
+const openSourceContributions = [
+${skillsData.openSource.map((contrib) => `  {\n    name: "${contrib.name}",\n    url: "${contrib.url}",\n    description: "${contrib.description}"\n  }`).join(',\n')}
+];
+
 // Export all skills
-export { languages, codeLanguages, technologies, designTools };`;
+export { languages, codeLanguages, technologies, designTools, openSourceContributions };`;
 };
 
 const formatSkillsWithSyntaxHighlighting = () => {

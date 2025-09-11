@@ -14,6 +14,13 @@
         },
         "pastWork": {
             "title": "Projekte"
+        },
+        "profile": {
+            "title": "Gründer, Designer, Entwickler",
+            "description": "Als hands-on-Kreativer mit Expertise in digitalen Medien und Kommunikation liegt meine Leidenschaft in der Webentwicklung und im Grafikdesign, während Fotografie ein langjähriges Interesse ist, das mich seit Jahren inspiriert.",
+            "coFounder": "Co-Founder von unlimited.studio",
+            "openSourceContributor": "Open Source Beitragender",
+            "starWarsEnthusiast": "Star Wars Enthusiast"
         }
     },
     "languages": {

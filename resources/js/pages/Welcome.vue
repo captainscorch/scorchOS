@@ -3,7 +3,16 @@ import SkillsModal from '@/components/SkillsModal.vue';
 import { Switch } from '@/components/ui/switch';
 import { setLocale } from '@/i18n';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBriefcase, faClockEight, faCode, faLocationArrow, faUserBountyHunter } from '@fortawesome/sharp-light-svg-icons';
+import {
+    faBriefcase,
+    faBuilding,
+    faClockEight,
+    faCode,
+    faCodeBranch,
+    faLocationArrow,
+    faStarfighter,
+    faUserBountyHunter,
+} from '@fortawesome/sharp-light-svg-icons';
 import { faMoon, faSun } from '@fortawesome/sharp-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Head } from '@inertiajs/vue3';
@@ -11,7 +20,7 @@ import { useDark, useToggle } from '@vueuse/core';
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-library.add(faSun, faMoon, faLocationArrow, faBriefcase, faClockEight, faUserBountyHunter, faCode);
+library.add(faSun, faMoon, faLocationArrow, faBriefcase, faBuilding, faClockEight, faUserBountyHunter, faCode, faCodeBranch, faStarfighter);
 
 const { t, locale } = useI18n();
 
@@ -53,15 +62,54 @@ const closeSkillsModal = () => {
     isSkillsModalOpen.value = false;
 };
 
+const isCardOpen = ref(false);
+
+const toggleCard = () => {
+    isCardOpen.value = !isCardOpen.value;
+};
+
+const closeCard = () => {
+    isCardOpen.value = false;
+};
+
+const profileRef = ref<HTMLElement | null>(null);
+
+const handleClickOutside = (event: Event) => {
+    if (profileRef.value && !profileRef.value.contains(event.target as Node)) {
+        closeCard();
+    }
+};
+
+// Starfighter animation
+const isStarfighterFlying = ref(false);
+const isStarfighterCooldown = ref(false);
+
+const triggerStarfighterAnimation = () => {
+    if (isStarfighterFlying.value || isStarfighterCooldown.value) return;
+
+    isStarfighterFlying.value = true;
+
+    setTimeout(() => {
+        isStarfighterFlying.value = false;
+        isStarfighterCooldown.value = true;
+
+        setTimeout(() => {
+            isStarfighterCooldown.value = false;
+        }, 3000);
+    }, 1000);
+};
+
 onMounted(() => {
     updateClock();
     clockInterval = setInterval(updateClock, 1000);
+    document.addEventListener('click', handleClickOutside);
 });
 
 onUnmounted(() => {
     if (clockInterval) {
         clearInterval(clockInterval);
     }
+    document.removeEventListener('click', handleClickOutside);
 });
 </script>
 
@@ -197,15 +245,68 @@ onUnmounted(() => {
         <section class="flex h-[390px] min-h-[50dvH] flex-col justify-end gap-y-12 md:gap-y-4 [@media(max-height:680px)]:gap-y-4">
             <div class="flex flex-col justify-between gap-x-8 gap-y-12 py-4 md:flex-row">
                 <div class="flex flex-col gap-2">
-                    <a
-                        href="#"
-                        tabindex="0"
-                        class="link-with-thumbnail w-fit border-b border-b-teal-black/0 leading-[135%] transition-all hover:cursor-pointer hover:border-b-brand md:min-w-fit [@media(max-height:680px)]:min-w-fit"
-                        ><FontAwesomeIcon icon="fa-sharp fa-light fa-user-bounty-hunter" class="mr-2" />Daniel Schmier
-                        <div class="thumbnail-preview-wrapper circle-thumbnail">
-                            <img class="thumbnail-preview" src="/img/daniel.webp" alt="The Loz" width="150" height="150" />
+                    <div ref="profileRef" class="group relative">
+                        <a
+                            href="#"
+                            tabindex="0"
+                            class="w-fit border-b border-b-teal-black/50 text-left leading-[135%] transition-all hover:cursor-pointer hover:border-b-brand focus:border-b-brand md:min-w-fit dark:border-b-off-white/50 dark:hover:border-b-brand dark:focus:border-b-brand [@media(max-height:680px)]:min-w-fit"
+                            @click.prevent="toggleCard"
+                            ><FontAwesomeIcon icon="fa-sharp fa-light fa-user-bounty-hunter" class="mr-2" />Daniel Schmier
+                        </a>
+
+                        <div
+                            class="absolute top-full left-1/2 z-50 mt-2 w-96 max-w-[calc(100vW-2rem)] -translate-x-1/2 rounded-xl border border-teal-800/40 bg-teal-black/95 p-4 shadow-2xl backdrop-blur-sm transition-all duration-300 ease-out md:top-auto md:bottom-full md:mt-0 md:mb-2 md:max-w-96"
+                            :class="{
+                                'invisible opacity-0': !isCardOpen,
+                                'visible opacity-100': isCardOpen,
+                                'md:invisible md:opacity-0 md:group-hover:visible md:group-hover:opacity-100': true,
+                            }"
+                        >
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0">
+                                    <img
+                                        src="/img/daniel.webp"
+                                        alt="Daniel Schmier"
+                                        class="h-20 w-20 rounded-full border-2 border-teal-800/40 object-cover"
+                                    />
+                                </div>
+                                <div class="flex-1 space-y-3">
+                                    <div>
+                                        <h3 class="text-sm font-medium text-teal-100">Daniel Schmier</h3>
+                                        <p class="text-xs text-teal-300/80">{{ t('home.profile.title') }}</p>
+                                    </div>
+
+                                    <p class="text-xs leading-relaxed text-teal-50">
+                                        {{ t('home.profile.description') }}
+                                    </p>
+
+                                    <div class="space-y-2 border-t border-teal-800/40 pt-2">
+                                        <div class="flex items-center gap-2 text-xs text-teal-200">
+                                            <FontAwesomeIcon icon="fa-sharp fa-light fa-building" class="text-teal-400" />
+                                            <span>{{ t('home.profile.coFounder') }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs text-teal-300">
+                                            <FontAwesomeIcon icon="fa-sharp fa-light fa-code-branch" class="text-teal-400" />
+                                            <span>{{ t('home.profile.openSourceContributor') }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs text-teal-300">
+                                            <FontAwesomeIcon
+                                                icon="fa-sharp fa-light fa-starfighter"
+                                                class="cursor-pointer text-teal-400 transition-all duration-200 hover:scale-110"
+                                                :class="{
+                                                    'starfighter-flying': isStarfighterFlying,
+                                                    'starfighter-bounce': !isStarfighterFlying && !isStarfighterCooldown,
+                                                }"
+                                                @click="triggerStarfighterAnimation"
+                                                @mouseenter="triggerStarfighterAnimation"
+                                            />
+                                            <span>{{ t('home.profile.starWarsEnthusiast') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                     <button
                         @click="openSkillsModal"
                         class="w-fit border-b border-b-teal-black/50 text-left leading-[135%] transition-all hover:cursor-pointer hover:border-b-brand md:min-w-fit dark:border-b-off-white/50 dark:hover:border-b-brand [@media(max-height:680px)]:min-w-fit"
@@ -437,3 +538,168 @@ onUnmounted(() => {
 
     <SkillsModal :is-open="isSkillsModalOpen" @close="closeSkillsModal" />
 </template>
+
+<style scoped>
+@keyframes fa-bounce {
+    0% {
+        transform: scale(1) translateY(0);
+    }
+    10% {
+        transform: scale(1.05, 0.96) translateY(0);
+    }
+    30% {
+        transform: scale(0.96, 1.05) translateY(-0.28em);
+    }
+    50% {
+        transform: scale(1.025, 0.98) translateY(0);
+    }
+    57% {
+        transform: scale(1) translateY(-0.06em);
+    }
+    64% {
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+.starfighter-bounce {
+    animation-name: fa-bounce;
+    animation-delay: 0s;
+    animation-direction: normal;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+    filter: drop-shadow(0 0 4px rgba(34, 211, 238, 0.3));
+    transition: filter 0.3s ease;
+}
+
+.starfighter-bounce:hover {
+    filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.6));
+}
+
+@keyframes starfighterFlyAway {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    10% {
+        transform: translateX(8px) translateY(-4px) rotate(6deg) scale(1.05);
+        opacity: 0.95;
+    }
+    20% {
+        transform: translateX(16px) translateY(-8px) rotate(12deg) scale(1.1);
+        opacity: 0.9;
+    }
+    30% {
+        transform: translateX(24px) translateY(-12px) rotate(18deg) scale(1.15);
+        opacity: 0.85;
+    }
+    40% {
+        transform: translateX(32px) translateY(-16px) rotate(24deg) scale(1.2);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateX(40px) translateY(-20px) rotate(30deg) scale(1.25);
+        opacity: 0.75;
+    }
+    60% {
+        transform: translateX(48px) translateY(-24px) rotate(36deg) scale(1.3);
+        opacity: 0.7;
+    }
+    70% {
+        transform: translateX(56px) translateY(-28px) rotate(42deg) scale(1.35);
+        opacity: 0.6;
+    }
+    80% {
+        transform: translateX(64px) translateY(-32px) rotate(48deg) scale(1.4);
+        opacity: 0.45;
+    }
+    90% {
+        transform: translateX(72px) translateY(-36px) rotate(54deg) scale(1.45);
+        opacity: 0.25;
+    }
+    100% {
+        transform: translateX(80px) translateY(-40px) rotate(60deg) scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes starfighterTrail {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    5% {
+        opacity: 0.3;
+        transform: scale(0.3);
+    }
+    10% {
+        opacity: 0.6;
+        transform: scale(0.6);
+    }
+    15% {
+        opacity: 0.8;
+        transform: scale(0.8);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    25% {
+        opacity: 0.9;
+        transform: scale(1.1);
+    }
+    30% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+    40% {
+        opacity: 0.7;
+        transform: scale(1.3);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.4);
+    }
+    60% {
+        opacity: 0.5;
+        transform: scale(1.5);
+    }
+    70% {
+        opacity: 0.4;
+        transform: scale(1.6);
+    }
+    80% {
+        opacity: 0.3;
+        transform: scale(1.7);
+    }
+    90% {
+        opacity: 0.15;
+        transform: scale(1.8);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(2);
+    }
+}
+
+.starfighter-flying {
+    animation: starfighterFlyAway 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+    position: relative;
+}
+
+.starfighter-flying::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #22d3ee 0%, transparent 70%);
+    border-radius: 50%;
+    animation: starfighterTrail 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    pointer-events: none;
+}
+</style>

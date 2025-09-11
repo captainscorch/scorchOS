@@ -14,6 +14,13 @@
         },
         "pastWork": {
             "title": "Past work"
+        },
+        "profile": {
+            "title": "Founder, Designer, Developer",
+            "description": "A self-taught creative with expertise in digital media and communication, my passion lies in web development and graphic design, while photography has been a long-standing interest that has inspired me for years.",
+            "coFounder": "Co-Founder of unlimited.studio",
+            "openSourceContributor": "Open Source Contributor",
+            "starWarsEnthusiast": "Star Wars enthusiast"
         }
     },
     "languages": {
