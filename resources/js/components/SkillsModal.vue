@@ -294,11 +294,22 @@ const skillsData = {
         },
         frontend: {
             js: ['Vue.js', 'Alpine.js'],
-            css: ['Tailwind', 'Bootstrap'],
+            css: ['Tailwind', 'Bootstrap', 'shadcn/ui'],
         },
-        devOps: ['CLI', 'Git', 'AWS', 'Docker', 'S3', 'EC2', 'Nginx', 'Node.js', 'Envoyer', 'Forge'],
+        devOps: ['CLI', 'Git', 'CI/CD', 'AWS', 'Docker', 'S3', 'EC2', 'Nginx', 'Node.js', 'Envoyer', 'Forge'],
         databases: ['MySQL', 'SQLite', 'GraphQL'],
-        misc: ['Homebrew', 'Prompt Engineering', 'Agents', 'MCP', 'Cursor'],
+        misc: ['Homebrew', 'Prompt Engineering', 'Agents', 'MCP', 'Cursor', 'OpenAI API'],
+        analytics: [
+            'Google Analytics',
+            'Google Tag Manager',
+            'Google Search Console',
+            'Google Lighthouse',
+            'PageSpeed Insights',
+            'Conversions API',
+            'Microsoft Clarity',
+            'Meta Pixel',
+            'Hotjar',
+        ],
     },
     designTools: ['Figma', 'Adobe CC', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'],
     openSource: [
@@ -361,6 +372,11 @@ ${skillsData.technologies.databases.map((db) => `    "${db}"`).join(',\n')}
   // Misc
   misc: [
 ${skillsData.technologies.misc.map((item) => `    "${item}"`).join(',\n')}
+  ],
+
+  // Analytics
+  analytics: [
+${skillsData.technologies.analytics.map((item) => `    "${item}"`).join(',\n')}
   ]
 };
 

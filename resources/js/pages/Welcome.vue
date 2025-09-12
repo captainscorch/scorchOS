@@ -407,7 +407,7 @@ onUnmounted(() => {
                         ><FontAwesomeIcon icon="fa-sharp fa-light fa-clock-eight" class="mr-2" />{{ currentTime }} {{ timezone }}</span
                     >
                 </div>
-                <div class="flex flex-col gap-2 md:text-right">
+                <div class="flex flex-col gap-2">
                     <span class="font-medium"
                         ><FontAwesomeIcon icon="fa-sharp fa-light fa-briefcase" class="mr-2" />{{ t('home.pastWork.title') }}</span
                     >
@@ -427,7 +427,7 @@ onUnmounted(() => {
                                 </a>
                             </div>
                         </div>
-                        <div class="flex flex-col gap-1">
+                        <div class="flex flex-col gap-1 text-right">
                             <div v-for="(link, index) in pastWorkLinks.slice(4, 8)" :key="link.url" :class="index < 3 ? 'pb-0.5 text-sm' : 'text-sm'">
                                 <a
                                     :href="link.url"
