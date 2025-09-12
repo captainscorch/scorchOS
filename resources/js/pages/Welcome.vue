@@ -29,6 +29,7 @@ const isDark = useDark({
     attribute: 'class',
     valueDark: 'dark',
     valueLight: '',
+    initialValue: 'dark',
 });
 const toggleTheme = useToggle(isDark);
 
@@ -173,6 +174,9 @@ const triggerStarfighterAnimation = () => {
 };
 
 onMounted(() => {
+    document.documentElement.classList.add('dark');
+    isDark.value = true;
+
     updateClock();
     clockInterval = setInterval(updateClock, 1000);
     document.addEventListener('click', handleClickOutside);
