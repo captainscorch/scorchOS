@@ -137,6 +137,7 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-position: center;
+        word-break: auto-phrase;
     }
 
     ::selection {

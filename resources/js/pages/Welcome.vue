@@ -196,7 +196,9 @@ onUnmounted(() => {
         class="mx-auto h-[calc(100vH+100px)] min-h-dvh [max-width:1580px] px-8 md:h-full md:px-20 lg:px-40 [@media(min-width:1600px)]:max-w-[1600px] [@media(min-width:1920px)]:max-w-[1920px]"
     >
         <header class="flex h-[360px] min-h-[50dvH] items-start justify-start py-12 md:items-center md:pt-36">
-            <h1 class="font-teal-black font-work-sans text-3xl leading-[130%] font-bold md:text-[clamp(2.25rem,5vw,5.8rem)] md:leading-[150%]">
+            <h1
+                class="font-teal-black max-w-[290px] font-work-sans text-3xl leading-[130%] font-bold sm:max-w-fit md:text-[clamp(2.25rem,5vw,5.8rem)] md:leading-[150%]"
+            >
                 {{ t('home.tagline.prefix') }}
                 <a
                     class="link-with-thumbnail growing-border z-10 inline-flex items-center py-1 hover:cursor-ne-resize"
