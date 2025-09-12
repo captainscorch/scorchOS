@@ -299,19 +299,19 @@ const skillsData = {
         devOps: ['CLI', 'Git', 'CI/CD', 'AWS', 'Docker', 'S3', 'EC2', 'Nginx', 'Node.js', 'Envoyer', 'Forge'],
         databases: ['MySQL', 'SQLite', 'GraphQL'],
         misc: ['Homebrew', 'Prompt Engineering', 'Agents', 'MCP', 'Cursor', 'OpenAI API'],
-        analytics: [
-            'Google Analytics',
-            'Google Tag Manager',
-            'Google Search Console',
-            'Google Lighthouse',
-            'PageSpeed Insights',
-            'Conversions API',
-            'Microsoft Clarity',
-            'Meta Pixel',
-            'Hotjar',
-        ],
     },
     designTools: ['Figma', 'Adobe CC', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'],
+    analytics: [
+        'Google Analytics',
+        'Google Tag Manager',
+        'Google Search Console',
+        'Google Lighthouse',
+        'PageSpeed Insights',
+        'Conversions API',
+        'Microsoft Clarity',
+        'Meta Pixel',
+        'Hotjar',
+    ],
     openSource: [
         {
             project: 'Laravel Cashier',
@@ -370,11 +370,6 @@ ${skillsData.technologies.databases.map((db) => `    "${db}"`).join(',\n')}
   // Misc
   misc: [
 ${skillsData.technologies.misc.map((item) => `    "${item}"`).join(',\n')}
-  ],
-
-  // Analytics
-  analytics: [
-${skillsData.technologies.analytics.map((item) => `    "${item}"`).join(',\n')}
   ]
 };
 
@@ -383,13 +378,18 @@ const designTools = [
 ${skillsData.designTools.map((tool) => `  "${tool}"`).join(',\n')}
 ];
 
+// 05 ANALYTICS
+const analytics = [
+${skillsData.analytics.map((item) => `  "${item}"`).join(',\n')}
+];
+
 // 05 OPEN SOURCE CONTRIBUTIONS
 const openSourceContributions = [
 ${skillsData.openSource.map((contrib) => `  {\n    project: "${contrib.project}",\n  }`).join(',\n')}
 ];
 
 // Export all skills
-export { languages, codeLanguages, technologies, designTools, openSourceContributions };`;
+export { languages, codeLanguages, technologies, designTools, analytics, openSourceContributions };`;
 };
 
 const formatSkillsWithSyntaxHighlighting = () => {
