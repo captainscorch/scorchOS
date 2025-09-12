@@ -290,11 +290,11 @@ const skillsData = {
         backend: {
             php: ['Laravel', 'Livewire', 'Filament', 'Nova', 'Jetstream', 'Cashier', 'Spark', 'Inertia'],
             js: ['Nuxt'],
-            shopify: ['Liquid', 'Hydrogen'],
+            shopify: ['Liquid', 'Hydrogen', 'Oxygen'],
         },
         frontend: {
             js: ['Vue.js', 'Alpine.js'],
-            css: ['Tailwind', 'Bootstrap', 'shadcn/ui'],
+            css: ['Tailwind', 'Bootstrap'],
         },
         devOps: ['CLI', 'Git', 'CI/CD', 'AWS', 'Docker', 'S3', 'EC2', 'Nginx', 'Node.js', 'Envoyer', 'Forge'],
         databases: ['MySQL', 'SQLite', 'GraphQL'],
