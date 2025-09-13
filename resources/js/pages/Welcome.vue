@@ -46,15 +46,16 @@ const pastWorkLinks = [
     { url: 'https://theloz.co', label: 'The Loz', image: '/img/projects/loz-thumbnail.webp', alt: 'The Loz' },
     { url: 'https://icemaenner.com', label: 'Icemänner', image: '/img/projects/icemaenner-thumbnail.webp', alt: 'Icemänner' },
     { url: 'https://www.hubner-group.com', label: 'HÜBNER Group', image: '/img/projects/hubner-group-thumbnail.webp', alt: 'HÜBNER Group' },
-    { url: 'https://cale-design.com', label: 'cale design', image: '/img/projects/caledesign-thumbnail.webp', alt: 'cale design' },
+    { url: 'https://dixxhardseltzer.com', label: 'Dixx', image: '/img/projects/dixxhardseltzer-thumbnail.webp', alt: 'Dixx Hard Seltzer' },
     {
         url: 'https://tamplenplasticsurgery.com',
         label: 'Tamplen',
         image: '/img/projects/tamplenplasticsurgery-thumbnail.webp',
         alt: 'Tamplen Plastic Surgery',
     },
-    { url: 'https://pawsomepet.co', label: 'Pawsome', image: '/img/projects/pawsome-thumbnail.webp', alt: 'Pawsome' },
-    { url: 'https://dixxhardseltzer.com', label: 'Dixx', image: '/img/projects/dixxhardseltzer-thumbnail.webp', alt: 'Dixx Hard Seltzer' },
+    { url: 'https://cale-design.com', label: 'cale design', image: '/img/projects/caledesign-thumbnail.webp', alt: 'cale design' },
+    { url: 'https://icc-offroad.de', label: 'ICC Offroad', image: '/img/projects/icc-offroad-thumbnail.webp', alt: 'ICC Offroad' },
+    // { url: 'https://pawsomepet.co', label: 'Pawsome', image: '/img/projects/pawsome-thumbnail.webp', alt: 'Pawsome' },
 ];
 
 // Clock functionality
