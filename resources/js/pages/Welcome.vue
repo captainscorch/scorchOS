@@ -39,9 +39,9 @@ const switchLanguage = (lang: string) => {
 
 const pastWorkLinks = [
     { url: 'https://way.food', label: 'way.food', image: '/img/projects/wayfood-thumbnail.webp', alt: 'way.food' },
+    { url: 'https://theloz.co', label: 'The Loz', image: '/img/projects/loz-thumbnail.webp', alt: 'The Loz' },
     { url: 'https://icemaenner.com', label: 'Icemänner', image: '/img/projects/icemaenner-thumbnail.webp', alt: 'Icemänner' },
     { url: 'https://www.hubner-group.com', label: 'HÜBNER Group', image: '/img/projects/hubner-group-thumbnail.webp', alt: 'HÜBNER Group' },
-    { url: 'https://theloz.co', label: 'theloz.co', image: '/img/projects/loz-thumbnail.webp', alt: 'The Loz' },
     { url: 'https://cale-design.com', label: 'cale design', image: '/img/projects/caledesign-thumbnail.webp', alt: 'cale design' },
     {
         url: 'https://tamplenplasticsurgery.com',
