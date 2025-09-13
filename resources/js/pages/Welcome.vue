@@ -35,6 +35,10 @@ const toggleTheme = useToggle(isDark);
 
 const switchLanguage = (lang: string) => {
     setLocale(lang);
+    setTimeout(() => {
+        checkLyftdPosition();
+        checkUnlimitedPosition();
+    }, 100);
 };
 
 const pastWorkLinks = [
@@ -99,6 +103,38 @@ const checkMobile = () => {
 // Mobile thumbnail preview
 const activeThumbnailIndex = ref<number | null>(null);
 const activeSpecialThumbnail = ref<string | null>(null);
+
+// Logo position detection for thumbnail alignment
+const lyftdLogoRef = ref<HTMLElement | null>(null);
+const unlimitedLogoRef = ref<HTMLElement | null>(null);
+const isLyftdNearRightEdge = ref(false);
+const isUnlimitedNearRightEdge = ref(false);
+
+const checkLogoPosition = (logoRef: HTMLElement | null, isNearRightEdge: any) => {
+    if (!logoRef || !isMobile.value) {
+        isNearRightEdge.value = false;
+        return;
+    }
+
+    const logoRect = logoRef.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const logoRightEdge = logoRect.right;
+    const logoLeftEdge = logoRect.left;
+
+    const distanceToRight = viewportWidth - logoRightEdge;
+    const distanceToLeft = logoLeftEdge;
+
+    const shouldAlignRight = distanceToRight < distanceToLeft;
+    isNearRightEdge.value = shouldAlignRight;
+};
+
+const checkLyftdPosition = () => {
+    checkLogoPosition(lyftdLogoRef.value, isLyftdNearRightEdge);
+};
+
+const checkUnlimitedPosition = () => {
+    checkLogoPosition(unlimitedLogoRef.value, isUnlimitedNearRightEdge);
+};
 
 const toggleThumbnail = (index: number) => {
     if (!isMobile.value || (isMobile.value && activeThumbnailIndex.value === index)) {
@@ -183,6 +219,13 @@ onMounted(() => {
 
     checkMobile();
     window.addEventListener('resize', checkMobile);
+
+    setTimeout(() => {
+        checkLyftdPosition();
+        checkUnlimitedPosition();
+    }, 100);
+    window.addEventListener('resize', checkLyftdPosition);
+    window.addEventListener('resize', checkUnlimitedPosition);
 });
 
 onUnmounted(() => {
@@ -191,6 +234,8 @@ onUnmounted(() => {
     }
     document.removeEventListener('click', handleClickOutside);
     window.removeEventListener('resize', checkMobile);
+    window.removeEventListener('resize', checkLyftdPosition);
+    window.removeEventListener('resize', checkUnlimitedPosition);
 });
 </script>
 
@@ -201,10 +246,11 @@ onUnmounted(() => {
     >
         <header class="flex h-[360px] min-h-[50dvH] items-start justify-start py-12 md:items-center md:pt-36">
             <h1
-                class="font-teal-black max-w-[290px] font-work-sans text-3xl leading-[130%] font-bold sm:max-w-fit md:text-[clamp(2.25rem,5vw,5.8rem)] md:leading-[150%]"
+                class="font-teal-black relative max-w-[290px] font-work-sans text-3xl leading-[130%] font-bold sm:max-w-fit md:text-[clamp(2.25rem,5vw,5.8rem)] md:leading-[150%]"
             >
                 {{ t('home.tagline.prefix') }}
                 <a
+                    ref="unlimitedLogoRef"
                     class="link-with-thumbnail growing-border z-10 inline-flex items-center py-1 hover:cursor-ne-resize"
                     :class="{ 'is-active': activeSpecialThumbnail === 'unlimited' }"
                     href="https://unlimited.studio/?utm_campaign=watermark&utm_medium=website&utm_source=captainscor.ch"
@@ -289,7 +335,13 @@ onUnmounted(() => {
                             </g>
                         </g>
                     </svg>
-                    <div class="thumbnail-preview-wrapper large thumb-below-mobile" :class="{ 'is-active': activeSpecialThumbnail === 'unlimited' }">
+                    <div
+                        class="thumbnail-preview-wrapper"
+                        :class="{
+                            'is-active': activeSpecialThumbnail === 'unlimited',
+                            'right-aligned': isUnlimitedNearRightEdge,
+                        }"
+                    >
                         <img
                             class="thumbnail-preview"
                             src="/img/projects/unlimitedstudio-thumbnail.webp"
@@ -301,6 +353,7 @@ onUnmounted(() => {
                 </a>
                 {{ t('home.tagline.middle') }}
                 <a
+                    ref="lyftdLogoRef"
                     class="link-with-thumbnail growing-border z-5 inline-flex items-center py-1 hover:cursor-ne-resize"
                     :class="{ 'is-active': activeSpecialThumbnail === 'lyftd' }"
                     href="https://lyftd.app/?utm_campaign=watermark&utm_medium=website&utm_source=captainscor.ch"
@@ -323,7 +376,13 @@ onUnmounted(() => {
                             </g>
                         </g>
                     </svg>
-                    <div class="thumbnail-preview-wrapper large thumb-below-mobile" :class="{ 'is-active': activeSpecialThumbnail === 'lyftd' }">
+                    <div
+                        class="thumbnail-preview-wrapper"
+                        :class="{
+                            'is-active': activeSpecialThumbnail === 'lyftd',
+                            'right-aligned': isLyftdNearRightEdge,
+                        }"
+                    >
                         <img class="thumbnail-preview" src="/img/projects/lyftd-thumbnail.webp" alt="lyftd" width="300" height="300" />
                     </div> </a
                 >{{ t('home.tagline.suffix') }}
