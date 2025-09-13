@@ -101,7 +101,7 @@ const activeThumbnailIndex = ref<number | null>(null);
 const activeSpecialThumbnail = ref<string | null>(null);
 
 const toggleThumbnail = (index: number) => {
-    if (isMobile.value && activeThumbnailIndex.value === index) {
+    if (!isMobile.value || (isMobile.value && activeThumbnailIndex.value === index)) {
         const link = pastWorkLinks[index];
         if (link) {
             window.open(link.url, '_blank');
@@ -118,7 +118,7 @@ const toggleThumbnail = (index: number) => {
 };
 
 const toggleSpecialThumbnail = (type: string) => {
-    if (isMobile.value && activeSpecialThumbnail.value === type) {
+    if (!isMobile.value || (isMobile.value && activeSpecialThumbnail.value === type)) {
         const url =
             type === 'unlimited'
                 ? 'https://unlimited.studio/?utm_campaign=watermark&utm_medium=website&utm_source=captainscor.ch'
