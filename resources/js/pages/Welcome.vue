@@ -93,7 +93,7 @@ const closeCard = () => {
 const isMobile = ref(false);
 
 const checkMobile = () => {
-    isMobile.value = window.innerWidth <= 767;
+    isMobile.value = window.innerWidth <= 990;
 };
 
 // Mobile thumbnail preview
