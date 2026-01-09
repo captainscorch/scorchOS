@@ -2,15 +2,36 @@
     "home": {
         "tagline": {
             "prefix": "Hey, I'm running",
-            "middle": "by day and building",
+            "middleOne": "by day and ",
+            "middleTwo": "building",
             "suffix": " by night."
         },
         "about": {
+            "title": "About",
             "skills": "Skills",
             "lastSeen": "Kassel, Germany"
         },
         "navigation": {
-            "viewPortfolio": "Portfolio"
+            "viewPortfolio": "Portfolio",
+            "about": "About",
+            "scrollHint": "Scroll",
+            "caseStudies": "Case Studies",
+            "portfolio": "Portfolio",
+            "portfolioFolder": "portfolio",
+            "productFolder": "product",
+            "developmentFolder": "development",
+            "aboutDescription": "Get to know me better.",
+            "blog": "Blog",
+            "playground": "Playground",
+            "comingSoon": "Coming Soon",
+            "comingSoonDescription": "Coming soon.",
+            "aboutMe": "About me",
+            "learnMore": "Learn more"
+        },
+        "clock": {
+            "ahead": "{hours}h ahead",
+            "behind": "{hours}h behind",
+            "same": "± 0h"
         },
         "pastWork": {
             "title": "Past work"
@@ -21,10 +42,213 @@
             "coFounder": "Co-Founder of unlimited.studio",
             "openSourceContributor": "Open Source Contributor",
             "starWarsEnthusiast": "Star Wars enthusiast"
+        },
+        "intro": {
+            "whoAmI": "Who am I?",
+            "scrollHint": "(scroll down or hit Enter to continue)",
+            "swipeHint": "(swipe down to continue)",
+            "description": "I'm a design engineer based in Germany with a passion for creating modern and functional digital experiences."
+        }
+    },
+    "commandMenu": {
+        "placeholder": "Type a command or search...",
+        "noResults": "No results found.",
+        "groups": {
+            "pages": "Pages",
+            "social": "Social",
+            "brandAssets": "Brand Assets",
+            "settings": "Settings"
+        },
+        "pages": {
+            "home": "Home",
+            "about": "About",
+            "portfolio": "Portfolio",
+            "terminal": "Terminal"
+        },
+        "social": {
+            "instagram": "Instagram",
+            "twitter": "X (Twitter)",
+            "linkedin": "LinkedIn",
+            "github": "GitHub",
+            "email": "Email"
+        },
+        "brandAssets": {
+            "copyMarkAsSvg": "Copy Mark as SVG"
+        },
+        "settings": {
+            "light": "Light",
+            "dark": "Dark",
+            "english": "English",
+            "deutsch": "Deutsch"
+        },
+        "footer": {
+            "goToPage": "Go to Page",
+            "exit": "Exit"
+        },
+        "terminal": {
+            "helpHint": "Type {command} to see available commands.",
+            "command": "help"
+        },
+        "toast": {
+            "copied": "{type} copied to clipboard",
+            "copiedDescription": "You can now paste it into your design tool.",
+            "copyFailed": "Failed to copy to clipboard"
+        }
+    },
+    "footer": {
+        "contact": "Contact",
+        "notes": "Notes",
+        "description": "This website is constantly evolving, expect regular updates and new commits. Last updated:",
+        "loading": "Loading...",
+        "quote": "\"We've always defined ourselves by the ability to overcome the impossible.\"",
+        "quoteAttribution": "– Cooper (Interstellar)",
+        "socials": "Socials",
+        "copyright": "Copyright"
+    },
+    "portfolio": {
+        "views": {
+            "covers": "Covers",
+            "spines": "Spines"
+        },
+        "title": "Case Studies",
+        "subtitle": "Explore other projects",
+        "hero": {
+            "line1": "Where design meets code,",
+            "line2": "crafted with dedication and precision."
         }
     },
     "languages": {
         "en": "EN",
         "de": "DE"
+    },
+    "bio": {
+        "sections": {
+            "bio": "Bio",
+            "skills": "Skills"
+        },
+        "length": "Length",
+        "present": "Present",
+        "modes": {
+            "story": "Story",
+            "list": "List",
+            "timeline": "Timeline"
+        },
+        "skills": {
+            "designTools": "Design Tools",
+            "codeLanguages": "Code Languages",
+            "technologies": "Technologies",
+            "categories": {
+                "backend": "Backend",
+                "frontend": "Frontend",
+                "devOps": "Dev Ops",
+                "databases": "Databases",
+                "misc": "Misc",
+                "analytics": "Analytics"
+            }
+        },
+        "ariaLabels": {
+            "decreaseLength": "Decrease length",
+            "increaseLength": "Increase length",
+            "filterByCompany": "Filter by {company}"
+        },
+        "prose": [
+            "Self-taught creative with expertise in digital media and communication, my passion lies in web development and graphic design, while photography has been a long-standing interest that has inspired me for years. From early self-initiated projects and a 3-year print and digital apprenticeship to eight years running my own studio delivering global projects. I balance design and engineering and have operated as a broad generalist under tight deadlines with multiple stakeholders, handling communication across internal teams, freelancers, clients and executives. I have hired employees and contractors and set up internal and external processes across the board.",
+            "Self-taught creative with expertise in digital media and communication, my passion lies in web development and graphic design, while photography has been a long-standing interest that has inspired me for years. My journey began with self-initiated projects and quickly expanded into a formal 3-year print and digital apprenticeship, allowing me to develop a strong foundation in both design and technology. Over eight years, I grew my own studio, delivering global projects across different industries and managing diverse teams..<br><br>I am adept at balancing creativity and engineering—handling responsibilities as a broad generalist under tight deadlines and with multiple stakeholders. I've managed communication with internal teams, freelancers, clients, and executives, and I have successfully hired employees and contractors and instituted internal and external processes that streamline studio operations.",
+            "As a self-taught creative with comprehensive expertise in digital media and communication, my passion lies in web development and graphic design, while photography represents a long-standing interest that has continuously inspired me and shaped my creative perspective. My journey began with early self-initiated projects and progressed through an 3-year apprenticeship in print and digital media, culminating in eight years where I successfully ran my own studio and delivered complex global projects for international clients. During this period, I collaborated with a wide range of businesses and stakeholders across different sectors, adapting to varied project requirements and building scalable digital solutions.<br><br>In my role, I precisely balance design and engineering and have established myself as a broad generalist who operates under extremely tight deadlines with multiple stakeholders. I effectively coordinate communication between internal teams, external freelancers, direct clients, and C-level executives, ensuring alignment and successful project delivery. Furthermore, I have extensive experience building teams by hiring and managing both full-time employees and contractors, and have established comprehensive internal and external processes and workflows that ensure efficiency and quality throughout all phases of production and deployment."
+        ],
+        "list": [
+            [
+                "Self-taught creative with expertise in digital media and communication.",
+                "Passionate about web development, graphic design, and long-standing interest in photography.",
+                "Professional experience at unlimited.studio, b3plus GmbH & Co. KG."
+            ],
+            [
+                "Self-taught creative with broad expertise in digital media and communication.",
+                "Skilled in web development and graphic design; photography enthusiast.",
+                "Led early self-initiated projects and completed a 3-year print and digital apprenticeship at b3plus GmbH & Co. KG.",
+                "Co-founded and lead unlimited.studio GmbH, delivering global web and product solutions."
+            ],
+            [
+                "Self-taught creative with in-depth experience in digital media and communication; passion for web development, graphic design, and photography.",
+                "Began with self-initiated projects; completed 3-year media apprenticeship at b3plus GmbH & Co. KG.",
+                "Successfully ran unlimited.studio GmbH as Co-Founder/Managing Director for eight years, delivering global projects.",
+                "Expertly balances design and engineering, operates as a broad generalist under tight deadlines with multiple stakeholders.",
+                "Extensive experience in recruiting and managing team members, setting up efficient internal and external processes."
+            ]
+        ],
+        "timeline": [
+            {
+                "date": "2018-07-20 - Present",
+                "title": "unlimited.studio GmbH",
+                "content": "Co-Founder / Managing Director",
+                "list": [
+                    "Lead end-to-end web and product projects: strategy, UX/UI, full-stack development, deployment, and operations.",
+                    "Manage cross-functional roadmaps and teams; own budgeting, resourcing, and studio operations for on-time, in-scope delivery to global clients.",
+                    "Drive product strategy and research, including discovery, user research, and requirements, translating outcomes into design systems, prototypes, and scalable web apps/sites.",
+                    "Build and ship solutions: architecture, production code, server/cloud setup, CI/CD, monitoring, and post-launch iteration.",
+                    "Run client relations and communication, aligning stakeholders from proposal to delivery; facilitate workshops, maintain documentation, and nurture long-term partnerships.",
+                    "Own growth: performance marketing (Google Ads, Tag Manager, GA4, Search Console, Pinterest Ads, Meta Ads), tracking and attribution, funnels, reporting; social and lifecycle marketing (channels, content, community, newsletters/CRM, A/B tests, KPIs)."
+                ],
+                "company": "unlimited.studio GmbH",
+                "companyLogo": "/img/companies/unlimited.png"
+            },
+            {
+                "date": "2015-08-01 - 2018-06-13",
+                "title": "b3plus GmbH & Co. KG",
+                "content": "Digital and Print Media Designer (Subject Area: Design and Technology)",
+                "list": ["3 Year Apprenticeship", "This qualification relates to level 4 of the German and the European Qualifications Framework."],
+                "company": "b3plus GmbH & Co. KG",
+                "companyLogo": "/img/companies/b3plus.png"
+            },
+            {
+                "date": "2007 - 2015",
+                "title": "Education"
+            }
+        ],
+        "approach": {
+            "title": "Approach",
+            "items": [
+                {
+                    "title": "Code as a design tool.",
+                    "content": "I treat development as part of the design loop, iterating on ideas in code to achieve speed, precision, and higher interaction quality."
+                },
+                {
+                    "title": "End-to-end execution.",
+                    "content": "Running a studio for eight years taught me to handle everything from strategy and design to full-stack development and operations."
+                },
+                {
+                    "title": "Craft and detail.",
+                    "content": "I build interfaces that feel alive—using scroll-driven narratives and subtle motion to create web experiences where quality matters."
+                },
+                {
+                    "title": "Holistic perspective.",
+                    "content": "I approach projects with a broad view, ensuring that brand identity, product design, and technical implementation evolve in unison."
+                },
+                {
+                    "title": "Design Engineer.",
+                    "content": "I bridge the gap between disciplines, designing with code constraints in mind and developing with a designer’s eye for typography."
+                },
+                {
+                    "title": "Adaptable stack.",
+                    "content": "Experienced in Vue and Laravel but framework-agnostic. I learn fast and pick the right tool for the job to solve the problem at hand."
+                }
+            ]
+        }
+    },
+    "caseStudy": {
+        "backToPortfolio": "Go Back",
+        "exploreGallery": "Explore the gallery",
+        "technologies": "Technologies",
+        "readFullStory": "Read the full story",
+        "fullStory": "Full Story",
+        "close": "Close",
+        "team": "Team",
+        "tools": "Services",
+        "date": "Date",
+        "website": "Website",
+        "fineprint": "Fineprint",
+        "gallery": "Gallery",
+        "notFound": "Case Study Not Found",
+        "defaultDescription": "Case study showcasing my work and process."
     }
 }

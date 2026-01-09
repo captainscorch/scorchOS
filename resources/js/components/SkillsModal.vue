@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import { useModalWindow } from '@/composables/useModalWindow';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTimes } from '@fortawesome/sharp-light-svg-icons';
+import { faCompress, faExpand, faTimes } from '@fortawesome/sharp-light-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import 'highlight.js/styles/github-dark.css';
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { onMounted, onUnmounted, watch } from 'vue';
 
-library.add(faTimes);
+library.add(faTimes, faCompress, faExpand);
 
 hljs.registerLanguage('javascript', javascript);
 
@@ -21,220 +23,27 @@ interface Emits {
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
-// Dragging
-const isDragging = ref(false);
-const dragOffset = ref({ x: 0, y: 0 });
-const modalPosition = ref<{ x: number | null; y: number | null }>({ x: null, y: null });
-const modalRef = ref<HTMLElement | null>(null);
+const {
+    modalRef: _modalRef,
+    handleRef: _handleRef,
+    isDragging,
+    isResizing,
+    isFullscreen,
+    modalPosition,
+    modalWidth,
+    modalHeight,
+    modalMinWidth,
+    windowWidth,
+    startDrag,
+    startResize,
+    toggleFullscreen,
+    resetPosition,
+    setInitialSize,
+} = useModalWindow(800, 612);
 
-// Resizing
-const isResizing = ref(false);
-const resizeDirection = ref('');
-const resizeStart = ref({ x: 0, y: 0, width: 0, height: 0 });
-const modalSize = ref({ width: 800, height: 612 });
-const isFullscreen = ref(false);
-const windowWidth = ref(window.innerWidth);
-
-const setInitialSize = () => {
-    const isMobile = windowWidth.value < 768;
-    if (isMobile) {
-        modalSize.value = {
-            width: Math.min(800, windowWidth.value - 32),
-            height: Math.min(600, window.innerHeight - 32),
-        };
-    } else {
-        // Reset to desktop defaults when transitioning from mobile to desktop
-        modalSize.value = {
-            width: 800,
-            height: 612,
-        };
-    }
-};
-
-const modalWidth = computed(() => {
-    if (isFullscreen.value) {
-        return windowWidth.value < 768 ? '100dvw' : '100vw';
-    }
-    const isMobile = windowWidth.value < 768;
-    return isMobile ? 'calc(100vw - 2rem)' : `${modalSize.value.width}px`;
-});
-
-const modalHeight = computed(() => {
-    if (isFullscreen.value) {
-        return windowWidth.value < 768 ? '100dvh' : '100vh';
-    }
-    return `${modalSize.value.height}px`;
-});
-
-const modalMinWidth = computed(() => {
-    const isMobile = windowWidth.value < 768;
-    return isMobile ? '290px' : '400px';
-});
-
-const startDrag = (event: MouseEvent) => {
-    if (!modalRef.value || isFullscreen.value) return;
-
-    isDragging.value = true;
-
-    const rect = modalRef.value.getBoundingClientRect();
-
-    if (modalPosition.value.x === null || modalPosition.value.y === null) {
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
-        const modalWidth = rect.width;
-        const modalHeight = rect.height;
-
-        modalPosition.value = {
-            x: centerX - modalWidth / 2,
-            y: centerY - modalHeight / 2,
-        };
-    }
-
-    dragOffset.value = {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top,
-    };
-
-    document.addEventListener('mousemove', onDrag, { passive: false });
-    document.addEventListener('mouseup', stopDrag, { passive: false });
-    event.preventDefault();
-};
-
-const onDrag = (event: MouseEvent) => {
-    if (!isDragging.value) return;
-
-    let newX = event.clientX - dragOffset.value.x;
-    let newY = event.clientY - dragOffset.value.y;
-
-    // Keep modal within viewport bounds
-    const modalWidth = modalRef.value?.offsetWidth || 800;
-    const modalHeight = modalRef.value?.offsetHeight || 612;
-
-    newX = Math.max(0, Math.min(newX, window.innerWidth - modalWidth));
-    newY = Math.max(0, Math.min(newY, window.innerHeight - modalHeight));
-
-    modalPosition.value = {
-        x: newX,
-        y: newY,
-    };
-};
-
-const stopDrag = () => {
-    isDragging.value = false;
-    document.removeEventListener('mousemove', onDrag);
-    document.removeEventListener('mouseup', stopDrag);
-};
-
-// Handle mouse leave to stop dragging
-const handleMouseLeave = () => {
-    if (isDragging.value) {
-        stopDrag();
-    }
-};
-
-// Resize
-const startResize = (event: MouseEvent, direction: string) => {
-    if (!modalRef.value) return;
-
-    // Disable on mobile devices
-    if (window.innerWidth < 768) return;
-
-    // Prevent interactions
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
-
-    isResizing.value = true;
-    resizeDirection.value = direction;
-
-    const rect = modalRef.value.getBoundingClientRect();
-    resizeStart.value = {
-        x: event.clientX,
-        y: event.clientY,
-        width: rect.width,
-        height: rect.height,
-    };
-
-    document.addEventListener('mousemove', onResize);
-    document.addEventListener('mouseup', (event) => stopResize(event));
-};
-
-const onResize = (event: MouseEvent) => {
-    if (!isResizing.value) return;
-
-    const deltaX = event.clientX - resizeStart.value.x;
-    const deltaY = event.clientY - resizeStart.value.y;
-
-    let newWidth = resizeStart.value.width;
-    let newHeight = resizeStart.value.height;
-
-    if (resizeDirection.value.includes('right')) {
-        newWidth = Math.max(400, resizeStart.value.width + deltaX);
-    }
-    if (resizeDirection.value.includes('left')) {
-        newWidth = Math.max(400, resizeStart.value.width - deltaX);
-    }
-    if (resizeDirection.value.includes('bottom')) {
-        newHeight = Math.max(300, resizeStart.value.height + deltaY);
-    }
-    if (resizeDirection.value.includes('top')) {
-        newHeight = Math.max(300, resizeStart.value.height - deltaY);
-    }
-
-    // Constrain to full viewport dimensions
-    newWidth = Math.min(newWidth, window.innerWidth);
-    newHeight = Math.min(newHeight, window.innerHeight);
-
-    modalSize.value = {
-        width: newWidth,
-        height: newHeight,
-    };
-};
-
-const stopResize = (event?: MouseEvent) => {
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-    }
-
-    setTimeout(() => {
-        isResizing.value = false;
-        resizeDirection.value = '';
-    }, 50);
-
-    document.removeEventListener('mousemove', onResize);
-    document.removeEventListener('mouseup', stopResize);
-};
-
-// Handle esc key
 const handleKeydown = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
         emit('close');
-    }
-};
-
-// Toggle fullscreen mode
-const toggleFullscreen = () => {
-    isFullscreen.value = !isFullscreen.value;
-    if (isFullscreen.value) {
-        // Store current position and size when exiting fullscreen
-        modalPosition.value = { x: null, y: null };
-    }
-};
-
-// Reset modal position and size when closed
-const resetPosition = () => {
-    modalPosition.value = { x: null, y: null };
-    modalSize.value = { width: 800, height: 612 };
-    isFullscreen.value = false;
-};
-
-// Handle window resize
-const handleWindowResize = () => {
-    windowWidth.value = window.innerWidth;
-    if (props.isOpen) {
-        setInitialSize();
     }
 };
 
@@ -246,7 +55,6 @@ const unlockBodyScroll = () => {
     document.body.style.overflow = '';
 };
 
-// Watch for modal close to reset position
 watch(
     () => props.isOpen,
     (isOpen) => {
@@ -262,27 +70,13 @@ watch(
 
 onMounted(() => {
     document.addEventListener('keydown', handleKeydown);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    window.addEventListener('resize', handleWindowResize);
-    document.addEventListener('mouseup', () => {
-        if (isDragging.value) {
-            stopDrag();
-        }
-    });
 });
 
 onUnmounted(() => {
     document.removeEventListener('keydown', handleKeydown);
-    document.removeEventListener('mouseleave', handleMouseLeave);
-    window.removeEventListener('resize', handleWindowResize);
-    document.removeEventListener('mousemove', onDrag);
-    document.removeEventListener('mouseup', stopDrag);
-    document.removeEventListener('mousemove', onResize);
-    document.removeEventListener('mouseup', stopResize);
     unlockBodyScroll();
 });
 
-// Data
 const skillsData = {
     languages: ['German (native)', 'Englisch (professional – C2)'],
     codeLanguages: ['HTML', 'CSS', 'JavaScript', 'PHP', 'Liquid'],
@@ -415,7 +209,7 @@ const formatSkillsWithSyntaxHighlighting = () => {
             leave-from-class="opacity-100"
             leave-to-class="opacity-0"
         >
-            <div v-if="isOpen" class="fixed inset-0 z-50 bg-teal-black/50 backdrop-blur-sm" @click="!isResizing && $emit('close')">
+            <div v-if="isOpen" class="fixed inset-0 z-50 bg-white/60 backdrop-blur-xs dark:bg-teal-black/60" @click="!isResizing && $emit('close')">
                 <Transition
                     enter-active-class="transition duration-300 ease-out"
                     enter-from-class="opacity-0 scale-95"
@@ -425,9 +219,9 @@ const formatSkillsWithSyntaxHighlighting = () => {
                     leave-to-class="opacity-0 scale-95"
                 >
                     <div
-                        ref="modalRef"
+                        ref="_modalRef"
                         v-if="isOpen"
-                        class="absolute flex flex-col overflow-hidden rounded-lg border border-teal-800 bg-teal-black shadow-2xl"
+                        class="scorch-theme absolute flex flex-col overflow-hidden rounded-xl border border-teal-800 bg-teal-black shadow-2xl"
                         :style="{
                             left: isFullscreen ? '0' : modalPosition.x === null ? '50%' : `${modalPosition.x}px`,
                             top: isFullscreen ? '0' : modalPosition.y === null ? '50%' : `${modalPosition.y}px`,
@@ -444,26 +238,35 @@ const formatSkillsWithSyntaxHighlighting = () => {
                     >
                         <!-- Modal Header -->
                         <div
+                            ref="_handleRef"
                             class="flex items-center justify-between rounded-t-lg border-b border-teal-800/40 bg-[#0a1a18] px-4 py-3"
-                            :class="{ 'cursor-move': !isFullscreen }"
+                            :class="{ 'cursor-grab active:cursor-grabbing': !isFullscreen }"
                             @mousedown="startDrag"
                         >
                             <div class="flex items-center space-x-2">
-                                <div class="flex space-x-1">
+                                <div class="group flex space-x-2">
                                     <button
                                         @click="emit('close')"
-                                        class="h-3 w-3 cursor-pointer rounded-full bg-red-500 transition-colors hover:bg-red-600"
+                                        class="flex h-3 w-3 items-center justify-center rounded-full bg-[#ff5f56] text-[8px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ff5f56]/80"
                                         title="Close"
-                                    ></button>
+                                    >
+                                        <span class="opacity-0 group-hover:opacity-100">✕</span>
+                                    </button>
                                     <div
-                                        class="h-3 w-3 cursor-default rounded-full bg-yellow-500 transition-colors hover:bg-yellow-600"
+                                        class="flex h-3 w-3 items-center justify-center rounded-full bg-[#ffbd2e] text-[8px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ffbd2e]/80"
                                         title="Minimize"
-                                    ></div>
+                                    >
+                                        <span class="opacity-0 group-hover:opacity-100">−</span>
+                                    </div>
                                     <button
                                         @click="toggleFullscreen"
-                                        class="h-3 w-3 cursor-pointer rounded-full bg-green-500 transition-colors hover:bg-green-600"
+                                        class="flex h-3 w-3 items-center justify-center rounded-full bg-[#27c93f] text-[6px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#27c93f]/80"
                                         :title="isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'"
-                                    ></button>
+                                    >
+                                        <span class="opacity-0 group-hover:opacity-100">
+                                            <FontAwesomeIcon :icon="isFullscreen ? 'fa-sharp fa-light fa-compress' : 'fa-sharp fa-light fa-expand'" />
+                                        </span>
+                                    </button>
                                 </div>
                                 <span class="ml-4 text-sm font-medium text-teal-100">skills.js</span>
                             </div>
@@ -478,7 +281,7 @@ const formatSkillsWithSyntaxHighlighting = () => {
                                 </div>
                             </div>
 
-                            <div class="ml-12 h-full cursor-text overflow-auto bg-[#020807]">
+                            <div class="terminal-scrollbar ml-12 h-full cursor-text overflow-auto bg-[#020807]">
                                 <pre
                                     class="p-4 font-mono text-sm leading-6 whitespace-pre-wrap text-teal-50 select-text"
                                 ><code v-html="formatSkillsWithSyntaxHighlighting()"></code></pre>
@@ -548,25 +351,6 @@ const formatSkillsWithSyntaxHighlighting = () => {
 </template>
 
 <style scoped>
-.overflow-auto::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-.overflow-auto::-webkit-scrollbar-track {
-    background: #020807;
-}
-
-.overflow-auto::-webkit-scrollbar-thumb {
-    background: #145c4a;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.overflow-auto::-webkit-scrollbar-thumb:hover {
-    background: #2ab193;
-}
-
 :deep(.hljs) {
     background: #020807 !important;
     color: #ccfbf1 !important;

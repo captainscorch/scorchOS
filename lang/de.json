@@ -2,15 +2,36 @@
     "home": {
         "tagline": {
             "prefix": "Hi, tagsüber manage ich",
-            "middle": "und nachts entwickle ich",
+            "middleOne": "und ",
+            "middleTwo": "nachts entwickle ich",
             "suffix": "."
         },
         "about": {
+            "title": "Über mich",
             "skills": "Skills",
             "lastSeen": "Kassel, Deutschland"
         },
         "navigation": {
-            "viewPortfolio": "Portfolio"
+            "viewPortfolio": "Portfolio",
+            "about": "Über mich",
+            "scrollHint": "Scrollen",
+            "caseStudies": "Case Studies",
+            "portfolio": "Portfolio",
+            "portfolioFolder": "portfolio",
+            "designFolder": "design",
+            "developmentFolder": "development",
+            "aboutDescription": "Lerne mich besser kennen.",
+            "blog": "Blog",
+            "playground": "Playground",
+            "comingSoon": "Demnächst",
+            "comingSoonDescription": "Demnächst verfügbar.",
+            "aboutMe": "Über mich",
+            "learnMore": "Mehr erfahren"
+        },
+        "clock": {
+            "ahead": "{hours}Std. voraus",
+            "behind": "{hours}Std. zurück",
+            "same": "± 0 Std."
         },
         "pastWork": {
             "title": "Projekte"
@@ -21,10 +42,213 @@
             "coFounder": "Co-Founder von unlimited.studio",
             "openSourceContributor": "Open Source Beitragender",
             "starWarsEnthusiast": "Star Wars Enthusiast"
+        },
+        "intro": {
+            "whoAmI": "Wer bin ich?",
+            "scrollHint": "(nach unten scrollen oder Enter drücken, um fortzufahren)",
+            "swipeHint": "(nach unten wischen, um fortzufahren)",
+            "description": "Ich bin ein Design Engineer aus Deutschland mit einer Leidenschaft für die Erstellung moderner und funktionaler digitaler Erfahrungen."
+        }
+    },
+    "commandMenu": {
+        "placeholder": "Befehl eingeben oder suchen...",
+        "noResults": "Keine Ergebnisse gefunden.",
+        "groups": {
+            "pages": "Seiten",
+            "social": "Social",
+            "brandAssets": "Marken-Assets",
+            "settings": "Einstellungen"
+        },
+        "pages": {
+            "home": "Startseite",
+            "about": "Über mich",
+            "portfolio": "Portfolio",
+            "terminal": "Terminal"
+        },
+        "social": {
+            "instagram": "Instagram",
+            "twitter": "X (Twitter)",
+            "linkedin": "LinkedIn",
+            "github": "GitHub",
+            "email": "E-Mail"
+        },
+        "brandAssets": {
+            "copyMarkAsSvg": "Marke als SVG kopieren"
+        },
+        "settings": {
+            "light": "Hell",
+            "dark": "Dunkel",
+            "english": "Englisch",
+            "deutsch": "Deutsch"
+        },
+        "footer": {
+            "goToPage": "Zu Seite gehen",
+            "exit": "Beenden"
+        },
+        "terminal": {
+            "helpHint": "Tippe {command}, um verfügbare Befehle zu sehen.",
+            "command": "help"
+        },
+        "toast": {
+            "copied": "{type} in Zwischenablage kopiert",
+            "copiedDescription": "Du kannst es jetzt in dein Design-Tool einfügen.",
+            "copyFailed": "Kopieren in Zwischenablage fehlgeschlagen"
+        }
+    },
+    "footer": {
+        "contact": "Kontakt",
+        "notes": "Notizen",
+        "description": "Diese Website entwickelt sich ständig weiter, regelmäßige Updates und neue Commits sind zu erwarten. Zuletzt aktualisiert:",
+        "loading": "Lädt...",
+        "quote": "\"Wir haben uns immer durch die Fähigkeit definiert, das Unmögliche zu überwinden.\"",
+        "quoteAttribution": "– Cooper (Interstellar)",
+        "socials": "Social Media",
+        "copyright": "Copyright"
+    },
+    "portfolio": {
+        "views": {
+            "covers": "Cover",
+            "spines": "Rücken"
+        },
+        "title": "Case Studies",
+        "subtitle": "Andere Projekte erkunden",
+        "hero": {
+            "line1": "Design trifft Code,",
+            "line2": "geformt mit Hingabe und Präzision."
         }
     },
     "languages": {
         "en": "EN",
         "de": "DE"
+    },
+    "bio": {
+        "sections": {
+            "bio": "Bio",
+            "skills": "Skills"
+        },
+        "length": "Länge",
+        "present": "Heute",
+        "modes": {
+            "story": "Story",
+            "list": "Liste",
+            "timeline": "Zeitstrahl"
+        },
+        "skills": {
+            "designTools": "Design-Tools",
+            "codeLanguages": "Programmiersprachen",
+            "technologies": "Technologien",
+            "categories": {
+                "backend": "Backend",
+                "frontend": "Frontend",
+                "devOps": "Dev Ops",
+                "databases": "Datenbanken",
+                "misc": "Sonstiges",
+                "analytics": "Analytics"
+            }
+        },
+        "ariaLabels": {
+            "decreaseLength": "Länge verringern",
+            "increaseLength": "Länge erhöhen",
+            "filterByCompany": "Nach {company} filtern"
+        },
+        "prose": [
+            "Als hands-on-Kreativer mit Expertise in digitalen Medien und Kommunikation liegt meine Leidenschaft in der Webentwicklung und im Grafikdesign, während Fotografie ein langjähriges Interesse ist, das mich seit Jahren inspiriert. Von frühen Eigenprojekten über eine 3-jährige Ausbildung in Print und Digital bis zu acht Jahren als Studioinhaber mit globalen Projekten – ich balanciere Design und Engineering als vielseitiger Generalist, halte unter Zeitdruck verschiedenste Stakeholder im Flow und manage Kommunikation mit Teams, Freelancern, Kunden und Executives. Mitarbeiter:innen und Freelancer einstellen, Prozesse aufsetzen, Strukturen bauen – liegt definitiv in meinem Skillset.",
+            "Als hands-on-Kreativer mit Expertise in digitalen Medien und Kommunikation liegt meine Leidenschaft in der Webentwicklung und im Grafikdesign, während Fotografie mich schon viele Jahre inspiriert. Mein Weg startete mit eigenen Projekten und wurde durch eine 3-jährige fundierte Ausbildung in Print und Digital gestärkt. Acht Jahre später habe ich mein eigenes Studio aufgebaut, globale Projekte vorangetrieben und facettenreiche Teams geleitet.<br><br>Kreativität und Engineering balanciere ich souverän – arbeite unter Deadlines effektiv als Generalist mit zig Stakeholdern. Die Kommunikation zwischen Teams, Freelancern, Kunden oder Führungsebene steuere ich lässig und habe mit dem Aufbau von Mitarbeitenden und effizienten Prozessen mein Studio von Grund auf weiterentwickelt.",
+            "Als hands-on-Kreativer mit umfassender Expertise in digitalen Medien und Kommunikation liebe ich Webentwicklung und Grafikdesign; Fotografie begleitet und inspiriert mich seit Jahren. Ich bin mit eigenen Projekten gestartet, habe eine 3-jährige Ausbildung zum Mediengestalter Digital und Print durchgezogen und über acht Jahre weltweit Kundenprojekte mit meinem Studio umgesetzt. In dieser Zeit habe ich mit Unternehmen und Ansprechpartnern aus unterschiedlichsten Branchen gearbeitet, flexibel auf verschiedenste Anforderungen reagiert und skalierbare digitale Lösungen gebaut.<br><br>Ich bringe Design und Engineering in Balance, arbeite als Generalist unter knackigen Deadlines mit mehreren Stakeholdern und habe Kommunikation zwischen Teams, Freelancern, Kund:innen und Executives effizient gemacht. Teamaufbau, Recruiting und clevere Prozessgestaltung – von Basics bis fortgeschritten – gehören zu meinem Werkzeugkasten."
+        ],
+        "list": [
+            [
+                "Hands-on-Kreativer mit Expertise in digitalen Medien und Kommunikation.",
+                "Leidenschaft für Webentwicklung, Grafikdesign und Fotografie, die mich seit Jahren inspiriert.",
+                "Erfahrung bei unlimited.studio und b3plus GmbH & Co. KG."
+            ],
+            [
+                "Breites Know-how in digitalen Medien und Kommunikation als hands-on-Kreativer.",
+                "Webentwicklung, Grafikdesign und Fotografie als Schwerpunkte.",
+                "Frühe Eigenprojekte und 3-jährige Ausbildung bei b3plus GmbH & Co. KG.",
+                "Mitgründer und Geschäftsführer von unlimited.studio GmbH, Umsetzung globaler Web- und Produktlösungen."
+            ],
+            [
+                "Umfassende Erfahrung in digitalen Medien & Kommunikation als hands-on-Kreativer; Leidenschaft für Webentwicklung, Grafikdesign und Fotografie.",
+                "Gestartet mit eigenen Projekten, gefolgt von einer 3-jährigen Ausbildung zum Mediengestalter Digital und Print bei b3plus GmbH & Co. KG.",
+                "Acht Jahre als Co-Founder/Geschäftsführer von unlimited.studio GmbH, globale Projekte umgesetzt.",
+                "Balance von Design & Engineering; Generalist, der unter engen Deadlines und vielschichtigen Stakeholdern performt.",
+                "Erfahrung im Teamaufbau, Recruiting und der Gestaltung effizienter interner und externer Prozesse."
+            ]
+        ],
+        "timeline": [
+            {
+                "date": "2018-07-20 - Present",
+                "title": "unlimited.studio GmbH",
+                "content": "Co-Founder / Managing Director",
+                "list": [
+                    "Leitung von ganzheitlichen Web- und Produktprojekten: Strategie, UX/UI, Full-Stack-Entwicklung, Deployment und Betrieb.",
+                    "Verantworte bereichsübergreifende Roadmaps und Teams; Budgetierung, Ressourcenmanagement und Studio-Operations für pünktliche, zielgerichtete Lieferung an globale Kund:innen.",
+                    "Steuerung der Produktstrategie und -forschung, einschließlich Discovery, User Research und Anforderungsmanagement; überführe Ergebnisse in Designsysteme, Prototypen und skalierbare Webanwendungen/-seiten.",
+                    "Konzipierung und Realisierung von Lösungen: Architektur, Produktionscode, Server-/Cloud-Setup, CI/CD, Monitoring und fortlaufende Optimierung nach Launch.",
+                    "Pflege von Kundenbeziehungen und Kommunikation, begleite Stakeholder von Angebot bis Auslieferung; moderiere Workshops, erstelle Dokumentationen und entwickle nachhaltige Partnerschaften.",
+                    "Verantwortung für Wachstum: Performance Marketing (Google Ads, Tag Manager, GA4, Search Console, Pinterest Ads, Meta Ads), Tracking und Attribution, Funnels, Reporting; Social & Lifecycle-Marketing (Kanäle, Content, Community, Newsletter/CRM, A/B-Tests, KPIs)."
+                ],
+                "company": "unlimited.studio GmbH",
+                "companyLogo": "/img/companies/unlimited.png"
+            },
+            {
+                "date": "2015-08-01 - 2018-06-13",
+                "title": "b3plus GmbH & Co. KG",
+                "content": "Mediengestalter Digital und Print (Fachrichtung: Design und Technik)",
+                "list": ["3-jährige Ausbildung", "Diese Qualifikation entspricht Niveau 4 des Deutschen und Europäischen Qualifikationsrahmens."],
+                "company": "b3plus GmbH & Co. KG",
+                "companyLogo": "/img/companies/b3plus.png"
+            },
+            {
+                "date": "2007 - 2015",
+                "title": "Bildung"
+            }
+        ],
+        "approach": {
+            "title": "Ansatz",
+            "items": [
+                {
+                    "title": "Code als Designtool.",
+                    "content": "Ich betrachte Entwicklung als Teil des Design-Prozesses und iteriere Ideen im Code, um Geschwindigkeit, Präzision und ein höheres Maß an Interaktionsqualität zu erreichen."
+                },
+                {
+                    "title": "End-to-End Umsetzung.",
+                    "content": "Acht Jahre Studioleitung haben mich gelehrt, alles von Strategie und Design bis zu Full-Stack-Entwicklung und Betrieb zu übernehmen."
+                },
+                {
+                    "title": "Handwerk und Detail.",
+                    "content": "Ich entwickle Interfaces, die lebendig wirken – mit scroll-gesteuerten Narrativen und subtilen Animationen für Web-Erlebnisse, bei denen Qualität zählt."
+                },
+                {
+                    "title": "Ganzheitliche Perspektive.",
+                    "content": "Ich gehe Projekte mit Weitblick an und stelle sicher, dass Markenidentität, Produktdesign und technische Umsetzung im Gleichschritt wachsen."
+                },
+                {
+                    "title": "Design Engineer.",
+                    "content": "Ich überbrücke Disziplinen, gestalte mit den Grenzen des Codes im Blick und entwickle mit dem Auge eines Designers für Typografie."
+                },
+                {
+                    "title": "Anpassungsfähiger Stack.",
+                    "content": "Erfahren in Vue und Laravel, aber technologieoffen. Ich lerne schnell und wähle immer das passende Werkzeug für die jeweilige Aufgabe."
+                }
+            ]
+        }
+    },
+    "caseStudy": {
+        "backToPortfolio": "Zurück",
+        "exploreGallery": "Galerie erkunden",
+        "technologies": "Technologien",
+        "readFullStory": "Vollständige Story lesen",
+        "fullStory": "Vollständige Story",
+        "close": "Schließen",
+        "team": "Team",
+        "tools": "Leistungen",
+        "date": "Datum",
+        "website": "Webseite",
+        "fineprint": "Kleingedrucktes",
+        "gallery": "Galerie",
+        "notFound": "Case Study nicht gefunden",
+        "defaultDescription": "Case Study, die meine Arbeit und meinen Prozess zeigt."
     }
 }

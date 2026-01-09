@@ -2,8 +2,10 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import './fonts.css';
+@import './components/terminal.css';
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant touch (@media (pointer: coarse));
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -45,6 +47,7 @@
     --color-card: var(--card);
     --color-foreground: var(--foreground);
     --color-background: var(--background);
+    --color-html: var(--html);
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
@@ -56,6 +59,7 @@
 }
 
 :root {
+    --html: #ffffff;
     --background: #f2f0ef;
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -89,9 +93,11 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+    --scrollbar-border: oklch(92.2% 0 0);
 }
 
 .dark {
+    --html: #000000;
     --background: #040e0c;
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.145 0 0);
@@ -124,15 +130,25 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(0.269 0 0);
     --sidebar-ring: oklch(0.439 0 0);
+    --scrollbar-border: oklch(26.9% 0 0);
 }
 
 @layer base {
     html {
+        @apply bg-html;
         scroll-behavior: smooth;
     }
 
+    .page-welcome {
+        @apply bg-background bg-[linear-gradient(160deg,_#f2f0ef_0%,_rgb(242,240,239)_50%,_rgb(229_228_228)_80%,_rgb(42_177_147_/_100%)_100%)];
+    }
+
+    .dark.page-welcome {
+        @apply bg-background bg-[linear-gradient(160deg,_#040e0c_0%,_rgb(1_2_2)_50%,_rgb(9_28_25)_80%,_rgb(42_177_147_/_35%)_100%)];
+    }
+
     body {
-        @apply bg-background bg-[linear-gradient(160deg,_#f2f0ef_0%,_rgb(242,240,239)_50%,_rgb(229_228_228)_80%,_rgb(42_177_147_/_100%)_100%)] font-sans text-pretty text-teal-black antialiased dark:bg-[linear-gradient(160deg,_#040e0c_0%,_rgb(1_2_2)_50%,_rgb(9_28_25)_80%,_rgb(42_177_147_/_35%)_100%)] dark:text-off-white;
+        @apply font-sans text-pretty text-teal-black antialiased dark:text-off-white;
         text-rendering: optimizeLegibility;
         background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -159,7 +175,52 @@
 
     * {
         @apply touch-manipulation border-border antialiased outline-ring/50;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-border) transparent;
     }
+
+    ::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+}
+
+/* Page transition */
+@keyframes tech-zoom-out {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+    100% {
+        transform: scale(0.9);
+        opacity: 0;
+        filter: blur(12px);
+    }
+}
+
+@keyframes tech-zoom-in {
+    0% {
+        transform: scale(1.1);
+        opacity: 0;
+        filter: blur(12px);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+::view-transition-old(root) {
+    animation: 600ms cubic-bezier(0.16, 1, 0.3, 1) both tech-zoom-out;
+    z-index: 1;
+    transform-origin: center;
+}
+
+::view-transition-new(root) {
+    animation: 600ms cubic-bezier(0.16, 1, 0.3, 1) both tech-zoom-in;
+    z-index: 2;
+    transform-origin: center;
 }
 
 .growing-border {

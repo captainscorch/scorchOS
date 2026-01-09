@@ -1,0 +1,63 @@
+{
+    "id": 7,
+    "slug": "icemaenner",
+    "client": "ICEMÄNNER",
+    "category": "Development",
+    "image": "/img/portfolio/icemaenner/icemaenner_portrait_1.webp",
+    "color": "#63B7E7",
+    "logo": "icemaenner",
+    "width": "80%",
+    "height": "aspect-[4/6]",
+    "spineHeight": "h-24 md:h-32",
+    "date": "2025",
+    "website": "https://icemaenner.com",
+    "team": [{ "src": "/img/daniel.webp", "name": "Daniel Schmier" }],
+    "services": ["Development", "Creative Direction"],
+    "technologies": ["Shopify", "Liquid", "Tailwind CSS"],
+    "media": [
+        {
+            "type": "video",
+            "aspectRatio": "video",
+            "src": "/img/portfolio/icemaenner/icemaenner_portrait_video_1.webm",
+            "thumbnail": "/img/portfolio/icemaenner/icemaenner_landscape_1.webp",
+            "alt": "lyftd intro video 1"
+        },
+        {
+            "type": "video",
+            "aspectRatio": "4/5",
+            "src": "/img/portfolio/icemaenner/icemaenner_portrait_video_1.webm",
+            "thumbnail": "/img/portfolio/icemaenner/icemaenner_portrait_1.webp",
+            "alt": "lyftd intro video 2"
+        },
+        {
+            "type": "image",
+            "aspectRatio": "4/5",
+            "src": "/img/portfolio/icemaenner/icemaenner_portrait_1.webp",
+            "alt": "ICEMÄNNER - Mobile Landingpage"
+        },
+        {
+            "type": "image",
+            "aspectRatio": "16/9",
+            "src": "/img/portfolio/icemaenner/icemaenner_landscape_1.webp",
+            "alt": "ICEMÄNNER - Desktop Landingpage"
+        },
+        {
+            "type": "image",
+            "aspectRatio": "4/5",
+            "src": "/img/portfolio/icemaenner/icemaenner_portrait_1.webp",
+            "alt": "ICEMÄNNER - Mobile Landingpage"
+        },
+        {
+            "type": "image",
+            "aspectRatio": "4/5",
+            "src": "/img/portfolio/icemaenner/icemaenner_portrait_1.webp",
+            "alt": "ICEMÄNNER - Mobile Landingpage"
+        }
+    ],
+    "title": "Modern and trendy e-commerce website",
+    "story_preview": "ICEMÄNNER is a modern and trendy e-commerce website built on a modern tech stack emphasizing clean code and scalability, it offers a seamless experience for customers.",
+    "story": "# Placeholder Headline\n\nThe ICEMÄNNER project is a modern and innovative e-commerce website designed for style, ease of use, and performance. Built with a best-in-class tech stack, ICEMÄNNER offers customers a fresh experience, seamless navigation, and a reliable shopping journey from discovery to checkout.\n\n## Modern Stack\n\nThe entire platform leverages powerful web technologies. A secure and flexible **Laravel** backend handles business logic, orders, and customer data. The **Vue.js** powered frontend ensures a lightning-fast, interactive interface. **Inertia.js** bridges backend and front, making the platform a robust Single Page Application (SPA) without the complexity of a separate API. The design is responsive, mobile-first, and stylishly realized with **Tailwind CSS**.\n\n## E-Commerce Experience\n\nFrom product discovery to checkout, every detail is designed for smoothness and delight. Customers can browse collections, view detailed product stories, and checkout securely. Inventory, customer accounts, order tracking, and admin features are managed via a robust dashboard, built using **Filament**.\n\n## Continuous Innovation\n\nICEMÄNNER continually evolves—new features, optimizations, and marketing integrations are added to ensure the experience remains both trendy for customers and efficient for the business.",
+    "fineprint": "This is a placeholder fineprint for ICEMÄNNER. The full detailed project description and background information will be written soon, summarizing key lessons, responsibilities, and outcomes of the development work.",
+    "fineprint_media": "/img/portfolio/icemaenner/icemaenner_landscape_1.webp",
+    "fineprint_media_alt": "ICEMÄNNER - Desktop Landingpage"
+}
