@@ -11,9 +11,12 @@
     "spineHeight": "h-24 md:h-32",
     "date": "2025",
     "website": "https://icemaenner.com",
-    "team": [{ "src": "/img/daniel.webp", "name": "Daniel Schmier" }],
-    "services": ["Development", "Creative Direction"],
-    "technologies": ["Shopify", "Liquid", "Tailwind CSS"],
+    "team": [
+        { "src": "/img/daniel.webp", "name": "Daniel Schmier" },
+        { "src": "/img/unlimited.webp", "name": "unlimited.studio" }
+    ],
+    "services": ["Development", "Creative Direction", "Shopify Automation"],
+    "technologies": ["Shopify", "Liquid", "Tailwind CSS", "Shopify Flow"],
     "media": [
         {
             "type": "video",
@@ -54,10 +57,10 @@
             "alt": "ICEMÄNNER - Mobile Landingpage"
         }
     ],
-    "title": "Modern and trendy e-commerce website",
-    "story_preview": "ICEMÄNNER is a modern and trendy e-commerce website built on a modern tech stack emphasizing clean code and scalability, it offers a seamless experience for customers.",
-    "story": "# Placeholder Headline\n\nThe ICEMÄNNER project is a modern and innovative e-commerce website designed for style, ease of use, and performance. Built with a best-in-class tech stack, ICEMÄNNER offers customers a fresh experience, seamless navigation, and a reliable shopping journey from discovery to checkout.\n\n## Modern Stack\n\nThe entire platform leverages powerful web technologies. A secure and flexible **Laravel** backend handles business logic, orders, and customer data. The **Vue.js** powered frontend ensures a lightning-fast, interactive interface. **Inertia.js** bridges backend and front, making the platform a robust Single Page Application (SPA) without the complexity of a separate API. The design is responsive, mobile-first, and stylishly realized with **Tailwind CSS**.\n\n## E-Commerce Experience\n\nFrom product discovery to checkout, every detail is designed for smoothness and delight. Customers can browse collections, view detailed product stories, and checkout securely. Inventory, customer accounts, order tracking, and admin features are managed via a robust dashboard, built using **Filament**.\n\n## Continuous Innovation\n\nICEMÄNNER continually evolves—new features, optimizations, and marketing integrations are added to ensure the experience remains both trendy for customers and efficient for the business.",
-    "fineprint": "This is a placeholder fineprint for ICEMÄNNER. The full detailed project description and background information will be written soon, summarizing key lessons, responsibilities, and outcomes of the development work.",
+    "title": "High-energy B2B & B2C Ecommerce Experience",
+    "story_preview": "A high-energy, trend-focused global commerce experience for ICEMÄNNER. Featuring a custom Shopify setup with advanced B2B/B2C logic, automated warehouse integration, and a design that hits as hard as the drinks.",
+    "story": "# High Voltage Commerce\n\nICEMÄNNER isn't just about selling ice; it's about a lifestyle. As Co-founder and Lead Web Dev at **unlimited**, I led the technical realization of this bold vision, turning a high-octane brand into a high-performance e-commerce reality.\n\n## B2C: Viral Speed\n\nThe public-facing store is built for speed and conversion, mirroring the brand's social media velocity.\n- **Dynamic Pricing:** Implemented complex variant and quantity discount logic that calculates savings on the fly.\n- **Visual Impact:** A custom theme that balances high-res assets with snappy performance.\n\n## B2B: Locked & Loaded\n\nBehind the scenes, a robust B2B portal serves retail partners.\n- **Gated Access:** Password-protected environments for wholesale pricing.\n- **Custom Payments:** Tailored payment gateways and terms for business clients.\n\n## Integrations & Automation\n\nTo keep the ice flowing without operational friction, I engineered the backend logic:\n- **Shopify Flows:** Automated workflows for order tagging, fraud analysis, and customer segmentation.\n- **Warehouse Sync:** Real-time integration with logistics partners to ensure stock levels are accurate and shipping is instant.\n\nThis project proves that a store can look \"TikTok famous\" while running like a Fortune 500 logistics operation.",
+    "fineprint": "Engineered for the hype. A technical masterclass in balancing viral aesthetics with rigid B2B logistics, ensuring the shop scales as fast as the brand grows.",
     "fineprint_media": "/img/portfolio/icemaenner/icemaenner_landscape_1.webp",
     "fineprint_media_alt": "ICEMÄNNER - Desktop Landingpage"
 }
