@@ -15,52 +15,65 @@
         { "src": "/img/daniel.webp", "name": "Daniel Schmier" },
         { "src": "/img/unlimited.webp", "name": "unlimited.studio" }
     ],
-    "services": ["Development", "Creative Direction", "Shopify Automation"],
-    "technologies": ["Shopify", "Liquid", "Tailwind CSS", "Shopify Flow"],
+    "services": ["Development", "Creative Direction", "Shopify Automation", "Consulting"],
+    "technologies": ["Shopify", "Liquid", "Tailwind CSS", "JavaScript", "Shopify Flow"],
     "media": [
         {
             "type": "video",
-            "aspectRatio": "video",
-            "src": "/img/portfolio/icemaenner/icemaenner_portrait_video_1.webm",
-            "thumbnail": "/img/portfolio/icemaenner/icemaenner_landscape_1.webp",
-            "alt": "lyftd intro video 1"
-        },
-        {
-            "type": "video",
             "aspectRatio": "4/5",
             "src": "/img/portfolio/icemaenner/icemaenner_portrait_video_1.webm",
-            "thumbnail": "/img/portfolio/icemaenner/icemaenner_portrait_1.webp",
-            "alt": "lyftd intro video 2"
-        },
-        {
-            "type": "image",
-            "aspectRatio": "4/5",
-            "src": "/img/portfolio/icemaenner/icemaenner_portrait_1.webp",
+            "thumbnail": "/img/portfolio/icemaenner/icemaenner_portrait_video_1.webp",
             "alt": "ICEMÄNNER - Mobile Landingpage"
         },
         {
             "type": "image",
             "aspectRatio": "16/9",
             "src": "/img/portfolio/icemaenner/icemaenner_landscape_1.webp",
-            "alt": "ICEMÄNNER - Desktop Landingpage"
+            "alt": "ICEMÄNNER - Desktop Collection Page"
+        },
+        {
+            "type": "video",
+            "aspectRatio": "4/5",
+            "src": "/img/portfolio/icemaenner/icemaenner_portrait_video_2.webm",
+            "thumbnail": "/img/portfolio/icemaenner/icemaenner_portrait_video_2.webp",
+            "alt": "ICEMÄNNER - Mobile Rotating Slogan Area"
+        },
+        {
+            "type": "image",
+            "aspectRatio": "16/9",
+            "src": "/img/portfolio/icemaenner/icemaenner_landscape_2.webp",
+            "alt": "ICEMÄNNER - Desktop Collection Page"
+        },
+        {
+            "type": "image",
+            "aspectRatio": "16/9",
+            "src": "/img/portfolio/icemaenner/icemaenner_landscape_5.webp",
+            "alt": "ICEMÄNNER - Mobile Product Page Details"
         },
         {
             "type": "image",
             "aspectRatio": "4/5",
-            "src": "/img/portfolio/icemaenner/icemaenner_portrait_1.webp",
-            "alt": "ICEMÄNNER - Mobile Landingpage"
+            "src": "/img/portfolio/icemaenner/icemaenner_portrait_2.webp",
+            "alt": "ICEMÄNNER - Mobile Cart Drawer"
+        },
+        {
+            "type": "video",
+            "aspectRatio": "4/5",
+            "src": "/img/portfolio/icemaenner/icemaenner_portrait_video_3.webm",
+            "thumbnail": "/img/portfolio/icemaenner/icemaenner_portrait_video_3.webp",
+            "alt": "ICEMÄNNER - Mobile Footer Area"
         },
         {
             "type": "image",
-            "aspectRatio": "4/5",
-            "src": "/img/portfolio/icemaenner/icemaenner_portrait_1.webp",
-            "alt": "ICEMÄNNER - Mobile Landingpage"
+            "aspectRatio": "16/9",
+            "src": "/img/portfolio/icemaenner/icemaenner_landscape_3.webp",
+            "alt": "ICEMÄNNER - Desktop Product Page Product Explanation Graphic"
         }
     ],
     "title": "High-energy B2B & B2C Ecommerce Experience",
     "story_preview": "A high-energy, trend-focused global commerce experience for ICEMÄNNER. Featuring a custom Shopify setup with advanced B2B/B2C logic, automated warehouse integration, and a design that hits as hard as the drinks.",
-    "story": "# High Voltage Commerce\n\nICEMÄNNER isn't just about selling ice; it's about a lifestyle. As Co-founder and Lead Web Dev at **unlimited**, I led the technical realization of this bold vision, turning a high-octane brand into a high-performance e-commerce reality.\n\n## B2C: Viral Speed\n\nThe public-facing store is built for speed and conversion, mirroring the brand's social media velocity.\n- **Dynamic Pricing:** Implemented complex variant and quantity discount logic that calculates savings on the fly.\n- **Visual Impact:** A custom theme that balances high-res assets with snappy performance.\n\n## B2B: Locked & Loaded\n\nBehind the scenes, a robust B2B portal serves retail partners.\n- **Gated Access:** Password-protected environments for wholesale pricing.\n- **Custom Payments:** Tailored payment gateways and terms for business clients.\n\n## Integrations & Automation\n\nTo keep the ice flowing without operational friction, I engineered the backend logic:\n- **Shopify Flows:** Automated workflows for order tagging, fraud analysis, and customer segmentation.\n- **Warehouse Sync:** Real-time integration with logistics partners to ensure stock levels are accurate and shipping is instant.\n\nThis project proves that a store can look \"TikTok famous\" while running like a Fortune 500 logistics operation.",
-    "fineprint": "Engineered for the hype. A technical masterclass in balancing viral aesthetics with rigid B2B logistics, ensuring the shop scales as fast as the brand grows.",
-    "fineprint_media": "/img/portfolio/icemaenner/icemaenner_landscape_1.webp",
-    "fineprint_media_alt": "ICEMÄNNER - Desktop Landingpage"
+    "story": "# High Voltage Commerce\n\nICEMÄNNER isn't just about selling ice; it's about a lifestyle. As Co-founder and Lead Web Dev at **unlimited.studio**, I led the technical realization of ICEMÄNNER's bold vision, turning a high-octane brand into a high-performance e-commerce reality.\n\n## Custom Architecture\n\nThe theme was developed and designed from the ground up by us. It incorporates custom illustrations, intense animations, and specialized scroll effects to balance high-res assets with snappy performance, creating a truly immersive brand experience.\n\n## Advanced Logic & Shopify Flow\n\nTo bridge complexity with simplicity, we utilized Shopify Flow for advanced variant warehouse processing and complex discount logic. \n- **Smart Inventory:** We implemented a system where 50-packs are essentially 5x 10-packs sharing the same SKU. \n- **Storefront Integration:** Custom logic in the theme and storefront handles these relationships, ensuring stock accuracy and automated fulfillment while keeping the customer experience seamless.\n\n## B2B: Locked & Loaded\n\nBehind the scenes, a robust B2B portal serves retail partners with gated access and tailored payment gateways, proving that a store can look \"TikTok famous\" while running like a Fortune 500 logistics operation.",
+    "fineprint": "Engineered for the hype. A showcase in balancing viral aesthetics with rigid B2B logistics, ensuring the shop scales as fast as the brand grows.",
+    "fineprint_media": "/img/portfolio/icemaenner/icemaenner_landscape_4.webp",
+    "fineprint_media_alt": "ICEMÄNNER - Mobile Product Page Variants"
 }
