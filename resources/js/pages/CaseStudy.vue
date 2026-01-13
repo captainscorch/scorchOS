@@ -63,6 +63,61 @@ const galleryMedia = computed(() => {
     return project.value?.media ?? [];
 });
 
+// Determine if media should be displayed full width (landscape) or half width (portrait)
+const isLandscape = (media: any): boolean => {
+    const ratio = getAspectRatio(media);
+    if (ratio === 'video' || ratio === '16/9') return true;
+    const [width, height] = ratio.split('/').map(Number);
+    return width > height;
+};
+
+// Group media items into rows for the drawer gallery layout
+// Landscape items get their own row, portrait items are paired (looking ahead to find pairs)
+const galleryRows = computed(() => {
+    const rows: { items: any[]; type: 'full' | 'pair' }[] = [];
+    const media = galleryMedia.value;
+    const used = new Set<number>();
+
+    for (let i = 0; i < media.length; i++) {
+        if (used.has(i)) continue;
+
+        const currentItem = media[i];
+        const currentIsLandscape = isLandscape(currentItem);
+
+        if (currentIsLandscape) {
+            // Landscape items always take full width
+            rows.push({ items: [{ ...currentItem, originalIndex: i }], type: 'full' });
+            used.add(i);
+        } else {
+            // Portrait item - look ahead to find another portrait to pair with
+            let pairIndex = -1;
+            for (let j = i + 1; j < media.length; j++) {
+                if (!used.has(j) && !isLandscape(media[j])) {
+                    pairIndex = j;
+                    break;
+                }
+            }
+
+            if (pairIndex !== -1) {
+                rows.push({
+                    items: [
+                        { ...currentItem, originalIndex: i },
+                        { ...media[pairIndex], originalIndex: pairIndex },
+                    ],
+                    type: 'pair',
+                });
+                used.add(i);
+                used.add(pairIndex);
+            } else {
+                rows.push({ items: [{ ...currentItem, originalIndex: i }], type: 'pair' });
+                used.add(i);
+            }
+        }
+    }
+
+    return rows;
+});
+
 const sliderMedia = computed(() => {
     const original = galleryMedia.value || [];
     if (original.length === 0) return [];
@@ -125,8 +180,8 @@ const openDrawerAtImage = (index: number) => {
 
 watch(isDrawerOpen, async (isOpen) => {
     if (isOpen && clickedImageIndex.value !== null) {
-        // Ensure we don't try to scroll to an image beyond what's displayed (max 6 images in drawer)
-        const maxDisplayedIndex = Math.min(clickedImageIndex.value, galleryMedia.value.length - 1, 5);
+        // Ensure we don't try to scroll to an image beyond what's displayed
+        const maxDisplayedIndex = Math.min(clickedImageIndex.value, galleryMedia.value.length - 1);
 
         const scrollToImage = async (retries = 5) => {
             await nextTick();
@@ -641,189 +696,70 @@ onUnmounted(() => {
                 <span class="sr-only">Close</span>
             </DrawerClose>
             <div ref="drawerContentRef" class="mx-auto w-full max-w-7xl overflow-y-auto px-6 py-12 touch:pt-0">
-                <!-- Gallery Grid -->
+                <!-- Dynamic Gallery Grid -->
                 <div class="mb-0 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 touch:mb-[14px]">
-                    <!-- 1. Full Width -->
-                    <div v-if="galleryMedia[0]" class="col-span-1 md:col-span-2">
-                        <div
-                            data-image-index="0"
-                            :class="[
-                                'w-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800',
-                                getAspectRatio(galleryMedia[0]) === 'video' || getAspectRatio(galleryMedia[0]) === '16/9'
-                                    ? 'aspect-video'
-                                    : `aspect-[${getAspectRatio(galleryMedia[0])}]`,
-                            ]"
-                        >
-                            <img
-                                v-if="galleryMedia[0].type === 'image'"
-                                :src="galleryMedia[0].src"
-                                class="h-full w-full object-cover"
-                                :alt="(galleryMedia[0] as any).alt || `${project?.title} - Gallery 1`"
-                            />
-                            <video
-                                v-else-if="galleryMedia[0].type === 'video'"
-                                :src="galleryMedia[0].src"
-                                :poster="(galleryMedia[0] as any).thumbnail"
-                                :aria-label="(galleryMedia[0] as any).alt || `${project?.title} - Gallery 1`"
-                                class="h-full w-full object-cover"
-                                muted
-                                loop
-                                autoplay
-                                playsinline
-                            />
-                        </div>
-                    </div>
+                    <template v-for="(row, rowIndex) in galleryRows" :key="rowIndex">
+                        <!-- Full width row (single landscape or single portrait) -->
+                        <template v-if="row.type === 'full'">
+                            <div :class="['col-span-1', isLandscape(row.items[0]) ? 'md:col-span-2' : '']">
+                                <div
+                                    :data-image-index="row.items[0].originalIndex"
+                                    :class="[
+                                        'w-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800',
+                                        isLandscape(row.items[0]) ? 'aspect-video' : '',
+                                    ]"
+                                    :style="!isLandscape(row.items[0]) ? { aspectRatio: getAspectRatio(row.items[0]) } : {}"
+                                >
+                                    <img
+                                        v-if="row.items[0].type === 'image'"
+                                        :src="row.items[0].src"
+                                        class="h-full w-full object-cover"
+                                        :alt="(row.items[0] as any).alt || `${project?.title} - Gallery ${row.items[0].originalIndex + 1}`"
+                                    />
+                                    <video
+                                        v-else-if="row.items[0].type === 'video'"
+                                        :src="row.items[0].src"
+                                        :poster="(row.items[0] as any).thumbnail"
+                                        :aria-label="(row.items[0] as any).alt || `${project?.title} - Gallery ${row.items[0].originalIndex + 1}`"
+                                        class="h-full w-full object-cover"
+                                        muted
+                                        loop
+                                        autoplay
+                                        playsinline
+                                    />
+                                </div>
+                            </div>
+                        </template>
 
-                    <!-- 2. Grid Col 2 (Desktop) / 1 (Mobile) -->
-                    <div v-if="galleryMedia[1]" class="col-span-1">
-                        <div
-                            data-image-index="1"
-                            :class="[
-                                'w-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800',
-                                getAspectRatio(galleryMedia[1]) === 'video' || getAspectRatio(galleryMedia[1]) === '16/9'
-                                    ? 'aspect-video'
-                                    : `aspect-[${getAspectRatio(galleryMedia[1])}]`,
-                            ]"
-                        >
-                            <img
-                                v-if="galleryMedia[1].type === 'image'"
-                                :src="galleryMedia[1].src"
-                                class="h-full w-full object-cover"
-                                :alt="(galleryMedia[1] as any).alt || `${project?.title} - Gallery 2`"
-                            />
-                            <video
-                                v-else-if="galleryMedia[1].type === 'video'"
-                                :src="galleryMedia[1].src"
-                                :poster="(galleryMedia[1] as any).thumbnail"
-                                :aria-label="(galleryMedia[1] as any).alt || `${project?.title} - Gallery 2`"
-                                class="h-full w-full object-cover"
-                                muted
-                                loop
-                                autoplay
-                                playsinline
-                            />
-                        </div>
-                    </div>
-                    <div v-if="galleryMedia[2]" class="col-span-1">
-                        <div
-                            data-image-index="2"
-                            :class="[
-                                'w-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800',
-                                getAspectRatio(galleryMedia[2]) === 'video' || getAspectRatio(galleryMedia[2]) === '16/9'
-                                    ? 'aspect-video'
-                                    : `aspect-[${getAspectRatio(galleryMedia[2])}]`,
-                            ]"
-                        >
-                            <img
-                                v-if="galleryMedia[2].type === 'image'"
-                                :src="galleryMedia[2].src"
-                                class="h-full w-full object-cover"
-                                :alt="(galleryMedia[2] as any).alt || `${project?.title} - Gallery 3`"
-                            />
-                            <video
-                                v-else-if="galleryMedia[2].type === 'video'"
-                                :src="galleryMedia[2].src"
-                                :poster="(galleryMedia[2] as any).thumbnail"
-                                :aria-label="(galleryMedia[2] as any).alt || `${project?.title} - Gallery 3`"
-                                class="h-full w-full object-cover"
-                                muted
-                                loop
-                                autoplay
-                                playsinline
-                            />
-                        </div>
-                    </div>
-
-                    <!-- 3. Full Width -->
-                    <div v-if="galleryMedia[3]" class="col-span-1 md:col-span-2">
-                        <div
-                            data-image-index="3"
-                            :class="[
-                                'w-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800',
-                                getAspectRatio(galleryMedia[3]) === 'video' || getAspectRatio(galleryMedia[3]) === '16/9'
-                                    ? 'aspect-video'
-                                    : `aspect-[${getAspectRatio(galleryMedia[3])}]`,
-                            ]"
-                        >
-                            <img
-                                v-if="galleryMedia[3].type === 'image'"
-                                :src="galleryMedia[3].src"
-                                class="h-full w-full object-cover"
-                                :alt="(galleryMedia[3] as any).alt || `${project?.title} - Gallery 4`"
-                            />
-                            <video
-                                v-else-if="galleryMedia[3].type === 'video'"
-                                :src="galleryMedia[3].src"
-                                :poster="(galleryMedia[3] as any).thumbnail"
-                                :aria-label="(galleryMedia[3] as any).alt || `${project?.title} - Gallery 4`"
-                                class="h-full w-full object-cover"
-                                muted
-                                loop
-                                autoplay
-                                playsinline
-                            />
-                        </div>
-                    </div>
-
-                    <!-- 4. Grid Col 2 (Desktop) / 1 (Mobile) -->
-                    <div v-if="galleryMedia[4]" class="col-span-1">
-                        <div
-                            data-image-index="4"
-                            :class="[
-                                'w-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800',
-                                getAspectRatio(galleryMedia[4]) === 'video' || getAspectRatio(galleryMedia[4]) === '16/9'
-                                    ? 'aspect-video'
-                                    : `aspect-[${getAspectRatio(galleryMedia[4])}]`,
-                            ]"
-                        >
-                            <img
-                                v-if="galleryMedia[4].type === 'image'"
-                                :src="galleryMedia[4].src"
-                                class="h-full w-full object-cover"
-                                :alt="(galleryMedia[4] as any).alt || `${project?.title} - Gallery 5`"
-                            />
-                            <video
-                                v-else-if="galleryMedia[4].type === 'video'"
-                                :src="galleryMedia[4].src"
-                                :poster="(galleryMedia[4] as any).thumbnail"
-                                :aria-label="(galleryMedia[4] as any).alt || `${project?.title} - Gallery 5`"
-                                class="h-full w-full object-cover"
-                                muted
-                                loop
-                                autoplay
-                                playsinline
-                            />
-                        </div>
-                    </div>
-                    <div v-if="galleryMedia[5]" class="col-span-1">
-                        <div
-                            data-image-index="5"
-                            :class="[
-                                'w-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800',
-                                getAspectRatio(galleryMedia[5]) === 'video' || getAspectRatio(galleryMedia[5]) === '16/9'
-                                    ? 'aspect-video'
-                                    : `aspect-[${getAspectRatio(galleryMedia[5])}]`,
-                            ]"
-                        >
-                            <img
-                                v-if="galleryMedia[5].type === 'image'"
-                                :src="galleryMedia[5].src"
-                                class="h-full w-full object-cover"
-                                :alt="(galleryMedia[5] as any).alt || `${project?.title} - Gallery 6`"
-                            />
-                            <video
-                                v-else-if="galleryMedia[5].type === 'video'"
-                                :src="galleryMedia[5].src"
-                                :poster="(galleryMedia[5] as any).thumbnail"
-                                :aria-label="(galleryMedia[5] as any).alt || `${project?.title} - Gallery 6`"
-                                class="h-full w-full object-cover"
-                                muted
-                                loop
-                                autoplay
-                                playsinline
-                            />
-                        </div>
-                    </div>
+                        <!-- Paired portrait items -->
+                        <template v-else-if="row.type === 'pair'">
+                            <div v-for="item in row.items" :key="item.originalIndex" class="col-span-1">
+                                <div
+                                    :data-image-index="item.originalIndex"
+                                    class="w-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800"
+                                    :style="{ aspectRatio: getAspectRatio(item) }"
+                                >
+                                    <img
+                                        v-if="item.type === 'image'"
+                                        :src="item.src"
+                                        class="h-full w-full object-cover"
+                                        :alt="(item as any).alt || `${project?.title} - Gallery ${item.originalIndex + 1}`"
+                                    />
+                                    <video
+                                        v-else-if="item.type === 'video'"
+                                        :src="item.src"
+                                        :poster="(item as any).thumbnail"
+                                        :aria-label="(item as any).alt || `${project?.title} - Gallery ${item.originalIndex + 1}`"
+                                        class="h-full w-full object-cover"
+                                        muted
+                                        loop
+                                        autoplay
+                                        playsinline
+                                    />
+                                </div>
+                            </div>
+                        </template>
+                    </template>
                 </div>
             </div>
         </DrawerContent>
