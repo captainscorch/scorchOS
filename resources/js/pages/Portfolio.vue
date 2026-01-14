@@ -227,12 +227,16 @@ const onLeave = (el: Element, done: () => void) => {
                             class="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-100"
                         />
 
-                        <!-- Category Badge (Top Left) -->
-                        <div class="absolute top-4 left-4 z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <!-- Category Badge(s) (Top Left) -->
+                        <div
+                            class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                        >
                             <span
+                                v-for="(category, index) in Array.isArray(project.category) ? project.category : [project.category]"
+                                :key="index"
                                 class="cursor-default rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-[10px] text-neutral-600 backdrop-blur-xs transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-white/10 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
                             >
-                                {{ project.category }}
+                                {{ category }}
                             </span>
                         </div>
 

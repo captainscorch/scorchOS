@@ -18,7 +18,7 @@ export interface Project {
     id: number;
     slug: string;
     client: string;
-    category: string;
+    category: string | string[];
     image: string;
     color: string;
     logo: string;

@@ -329,12 +329,14 @@ onUnmounted(() => {
         <main>
             <div class="space-y-12">
                 <div class="mx-auto mb-22 flex w-full max-w-7xl flex-col items-start gap-4 space-y-4 px-6 md:mb-32 md:grid md:grid-cols-12 lg:px-8">
-                    <div class="col-span-12 flex items-center gap-4 md:col-span-3 md:w-auto md:py-0">
-                        <h3
+                    <div class="col-span-12 flex flex-wrap items-center gap-2 md:col-span-3 md:w-auto md:py-0">
+                        <span
+                            v-for="(category, index) in Array.isArray(project?.category) ? project.category : [project?.category]"
+                            :key="index"
                             class="cursor-default rounded-full border border-neutral-200 bg-neutral-100 px-4 py-2 text-xs text-neutral-600 transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-white/10 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
                         >
-                            {{ project?.category }}
-                        </h3>
+                            {{ category }}
+                        </span>
                     </div>
 
                     <div class="col-span-12 flex w-full flex-col items-start gap-4 md:col-span-9">
@@ -534,7 +536,7 @@ onUnmounted(() => {
                             start="top 80%"
                             end="+=400"
                             :markers="false"
-                            :text="project?.story_preview?.substring(0, 200) + '...'"
+                            :text="project?.story_preview?.substring(0, 300) + '...'"
                         />
                     </span>
 
