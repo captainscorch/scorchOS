@@ -229,7 +229,7 @@ const onLeave = (el: Element, done: () => void) => {
 
                         <!-- Category Badge(s) (Top Left) -->
                         <div
-                            class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                         >
                             <span
                                 v-for="(category, index) in Array.isArray(project.category) ? project.category : [project.category]"
