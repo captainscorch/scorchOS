@@ -455,7 +455,7 @@ const skills = computed(() => ({
                             <div
                                 v-if="viewMode === 'timeline'"
                                 key="timeline-filters"
-                                class="mx-6 flex flex-wrap items-center gap-3 border-l border-neutral-200 pl-6 dark:border-neutral-700"
+                                class="mx-4 flex flex-wrap items-center gap-3 border-l border-neutral-200 pl-3 md:mx-6 md:gap-3 md:pl-6 dark:border-neutral-700"
                             >
                                 <template v-if="timelineCompanies.length > 0">
                                     <button
@@ -487,7 +487,7 @@ const skills = computed(() => ({
                             <div
                                 v-else
                                 key="length-controls"
-                                class="mx-6 flex items-center gap-0 border-l border-neutral-200 pl-6 md:gap-3 dark:border-neutral-700"
+                                class="mx-4 flex items-center gap-0 border-l border-neutral-200 pl-4 md:mx-6 md:gap-3 md:pl-6 dark:border-neutral-700"
                             >
                                 <span class="mr-3 text-sm text-neutral-400 dark:text-white/30">{{ t('bio.length') }}</span>
                                 <button

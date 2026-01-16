@@ -152,15 +152,15 @@
             "filterByCompany": "Filter by {company}"
         },
         "prose": [
-            "Self-taught creative with expertise in digital media and communication, my passion lies in web development and graphic design, while photography has been a long-standing interest that has inspired me for years. From early self-initiated projects and a 3-year print and digital apprenticeship to eight years running my own studio delivering global projects. I balance design and engineering and have operated as a broad generalist under tight deadlines with multiple stakeholders, handling communication across internal teams, freelancers, clients and executives. I have hired employees and contractors and set up internal and external processes across the board.",
-            "Self-taught creative with expertise in digital media and communication, my passion lies in web development and graphic design, while photography has been a long-standing interest that has inspired me for years. My journey began with self-initiated projects and quickly expanded into a formal 3-year print and digital apprenticeship, allowing me to develop a strong foundation in both design and technology. Over eight years, I grew my own studio, delivering global projects across different industries and managing diverse teams..<br><br>I am adept at balancing creativity and engineering—handling responsibilities as a broad generalist under tight deadlines and with multiple stakeholders. I've managed communication with internal teams, freelancers, clients, and executives, and I have successfully hired employees and contractors and instituted internal and external processes that streamline studio operations.",
-            "As a self-taught creative with comprehensive expertise in digital media and communication, my passion lies in web development and graphic design, while photography represents a long-standing interest that has continuously inspired me and shaped my creative perspective. My journey began with early self-initiated projects and progressed through an 3-year apprenticeship in print and digital media, culminating in eight years where I successfully ran my own studio and delivered complex global projects for international clients. During this period, I collaborated with a wide range of businesses and stakeholders across different sectors, adapting to varied project requirements and building scalable digital solutions.<br><br>In my role, I precisely balance design and engineering and have established myself as a broad generalist who operates under extremely tight deadlines with multiple stakeholders. I effectively coordinate communication between internal teams, external freelancers, direct clients, and C-level executives, ensuring alignment and successful project delivery. Furthermore, I have extensive experience building teams by hiring and managing both full-time employees and contractors, and have established comprehensive internal and external processes and workflows that ensure efficiency and quality throughout all phases of production and deployment."
+            "Self-taught creative with expertise in digital media and communication, my passion lies in web development and graphic design, while photography has been a long-standing interest that has inspired me for years. From early self-initiated projects and a 3-year print and digital apprenticeship to eight years running my own studio delivering global projects. I balance design and engineering and have operated as a broad generalist under tight deadlines with multiple stakeholders, handling communication across internal teams, freelancers, clients and executives. Hiring talent and contractors, establishing internal and external processes, and building structures are core components of my skillset.",
+            "Self-taught creative with expertise in digital media and communication, my passion lies in web development and graphic design, while photography has been a long-standing interest that has inspired me for years. My journey began with self-initiated projects and quickly expanded into a formal 3-year print and digital apprenticeship, allowing me to develop a strong foundation in both design and technology. Over eight years, I grew my own studio, delivering global projects across different industries and managing diverse teams.<br><br>I am adept at balancing creativity and engineering—handling responsibilities as a broad generalist under tight deadlines and with multiple stakeholders. I steer communication between teams, freelancers, clients, and executives, and I have successfully hired employees and contractors and instituted internal and external processes that streamline studio operations.",
+            "As a self-taught creative with comprehensive expertise in digital media and communication, my passion lies in web development and graphic design, while photography represents a long-standing interest that has continuously inspired me and shaped my creative perspective. My journey began with early self-initiated projects and progressed through a 3-year apprenticeship in print and digital media, culminating in eight years where I successfully ran my own studio and delivered complex global projects for international clients. During this period, I collaborated with a wide range of businesses and stakeholders across different sectors, adapting to varied project requirements and building scalable digital solutions.<br><br>In my role, I precisely balance design and engineering and have established myself as a broad generalist who operates under extremely tight deadlines with multiple stakeholders. I effectively coordinate communication between internal teams, external freelancers, direct clients, and C-level executives, ensuring alignment and successful project delivery. Furthermore, I have extensive experience building teams and steering communication, hiring and managing both full-time employees and contractors, and have established comprehensive internal and external processes and workflows that ensure efficiency and quality throughout all phases of production and deployment."
         ],
         "list": [
             [
                 "Self-taught creative with expertise in digital media and communication.",
                 "Passionate about web development, graphic design, and long-standing interest in photography.",
-                "Professional experience at unlimited.studio, b3plus GmbH & Co. KG."
+                "Professional experience at unlimited.studio and b3plus GmbH & Co. KG."
             ],
             [
                 "Self-taught creative with broad expertise in digital media and communication.",
@@ -196,7 +196,7 @@
                 "date": "2015-08-01 - 2018-06-13",
                 "title": "b3plus GmbH & Co. KG",
                 "content": "Digital and Print Media Designer (Subject Area: Design and Technology)",
-                "list": ["3 Year Apprenticeship", "This qualification relates to level 4 of the German and the European Qualifications Framework."],
+                "list": ["3-year Apprenticeship", "This qualification relates to level 4 of the German and the European Qualifications Framework."],
                 "company": "b3plus GmbH & Co. KG",
                 "companyLogo": "/img/companies/b3plus.png"
             },
@@ -213,8 +213,8 @@
                     "content": "I treat development as part of the design loop, iterating on ideas in code to achieve speed, precision, and higher interaction quality."
                 },
                 {
-                    "title": "End-to-end execution.",
-                    "content": "Running a studio for eight years taught me to handle everything from strategy and design to full-stack development and operations."
+                    "title": "End-to-End execution.",
+                    "content": "Running a studio for eight years taught me to see the big picture—from strategy and design to full-stack development and operations."
                 },
                 {
                     "title": "Craft and detail.",
@@ -226,11 +226,11 @@
                 },
                 {
                     "title": "Design Engineer.",
-                    "content": "I bridge the gap between disciplines, designing with code constraints in mind and developing with a designer’s eye for typography."
+                    "content": "I bridge the gap between disciplines, designing with technical feasibility in mind and developing with a designer’s eye for typography."
                 },
                 {
-                    "title": "Adaptable stack.",
-                    "content": "Experienced in Vue and Laravel but framework-agnostic. I learn fast and pick the right tool for the job to solve the problem at hand."
+                    "title": "Flexible stack.",
+                    "content": "Experienced in Vue and Laravel but framework-agnostic. I learn fast and pick the right tool for the job."
                 }
             ]
         }
