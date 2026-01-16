@@ -358,8 +358,6 @@ const animateLogos = () => {
 
 onMounted(() => {
     document.documentElement.classList.add('page-welcome');
-    document.documentElement.classList.add('dark');
-    isDark.value = true;
 
     updateClock();
     clockInterval = setInterval(updateClock, 1000);
@@ -710,7 +708,7 @@ const fadeUpMotion = {
                             >
                             <div class="flex-1 p-2">
                                 <Link href="/portfolio">
-                                    <h3 class="mt-8 mb-1 font-work-sans text-xl font-bold text-white md:text-2xl">
+                                    <h3 class="mt-8 mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
                                         {{ t('home.navigation.portfolio') }}
                                     </h3></Link
                                 >
@@ -736,7 +734,7 @@ const fadeUpMotion = {
                                             :icon="isPortfolioExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
                                             class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/portfolio:text-neutral-900 dark:text-neutral-500 dark:group-hover/portfolio:text-white"
                                         />
-                                        <span class="font-medium text-neutral-700 dark:text-neutral-300">{{
+                                        <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
                                             t('home.navigation.portfolioFolder')
                                         }}</span>
                                     </button>
@@ -761,7 +759,7 @@ const fadeUpMotion = {
                                                 :icon="isProductExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
                                                 class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/product:text-neutral-900 dark:text-neutral-500 dark:group-hover/product:text-white"
                                             />
-                                            <span class="font-medium text-neutral-700 dark:text-neutral-300">{{
+                                            <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
                                                 t('home.navigation.productFolder')
                                             }}</span>
                                         </button>
@@ -778,7 +776,7 @@ const fadeUpMotion = {
                                                     icon="fa-sharp fa-light fa-file"
                                                     class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
                                                 />
-                                                <span class="truncate">{{ project.client }}</span>
+                                                <span class="truncate leading-normal">{{ project.client }}</span>
                                                 <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
                                                     ><FontAwesomeIcon
                                                         icon="fa-sharp fa-light fa-arrow-up-right"
@@ -810,7 +808,7 @@ const fadeUpMotion = {
                                                 :icon="isDevelopmentExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
                                                 class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/development:text-neutral-900 dark:text-neutral-500 dark:group-hover/development:text-white"
                                             />
-                                            <span class="font-medium text-neutral-700 dark:text-neutral-300">{{
+                                            <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
                                                 t('home.navigation.developmentFolder')
                                             }}</span>
                                         </button>
@@ -827,7 +825,7 @@ const fadeUpMotion = {
                                                     icon="fa-sharp fa-light fa-file"
                                                     class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
                                                 />
-                                                <span class="truncate">{{ project.client }}</span>
+                                                <span class="truncate leading-normal">{{ project.client }}</span>
                                                 <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
                                                     ><FontAwesomeIcon
                                                         icon="fa-sharp fa-light fa-arrow-up-right"
@@ -933,8 +931,12 @@ const fadeUpMotion = {
                                 </lord-icon>
                             </span>
                             <div class="p-2">
-                                <h3 class="mb-1 font-work-sans text-xl font-bold text-white md:text-2xl">{{ t('home.navigation.blog') }}</h3>
-                                <p class="line-clamp-2 text-xs text-white/80">{{ t('home.navigation.comingSoonDescription') }}</p>
+                                <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
+                                    {{ t('home.navigation.blog') }}
+                                </h3>
+                                <p class="line-clamp-2 text-xs text-neutral-600 dark:text-white/80">
+                                    {{ t('home.navigation.comingSoonDescription') }}
+                                </p>
                             </div>
                         </div>
                     </a>
@@ -971,8 +973,12 @@ const fadeUpMotion = {
                                 </lord-icon>
                             </span>
                             <div class="p-2">
-                                <h3 class="mb-1 font-work-sans text-xl font-bold text-white md:text-2xl">{{ t('home.navigation.playground') }}</h3>
-                                <p class="line-clamp-2 text-xs text-white/80">{{ t('home.navigation.comingSoonDescription') }}</p>
+                                <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
+                                    {{ t('home.navigation.playground') }}
+                                </h3>
+                                <p class="line-clamp-2 text-xs text-neutral-600 dark:text-white/80">
+                                    {{ t('home.navigation.comingSoonDescription') }}
+                                </p>
                             </div>
                         </div>
                     </a>

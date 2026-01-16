@@ -606,7 +606,7 @@ const skills = computed(() => ({
                                                 </div>
                                                 <div
                                                     v-if="item.list && item.list.length > 0"
-                                                    class="ml-4 pt-1 text-neutral-400 transition-colors group-hover:text-neutral-900 dark:text-white/30 dark:group-hover:text-white"
+                                                    class="ml-4 text-neutral-400 transition-colors group-hover:text-neutral-900 dark:text-white/30 dark:group-hover:text-white"
                                                 >
                                                     <FontAwesomeIcon
                                                         :icon="
@@ -614,7 +614,7 @@ const skills = computed(() => ({
                                                                 ? 'fa-sharp fa-light fa-arrows-to-line'
                                                                 : 'fa-sharp fa-light fa-arrows-from-line'
                                                         "
-                                                        class="text-xs md:text-sm"
+                                                        class="text-sm"
                                                     />
                                                 </div>
                                             </div>

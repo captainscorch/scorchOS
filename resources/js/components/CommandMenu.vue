@@ -196,27 +196,27 @@ const markSvg = `<svg version="1.1" id="captainscorch_logo" xmlns="http://www.w3
                         <g id="XMLID_536_">
                             <path
                                 id="XMLID_547_"
-                                style="fill: #ffffff"
+                                class="fill-neutral-900 dark:fill-white"
                                 d="M13.2 32.1c0 3.2 2.6 5.7 5.7 5.7h18.3c3.2 0 5.7-2.6 5.7-5.7V23H36v4c0 2.2-1.8 4-4 4H13.2v1.1z"
                             />
                             <path
                                 id="XMLID_541_"
-                                style="fill: #ffffff"
+                                class="fill-neutral-900 dark:fill-white"
                                 d="M42.9 13.8c0-3.1-2.6-5.7-5.7-5.7H19c-3.2 0-5.7 2.6-5.7 5.7v9.1h6.9v-4c0-2.2 1.8-4 4-4H43v-1.1z"
                             />
                             <path
                                 id="XMLID_540_"
-                                style="fill: #ffffff"
+                                class="fill-neutral-900 dark:fill-white"
                                 d="M25.8 19.7c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h4.6c.5 0 .9-.4.9-.9v-4.6c0-.5-.4-.9-.9-.9h-4.6z"
                             />
                             <path
                                 id="XMLID_539_"
-                                style="fill: #ffffff"
+                                class="fill-neutral-900 dark:fill-white"
                                 d="M47.9 33.8c0 5.1-4.2 9.3-9.3 9.3H17.5c-5.1 0-9.3-4.2-9.3-9.3V30.9H5.6v2.9c0 6.6 5.3 11.9 11.9 11.9h21.2c6.6 0 11.9-5.3 11.9-11.9V22.9H48v10.9z"
                             />
                             <path
                                 id="XMLID_537_"
-                                style="fill: #ffffff"
+                                class="fill-neutral-900 dark:fill-white"
                                 d="M38.7.7H17.5C10.9.7 5.6 6 5.6 12.6v10.3h2.6V12.6c0-5.1 4.2-9.3 9.3-9.3h21.2c5.1 0 9.3 4.2 9.3 9.3V15h2.6v-2.3c0-6.6-5.4-12-11.9-12z"
                             />
                         </g>

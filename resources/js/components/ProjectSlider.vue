@@ -82,7 +82,7 @@ const { t } = useI18n();
                     class="!flex !h-[300px] !w-[200px] flex-col items-center justify-center gap-2 md:!h-[440px] md:!w-[350px]"
                 >
                     <div
-                        class="group relative h-full w-full overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-500 hover:shadow-xl hover:shadow-neutral-900/5 dark:bg-neutral-900 dark:hover:shadow-neutral-100/5 touch:shadow-xl touch:shadow-neutral-900/5 dark:touch:shadow-neutral-100/5"
+                        class="group relative h-full w-full cursor-pointer overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-500 hover:shadow-xl hover:shadow-neutral-900/5 dark:bg-neutral-900 dark:hover:shadow-neutral-100/5 touch:shadow-xl touch:shadow-neutral-900/5 dark:touch:shadow-neutral-100/5"
                         @click="handleCardClick(project.slug)"
                     >
                         <img
