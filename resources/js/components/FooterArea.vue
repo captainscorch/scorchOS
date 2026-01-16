@@ -43,7 +43,7 @@ onMounted(async () => {
 
             <div class="flex flex-col gap-8 lg:flex-row lg:gap-16">
                 <div
-                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-neutral-200 bg-neutral-50 p-8 md:p-12 dark:border-white/5 dark:bg-[#111]"
+                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-neutral-200 bg-neutral-50 p-6 md:p-12 dark:border-white/5 dark:bg-[#111]"
                 >
                     <div class="space-y-6">
                         <h3 class="text-base font-medium text-neutral-900 dark:text-white">{{ t('footer.notes') }}</h3>

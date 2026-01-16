@@ -82,7 +82,7 @@ const { t } = useI18n();
                     class="!flex !h-[300px] !w-[200px] flex-col items-center justify-center gap-2 md:!h-[440px] md:!w-[350px]"
                 >
                     <div
-                        class="group relative h-full w-full overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-500 hover:shadow-xl hover:shadow-neutral-900/5 dark:bg-neutral-900 dark:hover:shadow-neutral-100/5"
+                        class="group relative h-full w-full overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-500 hover:shadow-xl hover:shadow-neutral-900/5 dark:bg-neutral-900 dark:hover:shadow-neutral-100/5 touch:shadow-xl touch:shadow-neutral-900/5 dark:touch:shadow-neutral-100/5"
                         @click="handleCardClick(project.slug)"
                     >
                         <img
@@ -93,7 +93,7 @@ const { t } = useI18n();
 
                         <!-- Category Badge(s) (Top Left) -->
                         <div
-                            class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 touch:hidden"
                         >
                             <span
                                 v-for="(category, index) in Array.isArray(project.category) ? project.category : [project.category]"
@@ -106,7 +106,7 @@ const { t } = useI18n();
 
                         <!-- Overlay Text -->
                         <div
-                            class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100 touch:hidden"
                         >
                             <div class="translate-y-4 transform transition-transform duration-500 group-hover:translate-y-0">
                                 <h3 class="mb-1 font-work-sans text-xl font-bold text-white md:text-2xl">{{ project.client }}</h3>

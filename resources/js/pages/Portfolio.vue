@@ -229,7 +229,7 @@ const onLeave = (el: Element, done: () => void) => {
 
                         <!-- Category Badge(s) (Top Left) -->
                         <div
-                            class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 touch:hidden"
                         >
                             <span
                                 v-for="(category, index) in Array.isArray(project.category) ? project.category : [project.category]"
@@ -241,7 +241,7 @@ const onLeave = (el: Element, done: () => void) => {
                         </div>
 
                         <div
-                            class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100 touch:hidden"
                         >
                             <div class="translate-y-4 transform transition-transform duration-500 group-hover:translate-y-0">
                                 <h3 class="mb-1 font-work-sans text-xl font-bold text-white md:text-2xl">{{ project.client }}</h3>

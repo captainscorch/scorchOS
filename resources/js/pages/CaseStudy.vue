@@ -118,6 +118,25 @@ const galleryRows = computed(() => {
     return rows;
 });
 
+// Mobile preview: select best 3 items (first + two portraits if possible)
+const mobilePreviewMedia = computed(() => {
+    const media = galleryMedia.value;
+    if (media.length === 0) return [];
+
+    const first = { ...media[0], originalIndex: 0 };
+
+    const portraitItems = media.map((item, index) => ({ ...item, originalIndex: index })).filter((item, index) => index > 0 && !isLandscape(item));
+
+    const landscapeItems = media.map((item, index) => ({ ...item, originalIndex: index })).filter((item, index) => index > 0 && isLandscape(item));
+
+    const availableForPair = [...portraitItems, ...landscapeItems];
+
+    const second = availableForPair[0] || null;
+    const third = availableForPair[1] || null;
+
+    return [first, second, third].filter(Boolean);
+});
+
 const sliderMedia = computed(() => {
     const original = galleryMedia.value || [];
     if (original.length === 0) return [];
@@ -410,7 +429,7 @@ onUnmounted(() => {
                     </Swiper>
                 </div>
 
-                <!-- Mobile: Gallery Card -->
+                <!-- Mobile: Gallery Card (prefers portrait items for side-by-side slots) -->
                 <div class="block px-6 lg:hidden">
                     <div
                         class="cursor-pointer overflow-hidden rounded-3xl bg-neutral-50 p-4 shadow-[0_0_20px_rgba(0,0,0,0.12)] transition-transform active:scale-[0.98] md:p-6 dark:bg-neutral-900"
@@ -419,26 +438,25 @@ onUnmounted(() => {
                         <div class="grid grid-cols-2 gap-4 md:gap-6">
                             <!-- First Media (Full Width) -->
                             <div
-                                v-if="galleryMedia[0]"
+                                v-if="mobilePreviewMedia[0]"
                                 :class="[
                                     'col-span-2 cursor-pointer overflow-hidden rounded-2xl bg-neutral-200 dark:bg-neutral-800',
-                                    getAspectRatio(galleryMedia[0]) === 'video' || getAspectRatio(galleryMedia[0]) === '16/9'
-                                        ? 'aspect-video'
-                                        : `aspect-[${getAspectRatio(galleryMedia[0])}]`,
+                                    isLandscape(mobilePreviewMedia[0]) ? 'aspect-video' : '',
                                 ]"
-                                @click.stop="openDrawerAtImage(0)"
+                                :style="!isLandscape(mobilePreviewMedia[0]) ? { aspectRatio: getAspectRatio(mobilePreviewMedia[0]) } : {}"
+                                @click.stop="openDrawerAtImage(mobilePreviewMedia[0].originalIndex)"
                             >
                                 <img
-                                    v-if="galleryMedia[0].type === 'image'"
-                                    :src="galleryMedia[0].src"
+                                    v-if="mobilePreviewMedia[0].type === 'image'"
+                                    :src="mobilePreviewMedia[0].src"
                                     class="h-full w-full object-cover"
-                                    :alt="(galleryMedia[0] as any).alt || `${project?.title} - Gallery 1`"
+                                    :alt="(mobilePreviewMedia[0] as any).alt || `${project?.title} - Gallery 1`"
                                 />
                                 <video
-                                    v-else-if="galleryMedia[0].type === 'video'"
-                                    :src="galleryMedia[0].src"
-                                    :poster="(galleryMedia[0] as any).thumbnail"
-                                    :aria-label="(galleryMedia[0] as any).alt || `${project?.title} - Gallery 1`"
+                                    v-else-if="mobilePreviewMedia[0].type === 'video'"
+                                    :src="mobilePreviewMedia[0].src"
+                                    :poster="(mobilePreviewMedia[0] as any).thumbnail"
+                                    :aria-label="(mobilePreviewMedia[0] as any).alt || `${project?.title} - Gallery 1`"
                                     class="h-full w-full object-cover"
                                     muted
                                     loop
@@ -446,28 +464,24 @@ onUnmounted(() => {
                                     playsinline
                                 />
                             </div>
-                            <!-- Second Media -->
+                            <!-- Second Media (prefers portrait) -->
                             <div
-                                v-if="galleryMedia[1]"
-                                :class="[
-                                    'col-span-1 cursor-pointer overflow-hidden rounded-2xl bg-neutral-200 dark:bg-neutral-800',
-                                    getAspectRatio(galleryMedia[1]) === 'video' || getAspectRatio(galleryMedia[1]) === '16/9'
-                                        ? 'aspect-video'
-                                        : `aspect-[${getAspectRatio(galleryMedia[1])}]`,
-                                ]"
-                                @click.stop="openDrawerAtImage(1)"
+                                v-if="mobilePreviewMedia[1]"
+                                class="col-span-1 cursor-pointer overflow-hidden rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+                                :style="{ aspectRatio: getAspectRatio(mobilePreviewMedia[1]) }"
+                                @click.stop="openDrawerAtImage(mobilePreviewMedia[1].originalIndex)"
                             >
                                 <img
-                                    v-if="galleryMedia[1].type === 'image'"
-                                    :src="galleryMedia[1].src"
+                                    v-if="mobilePreviewMedia[1].type === 'image'"
+                                    :src="mobilePreviewMedia[1].src"
                                     class="h-full w-full object-cover"
-                                    :alt="(galleryMedia[1] as any).alt || `${project?.title} - Gallery 2`"
+                                    :alt="(mobilePreviewMedia[1] as any).alt || `${project?.title} - Gallery 2`"
                                 />
                                 <video
-                                    v-else-if="galleryMedia[1].type === 'video'"
-                                    :src="galleryMedia[1].src"
-                                    :poster="(galleryMedia[1] as any).thumbnail"
-                                    :aria-label="(galleryMedia[1] as any).alt || `${project?.title} - Gallery 2`"
+                                    v-else-if="mobilePreviewMedia[1].type === 'video'"
+                                    :src="mobilePreviewMedia[1].src"
+                                    :poster="(mobilePreviewMedia[1] as any).thumbnail"
+                                    :aria-label="(mobilePreviewMedia[1] as any).alt || `${project?.title} - Gallery 2`"
                                     class="h-full w-full object-cover"
                                     muted
                                     loop
@@ -475,26 +489,22 @@ onUnmounted(() => {
                                     playsinline
                                 />
                             </div>
-                            <!-- Third Media -->
+                            <!-- Third Media (prefers portrait) -->
                             <div
-                                v-if="galleryMedia[2]"
-                                :class="[
-                                    'col-span-1 cursor-pointer overflow-hidden rounded-2xl bg-neutral-200 dark:bg-neutral-800',
-                                    getAspectRatio(galleryMedia[2]) === 'video' || getAspectRatio(galleryMedia[2]) === '16/9'
-                                        ? 'aspect-video'
-                                        : `aspect-[${getAspectRatio(galleryMedia[2])}]`,
-                                ]"
-                                @click.stop="openDrawerAtImage(2)"
+                                v-if="mobilePreviewMedia[2]"
+                                class="col-span-1 cursor-pointer overflow-hidden rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+                                :style="{ aspectRatio: getAspectRatio(mobilePreviewMedia[2]) }"
+                                @click.stop="openDrawerAtImage(mobilePreviewMedia[2].originalIndex)"
                             >
                                 <img
-                                    v-if="galleryMedia[2].type === 'image'"
-                                    :src="galleryMedia[2].src"
+                                    v-if="mobilePreviewMedia[2].type === 'image'"
+                                    :src="mobilePreviewMedia[2].src"
                                     class="h-full w-full object-cover"
-                                    :alt="(galleryMedia[2] as any).alt || `${project?.title} - Gallery 3`"
+                                    :alt="(mobilePreviewMedia[2] as any).alt || `${project?.title} - Gallery 3`"
                                 />
                                 <video
-                                    v-else-if="galleryMedia[2].type === 'video'"
-                                    :src="galleryMedia[2].src"
+                                    v-else-if="mobilePreviewMedia[2].type === 'video'"
+                                    :src="mobilePreviewMedia[2].src"
                                     :poster="(galleryMedia[2] as any).thumbnail"
                                     :aria-label="(galleryMedia[2] as any).alt || `${project?.title} - Gallery 3`"
                                     class="h-full w-full object-cover"
@@ -507,10 +517,14 @@ onUnmounted(() => {
                         </div>
                         <div class="mt-4 flex items-center justify-between px-2 md:mt-6 md:px-4">
                             <span class="text-xs font-medium text-neutral-500 dark:text-white/50">{{ t('caseStudy.exploreGallery') }}</span>
-                            <FontAwesomeIcon
-                                icon="fa-sharp fa-light fa-arrow-up-right-and-arrow-down-left-from-center"
-                                class="text-neutral-500 dark:text-white/50"
-                            />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="size-5 fill-neutral-500 dark:fill-white/50">
+                                <path
+                                    d="M356.7 260.7L345.4 272L368 294.6L379.3 283.3L544 118.6L544 240L576 240L576 64L400 64L400 96L521.4 96L356.7 260.7z"
+                                />
+                                <path
+                                    d="M283.3 379.3L294.6 368L272 345.4L260.7 356.7L96 521.4L96 400L64 400L64 576L240 576L240 544L118.6 544L283.3 379.3z"
+                                />
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -529,7 +543,7 @@ onUnmounted(() => {
                 </div>
 
                 <div class="col-span-12 flex w-full flex-col items-start gap-4 md:col-span-9">
-                    <span class="max-w-[650px] font-work-sans text-3xl font-bold text-neutral-900 dark:text-white">
+                    <span class="max-w-full font-work-sans text-2xl font-bold text-neutral-900 md:max-w-[650px] md:text-3xl dark:text-white">
                         <TextReveal
                             :scroll-trigger="true"
                             :scrub="1"
@@ -590,7 +604,7 @@ onUnmounted(() => {
                 <div class="card-outline-1"></div>
                 <div class="card-outline-2"></div>
                 <div
-                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-neutral-200 bg-neutral-50 p-8 md:p-12 dark:border-white/5 dark:bg-[#111]"
+                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-neutral-200 bg-neutral-50 p-6 md:p-12 dark:border-white/5 dark:bg-[#111]"
                 >
                     <div class="grid grid-cols-1 gap-6 space-y-6 md:grid-cols-2 md:gap-12">
                         <div class="grid w-full grid-cols-1 gap-y-8 md:grid-cols-12 md:gap-y-12">
