@@ -218,7 +218,7 @@ const onLeave = (el: Element, done: () => void) => {
                         v-for="project in projects"
                         :key="project.id"
                         :href="`/case-study/${project.slug}`"
-                        class="group relative w-[calc(50%-0.5rem)] transform cursor-pointer overflow-hidden rounded-2xl bg-neutral-500 opacity-0 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-neutral-900/5 md:w-[calc(100%/3-1rem)] lg:w-[calc(25%-1.125rem)] xl:w-[calc(20%-1.2rem)] dark:bg-neutral-900 dark:hover:shadow-neutral-100/5"
+                        class="group relative aspect-[4/5] w-[calc(50%-0.5rem)] transform cursor-pointer overflow-hidden rounded-2xl bg-neutral-500 opacity-0 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-neutral-900/5 md:w-[calc(100%/3-1rem)] lg:w-[calc(25%-1.125rem)] xl:w-[calc(20%-1.2rem)] dark:bg-neutral-900 dark:hover:shadow-neutral-100/5"
                         :class="project.height"
                     >
                         <img
