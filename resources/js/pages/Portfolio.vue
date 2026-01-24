@@ -224,7 +224,7 @@ const onLeave = (el: Element, done: () => void) => {
                         <img
                             :src="project.image"
                             :alt="project.title"
-                            class="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-100"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
 
                         <!-- Category Badge(s) (Top Left) -->
