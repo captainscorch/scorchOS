@@ -348,7 +348,7 @@ onUnmounted(() => {
         <main>
             <div class="space-y-12">
                 <div class="mx-auto mb-22 flex w-full max-w-7xl flex-col items-start gap-4 space-y-4 px-6 md:mb-32 md:grid md:grid-cols-12 lg:px-8">
-                    <div class="col-span-12 flex flex-wrap items-center gap-2 md:col-span-3 md:w-auto md:py-0">
+                    <div class="col-span-12 flex flex-wrap items-center gap-2 md:col-span-3 md:w-auto md:max-w-48 md:py-0">
                         <span
                             v-for="(category, index) in Array.isArray(project?.category) ? project.category : [project?.category]"
                             :key="index"
@@ -592,8 +592,8 @@ onUnmounted(() => {
                                 </lord-icon>
                                 <span class="sr-only">{{ t('caseStudy.close') }}</span>
                             </DrawerClose>
-                            <div class="mx-auto w-full max-w-[650px] overflow-y-auto px-6 py-12 touch:pt-0">
-                                <MarkdownContent :content="project?.story || ''" class="space-y-6" />
+                            <div class="mx-auto w-full overflow-y-auto px-6 py-12 touch:pt-0">
+                                <MarkdownContent :content="project?.story || ''" class="mx-auto w-full max-w-[650px] space-y-6" />
                             </div>
                         </DrawerContent>
                     </Drawer>
