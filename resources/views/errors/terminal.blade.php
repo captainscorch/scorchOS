@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1, minimal-ui, maximum-scale=1, user-scalable=no">
     <title>@yield('title') - Daniel Schmier</title>
     
+    <meta name="theme-color" content="#f2f0ef" media="(prefers-color-scheme: light)" id="theme-color-light">
+    <meta name="theme-color" content="#040e0c" media="(prefers-color-scheme: dark)" id="theme-color-dark">
+    
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link rel="preconnect" href="https://stats.captainscor.ch" crossorigin>
+    
+    <link rel="manifest" href="/img/favicons/site.webmanifest" />
+    <link rel="icon" type="image/png" href="/img/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/img/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/img/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Daniel Schmier – Design Engineer" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=work-sans:300,400,500,700" rel="stylesheet" />
 
