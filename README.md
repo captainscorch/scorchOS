@@ -1,5 +1,5 @@
 <p align="center">
-	<a href="https://captainscor.ch" target="_blank"><img src="https://captainscor.ch/images/cs_logo.svg" width="50" style="display: inline-block; vertical-align: middle;"></a>
+	<a href="https://captainscor.ch" target="_blank"><img src="https://captainscor.ch/img/captainscorch_logo.svg" width="50" style="display: inline-block; vertical-align: middle;"></a>
 </p>
 
 <p align="center">
