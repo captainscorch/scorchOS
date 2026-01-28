@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-	<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+	<a href="https://github.com/captainscorch/scorchOS"><img alt="License" src="https://img.shields.io/github/license/captainscorch/scorchOS"></a>
 </p>
 
 # scorchOS
