@@ -61,7 +61,7 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         <meta property="twitter:image" content="{{ asset('img/captainscorch_meta.jpg') }}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=work-sans:300,400,500,700" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=work-sans:400,500,600,700" rel="stylesheet" />
 
         @routes
         @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
