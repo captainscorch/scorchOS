@@ -298,6 +298,8 @@
                     if (path === '/home') window.location.href = '/';
                     else if (path === '/about') window.location.href = '/about';
                     else if (path === '/portfolio') window.location.href = '/portfolio';
+                    else if (path === '/blog') window.location.href = '/blog';
+                    else if (path === '/playground') window.location.href = '/playground';
                     else this.printOutput(`<span class="text-[#ff5f56]">cd: no such file or directory: ${path}</span>`);
                     return;
                 }

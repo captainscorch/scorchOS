@@ -42,7 +42,7 @@ const handleCopyUrl = () => {
             <ContextMenuItem @select="handleBack" class="group/item gap-2">
                 <lord-icon
                     src="/icons/system-regular-507-arrow-left-morph-select.json"
-                    trigger="morph"
+                    trigger="hover"
                     target=".group\/item"
                     style="width: 18px; height: 18px"
                     class="current-color mr-2 h-4 w-4 opacity-60 group-hover/item:opacity-100"
@@ -66,7 +66,7 @@ const handleCopyUrl = () => {
             <ContextMenuItem @select="handleForward" class="group/item gap-2">
                 <lord-icon
                     src="/icons/system-regular-506-arrow-right-morph-select.json"
-                    trigger="morph"
+                    trigger="hover"
                     target=".group\/item"
                     style="width: 18px; height: 18px"
                     class="current-color mr-2 h-4 w-4 opacity-60 group-hover/item:opacity-100"
@@ -90,7 +90,7 @@ const handleCopyUrl = () => {
             <ContextMenuItem @select="handleReload" class="group/item gap-2">
                 <lord-icon
                     src="/icons/system-regular-18-autorenew-hover-autorenew.json"
-                    trigger="morph"
+                    trigger="hover"
                     target=".group\/item"
                     style="width: 18px; height: 18px"
                     class="current-color mr-2 h-4 w-4 opacity-60 group-hover/item:opacity-100"
@@ -156,7 +156,7 @@ const handleCopyUrl = () => {
             <ContextMenuItem @select="handleCopyUrl" class="group/item gap-2">
                 <lord-icon
                     src="/icons/system-regular-98-link-hover-link.json"
-                    trigger="morph"
+                    trigger="hover"
                     target=".group\/item"
                     style="width: 18px; height: 18px"
                     class="current-color mr-2 h-4 w-4 opacity-60 group-hover/item:opacity-100"

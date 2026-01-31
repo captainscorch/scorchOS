@@ -306,9 +306,9 @@ onUnmounted(() => {
         class="min-h-screen overflow-x-hidden bg-white pt-32 pb-20 text-neutral-900 transition-all duration-500 ease-out md:pt-40 md:pb-0 dark:bg-black dark:text-white"
     >
         <!-- Header / Navigation -->
-        <header class="pointer-events-none fixed top-0 right-0 left-0 z-50 mx-auto">
+        <header class="pointer-events-none fixed top-0 right-0 left-0 z-100 mx-auto">
             <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full" />
-            <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 px-6 sm:px-6 md:p-6 lg:px-8">
+            <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 lg:px-8">
                 <!-- Name (Top Left) -->
                 <div class="pointer-events-auto">
                     <Link href="/" class="scramble-trigger text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white"
@@ -338,7 +338,7 @@ onUnmounted(() => {
                     </Link>
                 </div>
 
-                <!-- Hamburger Menu (Top Right) -->
+                <!-- Command Menu (Top Right) -->
                 <div class="pointer-events-auto flex items-center gap-4">
                     <CommandTrigger @click="openCommandMenu" />
                 </div>

@@ -18,15 +18,22 @@
             "caseStudies": "Case Studies",
             "portfolio": "Portfolio",
             "portfolioFolder": "portfolio",
+            "productFolder": "product",
             "designFolder": "design",
             "developmentFolder": "development",
+            "pastWorkFolder": "projekte",
             "aboutDescription": "Lerne mich besser kennen.",
             "blog": "Blog",
+            "blogDescription": "Meine Gedanken zu Design, Entwicklung, der Kreativbranche und kreativen Erkundungen.",
+            "latestPosts": "Neues aus meinem Blog",
             "playground": "Playground",
             "comingSoon": "Demnächst",
-            "comingSoonDescription": "Demnächst verfügbar.",
+            "playgroundDescription": "Ein Labor für meine Design-Engineering-Experimente.",
+            "comingSoonDescription": "In Kürze verfügbar.",
             "aboutMe": "Über mich",
-            "learnMore": "Mehr erfahren"
+            "learnMore": "Mehr erfahren",
+            "hoverToPreview": "Hover für Vorschau",
+            "tapToPreview": "Tippen für Vorschau"
         },
         "clock": {
             "ahead": "{hours}Std. voraus",
@@ -63,6 +70,8 @@
             "home": "Startseite",
             "about": "Über mich",
             "portfolio": "Portfolio",
+            "blog": "Blog",
+            "playground": "Spielplatz",
             "terminal": "Terminal"
         },
         "social": {
@@ -122,6 +131,7 @@
         "de": "DE"
     },
     "bio": {
+        "title": "Über mich – CV: Professioneller Hintergrund, Fähigkeiten & Karriere",
         "sections": {
             "bio": "Bio",
             "skills": "Skills"
@@ -137,6 +147,7 @@
             "designTools": "Design-Tools",
             "codeLanguages": "Programmiersprachen",
             "technologies": "Technologien",
+            "viewSkillsInCode": "Skills als Code anzeigen",
             "categories": {
                 "backend": "Backend",
                 "frontend": "Frontend",
@@ -250,5 +261,53 @@
         "gallery": "Galerie",
         "notFound": "Case Study nicht gefunden",
         "defaultDescription": "Case Study, die meine Arbeit und meinen Prozess zeigt."
+    },
+    "blog": {
+        "title": "Blog",
+        "hero": {
+            "line1": "Gedanken zu Design und Entwicklung,",
+            "line2": "geteilt durch Code und kreative Erkundungen."
+        },
+        "filters": {
+            "all": "Alle"
+        },
+        "categories": {
+            "Journal": "Journal",
+            "Craft": "Handwerk"
+        },
+        "latestPosts": "Neueste Artikel",
+        "readingTime": "Min. Lesezeit",
+        "empty": {
+            "title": "Noch keine Artikel",
+            "description": "Schau demnächst wieder vorbei für neue Artikel."
+        },
+        "copyCode": "Code kopieren",
+        "copied": "Kopiert!",
+        "share": "Artikel teilen",
+        "resetDemo": "Demo zurücksetzen",
+        "backToBlog": "Zurück zum Blog",
+        "viewInPlayground": "Im Playground ansehen",
+        "onThisPage": "Auf dieser Seite",
+        "top": "Nach oben",
+        "interactiveUnavailable": "Dieses interaktive Element konnte nicht geladen werden.",
+        "postNotFound": {
+            "title": "Beitrag nicht gefunden",
+            "description": "Der gesuchte Blogbeitrag existiert nicht."
+        }
+    },
+    "playground": {
+        "backToHome": "Zurück zur Startseite",
+        "title": "Playground",
+        "hero": {
+            "line1": "Mein Labor für Design-Engineering-",
+            "line2": "Experimente und interaktive Demos."
+        },
+        "result": "Vorschau",
+        "code": "Code",
+        "demosDropdown": "Demo auswählen"
+    },
+    "pagination": {
+        "previous": "Zurück",
+        "next": "Weiter"
     }
 }

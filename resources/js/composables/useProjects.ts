@@ -1,3 +1,5 @@
+import '@/lib/buffer-polyfill';
+import matter from 'gray-matter';
 import { computed, type ComputedRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -39,17 +41,44 @@ export interface Project {
     website?: string;
 }
 
-export interface ProjectTranslation {
+interface ProjectFrontmatter {
+    id: number;
+    slug: string;
+    client: string;
+    category: string | string[];
+    image: string;
+    color: string;
+    logo: string;
+    width: string;
+    height: string;
+    spineHeight: string;
+    date: string;
+    team?: ProjectTeamMember[];
+    services?: string[];
+    technologies?: string[];
+    media?: ProjectMedia[];
+    title: string;
+    story_preview: string;
+    fineprint: string;
+    fineprint_media?: string;
+    fineprint_media_alt?: string;
+    website?: string;
+}
+
+interface ProjectTranslationFrontmatter {
     slug: string;
     title: string;
     story_preview: string;
-    story: string;
     fineprint: string;
 }
 
-// Import all project files eagerly
-// English files contain complete project data (metadata + content)
-// Other locale files only contain translated content fields
+// en/*.md = source of truth; other locales overlay title, story_preview, story, fineprint
+const projectMdFiles = import.meta.glob<string>('/resources/content/projects/*/*.md', {
+    eager: true,
+    query: '?raw',
+    import: 'default',
+});
+
 const enProjectFiles = import.meta.glob<{ default: Project }>('/resources/content/projects/en/*.json', {
     eager: true,
 });
@@ -58,39 +87,131 @@ const translationFiles = import.meta.glob<{ default: ProjectTranslation }>('/res
     eager: true,
 });
 
+export interface ProjectTranslation {
+    slug: string;
+    title: string;
+    story_preview: string;
+    story: string;
+    fineprint: string;
+}
+
+const EN_PREFIX = '/resources/content/projects/en/';
+
+function getMdRaw(path: string): string {
+    const mod = projectMdFiles[path];
+    return typeof mod === 'string' ? mod : ((mod as { default?: string })?.default ?? '');
+}
+
+function ensureCategory(c: string | string[] | undefined): string | string[] {
+    if (Array.isArray(c)) return c;
+    if (typeof c === 'string') return c;
+    return [];
+}
+
+function parseEnProjectMd(path: string, raw: string): Project {
+    const slug = path.replace(/^.*\/([^/]+)\.md$/, '$1');
+    const { data, content } = matter(raw);
+    const fm = data as ProjectFrontmatter;
+    const story = (content ?? '').trim();
+    return {
+        id: fm.id ?? 0,
+        slug: fm.slug ?? slug,
+        client: fm.client ?? '',
+        category: ensureCategory(fm.category),
+        image: fm.image ?? '',
+        color: fm.color ?? '',
+        logo: fm.logo ?? '',
+        width: fm.width ?? '',
+        height: fm.height ?? '',
+        spineHeight: fm.spineHeight ?? '',
+        date: fm.date ?? '',
+        team: Array.isArray(fm.team) ? fm.team : [],
+        services: Array.isArray(fm.services) ? fm.services : [],
+        technologies: Array.isArray(fm.technologies) ? fm.technologies : [],
+        media: Array.isArray(fm.media) ? fm.media : [],
+        title: fm.title ?? '',
+        story_preview: fm.story_preview ?? '',
+        story,
+        fineprint: fm.fineprint ?? '',
+        fineprint_media: fm.fineprint_media,
+        fineprint_media_alt: fm.fineprint_media_alt,
+        website: fm.website,
+    };
+}
+
+function parseProjectTranslationMd(
+    path: string,
+    raw: string,
+): { slug: string; title: string; story_preview: string; fineprint: string; story: string } {
+    const slug = path.replace(/^.*\/([^/]+)\.md$/, '$1');
+    const { data, content } = matter(raw);
+    const fm = data as ProjectTranslationFrontmatter;
+    return {
+        slug: fm.slug ?? slug,
+        title: fm.title ?? '',
+        story_preview: fm.story_preview ?? '',
+        fineprint: fm.fineprint ?? '',
+        story: (content ?? '').trim(),
+    };
+}
+
+const enProjectsFromMd: Project[] = (() => {
+    const entries = Object.entries(projectMdFiles).filter(([path]) => path.startsWith(EN_PREFIX));
+    return entries.map(([path]) => parseEnProjectMd(path, getMdRaw(path)));
+})();
+
+const enSlugsFromMd = new Set(enProjectsFromMd.map((p) => p.slug));
+
+const enProjectsFromJson: Project[] = Object.entries(enProjectFiles).map(([, module]) => module.default || module) as Project[];
+
+const enProjects: Project[] = [...enProjectsFromMd, ...enProjectsFromJson.filter((p) => !enSlugsFromMd.has(p.slug))].sort((a, b) => a.id - b.id);
+
+const translationsByLocale = new Map<string, Map<string, { title: string; story_preview: string; fineprint: string; story: string }>>();
+
+for (const path of Object.keys(projectMdFiles)) {
+    const match = path.match(/\/projects\/([^/]+)\/([^/]+)\.md$/);
+    if (!match) continue;
+    const [, loc] = match;
+    if (loc === 'en') continue;
+    const raw = getMdRaw(path);
+    const t = parseProjectTranslationMd(path, raw);
+    if (!translationsByLocale.has(loc)) {
+        translationsByLocale.set(loc, new Map());
+    }
+    translationsByLocale.get(loc)!.set(t.slug, { title: t.title, story_preview: t.story_preview, fineprint: t.fineprint, story: t.story });
+}
+
 export function useProjects() {
     const { locale } = useI18n();
 
     const projects: ComputedRef<Project[]> = computed(() => {
-        // Get all English projects (complete data)
-        const enProjects = Object.entries(enProjectFiles).map(([, module]) => module.default || module) as Project[];
-
         if (locale.value === 'en') {
-            return enProjects.sort((a, b) => a.id - b.id);
+            return enProjects;
         }
 
-        // For other locales, merge English metadata with translated content
-        const translations = Object.entries(translationFiles)
+        const mdTrans = translationsByLocale.get(locale.value);
+        const jsonTrans = Object.entries(translationFiles)
             .filter(([path]) => path.includes(`/${locale.value}/`))
             .map(([, module]) => module.default || module) as ProjectTranslation[];
 
-        // Create a map of translations by slug for quick lookup
-        const translationMap = new Map(translations.map((t) => [t.slug, t]));
+        const translationMap = new Map<string | undefined, ProjectTranslation>();
+        jsonTrans.forEach((t) => translationMap.set(t.slug, t));
 
-        // Merge English projects with translations
         return enProjects
             .map((project) => {
-                const translation = translationMap.get(project.slug);
-                if (translation) {
-                    return {
-                        ...project,
-                        title: translation.title,
-                        story_preview: translation.story_preview,
-                        story: translation.story,
-                        fineprint: translation.fineprint,
-                    };
-                }
-                return project;
+                const fromMd = mdTrans?.get(project.slug);
+                const fromJson = translationMap.get(project.slug);
+                const t = fromMd
+                    ? { title: fromMd.title, story_preview: fromMd.story_preview, fineprint: fromMd.fineprint, story: fromMd.story }
+                    : fromJson;
+                if (!t) return project;
+                return {
+                    ...project,
+                    title: t.title,
+                    story_preview: t.story_preview,
+                    story: t.story,
+                    fineprint: t.fineprint,
+                };
             })
             .sort((a, b) => a.id - b.id);
     });
@@ -100,7 +221,10 @@ export function useProjects() {
     };
 
     const getProjectsByCategory = (category: string): Project[] => {
-        return projects.value.filter((p) => p.category === category);
+        return projects.value.filter((p) => {
+            const categories = Array.isArray(p.category) ? p.category : [p.category];
+            return categories.includes(category);
+        });
     };
 
     return {

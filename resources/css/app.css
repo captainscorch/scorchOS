@@ -223,6 +223,87 @@
     transform-origin: center;
 }
 
+/* Typography */
+.prose {
+    @apply space-y-4 text-neutral-700 dark:text-neutral-300;
+}
+
+.prose h1 {
+    @apply mb-12 font-work-sans text-3xl font-bold text-neutral-900 dark:text-white;
+}
+
+.prose h2 {
+    @apply mt-8 font-work-sans text-xl font-semibold text-neutral-900 dark:text-white;
+}
+
+.prose h3 {
+    @apply mt-8 font-work-sans text-lg font-medium text-neutral-900 dark:text-white;
+}
+
+.prose h4 {
+    @apply mt-8 font-work-sans text-base font-medium text-neutral-900 dark:text-white;
+}
+
+.prose p {
+    @apply text-base leading-relaxed text-neutral-600 dark:text-neutral-300;
+}
+
+.prose strong {
+    @apply font-bold text-neutral-900 dark:text-white;
+}
+
+.prose a {
+    @apply text-neutral-900 underline underline-offset-2 transition-colors hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300;
+}
+
+.prose ul {
+    @apply my-6 ml-6 list-outside list-disc space-y-2 text-neutral-600 dark:text-neutral-300;
+}
+
+.prose ol {
+    @apply my-6 ml-6 list-outside list-decimal space-y-2 text-neutral-600 dark:text-neutral-300;
+}
+
+.prose li {
+    @apply text-base leading-relaxed;
+}
+
+.prose li > p {
+    @apply inline;
+}
+
+.prose blockquote {
+    @apply my-6 border-l-4 border-neutral-300 pl-4 text-neutral-500 italic dark:border-neutral-700 dark:text-neutral-400;
+}
+
+.prose code {
+    @apply rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200;
+}
+
+.prose pre {
+    @apply my-4 overflow-x-auto rounded-lg bg-neutral-100 p-4 dark:bg-neutral-800;
+}
+
+.prose img {
+    @apply mx-auto w-full max-w-full rounded-2xl border border-neutral-200 shadow-sm transition-transform duration-500 hover:scale-[1.01] dark:border-white/10;
+}
+
+.prose figure {
+    @apply my-8;
+}
+
+.prose figcaption {
+    @apply mt-3 text-center text-sm text-neutral-500 dark:text-neutral-400;
+}
+
+.prose pre code {
+    @apply bg-transparent p-0;
+}
+
+.prose hr {
+    @apply my-8 border-neutral-200 dark:border-neutral-800;
+}
+
 .growing-border {
     position: relative;
     border-bottom: 2px solid transparent;

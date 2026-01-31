@@ -6,6 +6,7 @@ import LabelText from '@/components/global/typography/LabelText.vue';
 import PageTitle from '@/components/global/typography/PageTitle.vue';
 import SectionTitle from '@/components/global/typography/SectionTitle.vue';
 import ProgressiveBlur from '@/components/ProgressiveBlur.vue';
+import SkillsModal from '@/components/SkillsModal.vue';
 import { useCommandMenu } from '@/composables/useCommandMenu';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowsFromLine, faArrowsToLine, faMinus, faPlus, faTimes } from '@fortawesome/sharp-light-svg-icons';
@@ -50,6 +51,15 @@ type ViewMode = 'prose' | 'list' | 'timeline';
 
 const viewMode = ref<ViewMode>('prose');
 const activeSection = ref('bio');
+const isSkillsModalOpen = ref(false);
+
+const openSkillsModal = () => {
+    isSkillsModalOpen.value = true;
+};
+
+const closeSkillsModal = () => {
+    isSkillsModalOpen.value = false;
+};
 
 const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -340,9 +350,9 @@ const skills = computed(() => ({
     </Head>
     <div class="min-h-screen bg-white pt-32 pb-20 text-neutral-900 md:pt-40 md:pb-0 dark:bg-black dark:text-white">
         <!-- Header / Navigation -->
-        <header class="pointer-events-none fixed top-0 right-0 left-0 z-50 mx-auto">
+        <header class="pointer-events-none fixed top-0 right-0 left-0 z-100 mx-auto">
             <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full" />
-            <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 px-6 sm:px-6 md:p-6 lg:px-8">
+            <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 lg:px-8">
                 <!-- Name (Top Left) -->
                 <div class="pointer-events-auto">
                     <Link href="/" class="scramble-trigger text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white"
@@ -389,7 +399,7 @@ const skills = computed(() => ({
                     </button>
                 </div>
 
-                <!-- Hamburger Menu (Top Right) -->
+                <!-- Command Menu (Top Right) -->
                 <div class="pointer-events-auto flex items-center gap-4">
                     <CommandTrigger @click="openCommandMenu" />
                 </div>
@@ -403,6 +413,7 @@ const skills = computed(() => ({
                     class="sticky top-0 z-10 col-span-12 -ml-4 w-[calc(100%+2rem)] px-4 pt-4 pb-0 md:sticky md:top-20 md:col-span-3 md:w-auto md:py-0"
                 >
                     <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full md:hidden" />
+                    <PageTitle as="h1" class="sr-only"> {{ t('bio.title') }} </PageTitle>
                     <PageTitle as="h2" class="scramble-trigger relative pb-4"> {{ t('bio.sections.bio') }} </PageTitle>
                 </div>
                 <div class="col-span-12 w-full md:col-span-9">
@@ -652,7 +663,15 @@ const skills = computed(() => ({
                 >
                     <div class="absolute inset-0 -z-10 h-full w-full bg-white/90 backdrop-blur-md md:hidden dark:hidden"></div>
                     <ProgressiveBlur class="absolute inset-0 -z-10 hidden h-full w-full md:hidden dark:block" />
-                    <PageTitle as="h2" class="scramble-trigger relative pb-4"> {{ t('bio.sections.skills') }} </PageTitle>
+                    <PageTitle as="h2" class="scramble-trigger relative pb-2 md:pb-4"> {{ t('bio.sections.skills') }} </PageTitle>
+                    <button
+                        type="button"
+                        @click="openSkillsModal"
+                        class="mt-2 mb-4 w-fit border-b border-b-neutral-300/50 text-left text-xs text-neutral-500 transition-all hover:cursor-pointer hover:border-b-brand hover:text-neutral-700 dark:border-b-neutral-600/50 dark:text-neutral-400 dark:hover:border-b-brand dark:hover:text-neutral-200"
+                    >
+                        <FontAwesomeIcon icon="fa-sharp fa-light fa-code" class="mr-1.5" />
+                        {{ t('bio.skills.viewSkillsInCode') }}
+                    </button>
                 </div>
                 <div class="col-span-12 w-full md:col-span-9">
                     <div class="space-y-10 md:space-y-16">
@@ -738,5 +757,6 @@ const skills = computed(() => ({
 
             <FooterArea />
         </main>
+        <SkillsModal :is-open="isSkillsModalOpen" @close="closeSkillsModal" />
     </div>
 </template>

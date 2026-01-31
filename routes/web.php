@@ -21,6 +21,21 @@ Route::get('/case-study/{slug}', function ($slug) {
     ]);
 })->name('case-study');
 
+Route::get('/blog', function () {
+    return Inertia::render('Blog');
+})->name('blog');
+
+Route::get('/playground', function () {
+    return Inertia::render('Playground');
+})->name('playground');
+
+Route::get('/blog/{category}/{slug}', function ($category, $slug) {
+    return Inertia::render('BlogPost', [
+        'slug' => $slug,
+        'category' => $category
+    ]);
+})->name('blog-post');
+
 // Uncomment to test specific error pages
 // Route::get('/error-testing', function () {
 //     abort(500);

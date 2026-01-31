@@ -20,13 +20,19 @@
             "portfolioFolder": "portfolio",
             "productFolder": "product",
             "developmentFolder": "development",
+            "pastWorkFolder": "past work",
             "aboutDescription": "Get to know me better.",
             "blog": "Blog",
+            "blogDescription": "My thoughts on design, development, the creative industry and creative explorations.",
+            "latestPosts": "Latest from my blog",
             "playground": "Playground",
             "comingSoon": "Coming Soon",
+            "playgroundDescription": "A lab for my design engineering experiments.",
             "comingSoonDescription": "Coming soon.",
             "aboutMe": "About me",
-            "learnMore": "Learn more"
+            "learnMore": "Learn more",
+            "hoverToPreview": "Hover to preview",
+            "tapToPreview": "Tap to preview"
         },
         "clock": {
             "ahead": "{hours}h ahead",
@@ -63,6 +69,8 @@
             "home": "Home",
             "about": "About",
             "portfolio": "Portfolio",
+            "blog": "Blog",
+            "playground": "Playground",
             "terminal": "Terminal"
         },
         "social": {
@@ -122,6 +130,7 @@
         "de": "DE"
     },
     "bio": {
+        "title": "About Me – CV: Professional Background, Skills & Career",
         "sections": {
             "bio": "Bio",
             "skills": "Skills"
@@ -137,6 +146,7 @@
             "designTools": "Design Tools",
             "codeLanguages": "Code Languages",
             "technologies": "Technologies",
+            "viewSkillsInCode": "View skills as code",
             "categories": {
                 "backend": "Backend",
                 "frontend": "Frontend",
@@ -250,5 +260,53 @@
         "gallery": "Gallery",
         "notFound": "Case Study Not Found",
         "defaultDescription": "Case study showcasing my work and process."
+    },
+    "blog": {
+        "title": "Blog",
+        "hero": {
+            "line1": "Thoughts on design and development,",
+            "line2": "shared through code and creative exploration."
+        },
+        "filters": {
+            "all": "All"
+        },
+        "categories": {
+            "Journal": "Journal",
+            "Craft": "Craft"
+        },
+        "latestPosts": "Latest Articles",
+        "readingTime": "min read",
+        "empty": {
+            "title": "No posts yet",
+            "description": "Check back soon for new articles."
+        },
+        "copyCode": "Copy code",
+        "copied": "Copied!",
+        "share": "Share article",
+        "resetDemo": "Reset demo",
+        "backToBlog": "Back to Blog",
+        "viewInPlayground": "View in Playground",
+        "onThisPage": "On this page",
+        "top": "Top",
+        "interactiveUnavailable": "This interactive element could not be loaded.",
+        "postNotFound": {
+            "title": "Post not found",
+            "description": "The blog post you're looking for doesn't exist."
+        }
+    },
+    "playground": {
+        "backToHome": "Back to Home",
+        "title": "Playground",
+        "hero": {
+            "line1": "My lab for design engineering",
+            "line2": "experiments and interactive demos."
+        },
+        "result": "Result",
+        "code": "Code",
+        "demosDropdown": "Select a demo"
+    },
+    "pagination": {
+        "previous": "Previous",
+        "next": "Next"
     }
 }

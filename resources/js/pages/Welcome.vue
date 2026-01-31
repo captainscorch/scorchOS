@@ -1,50 +1,82 @@
 <script setup lang="ts">
 import CommandTrigger from '@/components/CommandTrigger.vue';
-import BodyText from '@/components/global/typography/BodyText.vue';
-import SectionTitle from '@/components/global/typography/SectionTitle.vue';
+import FooterArea from '@/components/FooterArea.vue';
+import IDEPreview from '@/components/playground/IDEPreview.vue';
 import ProgressiveBlur from '@/components/ProgressiveBlur.vue';
-import SkillsModal from '@/components/SkillsModal.vue';
 import TextReveal from '@/components/TextReveal.vue';
-import { Switch } from '@/components/ui/switch';
 import { useCommandMenu } from '@/composables/useCommandMenu';
+import { usePosts } from '@/composables/usePosts';
 import { useProjects } from '@/composables/useProjects';
-import { useSocials } from '@/composables/useSocials';
-import { setLocale } from '@/i18n';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faAddressCard,
     faArrowUpRight,
     faBriefcase,
+    faBrowser,
     faBuilding,
     faChevronDown,
     faChevronRight,
-    faClockEight,
     faCode,
     faCodeBranch,
     faFile,
     faFolder,
     faFolderOpen,
-    faLocationArrow,
     faStarfighter,
     faUserBountyHunter,
 } from '@fortawesome/sharp-light-svg-icons';
 import { faMoon, faSun } from '@fortawesome/sharp-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Head, Link } from '@inertiajs/vue3';
-import { useDark, useToggle } from '@vueuse/core';
 import gsap from 'gsap';
 import { ChevronDown, CornerDownLeft } from 'lucide-vue-next';
 
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+const { t, locale } = useI18n();
+const { getProject } = useProjects();
+const { posts, getAllCategories, getAllTags, getPostsByCategory } = usePosts();
+
+const latestPosts = computed(() => posts.value.slice(0, 3));
+
+// Blog stats
+const blogStats = computed(() => {
+    const categories = getAllCategories();
+    return {
+        total: posts.value.length,
+        categories: categories.map(cat => ({
+            name: cat,
+            count: getPostsByCategory(cat).length
+        })),
+        totalTags: getAllTags().length
+    };
+});
+
+const getCategoryIcon = (category: string) => {
+    switch (category) {
+        case 'Journal':
+            return '/icons/system-regular-20-bookmark-hover-bookmark-1.json';
+        case 'Craft':
+            return '/icons/system-regular-34-code-hover-code.json';
+        default:
+            return '/icons/system-regular-20-bookmark-hover-bookmark-1.json';
+    }
+};
+
+const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(locale.value === 'de' ? 'de-DE' : 'en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    });
+};
+
 library.add(
     faSun,
     faMoon,
-    faLocationArrow,
     faBriefcase,
     faBuilding,
-    faClockEight,
     faUserBountyHunter,
     faCode,
     faCodeBranch,
@@ -56,27 +88,9 @@ library.add(
     faChevronRight,
     faFile,
     faArrowUpRight,
+    faArrowUpRight,
+    faBrowser,
 );
-
-const { t, locale } = useI18n();
-const { getProjectsByCategory } = useProjects();
-
-const isDark = useDark({
-    selector: 'html',
-    attribute: 'class',
-    valueDark: 'dark',
-    valueLight: '',
-    initialValue: 'dark',
-});
-const toggleTheme = useToggle(isDark);
-
-const switchLanguage = (lang: string) => {
-    setLocale(lang);
-    setTimeout(() => {
-        checkLyftdPosition();
-        checkUnlimitedPosition();
-    }, 100);
-};
 
 const pageTitle = 'Daniel Schmier';
 const pageDescription = 'Personal website, portfolio and code playground of Daniel Schmier.';
@@ -90,18 +104,22 @@ const ogUrl = computed(() => {
 });
 
 // Portfolio folder structure
+const productSlugs = ['lyftd', 'way.food'];
+const developmentSlugs = ['loz', 'tamplen'];
+
 const productProjects = computed(() => {
-    return getProjectsByCategory('Product').slice(0, 2);
+    return productSlugs.map((slug) => getProject(slug)).filter((p): p is NonNullable<typeof p> => p != null);
 });
 
 const developmentProjects = computed(() => {
-    return getProjectsByCategory('Development').slice(0, 3);
+    return developmentSlugs.map((slug) => getProject(slug)).filter((p): p is NonNullable<typeof p> => p != null);
 });
 
 // Folder expansion state
 const isPortfolioExpanded = ref(true);
 const isProductExpanded = ref(true);
 const isDevelopmentExpanded = ref(true);
+const isPastWorkExpanded = ref(true);
 
 const togglePortfolio = () => {
     isPortfolioExpanded.value = !isPortfolioExpanded.value;
@@ -113,6 +131,10 @@ const toggleProduct = () => {
 
 const toggleDevelopment = () => {
     isDevelopmentExpanded.value = !isDevelopmentExpanded.value;
+};
+
+const togglePastWork = () => {
+    isPastWorkExpanded.value = !isPastWorkExpanded.value;
 };
 
 const pastWorkLinks = [
@@ -136,57 +158,6 @@ const pastWorkLinks = [
         alt: 'Gastroenterologie Kassel',
     },
 ];
-
-const socials = useSocials();
-
-// Clock functionality
-const currentTime = ref('');
-const timezone = ref('');
-let clockInterval: number | null = null;
-
-const updateClock = () => {
-    const now = new Date();
-    currentTime.value = now.toLocaleTimeString('en-US', {
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-    });
-    timezone.value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    calculateTimeDifference();
-};
-
-const timeDifference = ref('');
-
-const calculateTimeDifference = () => {
-    const now = new Date();
-    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const targetTimezone = 'Europe/Berlin';
-
-    const userDate = new Date(now.toLocaleString('en-US', { timeZone: userTimezone }));
-    const targetDate = new Date(now.toLocaleString('en-US', { timeZone: targetTimezone }));
-
-    const diffInHours = (targetDate.getTime() - userDate.getTime()) / (1000 * 60 * 60);
-    const roundedDiff = Math.round(diffInHours);
-
-    if (roundedDiff === 0) {
-        timeDifference.value = t('home.clock.same');
-    } else if (roundedDiff > 0) {
-        timeDifference.value = t('home.clock.ahead', { hours: roundedDiff });
-    } else {
-        timeDifference.value = t('home.clock.behind', { hours: Math.abs(roundedDiff) });
-    }
-};
-
-const isSkillsModalOpen = ref(false);
-
-const openSkillsModal = () => {
-    isSkillsModalOpen.value = true;
-};
-
-const closeSkillsModal = () => {
-    isSkillsModalOpen.value = false;
-};
 
 const isCardOpen = ref(false);
 
@@ -243,6 +214,11 @@ const checkLyftdPosition = () => {
 
 const checkUnlimitedPosition = () => {
     checkLogoPosition(unlimitedLogoRef.value, isUnlimitedNearRightEdge);
+};
+
+const onFooterLanguageSwitched = () => {
+    checkLyftdPosition();
+    checkUnlimitedPosition();
 };
 
 const toggleThumbnail = (index: number) => {
@@ -359,8 +335,6 @@ const animateLogos = () => {
 onMounted(() => {
     document.documentElement.classList.add('page-welcome');
 
-    updateClock();
-    clockInterval = setInterval(updateClock, 1000);
     document.addEventListener('click', handleClickOutside);
     document.addEventListener('keydown', handleKeyDown);
 
@@ -405,9 +379,6 @@ watch(locale, () => {
 
 onUnmounted(() => {
     document.documentElement.classList.remove('page-welcome');
-    if (clockInterval) {
-        clearInterval(clockInterval);
-    }
     document.removeEventListener('click', handleClickOutside);
     document.removeEventListener('keydown', handleKeyDown);
     window.removeEventListener('resize', checkMobile);
@@ -452,12 +423,14 @@ const fadeUpMotion = {
     </Head>
     <div ref="pageContainer" class="mx-auto h-full min-h-dvh max-w-7xl px-6 pt-32 md:pt-40 lg:px-8">
         <!-- Header / Navigation -->
-        <header class="pointer-events-none fixed top-0 right-0 left-0 z-50 mx-auto">
+        <header class="pointer-events-none fixed top-0 right-0 left-0 z-100 mx-auto">
             <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full" />
-            <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 px-6 sm:px-6 md:p-6 lg:px-8">
+            <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 lg:px-8">
                 <!-- Name (Top Left) -->
                 <div class="pointer-events-auto">
-                    <span class="scramble-trigger text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white">Daniel Schmier</span>
+                    <Link href="/" class="scramble-trigger text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white"
+                        >Daniel Schmier</Link
+                    >
                 </div>
 
                 <!-- Centered Toggle -->
@@ -481,7 +454,7 @@ const fadeUpMotion = {
                     </Link>
                 </div>
 
-                <!-- Hamburger Menu (Top Right) -->
+                <!-- Command Menu (Top Right) -->
                 <div class="pointer-events-auto flex items-center gap-4">
                     <CommandTrigger @click="openCommandMenu" />
                 </div>
@@ -679,7 +652,7 @@ const fadeUpMotion = {
                             ...fadeUpMotion.visibleOnce,
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 200 },
                         }"
-                        class="group portfolio-icon relative col-span-1 row-span-1 overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 hover:border-brand/50 hover:shadow-2xl md:col-span-4 md:row-span-2 dark:border-white/10 dark:bg-neutral-900/50"
+                        class="group portfolio-icon relative z-50 col-span-1 row-span-1 overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 hover:border-brand/50 hover:shadow-2xl md:col-span-4 md:row-span-1 dark:border-white/10 dark:bg-neutral-900/50"
                     >
                         <div
                             class="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -691,7 +664,7 @@ const fadeUpMotion = {
                                         class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
                                     >
                                         <lord-icon
-                                            src="/icons/system-regular-178-work-hover-work.json"
+                                            src="/icons/system-regular-165-view-carousel-hover-carousel.json"
                                             trigger="morph"
                                             target=".portfolio-icon"
                                             style="width: 20px; height: 20px"
@@ -706,132 +679,141 @@ const fadeUpMotion = {
                                     </span>
                                 </div></Link
                             >
-                            <div class="flex-1 p-2">
+                            <div class="p-2 mt-8 md:mt-4">
                                 <Link href="/portfolio">
-                                    <h3 class="mt-8 mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
+                                    <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
                                         {{ t('home.navigation.portfolio') }}
                                     </h3></Link
                                 >
 
                                 <!-- Folder Directory Tree -->
                                 <div class="relative font-mono text-xs leading-relaxed text-neutral-600 dark:text-neutral-400">
-                                    <div
-                                        v-if="isPortfolioExpanded"
-                                        class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
-                                    ></div>
-
-                                    <!-- Main Portfolio Folder -->
-                                    <button
-                                        type="button"
-                                        class="group group/portfolio relative mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
-                                        @click="togglePortfolio"
-                                    >
-                                        <FontAwesomeIcon
-                                            :icon="isPortfolioExpanded ? 'fa-sharp fa-light fa-chevron-down' : 'fa-sharp fa-light fa-chevron-right'"
-                                            class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
-                                        />
-                                        <FontAwesomeIcon
-                                            :icon="isPortfolioExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
-                                            class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/portfolio:text-neutral-900 dark:text-neutral-500 dark:group-hover/portfolio:text-white"
-                                        />
-                                        <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
-                                            t('home.navigation.portfolioFolder')
-                                        }}</span>
-                                    </button>
-
-                                    <!-- Design Subfolder -->
-                                    <div v-if="isPortfolioExpanded" class="relative mb-1 ml-6">
+                                    <!-- Portfolio Folder Container -->
+                                    <div class="relative">
                                         <div
-                                            v-if="isProductExpanded && productProjects.length > 0"
+                                            v-if="isPortfolioExpanded"
                                             class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
                                         ></div>
 
+                                        <!-- Main Portfolio Folder -->
                                         <button
                                             type="button"
-                                            class="group group/product mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
-                                            @click.stop="toggleProduct"
-                                        >
-                                            <FontAwesomeIcon
-                                                :icon="isProductExpanded ? 'fa-sharp fa-light fa-chevron-down' : 'fa-sharp fa-light fa-chevron-right'"
-                                                class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
-                                            />
-                                            <FontAwesomeIcon
-                                                :icon="isProductExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
-                                                class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/product:text-neutral-900 dark:text-neutral-500 dark:group-hover/product:text-white"
-                                            />
-                                            <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
-                                                t('home.navigation.productFolder')
-                                            }}</span>
-                                        </button>
-                                        <!-- Product Projects -->
-                                        <div v-if="isProductExpanded" class="ml-8 space-y-0.5">
-                                            <Link
-                                                v-for="project in productProjects"
-                                                :key="project.id"
-                                                :href="`/case-study/${project.slug}`"
-                                                class="group/project flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
-                                                @click.stop
-                                            >
-                                                <FontAwesomeIcon
-                                                    icon="fa-sharp fa-light fa-file"
-                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
-                                                />
-                                                <span class="truncate leading-normal">{{ project.client }}</span>
-                                                <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
-                                                    ><FontAwesomeIcon
-                                                        icon="fa-sharp fa-light fa-arrow-up-right"
-                                                        class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
-                                                /></span>
-                                            </Link>
-                                        </div>
-                                    </div>
-
-                                    <!-- Development Subfolder -->
-                                    <div v-if="isPortfolioExpanded" class="relative ml-6">
-                                        <div
-                                            v-if="isDevelopmentExpanded && developmentProjects.length > 0"
-                                            class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
-                                        ></div>
-
-                                        <button
-                                            type="button"
-                                            class="group group/development mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
-                                            @click.stop="toggleDevelopment"
+                                            class="group group/portfolio relative mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
+                                            @click="togglePortfolio"
                                         >
                                             <FontAwesomeIcon
                                                 :icon="
-                                                    isDevelopmentExpanded ? 'fa-sharp fa-light fa-chevron-down' : 'fa-sharp fa-light fa-chevron-right'
+                                                    isPortfolioExpanded ? 'fa-sharp fa-light fa-chevron-down' : 'fa-sharp fa-light fa-chevron-right'
                                                 "
                                                 class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
                                             />
                                             <FontAwesomeIcon
-                                                :icon="isDevelopmentExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
-                                                class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/development:text-neutral-900 dark:text-neutral-500 dark:group-hover/development:text-white"
+                                                :icon="isPortfolioExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
+                                                class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/portfolio:text-neutral-900 dark:text-neutral-500 dark:group-hover/portfolio:text-white"
                                             />
                                             <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
-                                                t('home.navigation.developmentFolder')
+                                                t('home.navigation.portfolioFolder')
                                             }}</span>
                                         </button>
-                                        <!-- Development Projects -->
-                                        <div v-if="isDevelopmentExpanded" class="ml-8 space-y-0.5">
-                                            <Link
-                                                v-for="project in developmentProjects"
-                                                :key="project.id"
-                                                :href="`/case-study/${project.slug}`"
-                                                class="group/project flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
-                                                @click.stop
+
+                                        <!-- Design Subfolder -->
+                                        <div v-if="isPortfolioExpanded" class="relative mb-1 ml-6">
+                                            <div
+                                                v-if="isProductExpanded && productProjects.length > 0"
+                                                class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
+                                            ></div>
+
+                                            <button
+                                                type="button"
+                                                class="group group/product mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
+                                                @click.stop="toggleProduct"
                                             >
                                                 <FontAwesomeIcon
-                                                    icon="fa-sharp fa-light fa-file"
-                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
+                                                    :icon="
+                                                        isProductExpanded ? 'fa-sharp fa-light fa-chevron-down' : 'fa-sharp fa-light fa-chevron-right'
+                                                    "
+                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
                                                 />
-                                                <span class="truncate leading-normal">{{ project.client }}</span>
-                                                <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
-                                                    ><FontAwesomeIcon
-                                                        icon="fa-sharp fa-light fa-arrow-up-right"
-                                                        class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
-                                                /></span>
-                                            </Link>
+                                                <FontAwesomeIcon
+                                                    :icon="isProductExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
+                                                    class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/product:text-neutral-900 dark:text-neutral-500 dark:group-hover/product:text-white"
+                                                />
+                                                <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
+                                                    t('home.navigation.productFolder')
+                                                }}</span>
+                                            </button>
+                                            <!-- Product Projects -->
+                                            <div v-if="isProductExpanded" class="ml-8 space-y-0.5">
+                                                <Link
+                                                    v-for="project in productProjects"
+                                                    :key="project.id"
+                                                    :href="`/case-study/${project.slug}`"
+                                                    class="group/project flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
+                                                    @click.stop
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon="fa-sharp fa-light fa-file"
+                                                        class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
+                                                    />
+                                                    <span class="truncate leading-normal">{{ project.client }}</span>
+                                                    <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
+                                                        ><FontAwesomeIcon
+                                                            icon="fa-sharp fa-light fa-arrow-up-right"
+                                                            class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
+                                                    /></span>
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        <!-- Development Subfolder -->
+                                        <div v-if="isPortfolioExpanded" class="relative ml-6">
+                                            <div
+                                                v-if="isDevelopmentExpanded && developmentProjects.length > 0"
+                                                class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
+                                            ></div>
+
+                                            <button
+                                                type="button"
+                                                class="group group/development mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
+                                                @click.stop="toggleDevelopment"
+                                            >
+                                                <FontAwesomeIcon
+                                                    :icon="
+                                                        isDevelopmentExpanded
+                                                            ? 'fa-sharp fa-light fa-chevron-down'
+                                                            : 'fa-sharp fa-light fa-chevron-right'
+                                                    "
+                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
+                                                />
+                                                <FontAwesomeIcon
+                                                    :icon="isDevelopmentExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
+                                                    class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/development:text-neutral-900 dark:text-neutral-500 dark:group-hover/development:text-white"
+                                                />
+                                                <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
+                                                    t('home.navigation.developmentFolder')
+                                                }}</span>
+                                            </button>
+                                            <!-- Development Projects -->
+                                            <div v-if="isDevelopmentExpanded" class="ml-8 space-y-0.5">
+                                                <Link
+                                                    v-for="project in developmentProjects"
+                                                    :key="project.id"
+                                                    :href="`/case-study/${project.slug}`"
+                                                    class="group/project flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
+                                                    @click.stop
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon="fa-sharp fa-light fa-file"
+                                                        class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
+                                                    />
+                                                    <span class="truncate leading-normal">{{ project.client }}</span>
+                                                    <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
+                                                        ><FontAwesomeIcon
+                                                            icon="fa-sharp fa-light fa-arrow-up-right"
+                                                            class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
+                                                    /></span>
+                                                </Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -842,26 +824,27 @@ const fadeUpMotion = {
                         ></div>
                     </div>
 
+                    
                     <!-- About -->
-                    <Link
+                    <div
+                        ref="profileRef"
                         v-motion
                         :initial="fadeUpMotion.initial"
                         :visible-once="{
                             ...fadeUpMotion.visibleOnce,
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 300 },
                         }"
-                        href="/about"
-                        class="group about-icon relative col-span-1 aspect-square overflow-hidden rounded-2xl border border-neutral-200 p-4 transition-all duration-500 hover:border-brand/50 hover:shadow-xl md:col-span-4 md:row-span-2 md:aspect-auto md:min-h-fit dark:border-white/10"
+                        class="group/card about-icon relative col-span-1 aspect-square overflow-hidden rounded-2xl border border-neutral-200 p-4 transition-all duration-500 hover:border-brand/50 hover:shadow-xl md:col-span-4 md:row-span-1 md:min-h-fit dark:border-white/10"
                     >
                         <div class="absolute inset-0 z-0">
                             <img
                                 src="/img/daniel.webp"
                                 alt="Daniel Schmier"
-                                class="h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-125"
+                                class="h-full w-full object-cover transition-all duration-500 group-hover/card:scale-110 group-hover/card:brightness-110 group-hover/card:contrast-125"
                             />
                             <div class="absolute inset-0 bg-neutral-900/60 dark:bg-neutral-900/70"></div>
                             <div
-                                class="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                                class="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
                                 style="
                                     background-image:
                                         repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.2) 1px, rgba(0, 0, 0, 0.2) 2px),
@@ -877,7 +860,9 @@ const fadeUpMotion = {
                                 "
                             ></div>
                         </div>
-                        <div class="relative z-10 flex h-full flex-row items-center justify-between gap-4">
+
+                        <Link href="/about" class="absolute inset-0 z-10" aria-label="Go to About page"></Link>
+                        <div class="pointer-events-none relative z-20 flex h-full flex-row items-center justify-between gap-4">
                             <div class="flex h-full flex-col justify-between">
                                 <span
                                     class="flex size-12 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm dark:bg-white/10"
@@ -887,37 +872,109 @@ const fadeUpMotion = {
                                         trigger="morph"
                                         target=".about-icon"
                                         style="width: 20px; height: 20px"
-                                        class="current-color opacity-60 group-hover:opacity-100"
+                                        class="current-color opacity-60 group-hover/card:opacity-100"
                                     >
                                     </lord-icon>
                                 </span>
                                 <div class="p-2">
                                     <h3 class="mb-1 font-work-sans text-xl font-bold text-white md:text-2xl">{{ t('home.navigation.aboutMe') }}</h3>
                                     <p class="line-clamp-2 text-xs text-white/80">{{ t('home.navigation.aboutDescription') }}</p>
+
+                                    <button
+                                        type="button"
+                                        class="pointer-events-auto mt-2 flex items-center gap-1.5 text-xs text-white/60 transition-all hover:text-white"
+                                        @click.stop="toggleCard"
+                                    >
+                                        <span class="hidden md:inline">{{ t('home.navigation.hoverToPreview') }}</span>
+                                        <span class="inline md:hidden">{{ t('home.navigation.tapToPreview') }}</span>
+                                        <FontAwesomeIcon
+                                            icon="fa-sharp fa-light fa-arrow-up-right"
+                                            class="h-2.5 w-2.5 transition-transform duration-200"
+                                        />
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    </Link>
 
-                    <!-- Blog (Placeholder) -->
-                    <a
+                        <!-- Full card preview modal -->
+                        <div
+                            class="pointer-events-auto absolute inset-0 z-30 flex flex-col rounded-2xl border border-teal-800/40 bg-teal-black/90 p-4 backdrop-blur-md transition-all ease-out md:p-8 md:duration-300 md:group-hover/card:delay-600 md:group-hover/card:duration-300"
+                            :class="{
+                                'invisible opacity-0': !isCardOpen,
+                                'visible opacity-100': isCardOpen,
+                                'md:invisible md:opacity-0 md:group-hover/card:visible md:group-hover/card:opacity-100': true,
+                            }"
+                        >
+                            <!-- Header -->
+                            <div class="flex items-start gap-3">
+                                <img
+                                    src="/img/daniel.webp"
+                                    alt="Daniel Schmier"
+                                    class="h-14 w-14 rounded-full border-2 border-teal-800/40 object-cover md:h-16 md:w-16"
+                                />
+                                <div class="flex-1">
+                                    <h3 class="text-sm font-medium text-teal-100">Daniel Schmier</h3>
+                                    <p class="text-xs text-teal-300/80">{{ t('home.profile.title') }}</p>
+                                </div>
+                            </div>
+
+                            <p class="mt-3 flex-1 text-xs leading-relaxed text-teal-50">
+                                {{ t('home.profile.description') }}
+                            </p>
+
+                            <!-- Info items -->
+                            <div class="mt-3 space-y-1.5 border-t border-teal-800/40 pt-3">
+                                <div class="flex items-center gap-2 text-xs text-teal-200">
+                                    <FontAwesomeIcon icon="fa-sharp fa-light fa-building" class="w-3.5 text-teal-400" />
+                                    <span>{{ t('home.profile.coFounder') }}</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-teal-300">
+                                    <FontAwesomeIcon icon="fa-sharp fa-light fa-code-branch" class="w-3.5 text-teal-400" />
+                                    <span>{{ t('home.profile.openSourceContributor') }}</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-teal-300">
+                                    <FontAwesomeIcon
+                                        icon="fa-sharp fa-light fa-starfighter"
+                                        class="w-3.5 cursor-pointer text-teal-400 transition-all duration-200 hover:scale-110"
+                                        :class="{
+                                            'starfighter-flying': isStarfighterFlying,
+                                            'starfighter-bounce': !isStarfighterFlying && !isStarfighterCooldown,
+                                        }"
+                                        @click.stop="triggerStarfighterAnimation"
+                                        @mouseenter="triggerStarfighterAnimation"
+                                    />
+                                    <span>{{ t('home.profile.starWarsEnthusiast') }}</span>
+                                </div>
+                            </div>
+
+                            <Link
+                                href="/about"
+                                class="group/learn-more mt-3 flex items-center gap-2 text-xs text-teal-300/80 transition-all duration-200 hover:text-teal-100"
+                            >
+                                {{ t('home.navigation.learnMore') }}
+                                <FontAwesomeIcon
+                                    icon="fa-sharp fa-light fa-arrow-up-right"
+                                    class="h-3 w-3 transition-all duration-200 group-hover/learn-more:translate-x-0.5 group-hover/learn-more:-translate-y-0.5"
+                                />
+                            </Link>
+                        </div>
+                    </div>
+
+                    <!-- Blog -->
+                    <Link
                         v-motion
                         :initial="fadeUpMotion.initial"
                         :visible-once="{
                             ...fadeUpMotion.visibleOnce,
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 400 },
                         }"
-                        href="javascript:void(0)"
-                        class="group blog-icon relative col-span-1 min-h-48 overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 hover:cursor-not-allowed hover:border-brand/50 hover:shadow-xl md:col-span-4 dark:border-white/10 dark:bg-neutral-900/50"
+                        href="/blog"
+                        class="group blog-icon relative col-span-1 overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 hover:border-brand/50 hover:shadow-xl md:col-span-4 dark:border-white/10 dark:bg-neutral-900/50"
                     >
                         <div
-                            class="absolute inset-0 z-0 flex items-center justify-center bg-neutral-100/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:bg-black/50"
-                        >
-                            <span class="text-xs font-bold tracking-widest text-neutral-500 uppercase">{{ t('home.navigation.comingSoon') }}</span>
-                        </div>
-                        <div
-                            class="relative z-10 flex h-full flex-col justify-between opacity-100 transition-opacity duration-300 group-hover:opacity-20"
-                        >
+                            class="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                        ></div>
+                        <div class="relative z-10 flex h-full flex-col justify-between">
                             <span
                                 class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
                             >
@@ -930,255 +987,340 @@ const fadeUpMotion = {
                                 >
                                 </lord-icon>
                             </span>
-                            <div class="p-2">
+                            <div class="p-2 mt-8 md:mt-4">
                                 <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
                                     {{ t('home.navigation.blog') }}
                                 </h3>
                                 <p class="line-clamp-2 text-xs text-neutral-600 dark:text-white/80">
-                                    {{ t('home.navigation.comingSoonDescription') }}
+                                    {{ t('home.navigation.blogDescription') }}
                                 </p>
+
+                                <!-- Blog Stats -->
+                                <div class="space-y-3 font-mono text-xs mt-8">
+                                    <!-- Total Posts -->
+                                    <div class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                                        <span class="text-brand dark:text-brand">~</span>
+                                        <span class="text-neutral-500 dark:text-neutral-500">$</span>
+                                        <span class="text-neutral-700 dark:text-neutral-300">blog</span>
+                                        <span class="text-neutral-500 dark:text-neutral-500">--count</span>
+                                    </div>
+                                    <div class="ml-4 flex items-baseline gap-2">
+                                        <span class="rounded bg-neutral-200 px-1.5 py-0.5 text-[10px] font-medium text-neutral-700 tabular-nums dark:bg-white/10 dark:text-neutral-300">{{ blogStats.total }}</span>
+                                        <span class="text-neutral-600 dark:text-neutral-400">{{ blogStats.total === 1 ? 'article' : 'articles' }}</span>
+                                    </div>
+
+                                    <!-- Categories -->
+                                    <div class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                                        <span class="text-brand dark:text-brand">~</span>
+                                        <span class="text-neutral-500 dark:text-neutral-500">$</span>
+                                        <span class="text-neutral-700 dark:text-neutral-300">blog</span>
+                                        <span class="text-neutral-500 dark:text-neutral-500">--categories</span>
+                                    </div>
+                                    <div class="ml-4 space-y-1.5 items-baseline">
+                                        <div v-for="cat in blogStats.categories" :key="cat.name" class="flex items-center flex-row gap-2 justify-start">
+                                            <span class="rounded bg-neutral-200 px-1.5 py-0.5 text-[10px] font-medium text-neutral-700 tabular-nums dark:bg-white/10 dark:text-neutral-300">{{ cat.count }}</span>
+                                            <span class="text-neutral-600 dark:text-neutral-400">{{ t(`blog.categories.${cat.name}`) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </a>
+                        <div
+                            class="absolute -right-12 -bottom-12 h-48 w-48 rounded-full bg-brand/10 blur-3xl transition-all duration-700 group-hover:bg-brand/20"
+                        ></div>
+                    </Link>
 
-                    <!-- Playground (Placeholder) -->
-                    <a
+                    <!-- Past Work -->
+                    <div
+                        v-motion
+                        :initial="fadeUpMotion.initial"
+                        :visible-once="{
+                            ...fadeUpMotion.visibleOnce,
+                            transition: { ...fadeUpMotion.visibleOnce.transition, delay: 200 },
+                        }"
+                        class="group past-work-icon relative z-50 col-span-1 row-span-1 overflow-visible rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 hover:border-brand/50 hover:shadow-2xl md:col-span-5 md:row-span-1 dark:border-white/10 dark:bg-neutral-900/50"
+                    >
+                        <div
+                            class="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                        ></div>
+                        <div class="relative z-10 flex h-full flex-col justify-between">
+                            <Link href="/portfolio">
+                                <div class="flex items-start justify-between">
+                                    <span
+                                        class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
+                                    >
+                                        <lord-icon
+                                            src="/icons/system-regular-178-work-hover-work.json"
+                                            trigger="morph"
+                                            target=".past-work-icon"
+                                            style="width: 20px; height: 20px"
+                                            class="current-color opacity-60 group-hover:opacity-100"
+                                        >
+                                        </lord-icon>
+                                    </span>
+                                </div></Link
+                            >
+                            <div class="p-2 mt-8 md:mt-4">
+                                <Link href="/portfolio">
+                                    <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white capitalize">
+                                        {{ t('home.navigation.pastWorkFolder') }}
+                                    </h3></Link
+                                >
+
+                                <!-- Folder Directory Tree -->
+                                <div class="relative font-mono text-xs leading-relaxed text-neutral-600 dark:text-neutral-400 max-w-[300px]">
+                                    <!-- Past Work Folder (Main Level) -->
+                                    <div class="relative mt-2">
+                                        <div
+                                            v-if="isPastWorkExpanded && pastWorkLinks.length > 0"
+                                            class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
+                                        ></div>
+
+                                        <button
+                                            type="button"
+                                            class="group group/pastwork mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
+                                            @click="togglePastWork"
+                                        >
+                                            <FontAwesomeIcon
+                                                :icon="
+                                                    isPastWorkExpanded ? 'fa-sharp fa-light fa-chevron-down' : 'fa-sharp fa-light fa-chevron-right'
+                                                "
+                                                class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
+                                            />
+                                            <FontAwesomeIcon
+                                                :icon="isPastWorkExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
+                                                class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/pastwork:text-neutral-900 dark:text-neutral-500 dark:group-hover/pastwork:text-white"
+                                            />
+                                            <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
+                                                t('home.navigation.pastWorkFolder')
+                                            }}</span>
+                                        </button>
+
+                                        <!-- Past Work Items -->
+                                        <div v-if="isPastWorkExpanded" class="ml-6 space-y-0.5">
+                                            <div class="flex w-full flex-row justify-start gap-12 pl-1">
+                                                <div class="flex flex-wrap gap-1">
+                                                    <div v-for="(link, index) in pastWorkLinks.slice(0, 4)" :key="link.url" class="space-y-0.5">
+                                                        <a
+                                                            :href="link.url"
+                                                            target="_blank"
+                                                            class="link-with-thumbnail"
+                                                            :class="{ 'is-active': activeThumbnailIndex === index }"
+                                                            @click.prevent="toggleThumbnail(index)"
+                                                        >
+                                                            <div
+                                                                class="flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
+                                                            >
+                                                                <FontAwesomeIcon
+                                                                    icon="fa-sharp fa-light fa-browser"
+                                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
+                                                                />
+                                                                <span class="truncate leading-normal">{{ link.label }}</span>
+                                                                <span
+                                                                    class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
+                                                                    ><FontAwesomeIcon
+                                                                        icon="fa-sharp fa-light fa-arrow-up-right"
+                                                                        class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
+                                                                /></span>
+                                                                <div
+                                                                    class="thumbnail-preview-wrapper left-column"
+                                                                    :class="{ 'is-active': activeThumbnailIndex === index }"
+                                                                >
+                                                                    <img
+                                                                        class="thumbnail-preview"
+                                                                        :src="link.image"
+                                                                        :alt="link.alt"
+                                                                        width="300"
+                                                                        height="300"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div v-for="(link, index) in pastWorkLinks.slice(4, 8)" :key="link.url" class="space-y-0.5">
+                                                        <a
+                                                            :href="link.url"
+                                                            target="_blank"
+                                                            class="link-with-thumbnail"
+                                                            :class="{ 'is-active': activeThumbnailIndex === index + 4 }"
+                                                            @click.prevent="toggleThumbnail(index + 4)"
+                                                        >
+                                                            <div
+                                                                class="flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
+                                                            >
+                                                                <FontAwesomeIcon
+                                                                    icon="fa-sharp fa-light fa-browser"
+                                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
+                                                                />
+                                                                <span class="truncate leading-normal">{{ link.label }}</span>
+                                                                <span
+                                                                    class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
+                                                                    ><FontAwesomeIcon
+                                                                        icon="fa-sharp fa-light fa-arrow-up-right"
+                                                                        class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
+                                                                /></span>
+                                                                <div
+                                                                    class="thumbnail-preview-wrapper left-column"
+                                                                    :class="{ 'is-active': activeThumbnailIndex === index + 4 }"
+                                                                >
+                                                                    <img
+                                                                        class="thumbnail-preview"
+                                                                        :src="link.image"
+                                                                        :alt="link.alt"
+                                                                        width="300"
+                                                                        height="300"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                v-for="(link, index) in pastWorkLinks"
+                                                :key="link.url"
+                                                class="flex hidden items-center gap-2 px-1.5 py-1"
+                                            >
+                                                <FontAwesomeIcon icon="fa-sharp fa-light fa-file" class="h-3 w-3 flex-shrink-0 text-neutral-500" />
+                                                <a
+                                                    :href="link.url"
+                                                    target="_blank"
+                                                    class="link-with-thumbnail truncate leading-normal text-neutral-500 transition-all hover:cursor-ne-resize hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-white"
+                                                    :class="{ 'is-active': activeThumbnailIndex === index }"
+                                                    @click.prevent="toggleThumbnail(index)"
+                                                    >{{ link.label }}
+                                                    <div
+                                                        class="thumbnail-preview-wrapper left-column"
+                                                        :class="{ 'is-active': activeThumbnailIndex === index }"
+                                                    >
+                                                        <img class="thumbnail-preview" :src="link.image" :alt="link.alt" width="300" height="300" />
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-brand/10 blur-3xl transition-all duration-700 group-hover:bg-brand/20"
+                        ></div>
+                    </div>
+
+                    <!-- Playground -->
+                    <Link
                         v-motion
                         :initial="fadeUpMotion.initial"
                         :visible-once="{
                             ...fadeUpMotion.visibleOnce,
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 500 },
                         }"
-                        href="javascript:void(0)"
-                        class="group playground-icon relative col-span-1 min-h-48 overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 hover:cursor-not-allowed hover:border-brand/50 hover:shadow-xl md:col-span-4 dark:border-white/10 dark:bg-neutral-900/50"
+                        href="/playground"
+                        class="group playground-icon relative col-span-1 overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 transition-all duration-500 hover:border-brand/50 hover:shadow-xl md:col-span-7 dark:border-white/10 dark:bg-neutral-900/50"
                     >
-                        <div
-                            class="absolute inset-0 z-0 flex items-center justify-center bg-neutral-100/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:bg-black/50"
-                        >
-                            <span class="text-xs font-bold tracking-widest text-neutral-500 uppercase">{{ t('home.navigation.comingSoon') }}</span>
-                        </div>
-                        <div
-                            class="relative z-10 flex h-full flex-col justify-between opacity-100 transition-opacity duration-300 group-hover:opacity-20"
-                        >
-                            <span
-                                class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
-                            >
-                                <lord-icon
-                                    src="/icons/system-regular-34-code-hover-code.json"
-                                    trigger="morph"
-                                    target=".playground-icon"
-                                    style="width: 20px; height: 20px"
-                                    class="current-color opacity-60 group-hover:opacity-100"
+                        <div class="relative z-10 flex h-full min-h-0 flex-col justify-between p-4 transition-opacity duration-300">
+                            <div class="flex items-start justify-between">
+                                <span
+                                    class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
                                 >
-                                </lord-icon>
-                            </span>
-                            <div class="p-2">
-                                <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
-                                    {{ t('home.navigation.playground') }}
-                                </h3>
-                                <p class="line-clamp-2 text-xs text-neutral-600 dark:text-white/80">
-                                    {{ t('home.navigation.comingSoonDescription') }}
-                                </p>
+                                    <lord-icon
+                                        src="/icons/system-regular-166-science-hover-science.json"
+                                        trigger="morph"
+                                        target=".playground-icon"
+                                        style="width: 20px; height: 20px"
+                                        class="current-color opacity-60 group-hover:opacity-100"
+                                    >
+                                    </lord-icon>
+                                </span>
+                            </div>
+                            
+                            <div class="p-2 mt-8 md:mt-4">
+                                <div>
+                                    <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white capitalize">
+                                        {{ t('home.navigation.playground') }}
+                                    </h3>
+                                    <p class="line-clamp-2 text-xs text-neutral-600 dark:text-white/80">
+                                        {{ t('home.navigation.playgroundDescription') }}
+                                    </p>
+                                </div>
+
+                                <div class="overflow-hidden mt-8">
+                                    <IDEPreview />
+                                </div>
                             </div>
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>
-        <section class="flex h-full min-h-fit flex-col justify-end gap-y-12 md:gap-y-4 [@media(max-height:680px)]:gap-y-4">
-            <div class="flex flex-col justify-between gap-x-8 gap-y-12 py-4 md:flex-row">
-                <div class="flex flex-col gap-2">
-                    <div ref="profileRef" class="group relative">
-                        <a
-                            href="#"
-                            tabindex="0"
-                            class="w-fit border-b border-b-teal-black/50 text-left transition-all hover:cursor-pointer hover:border-b-brand focus:border-b-brand md:min-w-fit dark:border-b-off-white/50 dark:hover:border-b-brand dark:focus:border-b-brand [@media(max-height:680px)]:min-w-fit"
-                            @click.prevent="toggleCard"
-                            ><FontAwesomeIcon icon="fa-sharp fa-light fa-user-bounty-hunter" class="mr-2" /><SectionTitle as="span">{{
-                                t('home.navigation.aboutMe')
-                            }}</SectionTitle>
-                        </a>
 
-                        <div
-                            class="absolute top-full left-1/2 z-50 mt-2 w-96 max-w-[calc(100vW-2rem)] -translate-x-1/2 rounded-xl border border-teal-800/40 bg-teal-black/95 p-4 shadow-2xl backdrop-blur-sm transition-all duration-300 ease-out md:top-auto md:bottom-full md:mt-0 md:mb-2 md:max-w-96"
-                            :class="{
-                                'invisible opacity-0': !isCardOpen,
-                                'visible opacity-100': isCardOpen,
-                                'md:invisible md:opacity-0 md:group-hover:visible md:group-hover:opacity-100': true,
-                            }"
-                        >
-                            <div class="flex gap-4">
-                                <div class="flex-shrink-0">
-                                    <img
-                                        src="/img/daniel.webp"
-                                        alt="Daniel Schmier"
-                                        class="h-20 w-20 rounded-full border-2 border-teal-800/40 object-cover"
-                                    />
-                                </div>
-                                <div class="flex-1 space-y-3">
-                                    <div>
-                                        <h3 class="text-sm font-medium text-teal-100">Daniel Schmier</h3>
-                                        <p class="text-xs text-teal-300/80">{{ t('home.profile.title') }}</p>
-                                    </div>
-
-                                    <p class="text-xs leading-relaxed text-teal-50">
-                                        {{ t('home.profile.description') }}
-                                    </p>
-
-                                    <Link
-                                        href="/about"
-                                        class="group/learn-more flex items-center gap-2 text-xs text-teal-300/80 transition-all duration-200 hover:text-teal-100"
-                                        >{{ t('home.navigation.learnMore') }}
-                                        <FontAwesomeIcon
-                                            icon="fa-sharp fa-light fa-arrow-up-right"
-                                            class="h-3 w-3 flex-shrink-0 text-teal-300/80 transition-all duration-200 group-hover/learn-more:translate-x-0.5 group-hover/learn-more:-translate-y-0.5 group-hover/learn-more:text-teal-100"
-                                    /></Link>
-
-                                    <div class="space-y-2 border-t border-teal-800/40 pt-2">
-                                        <div class="flex items-center gap-2 text-xs text-teal-200">
-                                            <FontAwesomeIcon icon="fa-sharp fa-light fa-building" class="text-teal-400" />
-                                            <span>{{ t('home.profile.coFounder') }}</span>
-                                        </div>
-                                        <div class="flex items-center gap-2 text-xs text-teal-300">
-                                            <FontAwesomeIcon icon="fa-sharp fa-light fa-code-branch" class="text-teal-400" />
-                                            <span>{{ t('home.profile.openSourceContributor') }}</span>
-                                        </div>
-                                        <div class="flex items-center gap-2 text-xs text-teal-300">
-                                            <FontAwesomeIcon
-                                                icon="fa-sharp fa-light fa-starfighter"
-                                                class="cursor-pointer text-teal-400 transition-all duration-200 hover:scale-110"
-                                                :class="{
-                                                    'starfighter-flying': isStarfighterFlying,
-                                                    'starfighter-bounce': !isStarfighterFlying && !isStarfighterCooldown,
-                                                }"
-                                                @click="triggerStarfighterAnimation"
-                                                @mouseenter="triggerStarfighterAnimation"
-                                            />
-                                            <span>{{ t('home.profile.starWarsEnthusiast') }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button
-                        @click="openSkillsModal"
-                        class="w-fit border-b border-b-teal-black/50 text-left transition-all hover:cursor-pointer hover:border-b-brand md:min-w-fit dark:border-b-off-white/50 dark:hover:border-b-brand [@media(max-height:680px)]:min-w-fit"
-                    >
-                        <FontAwesomeIcon icon="fa-sharp fa-light fa-code" class="mr-2" /><SectionTitle as="span">{{
-                            t('home.about.skills')
-                        }}</SectionTitle>
-                    </button>
-                    <span class="min-w-fit [@media(max-height:680px)]:min-w-fit"
-                        ><FontAwesomeIcon icon="fa-sharp fa-light fa-location-arrow" class="mr-2" /><BodyText size="sm" as="span">{{
-                            t('home.about.lastSeen')
-                        }}</BodyText></span
-                    >
-                    <span class="min-w-fit [@media(max-height:680px)]:min-w-fit"
-                        ><FontAwesomeIcon icon="fa-sharp fa-light fa-clock-eight" class="mr-2" /><BodyText size="sm" as="span"
-                            >{{ currentTime }} {{ timezone }} <span class="opacity-50">({{ timeDifference }})</span></BodyText
-                        ></span
-                    >
-                </div>
-                <div class="group work-area flex flex-col gap-2">
-                    <Link href="/portfolio" class="flex cursor-pointer items-center">
-                        <lord-icon
-                            src="/icons/system-regular-178-work-hover-work.json"
-                            trigger="hover"
-                            target=".work-area"
-                            style="width: 20px; height: 20px"
-                            class="mr-2 fill-black dark:fill-white"
-                        >
-                        </lord-icon
-                        ><SectionTitle as="span">{{ t('home.pastWork.title') }}</SectionTitle></Link
-                    >
-                    <div class="flex w-full flex-row justify-start gap-12 pl-1 md:justify-end">
-                        <div class="flex flex-col gap-1">
-                            <div v-for="(link, index) in pastWorkLinks.slice(0, 4)" :key="link.url" :class="index < 3 ? 'pb-0.5' : ''">
-                                <a
-                                    :href="link.url"
-                                    target="_blank"
-                                    class="link-with-thumbnail border-b border-b-teal-black/50 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand hover:opacity-100! md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    :class="{ 'is-active': activeThumbnailIndex === index }"
-                                    @click.prevent="toggleThumbnail(index)"
-                                    ><BodyText size="sm" as="span">– {{ link.label }}</BodyText>
-                                    <div class="thumbnail-preview-wrapper left-column" :class="{ 'is-active': activeThumbnailIndex === index }">
-                                        <img class="thumbnail-preview" :src="link.image" :alt="link.alt" width="300" height="300" />
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <div v-for="(link, index) in pastWorkLinks.slice(4, 8)" :key="link.url" :class="index < 3 ? 'pb-0.5' : ''">
-                                <a
-                                    :href="link.url"
-                                    target="_blank"
-                                    class="link-with-thumbnail border-b border-b-teal-black/50 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand hover:opacity-100! md:border-b-teal-black/0 dark:border-b-off-white/50 dark:hover:border-b-brand dark:md:border-b-teal-black/0"
-                                    :class="{ 'is-active': activeThumbnailIndex === index + 4 }"
-                                    @click.prevent="toggleThumbnail(index + 4)"
-                                    ><BodyText size="sm" as="span">– {{ link.label }}</BodyText>
-                                    <div class="thumbnail-preview-wrapper right-column" :class="{ 'is-active': activeThumbnailIndex === index + 4 }">
-                                        <img class="thumbnail-preview" :src="link.image" :alt="link.alt" width="300" height="300" />
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Latest Articles -->
+        <section v-if="latestPosts.length > 0">
+            <div class="mb-4 flex items-end justify-between border-b border-neutral-200 pb-4 dark:border-white/10">
+                <h3 class="font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
+                    {{ t('home.navigation.latestPosts') }}
+                </h3>
+                <Link
+                    href="/blog"
+                    class="group flex items-center gap-2 text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:hover:text-white"
+                >
+                    {{ t('blog.filters.all') }}
+                    <FontAwesomeIcon
+                        icon="fa-sharp fa-light fa-arrow-up-right"
+                        class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                </Link>
             </div>
-            <footer class="flex flex-col items-end justify-between gap-4 py-4 md:flex-row md:py-6">
-                <div
-                    class="group flex w-full flex-row flex-wrap justify-between gap-x-4 gap-y-1 md:w-fit md:min-w-[320px] md:justify-start md:gap-x-8 md:gap-y-0"
+            <div class="flex flex-col gap-2">
+                <Link
+                    v-for="post in latestPosts"
+                    :key="post.slug"
+                    :href="`/blog/${post.category[0].toLowerCase()}/${post.slug}`"
+                    :class="`post-link-${post.slug}`"
+                    class="group relative flex items-center gap-4 overflow-hidden rounded-xl border border-transparent p-3 transition-all hover:border-brand/30 hover:bg-neutral-50 hover:shadow-lg dark:hover:bg-white/5"
                 >
-                    <a
-                        v-for="social in socials"
-                        :key="social.label"
-                        :href="social.url"
-                        :target="social.url.startsWith('mailto:') ? undefined : '_blank'"
-                        :rel="social.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'"
-                        class="border-b border-b-teal-black/0 text-sm leading-[135%] text-neutral-900 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand hover:opacity-100! dark:text-neutral-400 dark:hover:text-white"
-                        v-html="social.label"
-                    ></a>
-                </div>
-                <div
-                    class="mt-4 mb-5 flex w-full flex-row items-center justify-between gap-x-6 text-sm tracking-wide uppercase md:mt-0 md:mb-0 md:justify-end"
-                >
-                    <div class="flex flex-row items-center gap-x-4">
-                        <button
-                            @click="switchLanguage('en')"
-                            :class="
-                                locale === 'en'
-                                    ? 'border-b border-b-teal-black dark:border-b-off-white'
-                                    : 'cursor-pointer border-b border-b-teal-black/0 hover:border-b-teal-black dark:hover:border-b-off-white'
-                            "
-                            class="transition-all"
-                        >
-                            <BodyText size="sm" as="span">{{ t('languages.en') }}</BodyText>
-                        </button>
-                        <button
-                            @click="switchLanguage('de')"
-                            :class="
-                                locale === 'de'
-                                    ? 'border-b border-b-teal-black dark:border-b-off-white'
-                                    : 'cursor-pointer border-b border-b-teal-black/0 hover:border-b-teal-black dark:hover:border-b-off-white'
-                            "
-                            class="transition-all"
-                        >
-                            <BodyText size="sm" as="span">{{ t('languages.de') }}</BodyText>
-                        </button>
+                    <!-- Hover Gradient Overlay -->
+                    <div
+                        class="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    ></div>
+
+                    <div
+                        class="relative z-10 flex size-12 flex-shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-neutral-100 text-neutral-400 dark:border-white/10 dark:bg-white/5 dark:text-neutral-500"
+                    >
+                        <lord-icon
+                            :src="getCategoryIcon(post.category[0])"
+                            trigger="hover"
+                            :target="`.post-link-${post.slug}`"
+                            class="current-color size-5 opacity-60 group-hover:opacity-100"
+                        />
                     </div>
-                    <Switch :model-value="isDark" @update:model-value="toggleTheme" class="-mt-0.5">
-                        <template #thumb>
-                            <FontAwesomeIcon v-if="isDark" icon="fa-sharp fa-solid fa-moon" class="text-[10px]" />
-                            <FontAwesomeIcon v-else icon="fa-sharp fa-solid fa-sun" class="text-[10px]" />
-                        </template>
-                    </Switch>
-                </div>
-            </footer>
+
+                    <div class="relative z-10 flex flex-1 flex-col gap-0.5">
+                        <span class="font-medium text-neutral-900 transition-colors group-hover:text-brand dark:text-white">
+                            {{ post.title }}
+                        </span>
+                        <div class="flex items-center gap-2 text-xs text-neutral-500">
+                            <span>{{ formatDate(post.date) }}</span>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 hidden items-center gap-4 md:flex md:flex-col md:items-end md:gap-1.5">
+                        <span
+                            class="cursor-default rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1 text-[10px] text-neutral-600 transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
+                        >
+                            {{ t(`blog.categories.${post.category[0]}`) }}
+                        </span>
+                        <span class="text-xs text-neutral-500">{{ post.readingTime }} {{ t('blog.readingTime') }}</span>
+                    </div>
+                </Link>
+            </div>
+        </section>
+
+        <section class="flex h-full min-h-fit flex-col justify-end [@media(max-height:680px)]:gap-y-4">
+            <FooterArea @language-switched="onFooterLanguageSwitched" :is-landing-page="true" />
         </section>
     </div>
-
-    <SkillsModal :is-open="isSkillsModalOpen" @close="closeSkillsModal" />
 </template>
 
 <style scoped>

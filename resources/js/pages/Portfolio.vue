@@ -128,9 +128,9 @@ const onLeave = (el: Element, done: () => void) => {
     </Head>
     <div class="min-h-screen bg-white pt-32 pb-20 text-neutral-900 md:pt-40 md:pb-0 dark:bg-black dark:text-white">
         <!-- Header / Navigation -->
-        <header class="pointer-events-none fixed top-0 right-0 left-0 z-50 mx-auto">
+        <header class="pointer-events-none fixed top-0 right-0 left-0 z-100 mx-auto">
             <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full" />
-            <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 px-6 sm:px-6 md:p-6 lg:px-8">
+            <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 lg:px-8">
                 <!-- Name (Top Left) -->
                 <div class="pointer-events-auto">
                     <Link href="/" class="scramble-trigger text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white"
@@ -155,11 +155,7 @@ const onLeave = (el: Element, done: () => void) => {
                             src="/icons/system-solid-165-view-carousel-hover-carousel.json"
                             trigger="hover"
                             target=".covers-btn"
-                            :class="
-                                viewMode === 'covers'
-                                    ? 'size-4 fill-white dark:fill-black'
-                                    : 'size-4 fill-neutral-400 group-hover:fill-neutral-900 dark:fill-white/40 dark:group-hover:fill-white'
-                            "
+                            class="current-color size-4"
                         >
                         </lord-icon>
                         <span>{{ t('portfolio.views.covers') }}</span>
@@ -178,18 +174,14 @@ const onLeave = (el: Element, done: () => void) => {
                             trigger="hover"
                             target=".spines-btn"
                             style="transform: rotate(90deg)"
-                            :class="
-                                viewMode === 'spines'
-                                    ? 'size-4 fill-white dark:fill-black'
-                                    : 'size-4 fill-neutral-400 group-hover:fill-neutral-900 dark:fill-white/40 dark:group-hover:fill-white'
-                            "
+                            class="current-color size-4"
                         >
                         </lord-icon>
                         <span>{{ t('portfolio.views.spines') }}</span>
                     </button>
                 </div>
 
-                <!-- Hamburger Menu (Top Right) -->
+                <!-- Command Menu (Top Right) -->
                 <div class="pointer-events-auto flex items-center gap-4">
                     <CommandTrigger @click="openCommandMenu" />
                 </div>

@@ -33,6 +33,8 @@ const routes = computed(() => {
         '/home': '/',
         '/about': '/about',
         '/portfolio': '/portfolio',
+        '/blog': '/blog',
+        '/playground': '/playground',
     };
 
     projects.value.forEach((project) => {

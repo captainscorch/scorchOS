@@ -108,7 +108,7 @@ const markSvg = `<svg version="1.1" id="captainscorch_logo" xmlns="http://www.w3
                 <CommandItem value="home" @select="navigateTo('home')" class="group cmd-item--home">
                     <lord-icon
                         src="/icons/system-regular-41-home-hover-pinch.json"
-                        trigger="morph"
+                        trigger="hover"
                         target=".cmd-item--home"
                         style="width: 18px; height: 18px"
                         class="current-color mr-1.5 ml-0.5 opacity-60 group-hover:opacity-100"
@@ -119,7 +119,7 @@ const markSvg = `<svg version="1.1" id="captainscorch_logo" xmlns="http://www.w3
                 <CommandItem value="about" @select="navigateTo('about')" class="group cmd-item--about">
                     <lord-icon
                         src="/icons/system-regular-8-account-hover-pinch.json"
-                        trigger="morph"
+                        trigger="hover"
                         target=".cmd-item--about"
                         style="width: 18px; height: 18px"
                         class="current-color mr-1.5 ml-0.5 opacity-60 group-hover:opacity-100"
@@ -130,7 +130,7 @@ const markSvg = `<svg version="1.1" id="captainscorch_logo" xmlns="http://www.w3
                 <CommandItem value="portfolio" @select="navigateTo('portfolio')" class="group cmd-item--portfolio">
                     <lord-icon
                         src="/icons/system-regular-178-work-hover-work.json"
-                        trigger="morph"
+                        trigger="hover"
                         target=".cmd-item--portfolio"
                         style="width: 18px; height: 18px"
                         class="current-color mr-1.5 ml-0.5 opacity-60 group-hover:opacity-100"
@@ -138,10 +138,32 @@ const markSvg = `<svg version="1.1" id="captainscorch_logo" xmlns="http://www.w3
                     </lord-icon>
                     <span>{{ t('commandMenu.pages.portfolio') }}</span>
                 </CommandItem>
+                <CommandItem value="blog" @select="navigateTo('blog')" class="group cmd-item--blog">
+                    <lord-icon
+                        src="/icons/system-regular-14-article-hover-article.json"
+                        trigger="hover"
+                        target=".cmd-item--blog"
+                        style="width: 18px; height: 18px"
+                        class="current-color mr-1.5 ml-0.5 opacity-60 group-hover:opacity-100"
+                    >
+                    </lord-icon>
+                    <span>{{ t('commandMenu.pages.blog') }}</span>
+                </CommandItem>
+                <CommandItem value="playground" @select="navigateTo('playground')" class="group cmd-item--playground">
+                    <lord-icon
+                        src="/icons/system-regular-166-science-hover-science.json"
+                        trigger="hover"
+                        target=".cmd-item--playground"
+                        style="width: 18px; height: 18px"
+                        class="current-color mr-1.5 ml-0.5 opacity-60 group-hover:opacity-100"
+                    >
+                    </lord-icon>
+                    <span>{{ t('commandMenu.pages.playground') }}</span>
+                </CommandItem>
                 <CommandItem value="terminal" @select="runCommand(openTerminal)" class="group cmd-item--terminal">
                     <lord-icon
                         src="/icons/system-regular-34-code-hover-code.json"
-                        trigger="morph"
+                        trigger="hover"
                         target=".cmd-item--terminal"
                         style="width: 18px; height: 18px"
                         class="current-color mr-1.5 ml-0.5 opacity-60 group-hover:opacity-100"
@@ -171,7 +193,7 @@ const markSvg = `<svg version="1.1" id="captainscorch_logo" xmlns="http://www.w3
                 <CommandItem value="email" @select="openLink('mailto:hi@captainscor.ch')" class="group cmd-item--email">
                     <lord-icon
                         src="/icons/system-regular-59-email-hover-email.json"
-                        trigger="morph"
+                        trigger="hover"
                         target=".cmd-item--email"
                         style="width: 18px; height: 18px"
                         class="current-color mr-1.5 ml-0.5 opacity-60 group-hover:opacity-100"
