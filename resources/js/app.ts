@@ -8,19 +8,25 @@ import { ZiggyVue } from 'ziggy-js';
 import { i18n } from './i18n';
 
 import GlobalLayout from '@/components/GlobalLayout.vue';
+import Loader from '@/components/Loader.vue';
 import { MotionPlugin } from '@vueuse/motion';
 import { defineElement } from 'lord-icon-element';
 import lottie from 'lottie-web';
+import { ref } from 'vue';
 
 defineElement(lottie.loadAnimation);
 
 const appName = import.meta.env.VITE_APP_NAME || 'scorchOS';
 
+const isLoading = ref(true);
+
 createInertiaApp({
     title: (title) => (title ? `${title}` : appName),
     resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(GlobalLayout, null, { default: () => h(App, props) }) })
+        createApp({
+            render: () => h('div', [h(Loader, { show: isLoading.value }), h(GlobalLayout, null, { default: () => h(App, props) })]),
+        })
             .use(plugin)
             .use(ZiggyVue)
             .use(i18n)
@@ -35,6 +41,12 @@ createInertiaApp({
     progress: {
         color: '#2ab193',
     },
+});
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        isLoading.value = false;
+    }, 1200);
 });
 
 console.log('Like what you see? Connect with me at https://captainscor.ch 🚀');
