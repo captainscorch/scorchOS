@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CodeBlock from '@/components/CodeBlock.vue';
 import CommandTrigger from '@/components/CommandTrigger.vue';
+import { COMPONENT_TO_PLAYGROUND_ID, demoRegistry, type DemoComponent } from '@/components/demos/registry';
 import FooterArea from '@/components/FooterArea.vue';
 import PageTitle from '@/components/global/typography/PageTitle.vue';
 import MarkdownImage from '@/components/MarkdownImage.vue';
@@ -14,12 +15,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Head, Link } from '@inertiajs/vue3';
 import { onClickOutside, useClipboard, useShare, useWindowScroll } from '@vueuse/core';
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
-import { COMPONENT_TO_PLAYGROUND_ID, demoRegistry, type DemoComponent } from '@/components/demos/registry';
 import { useI18n } from 'vue-i18n';
 
 library.add(faBarsSort, faArrowUpToLine, faChevronDown, faArrowUpRight);
 
-// Scroll progress tracking
 const { y: scrollY } = useWindowScroll();
 const documentHeight = ref(0);
 const windowHeight = ref(0);
@@ -34,15 +33,6 @@ const updateHeights = () => {
     documentHeight.value = document.documentElement.scrollHeight;
     windowHeight.value = window.innerHeight;
 };
-
-onMounted(() => {
-    updateHeights();
-    window.addEventListener('resize', updateHeights);
-});
-
-onUnmounted(() => {
-    window.removeEventListener('resize', updateHeights);
-});
 
 const props = defineProps<{
     slug: string;
@@ -114,27 +104,21 @@ const { copy, copied } = useClipboard();
 
 const sharePost = async () => {
     const url = window.location.href;
-    // Use native share on touch devices (mobile/tablet), copy on desktop
     const isTouchDevice = typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0;
 
     if (isShareSupported.value && isTouchDevice) {
-        try {
-            await share({
-                title: pageTitle.value,
-                text: pageDescription.value,
-                url: url,
-            });
-        } catch {
-        }
+        await share({
+            title: pageTitle.value,
+            text: pageDescription.value,
+            url: url,
+        });
     } else {
         copy(url);
     }
 };
 
-// Track loaded components for the current post
 const loadedComponents = shallowRef<Record<string, DemoComponent>>({});
 
-// Load components referenced in the post
 watch(
     post,
     (newPost) => {
@@ -151,7 +135,6 @@ watch(
     { immediate: true },
 );
 
-// Parse markdown content and extract code blocks and interactive markers
 interface ContentBlock {
     type: 'markdown' | 'code' | 'interactive' | 'image';
     content: string;
@@ -170,7 +153,6 @@ const contentBlocks = computed((): ContentBlock[] => {
     const content = post.value.content;
     const blocks: ContentBlock[] = [];
 
-    // Split by code blocks and interactive markers
     const codeBlockRegex = /```(\w+)?\n([\s\S]*?)```/g;
     const interactiveRegex = /::interactive\[(\w+)\]/g;
     const imageRegex = /::image\[(.*?)\|(.*?)\|(.*?)\]/g;
@@ -178,11 +160,17 @@ const contentBlocks = computed((): ContentBlock[] => {
     let lastIndex = 0;
     let match;
 
-    // Combine all matches and sort by position
-    const allMatches: Array<{ index: number; length: number; type: 'code' | 'interactive'; content: string; language?: string; component?: string }> =
-        [];
+    type MatchItem = {
+        index: number;
+        length: number;
+        type: 'code' | 'interactive' | 'image';
+        content: string;
+        language?: string;
+        component?: string;
+        image?: { src: string; alt: string; caption: string };
+    };
+    const allMatches: MatchItem[] = [];
 
-    // Find code blocks
     while ((match = codeBlockRegex.exec(content)) !== null) {
         allMatches.push({
             index: match.index,
@@ -193,7 +181,6 @@ const contentBlocks = computed((): ContentBlock[] => {
         });
     }
 
-    // Find interactive markers
     while ((match = interactiveRegex.exec(content)) !== null) {
         allMatches.push({
             index: match.index,
@@ -204,7 +191,6 @@ const contentBlocks = computed((): ContentBlock[] => {
         });
     }
 
-    // Find image markers
     while ((match = imageRegex.exec(content)) !== null) {
         allMatches.push({
             index: match.index,
@@ -216,15 +202,12 @@ const contentBlocks = computed((): ContentBlock[] => {
                 alt: match[2].trim(),
                 caption: match[3].trim(),
             },
-        } as any);
+        });
     }
 
-    // Sort by position
     allMatches.sort((a, b) => a.index - b.index);
 
-    // Build blocks
     for (const m of allMatches) {
-        // Add markdown before this match
         if (m.index > lastIndex) {
             const markdownContent = content.slice(lastIndex, m.index).trim();
             if (markdownContent) {
@@ -236,14 +219,13 @@ const contentBlocks = computed((): ContentBlock[] => {
             blocks.push({ type: 'code', content: m.content, language: m.language });
         } else if (m.type === 'interactive') {
             blocks.push({ type: 'interactive', content: '', component: m.component });
-        } else if (m.type === 'image') {
-            blocks.push({ type: 'image', content: '', image: (m as any).image });
+        } else if (m.type === 'image' && m.image) {
+            blocks.push({ type: 'image', content: '', image: m.image });
         }
 
         lastIndex = m.index + m.length;
     }
 
-    // Add remaining markdown
     if (lastIndex < content.length) {
         const remainingContent = content.slice(lastIndex).trim();
         if (remainingContent) {
@@ -258,7 +240,6 @@ const renderMarkdown = (content: string): string => {
     return marked.parse(content) as string;
 };
 
-// Table of Contents Logic
 interface Heading {
     id: string;
     text: string;
@@ -296,10 +277,21 @@ watch(
     { immediate: true },
 );
 
+const isNavigating = ref(false);
+let navigationTimeout: ReturnType<typeof setTimeout> | null = null;
+
 const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-        const offset = 100; // Header height + padding
+        activeHeading.value = id;
+        isNavigating.value = true;
+        mobileTocOpen.value = false;
+
+        if (navigationTimeout) {
+            clearTimeout(navigationTimeout);
+        }
+
+        const offset = 100;
         const bodyRect = document.body.getBoundingClientRect().top;
         const elementRect = element.getBoundingClientRect().top;
         const elementPosition = elementRect - bodyRect;
@@ -309,8 +301,10 @@ const scrollToHeading = (id: string) => {
             top: offsetPosition,
             behavior: 'smooth',
         });
-        activeHeading.value = id;
-        mobileTocOpen.value = false;
+
+        navigationTimeout = setTimeout(() => {
+            isNavigating.value = false;
+        }, 800);
     }
 };
 
@@ -319,11 +313,22 @@ const selectTocAndClose = (id: string) => {
 };
 
 const scrollToTop = () => {
+    isNavigating.value = true;
+    if (navigationTimeout) {
+        clearTimeout(navigationTimeout);
+    }
+    if (headings.value.length > 0) {
+        activeHeading.value = headings.value[0].id;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigationTimeout = setTimeout(() => {
+        isNavigating.value = false;
+    }, 800);
 };
 
-// Update active heading on scroll
 const updateActiveHeading = () => {
+    if (isNavigating.value) return;
+
     const headingElements = headings.value.map((h) => document.getElementById(h.id)).filter(Boolean) as HTMLElement[];
 
     if (headingElements.length === 0) return;
@@ -356,6 +361,100 @@ const hasComponent = (name: string): boolean => {
 const getComponent = (name: string) => {
     return loadedComponents.value[name];
 };
+
+const ITEM_HEIGHT = 28;
+const X_LEVEL_2 = 14;
+const X_LEVEL_3 = 26;
+const START_Y = 16;
+
+const approxQuadraticLength = (x1: number, y1: number, cx: number, cy: number, x2: number, y2: number): number => {
+    const chordLength = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+    const controlLength = Math.sqrt((cx - x1) ** 2 + (cy - y1) ** 2) + Math.sqrt((x2 - cx) ** 2 + (y2 - cy) ** 2);
+    return (chordLength + controlLength) / 2;
+};
+
+const tocPathData = computed(() => {
+    if (headings.value.length === 0) return { path: '', cumulativeLengths: [0] };
+
+    const segments: string[] = [];
+    const cumulativeLengths: number[] = [0];
+    let totalLength = 0;
+
+    let currentX = headings.value[0].level === 2 ? X_LEVEL_2 : X_LEVEL_3;
+    let currentY = START_Y;
+
+    segments.push(`M ${currentX} ${currentY}`);
+
+    for (let i = 1; i < headings.value.length; i++) {
+        const prevLevel = headings.value[i - 1].level;
+        const currLevel = headings.value[i].level;
+        const targetX = currLevel === 2 ? X_LEVEL_2 : X_LEVEL_3;
+        const targetY = START_Y + i * ITEM_HEIGHT;
+
+        if (prevLevel !== currLevel) {
+            const midY = currentY + ITEM_HEIGHT / 2;
+            const midX = (X_LEVEL_2 + X_LEVEL_3) / 2;
+
+            const lineEndY = midY - 8;
+            segments.push(`L ${currentX} ${lineEndY}`);
+            totalLength += Math.abs(lineEndY - currentY);
+
+            segments.push(`Q ${currentX} ${midY} ${midX} ${midY}`);
+            totalLength += approxQuadraticLength(currentX, lineEndY, currentX, midY, midX, midY);
+
+            segments.push(`Q ${targetX} ${midY} ${targetX} ${midY + 8}`);
+            totalLength += approxQuadraticLength(midX, midY, targetX, midY, targetX, midY + 8);
+
+            currentX = targetX;
+            currentY = midY + 8;
+
+            segments.push(`L ${targetX} ${targetY}`);
+            totalLength += Math.abs(targetY - currentY);
+        } else {
+            segments.push(`L ${currentX} ${targetY}`);
+            totalLength += Math.abs(targetY - currentY);
+        }
+
+        currentY = targetY;
+        cumulativeLengths.push(totalLength);
+    }
+
+    return { path: segments.join(' '), cumulativeLengths, totalLength };
+});
+
+const tocPath = computed(() => tocPathData.value.path);
+
+const activeHeadingIndex = computed(() => {
+    if (!activeHeading.value) return 0;
+    const index = headings.value.findIndex((h) => h.id === activeHeading.value);
+    return index >= 0 ? index : 0;
+});
+
+const tocProgress = computed(() => {
+    const data = tocPathData.value;
+    const total = data.totalLength ?? 0;
+    if (headings.value.length <= 1 || total === 0) return 1;
+
+    const activeIndex = activeHeadingIndex.value;
+    const lengthAtActive = data.cumulativeLengths[activeIndex] ?? 0;
+
+    return lengthAtActive / total;
+});
+
+const svgHeight = computed(() => {
+    return START_Y + (headings.value.length - 1) * ITEM_HEIGHT + 20;
+});
+
+const activeCirclePosition = computed(() => {
+    const index = activeHeadingIndex.value;
+    const heading = headings.value[index];
+    if (!heading) return { x: X_LEVEL_2, y: START_Y };
+
+    return {
+        x: heading.level === 2 ? X_LEVEL_2 : X_LEVEL_3,
+        y: START_Y + index * ITEM_HEIGHT,
+    };
+});
 </script>
 
 <template>
@@ -459,7 +558,7 @@ const getComponent = (name: string) => {
 
                             <button
                                 @click="sharePost"
-                                class="group share-item relative flex items-center gap-2 rounded-full border border-neutral-200 bg-white/50 p-2 text-xs font-medium backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg dark:border-white/10 dark:bg-neutral-900/50 dark:hover:bg-neutral-800"
+                                class="share-item group relative flex items-center gap-2 rounded-full border border-neutral-200 bg-white/50 p-2 text-xs font-medium backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg dark:border-white/10 dark:bg-neutral-900/50 dark:hover:bg-neutral-800"
                                 :title="copied ? t('blog.copied') : t('blog.share')"
                             >
                                 <lord-icon
@@ -542,7 +641,7 @@ const getComponent = (name: string) => {
                                     class="group mx-auto mt-4 mb-8 flex max-w-lg items-center justify-center gap-2 px-2 text-center !no-underline"
                                 >
                                     <span
-                                        class="font-sans text-sm font-medium text-neutral-500 group-hover:text-neutral-500 dark:text-neutral-500 dark:group-hover:text-neutral-400"
+                                        class="text-sm font-medium text-neutral-500 group-hover:text-neutral-500 dark:text-neutral-500 dark:group-hover:text-neutral-400"
                                     >
                                         {{ t('blog.viewInPlayground') }}
                                     </span>
@@ -587,61 +686,101 @@ const getComponent = (name: string) => {
                 <aside class="hidden lg:col-span-3 lg:block">
                     <div class="sticky top-32">
                         <div v-if="headings.length > 0" class="space-y-4">
-                            <h3 class="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
-                                <FontAwesomeIcon icon="fa-sharp fa-light fa-bars-sort" class="text-xs md:text-sm" />
-                                {{ t('blog.onThisPage') }}
-                            </h3>
-                            <nav>
-                                <div class="relative w-fit">
-                                    <div class="absolute top-0 bottom-0 left-2 w-px bg-neutral-200 dark:bg-white/10"></div>
+                            <div class="flex items-center">
+                                <FontAwesomeIcon icon="fa-sharp fa-light fa-bars-sort" class="absolute left-1.5 text-xs md:text-sm" />
+                                <h3 class="flex items-center gap-2 pl-8 text-sm text-neutral-500 dark:text-neutral-400">
+                                    {{ t('blog.onThisPage') }}
+                                </h3>
+                            </div>
 
-                                    <ul class="space-y-0.5">
-                                        <li v-for="heading in headings" :key="heading.id" class="group/toc relative">
-                                            <!-- Branch line for H3 -->
-                                            <div
-                                                v-if="heading.level === 3"
-                                                class="absolute top-[14px] left-[8px] h-px w-3 transition-colors duration-300"
-                                                :class="[
-                                                    activeHeading === heading.id
-                                                        ? 'bg-neutral-900 dark:bg-white'
-                                                        : 'bg-neutral-200 group-hover/toc:bg-neutral-400 dark:bg-white/10 dark:group-hover/toc:bg-white/30',
-                                                ]"
-                                            ></div>
+                            <div class="relative">
+                                <!-- Animated Line -->
+                                <svg
+                                    class="pointer-events-none absolute top-0 left-0 h-full w-full"
+                                    aria-hidden="true"
+                                    :viewBox="`0 0 40 ${svgHeight}`"
+                                    :style="{ height: `${svgHeight}px` }"
+                                    preserveAspectRatio="xMinYMin meet"
+                                >
+                                    <!-- Background path -->
+                                    <path
+                                        :d="tocPath"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1"
+                                        class="text-neutral-200 dark:text-neutral-800"
+                                        pathLength="1"
+                                        stroke-dashoffset="0"
+                                        stroke-dasharray="1 1"
+                                    />
+                                    <!-- Foreground path (animated progress) -->
+                                    <path
+                                        :d="tocPath"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1"
+                                        class="text-neutral-900 transition-all duration-500 ease-out dark:text-white"
+                                        pathLength="1"
+                                        :stroke-dasharray="1"
+                                        :stroke-dashoffset="1 - tocProgress"
+                                    />
+                                    <!-- Start circle -->
+                                    <circle
+                                        :cx="headings[0]?.level === 2 ? X_LEVEL_2 : X_LEVEL_3"
+                                        :cy="START_Y"
+                                        r="2.5"
+                                        fill="currentColor"
+                                        class="text-neutral-200 dark:text-neutral-800"
+                                    />
+                                    <!-- End circle -->
+                                    <circle
+                                        v-if="headings.length > 1"
+                                        :cx="headings[headings.length - 1]?.level === 2 ? X_LEVEL_2 : X_LEVEL_3"
+                                        :cy="START_Y + (headings.length - 1) * ITEM_HEIGHT"
+                                        r="2.5"
+                                        fill="currentColor"
+                                        class="text-neutral-200 dark:text-neutral-800"
+                                    />
+                                    <!-- Active position circle -->
+                                    <circle
+                                        :cx="activeCirclePosition.x"
+                                        :cy="activeCirclePosition.y"
+                                        r="3.5"
+                                        fill="currentColor"
+                                        class="text-neutral-900 transition-all duration-300 ease-out dark:text-white"
+                                    />
+                                </svg>
 
-                                            <a
-                                                :href="`#${heading.id}`"
-                                                class="block rounded-r-md py-1.5 font-mono text-[11px] transition-all duration-300"
-                                                :class="[
-                                                    activeHeading === heading.id
-                                                        ? 'text-neutral-900 dark:text-white'
-                                                        : 'text-neutral-500 group-hover/toc:text-neutral-900 dark:text-neutral-500 dark:group-hover/toc:text-neutral-200',
-                                                    heading.level === 3 ? 'pl-8' : 'pl-5',
-                                                ]"
-                                                @click.prevent="scrollToHeading(heading.id)"
-                                            >
-                                                <!-- Active indicator bar with transition -->
-                                                <div
-                                                    class="absolute top-1 bottom-1 left-[8px] w-[1px] opacity-0 transition-all duration-300"
-                                                    :class="{ 'bg-neutral-900 opacity-100 dark:bg-white': activeHeading === heading.id }"
-                                                ></div>
-                                                {{ heading.text }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <button
-                                                type="button"
-                                                @click="scrollToTop"
-                                                class="relative mt-2 flex w-full cursor-pointer items-center gap-2 py-1.5 pl-5 font-mono text-[11px] text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-white"
-                                            >
-                                                <div class="absolute top-0 bottom-0 left-5 h-px w-full bg-neutral-200 dark:bg-white/10"></div>
-                                                <div class="mt-3 flex items-center gap-2">
-                                                    <span>{{ t('blog.top') }}</span> <FontAwesomeIcon icon="fa-sharp fa-light fa-arrow-up-to-line" />
-                                                </div>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
+                                <nav class="relative flex flex-col">
+                                    <a
+                                        v-for="heading in headings"
+                                        :key="heading.id"
+                                        :href="`#${heading.id}`"
+                                        class="block py-1.5 font-mono text-[11px] transition-colors hover:text-neutral-900 dark:hover:text-white"
+                                        :class="[
+                                            activeHeading === heading.id
+                                                ? 'font-medium text-neutral-900 dark:text-white'
+                                                : 'text-neutral-500 dark:text-neutral-500',
+                                        ]"
+                                        :style="{ paddingLeft: heading.level === 2 ? '2rem' : '2.75rem' }"
+                                        @click.prevent="scrollToHeading(heading.id)"
+                                    >
+                                        {{ heading.text }}
+                                    </a>
+                                </nav>
+                            </div>
+
+                            <!-- Back to top button -->
+                            <div class="pl-8">
+                                <button
+                                    type="button"
+                                    @click="scrollToTop"
+                                    class="-mt-2 flex w-[75%] cursor-pointer items-center gap-2 border-t border-neutral-200 pt-3 font-mono text-[11px] text-neutral-500 transition-colors hover:text-neutral-900 dark:border-neutral-800 dark:text-neutral-500 dark:hover:text-white"
+                                >
+                                    <span>{{ t('blog.top') }}</span>
+                                    <FontAwesomeIcon icon="fa-sharp fa-light fa-arrow-up-to-line" />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </aside>
@@ -662,7 +801,7 @@ const getComponent = (name: string) => {
                         class="current-color size-8"
                     />
                 </div>
-                <h1 class="mb-2 font-work-sans text-xl font-bold text-neutral-900 dark:text-white">{{ t('blog.postNotFound.title') }}</h1>
+                <h1 class="mb-2 font-sans text-xl font-bold text-neutral-900 dark:text-white">{{ t('blog.postNotFound.title') }}</h1>
                 <p class="mb-6 text-neutral-600 dark:text-neutral-400">{{ t('blog.postNotFound.description') }}</p>
             </div>
         </main>
