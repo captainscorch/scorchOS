@@ -21,6 +21,7 @@ defineProps<{
 
 const year = new Date().getFullYear();
 const lastCommitDate = ref<string>('');
+const totalCommitCount = ref<number | null>(null);
 
 const formatCommitDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -97,6 +98,17 @@ onMounted(async () => {
         const response = await fetch('https://api.github.com/repos/captainscorch/scorchOS/commits?per_page=1');
         if (!response.ok) throw new Error('Failed to fetch commits');
 
+        const linkHeader = response.headers.get('Link');
+        if (linkHeader) {
+            const lastBlock = linkHeader.match(/<[^>]+>;\s*rel="last"/);
+            if (lastBlock) {
+                const pageMatch = lastBlock[0].match(/[?&]page=(\d+)/);
+                if (pageMatch) {
+                    totalCommitCount.value = parseInt(pageMatch[1], 10);
+                }
+            }
+        }
+
         const commits = await response.json();
         if (commits && commits.length > 0 && commits[0].commit?.author?.date) {
             lastCommitDate.value = formatCommitDate(commits[0].commit.author.date);
@@ -134,6 +146,9 @@ onUnmounted(() => {
                                 class="border-b border-b-teal-black/0 leading-[135%] text-neutral-900 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand-400 hover:opacity-100! dark:text-white"
                                 href="https://github.com/captainscorch/scorchOS/commits/main/"
                                 >{{ lastCommitDate || t('footer.loading') }}</a
+                            >
+                            <span v-if="totalCommitCount !== null" class="text-neutral-500 dark:text-neutral-400"
+                                > ({{ totalCommitCount.toLocaleString() }} {{ t('footer.commits') }})</span
                             >
                         </p>
                         <div class="flex flex-col items-start gap-x-6 gap-y-2 md:flex-row">
