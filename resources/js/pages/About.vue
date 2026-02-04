@@ -667,7 +667,7 @@ const skills = computed(() => ({
                     <button
                         type="button"
                         @click="openSkillsModal"
-                        class="mt-2 mb-4 w-fit border-b border-b-neutral-300/50 text-left text-xs text-neutral-500 transition-all hover:cursor-pointer hover:border-b-brand hover:text-neutral-700 dark:border-b-neutral-600/50 dark:text-neutral-400 dark:hover:border-b-brand dark:hover:text-neutral-200"
+                        class="mt-2 mb-4 w-fit border-b border-b-neutral-300/50 text-left text-xs text-neutral-500 transition-all hover:cursor-pointer hover:border-b-brand-400 hover:text-neutral-700 dark:border-b-neutral-600/50 dark:text-neutral-400 dark:hover:border-b-brand-400 dark:hover:text-neutral-200"
                     >
                         <FontAwesomeIcon icon="fa-sharp fa-light fa-code" class="mr-1.5" />
                         {{ t('bio.skills.viewSkillsInCode') }}

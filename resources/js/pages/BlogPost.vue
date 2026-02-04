@@ -482,8 +482,8 @@ const activeCirclePosition = computed(() => {
         class="min-h-screen bg-white pt-32 pb-20 text-neutral-900 transition-all duration-500 ease-out md:pt-40 md:pb-0 dark:bg-black dark:text-white"
     >
         <!-- Scroll Progress Bar -->
-        <div class="fixed top-0 right-0 left-0 z-[60] h-0.5 bg-neutral-200/50 dark:bg-white/10">
-            <div class="h-full bg-brand transition-[width] duration-100 ease-out" :style="{ width: `${scrollProgress}%` }" />
+        <div class="fixed top-0 right-0 left-0 z-[999] h-0.5 bg-neutral-200/50 dark:bg-white/10">
+            <div class="h-full bg-brand-400 transition-[width] duration-100 ease-out" :style="{ width: `${scrollProgress}%` }" />
         </div>
 
         <!-- Header / Navigation -->

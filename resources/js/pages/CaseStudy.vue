@@ -303,22 +303,22 @@ onUnmounted(() => {
     </Head>
 
     <div
-        class="min-h-screen overflow-x-hidden bg-white pb-20 pt-32 text-neutral-900 transition-all duration-500 ease-out md:pb-0 md:pt-40 dark:bg-black dark:text-white"
+        class="min-h-screen overflow-x-hidden bg-white pt-32 pb-20 text-neutral-900 transition-all duration-500 ease-out md:pt-40 md:pb-0 dark:bg-black dark:text-white"
     >
         <!-- Header / Navigation -->
-        <header class="z-100 pointer-events-none fixed left-0 right-0 top-0 mx-auto">
+        <header class="pointer-events-none fixed top-0 right-0 left-0 z-100 mx-auto">
             <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full" />
             <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 lg:px-8">
                 <!-- Name (Top Left) -->
                 <div class="pointer-events-auto">
-                    <Link href="/" class="scramble-trigger text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-white"
+                    <Link href="/" class="scramble-trigger text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white"
                         >Daniel Schmier</Link
                     >
                 </div>
 
                 <!-- Centered Toggle -->
                 <div
-                    class="backdrop-blur-xs pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 transform items-center gap-2 rounded-full border border-neutral-200 bg-white/80 p-1.5 shadow-2xl md:absolute md:bottom-auto dark:border-white/10 dark:bg-neutral-900/80"
+                    class="pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 transform items-center gap-2 rounded-full border border-neutral-200 bg-white/80 p-1.5 shadow-2xl backdrop-blur-xs md:absolute md:bottom-auto dark:border-white/10 dark:bg-neutral-900/80"
                 >
                     <Link href="/portfolio">
                         <button
@@ -347,7 +347,7 @@ onUnmounted(() => {
 
         <main>
             <div class="space-y-12">
-                <div class="mb-22 mx-auto flex w-full max-w-7xl flex-col items-start gap-4 space-y-4 px-6 md:mb-32 md:grid md:grid-cols-12 lg:px-8">
+                <div class="mx-auto mb-22 flex w-full max-w-7xl flex-col items-start gap-4 space-y-4 px-6 md:mb-32 md:grid md:grid-cols-12 lg:px-8">
                     <div class="col-span-12 flex flex-wrap items-center gap-2 md:col-span-3 md:w-auto md:max-w-48 md:py-0">
                         <span
                             v-for="(category, index) in Array.isArray(project?.category) ? project.category : [project?.category]"
@@ -565,7 +565,7 @@ onUnmounted(() => {
                                 >
                                     <path
                                         d="M356.7 260.7L345.4 272L368 294.6L379.3 283.3L544 118.6L544 240L576 240L576 64L400 64L400 96L521.4 96L356.7 260.7z"
-                                        class="transition-transform duration-300 ease-out group-hover:-translate-y-10 group-hover:translate-x-10"
+                                        class="transition-transform duration-300 ease-out group-hover:translate-x-10 group-hover:-translate-y-10"
                                     />
                                     <path
                                         d="M283.3 379.3L294.6 368L272 345.4L260.7 356.7L96 521.4L96 400L64 400L64 576L240 576L240 544L118.6 544L283.3 379.3z"
@@ -581,7 +581,7 @@ onUnmounted(() => {
                             </DrawerHeader>
                             <DrawerClose
                                 as-child
-                                class="rounded-xs ring-offset-background focus:ring-ring focus:outline-hidden data-[state=open]:bg-accent data-[state=open]:text-muted-foreground touch:hidden group absolute right-6 top-6 block opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+                                class="group absolute top-6 right-6 block rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground touch:hidden [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
                             >
                                 <lord-icon
                                     src="/icons/system-regular-29-cross-hover-cross-3.json"
@@ -592,7 +592,7 @@ onUnmounted(() => {
                                 </lord-icon>
                                 <span class="sr-only">{{ t('caseStudy.close') }}</span>
                             </DrawerClose>
-                            <div class="touch:pt-0 mx-auto w-full overflow-y-auto px-6 py-12">
+                            <div class="mx-auto w-full overflow-y-auto px-6 py-12 touch:pt-0">
                                 <MarkdownContent :content="project?.story || ''" class="mx-auto w-full max-w-[650px] space-y-6" />
                             </div>
                         </DrawerContent>
@@ -604,7 +604,7 @@ onUnmounted(() => {
                 <div class="card-outline-1"></div>
                 <div class="card-outline-2"></div>
                 <div
-                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-neutral-200 bg-neutral-50 p-6 md:p-12 dark:border-white/5 dark:bg-[#111]"
+                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-brand-200/50 bg-brand-50/10 p-6 md:p-12 dark:border-brand-800/50 dark:bg-brand-950/50"
                 >
                     <div class="grid grid-cols-1 gap-6 space-y-6 md:grid-cols-2 md:gap-12">
                         <div class="grid w-full grid-cols-1 gap-y-8 md:grid-cols-12 md:gap-y-12">
@@ -659,7 +659,7 @@ onUnmounted(() => {
                                     </SectionTitle>
                                     <FontAwesomeIcon
                                         icon="fa-sharp fa-light fa-arrow-up-right"
-                                        class="text-neutral-900 transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-neutral-500 dark:text-white dark:group-hover:text-neutral-400"
+                                        class="text-neutral-900 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-neutral-500 dark:text-white dark:group-hover:text-neutral-400"
                                     />
                                 </a>
                             </div>
@@ -700,7 +700,7 @@ onUnmounted(() => {
             </DrawerHeader>
             <DrawerClose
                 as-child
-                class="rounded-xs ring-offset-background focus:ring-ring focus:outline-hidden data-[state=open]:bg-accent data-[state=open]:text-muted-foreground touch:hidden group absolute right-6 top-6 block opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+                class="group absolute top-6 right-6 block rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground touch:hidden [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
             >
                 <lord-icon
                     src="/icons/system-regular-29-cross-hover-cross-3.json"
@@ -711,9 +711,9 @@ onUnmounted(() => {
                 </lord-icon>
                 <span class="sr-only">Close</span>
             </DrawerClose>
-            <div ref="drawerContentRef" class="touch:pt-0 mx-auto w-full max-w-7xl overflow-y-auto px-6 py-12">
+            <div ref="drawerContentRef" class="mx-auto w-full max-w-7xl overflow-y-auto px-6 py-12 touch:pt-0">
                 <!-- Dynamic Gallery Grid -->
-                <div class="touch:mb-[14px] mb-0 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+                <div class="mb-0 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 touch:mb-[14px]">
                     <template v-for="(row, rowIndex) in galleryRows" :key="rowIndex">
                         <!-- Full width row (single landscape or single portrait) -->
                         <template v-if="row.type === 'full'">

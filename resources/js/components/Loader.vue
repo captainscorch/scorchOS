@@ -43,7 +43,7 @@ onMounted(() => {
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
     >
-        <div v-if="show" class="fixed inset-0 z-[1000] flex items-center justify-center bg-off-white dark:bg-background">
+        <div v-if="show" class="fixed inset-0 z-[1000] flex items-center justify-center bg-white dark:bg-black">
             <div class="relative flex flex-col items-center gap-8">
                 <svg
                     ref="logoRef"

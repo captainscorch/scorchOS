@@ -82,7 +82,7 @@ onUnmounted(() => {
         </div>
 
         <div
-            class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-brand/10 blur-3xl transition-all duration-700 group-hover:bg-brand/20"
+            class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-brand-400/10 blur-3xl transition-all duration-700 group-hover:bg-brand-400/20"
         ></div>
     </div>
 </template>

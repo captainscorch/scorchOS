@@ -96,20 +96,20 @@ const formatDate = (dateString: string): string => {
         <meta property="twitter:title" :content="ogTitle" />
         <meta property="twitter:description" :content="pageDescription" />
     </Head>
-    <div class="min-h-screen bg-white pb-20 pt-32 text-neutral-900 md:pb-0 md:pt-40 dark:bg-black dark:text-white">
+    <div class="min-h-screen bg-white pt-32 pb-20 text-neutral-900 md:pt-40 md:pb-0 dark:bg-black dark:text-white">
         <!-- Header / Navigation -->
-        <header class="z-100 pointer-events-none fixed left-0 right-0 top-0 mx-auto">
+        <header class="pointer-events-none fixed top-0 right-0 left-0 z-100 mx-auto">
             <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full" />
             <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 px-6 sm:px-6 md:p-6 lg:px-8">
                 <!-- Name (Top Left) -->
                 <div class="pointer-events-auto">
-                    <Link href="/" class="scramble-trigger text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-white"
+                    <Link href="/" class="scramble-trigger text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white"
                         >Daniel Schmier</Link
                     >
                 </div>
 
                 <div
-                    class="backdrop-blur-xs pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 transform items-center gap-2 rounded-full border border-neutral-200 bg-white/80 p-1.5 shadow-2xl md:absolute md:bottom-auto dark:border-white/10 dark:bg-neutral-900/80"
+                    class="pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 transform items-center gap-2 rounded-full border border-neutral-200 bg-white/80 p-1.5 shadow-2xl backdrop-blur-xs md:absolute md:bottom-auto dark:border-white/10 dark:bg-neutral-900/80"
                 >
                     <button
                         @click="toggleCategory(null)"
@@ -148,8 +148,8 @@ const formatDate = (dateString: string): string => {
 
         <main class="mx-auto max-w-7xl px-6 lg:px-8">
             <!-- Hero Text -->
-            <div class="mb-22 mx-auto max-w-[calc(1280px-64px)] md:mb-32">
-                <h2 class="mb-6 text-sm uppercase tracking-widest text-neutral-500 dark:text-white/30">{{ t('blog.title') }}</h2>
+            <div class="mx-auto mb-22 max-w-[calc(1280px-64px)] md:mb-32">
+                <h2 class="mb-6 text-sm tracking-widest text-neutral-500 uppercase dark:text-white/30">{{ t('blog.title') }}</h2>
                 <h1 class="max-w-2xl font-sans text-3xl font-bold text-neutral-900 dark:text-white">
                     <TextReveal :text="t('blog.hero.line1')" />
                     <br />
@@ -164,11 +164,11 @@ const formatDate = (dateString: string): string => {
                         v-for="post in paginatedPosts"
                         :key="post.slug"
                         :href="`/blog/${post.category[0].toLowerCase()}/${post.slug}`"
-                        class="hover:border-brand/50 group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-neutral-900"
+                        class="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-200/50 bg-brand-50/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/50 hover:shadow-2xl dark:border-brand-800/50 dark:bg-brand-950/50 dark:hover:border-brand-400/50"
                     >
                         <!-- Hover Gradient Overlay -->
                         <div
-                            class="from-brand/5 absolute inset-0 z-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            class="absolute inset-0 z-0 bg-gradient-to-br from-brand-400/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                         ></div>
 
                         <!-- Categories -->

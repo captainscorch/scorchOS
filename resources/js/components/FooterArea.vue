@@ -124,14 +124,14 @@ onUnmounted(() => {
 
             <div class="flex flex-col gap-8 lg:flex-row lg:gap-16">
                 <div
-                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-neutral-200 bg-neutral-50 p-6 md:p-12 dark:border-white/5 dark:bg-[#111]"
+                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-brand-200/50 bg-brand-50/10 p-6 md:p-12 dark:border-brand-800/50 dark:bg-brand-950/50"
                 >
                     <div>
                         <h3 class="mb-6 text-base font-medium text-neutral-900 dark:text-white">{{ t('footer.notes') }}</h3>
                         <p class="mb-4 max-w-lg text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
                             {{ t('footer.description') }}
                             <a
-                                class="border-b border-b-teal-black/0 leading-[135%] text-neutral-900 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand hover:opacity-100! dark:text-white"
+                                class="border-b border-b-teal-black/0 leading-[135%] text-neutral-900 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand-400 hover:opacity-100! dark:text-white"
                                 href="https://github.com/captainscorch/scorchOS/commits/main/"
                                 >{{ lastCommitDate || t('footer.loading') }}</a
                             >
@@ -166,7 +166,7 @@ onUnmounted(() => {
                             :href="social.url"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="border-b border-b-teal-black/0 leading-[135%] text-neutral-900 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand hover:opacity-100! dark:text-neutral-400 dark:hover:text-white"
+                            class="border-b border-b-teal-black/0 leading-[135%] text-neutral-900 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand-400 hover:opacity-100! dark:text-neutral-400 dark:hover:text-white"
                             v-html="social.label"
                         ></a>
                     </div>
