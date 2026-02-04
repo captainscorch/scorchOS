@@ -638,7 +638,7 @@ const activeCirclePosition = computed(() => {
                                 <Link
                                     v-if="block.component && COMPONENT_TO_PLAYGROUND_ID[block.component]"
                                     :href="`/playground#${COMPONENT_TO_PLAYGROUND_ID[block.component]}`"
-                                    class="group mx-auto mt-4 mb-8 flex max-w-lg items-center justify-center gap-2 px-2 text-center !no-underline"
+                                    class="group mx-auto mt-4 mb-8 flex max-w-lg items-center justify-center gap-2 !border-0 px-2 text-center !no-underline"
                                 >
                                     <span
                                         class="text-sm font-medium text-neutral-500 group-hover:text-neutral-500 dark:text-neutral-500 dark:group-hover:text-neutral-400"
