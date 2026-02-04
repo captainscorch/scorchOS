@@ -26,6 +26,7 @@
 .scorch-theme {
     background-color: var(--terminal-bg);
     color: var(--terminal-text);
+    font-stretch: 95%;
 }
 
 .syntax-keyword {

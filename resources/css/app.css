@@ -12,9 +12,8 @@
 
 /* ================== Theme ================== */
 @theme inline {
-    --font-sans: 'Menlo', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-work-sans: 'Work Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-mono: 'Menlo', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --font-sans: 'Work Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono: 'TX-02', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -52,10 +51,22 @@
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
-    /* Theme colors */
+    /* Basic Brand Colors */
     --color-brand: #2ab193;
     --color-off-white: #f2f0ef;
     --color-teal-black: #040e0c;
+    /* Brand Palette */
+    --color-brand-50: oklch(0.958 0.055 173.57);
+    --color-brand-100: oklch(0.904 0.137 173.72);
+    --color-brand-200: oklch(0.825 0.145 173.64);
+    --color-brand-300: oklch(0.759 0.134 173.76);
+    --color-brand-400: oklch(0.683 0.12 173.63); /* Brand Primary */
+    --color-brand-500: oklch(0.59 0.104 173.59);
+    --color-brand-600: oklch(0.499 0.088 172.95);
+    --color-brand-700: oklch(0.404 0.071 174.3);
+    --color-brand-800: oklch(0.32 0.057 173.02);
+    --color-brand-900: oklch(0.227 0.039 174.89);
+    --color-brand-950: oklch(0.172 0.03 175.03);
 }
 
 :root {
@@ -94,6 +105,7 @@
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
     --scrollbar-border: oklch(92.2% 0 0);
+    --font-weight-normal: 400;
 }
 
 .dark {
@@ -131,6 +143,7 @@
     --sidebar-border: oklch(0.269 0 0);
     --sidebar-ring: oklch(0.439 0 0);
     --scrollbar-border: oklch(26.9% 0 0);
+    --font-weight-normal: 385;
 }
 
 @layer base {
@@ -148,12 +161,25 @@
     }
 
     body {
-        @apply font-sans text-pretty text-teal-black antialiased dark:text-off-white;
+        @apply font-mono text-pretty text-teal-black antialiased dark:text-off-white;
+        font-synthesis: none;
+        font-style: normal;
+        font-stretch: 100%;
+        font-weight: 400;
+        transition:
+            font-weight 0.2s ease,
+            background-color 0.2s ease;
         text-rendering: optimizeLegibility;
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-position: center;
         word-break: auto-phrase;
+    }
+
+    /* Auto-switch to Retina font-weight in dark mode */
+    :root.dark body,
+    .dark body {
+        font-weight: 385;
     }
 
     ::selection {
@@ -179,9 +205,19 @@
         scrollbar-color: var(--scrollbar-border) transparent;
     }
 
+    em,
+    i,
+    blockquote {
+        font-style: oblique 10deg;
+    }
+
     ::-webkit-scrollbar-corner {
         background: transparent;
     }
+}
+
+@utility italic {
+    font-style: oblique 10deg;
 }
 
 /* Page transition */
@@ -229,19 +265,19 @@
 }
 
 .prose h1 {
-    @apply mb-12 font-work-sans text-3xl font-bold text-neutral-900 dark:text-white;
+    @apply mb-12 font-sans text-3xl font-bold text-neutral-900 dark:text-white;
 }
 
 .prose h2 {
-    @apply mt-8 font-work-sans text-xl font-semibold text-neutral-900 dark:text-white;
+    @apply mt-8 font-sans text-xl font-semibold text-neutral-900 dark:text-white;
 }
 
 .prose h3 {
-    @apply mt-8 font-work-sans text-lg font-medium text-neutral-900 dark:text-white;
+    @apply mt-8 font-sans text-lg font-medium text-neutral-900 dark:text-white;
 }
 
 .prose h4 {
-    @apply mt-8 font-work-sans text-base font-medium text-neutral-900 dark:text-white;
+    @apply mt-8 font-sans text-base font-medium text-neutral-900 dark:text-white;
 }
 
 .prose p {
@@ -277,11 +313,11 @@
 }
 
 .prose code {
-    @apply rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200;
+    @apply rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-sm text-neutral-800 font-stretch-95% dark:bg-neutral-800 dark:text-neutral-200;
 }
 
 .prose pre {
-    @apply my-4 overflow-x-auto rounded-lg bg-neutral-100 p-4 dark:bg-neutral-800;
+    @apply my-4 overflow-x-auto rounded-lg bg-neutral-100 p-4 font-mono font-stretch-95% dark:bg-neutral-800;
 }
 
 .prose img {
