@@ -422,7 +422,7 @@ const skills = computed(() => ({
                             <button
                                 @click="setViewMode('prose')"
                                 :class="[
-                                    'cursor-pointer text-sm transition-colors',
+                                    'cursor-pointer text-sm font-medium transition-colors',
                                     viewMode === 'prose'
                                         ? 'text-neutral-900 dark:text-white'
                                         : 'text-neutral-400 hover:text-neutral-900 dark:text-white/30 dark:hover:text-white',
@@ -433,7 +433,7 @@ const skills = computed(() => ({
                             <button
                                 @click="setViewMode('list')"
                                 :class="[
-                                    'cursor-pointer text-sm transition-colors',
+                                    'cursor-pointer text-sm font-medium transition-colors',
                                     viewMode === 'list'
                                         ? 'text-neutral-900 dark:text-white'
                                         : 'text-neutral-400 hover:text-neutral-900 dark:text-white/30 dark:hover:text-white',
@@ -444,7 +444,7 @@ const skills = computed(() => ({
                             <button
                                 @click="setViewMode('timeline')"
                                 :class="[
-                                    'cursor-pointer text-sm transition-colors',
+                                    'cursor-pointer text-sm font-medium transition-colors',
                                     viewMode === 'timeline'
                                         ? 'text-neutral-900 dark:text-white'
                                         : 'text-neutral-400 hover:text-neutral-900 dark:text-white/30 dark:hover:text-white',
@@ -500,7 +500,7 @@ const skills = computed(() => ({
                                 key="length-controls"
                                 class="mx-4 flex items-center gap-0 border-l border-neutral-200 pl-4 md:mx-6 md:gap-3 md:pl-6 dark:border-neutral-700"
                             >
-                                <span class="mr-3 text-sm text-neutral-400 dark:text-white/30">{{ t('bio.length') }}</span>
+                                <span class="mr-3 text-sm font-medium text-neutral-400 dark:text-white/30">{{ t('bio.length') }}</span>
                                 <button
                                     @click="decreaseLength"
                                     :disabled="clampedLengthLevel === 1"
@@ -585,7 +585,7 @@ const skills = computed(() => ({
                                     <div v-for="(item, index) in displayedTimeline" :key="index" class="relative">
                                         <div class="absolute top-2 left-6 flex -translate-x-[45%] items-center justify-center">
                                             <div
-                                                class="h-3 w-3 rounded-full border-2"
+                                                class="h-2 w-2 rounded-full border-2"
                                                 :class="{
                                                     'border-neutral-900 bg-neutral-900 dark:border-white dark:bg-white': index === 0,
                                                     'border-neutral-300 bg-white dark:border-neutral-400 dark:bg-black': index !== 0,

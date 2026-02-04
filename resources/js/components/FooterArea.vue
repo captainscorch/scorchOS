@@ -116,11 +116,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <footer class="mx-auto mt-16 w-full max-w-7xl pt-16 text-neutral-900 md:py-16 dark:text-white"
-    :class="{ 'pb-20': isLandingPage }"
-    >
+    <footer class="mx-auto mt-16 w-full max-w-7xl pt-16 text-neutral-900 md:py-16 dark:text-white" :class="{ 'pb-20': isLandingPage }">
         <div class="mx-auto">
-            <h2 class="scramble-trigger relative mb-12 w-fit font-work-sans text-3xl font-medium text-neutral-900 md:text-4xl dark:text-white">
+            <h2 class="scramble-trigger relative mb-12 w-fit font-sans text-3xl font-medium text-neutral-900 md:text-4xl dark:text-white">
                 {{ t('footer.contact') }}
             </h2>
 
@@ -151,8 +149,8 @@ onUnmounted(() => {
                             >
                         </div>
                     </div>
-                    <div class="font-regular mt-10 text-sm text-neutral-500 dark:text-neutral-500">
-                        <span class="font-normal italic">{{ t('footer.quote') }}</span>
+                    <div class="mt-10 text-sm text-neutral-500 dark:text-neutral-500">
+                        <span class="italic">{{ t('footer.quote') }}</span>
                         <span class="mt-2 block text-xs text-neutral-400 dark:text-neutral-600">{{ t('footer.quoteAttribution') }}</span>
                     </div>
                 </div>

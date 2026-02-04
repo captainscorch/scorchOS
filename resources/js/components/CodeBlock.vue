@@ -102,13 +102,11 @@ const displayLanguage = computed(() => {
 <template>
     <div
         class="code-block group relative overflow-hidden border border-neutral-200 bg-neutral-50 p-[var(--code-inset)] dark:border-white/10 dark:bg-neutral-900"
-        :class="{ '!rounded-tl-none !rounded-tr-none border-0 ': isPlayground }"
+        :class="{ '!rounded-tl-none !rounded-tr-none border-0': isPlayground }"
     >
         <div class="code-block__inner overflow-hidden">
             <!-- Header -->
-            <div
-                class="code-block__header flex items-center justify-between bg-neutral-50 dark:border-white/10 dark:bg-neutral-900"
-            >
+            <div class="code-block__header flex items-center justify-between bg-neutral-50 dark:border-white/10 dark:bg-neutral-900">
                 <div class="flex items-center gap-2">
                     <!-- Language Badge -->
                     <span class="rounded bg-neutral-200 px-2 py-0.5 text-[10px] font-medium text-neutral-600 dark:bg-white/10 dark:text-neutral-400">
@@ -171,11 +169,11 @@ const displayLanguage = computed(() => {
 @reference "../../css/app.css";
 
 .code-block pre {
-    @apply m-0 rounded-lg bg-neutral-100 font-mono dark:bg-neutral-800;
+    @apply m-0 rounded-lg bg-neutral-100 font-mono font-stretch-95% dark:bg-neutral-800;
 }
 
 .code-block code {
-    @apply rounded bg-neutral-100 font-mono text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200;
+    @apply rounded bg-neutral-100 font-mono text-neutral-800 font-stretch-95% dark:bg-neutral-800 dark:text-neutral-200;
 }
 
 .code-block {

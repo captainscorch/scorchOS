@@ -77,21 +77,21 @@ function selectDemoAndClose(expId: string) {
         <meta property="twitter:title" :content="ogTitle" />
         <meta property="twitter:description" :content="pageDescription" />
     </Head>
-    <div ref="pageContainer" class="min-h-screen bg-white pt-32 pb-20 text-neutral-900 md:pt-40 md:pb-0 dark:bg-black dark:text-white">
+    <div ref="pageContainer" class="min-h-screen bg-white pb-20 pt-32 text-neutral-900 md:pb-0 md:pt-40 dark:bg-black dark:text-white">
         <!-- Header / Navigation -->
-        <header class="pointer-events-none fixed top-0 right-0 left-0 z-100 mx-auto">
+        <header class="z-100 pointer-events-none fixed left-0 right-0 top-0 mx-auto">
             <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full" />
             <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 lg:px-8">
                 <!-- Name (Top Left) -->
                 <div class="pointer-events-auto">
-                    <Link href="/" class="scramble-trigger text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white"
+                    <Link href="/" class="scramble-trigger text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-white"
                         >Daniel Schmier</Link
                     >
                 </div>
 
                 <!-- Centered Toggle -->
                 <div
-                    class="pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 transform items-center gap-2 rounded-full border border-neutral-200 bg-white/80 p-1.5 shadow-2xl backdrop-blur-xs md:absolute md:bottom-auto dark:border-white/10 dark:bg-neutral-900/80"
+                    class="backdrop-blur-xs pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 transform items-center gap-2 rounded-full border border-neutral-200 bg-white/80 p-1.5 shadow-2xl md:absolute md:bottom-auto dark:border-white/10 dark:bg-neutral-900/80"
                 >
                     <Link href="/">
                         <button
@@ -119,13 +119,11 @@ function selectDemoAndClose(expId: string) {
         </header>
 
         <main class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto mb-22 max-w-[calc(1280px-64px)] md:mb-32">
-                <h2 class="mb-6 text-sm tracking-widest text-neutral-500 uppercase dark:text-white/30">
+            <div class="mb-22 mx-auto max-w-[calc(1280px-64px)] md:mb-32">
+                <h2 class="mb-6 text-sm uppercase tracking-widest text-neutral-500 dark:text-white/30">
                     {{ t('playground.title') }}
                 </h2>
-                <h1
-                    class="font-work-sans text-3xl font-bold text-neutral-900 dark:text-white"
-                >
+                <h1 class="font-sans text-3xl font-bold text-neutral-900 dark:text-white">
                     <TextReveal :text="t('playground.hero.line1')" />
                     <br />
                     <TextReveal :text="t('playground.hero.line2')" class="text-neutral-400 dark:text-white/30" :delay="1.5" />
@@ -136,7 +134,7 @@ function selectDemoAndClose(expId: string) {
                 <button
                     type="button"
                     @click="demosDropdownOpen = !demosDropdownOpen"
-                    class="flex w-full md:max-w-xs items-center justify-between gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 text-left font-mono text-sm shadow-sm transition-colors hover:border-neutral-300 hover:bg-neutral-50 focus:ring-2 focus:ring-neutral-400/20 focus:outline-none dark:border-white/10 dark:bg-neutral-900/50 dark:hover:border-white/20 dark:hover:bg-neutral-800/50 dark:focus:ring-white/20"
+                    class="flex w-full items-center justify-between gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 text-left font-mono text-sm shadow-sm transition-colors hover:border-neutral-300 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-400/20 md:max-w-xs dark:border-white/10 dark:bg-neutral-900/50 dark:hover:border-white/20 dark:hover:bg-neutral-800/50 dark:focus:ring-white/20"
                     :aria-expanded="demosDropdownOpen"
                     :aria-haspopup="true"
                 >
@@ -159,14 +157,14 @@ function selectDemoAndClose(expId: string) {
                 >
                     <div
                         v-show="demosDropdownOpen"
-                        class="absolute top-full right-0 left-0 z-10 mt-1 max-h-60 w-full md:max-w-xs overflow-auto rounded-xl border border-neutral-200 bg-white py-1 shadow-lg dark:border-white/10 dark:bg-neutral-900 dark:shadow-neutral-950/50"
+                        class="absolute left-0 right-0 top-full z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl border border-neutral-200 bg-white py-1 shadow-lg md:max-w-xs dark:border-white/10 dark:bg-neutral-900 dark:shadow-neutral-950/50"
                     >
                         <button
                             v-for="exp in experiments"
                             :key="exp.id"
                             type="button"
                             @click="selectDemoAndClose(exp.id)"
-                            class="block w-full md:max-w-xs px-4 py-2.5 text-left font-mono text-[13px] transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                            class="block w-full px-4 py-2.5 text-left font-mono text-[13px] transition-colors hover:bg-neutral-100 md:max-w-xs dark:hover:bg-neutral-800"
                         >
                             {{ exp.title }}
                         </button>
@@ -179,19 +177,19 @@ function selectDemoAndClose(expId: string) {
                     v-for="exp in experiments"
                     :key="exp.id"
                     :id="exp.id"
-                    class="group relative scroll-mt-32 overflow-hidden rounded-3xl border border-neutral-200 bg-white/50 p-4 md:p-6 backdrop-blur-sm transition-all hover:border-brand/30 dark:border-white/10 dark:bg-neutral-900/50"
+                    class="hover:border-brand/30 group relative scroll-mt-32 overflow-hidden rounded-3xl border border-neutral-200 bg-white/50 p-4 backdrop-blur-sm transition-all md:p-6 dark:border-white/10 dark:bg-neutral-900/50"
                 >
                     <div class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-start">
                         <div class="max-w-xl">
                             <div class="mb-3 flex items-center gap-3">
-                                <div class="flex size-8 items-center justify-center rounded-lg bg-brand/10 text-brand">
+                                <div class="bg-brand/10 text-brand flex size-8 items-center justify-center rounded-lg">
                                     <FontAwesomeIcon icon="fa-sharp fa-light fa-flask" class="size-4" />
                                 </div>
                                 <LabelText as="span" size="xs" weight="semibold" class="!text-brand">
                                     {{ exp.category }}
                                 </LabelText>
                             </div>
-                            <h2 class="font-work-sans text-2xl font-bold text-neutral-900 dark:text-white">{{ exp.title }}</h2>
+                            <h2 class="font-sans text-2xl font-bold text-neutral-900 dark:text-white">{{ exp.title }}</h2>
                             <p class="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-white/60">
                                 {{ exp.description }}
                             </p>

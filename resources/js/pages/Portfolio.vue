@@ -193,7 +193,7 @@ const onLeave = (el: Element, done: () => void) => {
             <div class="mx-auto mb-22 max-w-[calc(1280px-64px)] md:mb-32">
                 <h2 class="mb-6 text-sm tracking-widest text-neutral-500 uppercase dark:text-white/30">{{ t('portfolio.title') }}</h2>
                 <h1
-                    class="font-work-sans text-3xl font-bold text-neutral-900 dark:text-white"
+                    class="font-sans text-3xl font-bold text-neutral-900 dark:text-white"
                     :class="locale === 'en' ? 'max-w-56 sm:max-w-none' : locale === 'de' ? 'max-w-80 sm:max-w-none' : ''"
                 >
                     <TextReveal :text="t('portfolio.hero.line1')" />
@@ -236,8 +236,8 @@ const onLeave = (el: Element, done: () => void) => {
                             class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100 touch:hidden"
                         >
                             <div class="translate-y-4 transform transition-transform duration-500 group-hover:translate-y-0">
-                                <h3 class="mb-1 font-work-sans text-xl font-bold text-white md:text-2xl">{{ project.client }}</h3>
-                                <p class="line-clamp-2 font-work-sans text-xs text-white/80 md:text-sm">{{ project.title }}</p>
+                                <h3 class="mb-1 font-sans text-xl font-bold text-white md:text-2xl">{{ project.client }}</h3>
+                                <p class="line-clamp-2 text-xs text-white/80">{{ project.title }}</p>
                             </div>
                         </div>
                     </Link>
@@ -257,14 +257,14 @@ const onLeave = (el: Element, done: () => void) => {
                             class="absolute inset-0 flex items-center justify-between px-6 opacity-80 transition-opacity group-hover:opacity-100 md:px-12"
                         >
                             <div class="flex flex-col">
-                                <span class="mb-1 font-work-sans text-xs font-medium text-white opacity-60 md:text-sm">{{ project.title }}</span>
-                                <span class="font-work-sans text-lg font-bold text-white md:text-3xl">{{ project.client }}</span>
+                                <span class="mb-1 text-xs font-medium text-white opacity-60 md:text-sm">{{ project.title }}</span>
+                                <span class="font-sans text-lg font-bold text-white md:text-3xl">{{ project.client }}</span>
                             </div>
 
                             <!-- Logo Representation -->
                             <div class="hidden md:block">
                                 <span
-                                    class="font-sans text-4xl font-black tracking-tighter text-white/20 uppercase italic transition-colors group-hover:text-white/30 md:text-6xl"
+                                    class="text-4xl font-black tracking-tighter text-white/20 uppercase italic transition-colors group-hover:text-white/30 md:text-6xl"
                                 >
                                     {{ project.logo }}
                                 </span>

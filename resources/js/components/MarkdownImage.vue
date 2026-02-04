@@ -22,7 +22,7 @@ withDefaults(defineProps<Props>(), {
         </div>
 
         <figcaption v-if="caption" class="mx-auto mt-4 max-w-lg px-2 text-center">
-            <span class="inline-block font-sans text-sm font-medium text-neutral-500 dark:text-neutral-500"> // {{ caption }} </span>
+            <span class="inline-block text-sm font-medium text-neutral-500 dark:text-neutral-500"> // {{ caption }} </span>
         </figcaption>
     </figure>
 </template>

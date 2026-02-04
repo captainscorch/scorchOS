@@ -10,7 +10,7 @@ withDefaults(
 </script>
 
 <template>
-    <component :is="as" class="font-work-sans text-3xl font-medium text-neutral-900 md:text-4xl dark:text-white">
+    <component :is="as" class="font-sans text-3xl font-medium text-neutral-900 md:text-4xl dark:text-white">
         <slot />
     </component>
 </template>

@@ -96,20 +96,20 @@ const formatDate = (dateString: string): string => {
         <meta property="twitter:title" :content="ogTitle" />
         <meta property="twitter:description" :content="pageDescription" />
     </Head>
-    <div class="min-h-screen bg-white pt-32 pb-20 text-neutral-900 md:pt-40 md:pb-0 dark:bg-black dark:text-white">
+    <div class="min-h-screen bg-white pb-20 pt-32 text-neutral-900 md:pb-0 md:pt-40 dark:bg-black dark:text-white">
         <!-- Header / Navigation -->
-        <header class="pointer-events-none fixed top-0 right-0 left-0 z-100 mx-auto">
+        <header class="z-100 pointer-events-none fixed left-0 right-0 top-0 mx-auto">
             <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full" />
             <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-6 px-6 sm:px-6 md:p-6 lg:px-8">
                 <!-- Name (Top Left) -->
                 <div class="pointer-events-auto">
-                    <Link href="/" class="scramble-trigger text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white"
+                    <Link href="/" class="scramble-trigger text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-white"
                         >Daniel Schmier</Link
                     >
                 </div>
 
                 <div
-                    class="pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 transform items-center gap-2 rounded-full border border-neutral-200 bg-white/80 p-1.5 shadow-2xl backdrop-blur-xs md:absolute md:bottom-auto dark:border-white/10 dark:bg-neutral-900/80"
+                    class="backdrop-blur-xs pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 transform items-center gap-2 rounded-full border border-neutral-200 bg-white/80 p-1.5 shadow-2xl md:absolute md:bottom-auto dark:border-white/10 dark:bg-neutral-900/80"
                 >
                     <button
                         @click="toggleCategory(null)"
@@ -148,9 +148,9 @@ const formatDate = (dateString: string): string => {
 
         <main class="mx-auto max-w-7xl px-6 lg:px-8">
             <!-- Hero Text -->
-            <div class="mx-auto mb-22 max-w-[calc(1280px-64px)] md:mb-32">
-                <h2 class="mb-6 text-sm tracking-widest text-neutral-500 uppercase dark:text-white/30">{{ t('blog.title') }}</h2>
-                <h1 class="max-w-2xl font-work-sans text-3xl font-bold text-neutral-900 dark:text-white">
+            <div class="mb-22 mx-auto max-w-[calc(1280px-64px)] md:mb-32">
+                <h2 class="mb-6 text-sm uppercase tracking-widest text-neutral-500 dark:text-white/30">{{ t('blog.title') }}</h2>
+                <h1 class="max-w-2xl font-sans text-3xl font-bold text-neutral-900 dark:text-white">
                     <TextReveal :text="t('blog.hero.line1')" />
                     <br />
                     <TextReveal :text="t('blog.hero.line2')" class="text-neutral-400 dark:text-white/30" :delay="1.5" />
@@ -164,11 +164,11 @@ const formatDate = (dateString: string): string => {
                         v-for="post in paginatedPosts"
                         :key="post.slug"
                         :href="`/blog/${post.category[0].toLowerCase()}/${post.slug}`"
-                        class="group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:shadow-2xl dark:border-white/10 dark:bg-neutral-900"
+                        class="hover:border-brand/50 group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-neutral-900"
                     >
                         <!-- Hover Gradient Overlay -->
                         <div
-                            class="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            class="from-brand/5 absolute inset-0 z-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                         ></div>
 
                         <!-- Categories -->
@@ -184,7 +184,7 @@ const formatDate = (dateString: string): string => {
 
                         <!-- Title -->
                         <h3
-                            class="relative z-10 mb-2 font-work-sans text-xl font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 dark:text-white dark:group-hover:text-neutral-200"
+                            class="relative z-10 mb-2 font-sans text-xl font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 dark:text-white dark:group-hover:text-neutral-200"
                         >
                             {{ post.title }}
                         </h3>
@@ -249,7 +249,7 @@ const formatDate = (dateString: string): string => {
                         class="current-color size-8"
                     />
                 </div>
-                <h3 class="mb-2 font-work-sans text-xl font-bold text-neutral-900 dark:text-white">{{ t('blog.empty.title') }}</h3>
+                <h3 class="mb-2 font-sans text-xl font-bold text-neutral-900 dark:text-white">{{ t('blog.empty.title') }}</h3>
                 <p class="text-neutral-600 dark:text-neutral-400">{{ t('blog.empty.description') }}</p>
             </div>
         </main>

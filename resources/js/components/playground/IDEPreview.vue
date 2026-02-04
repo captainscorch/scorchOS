@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { useIntersectionObserver } from '@vueuse/core';
 import hljs from 'highlight.js/lib/core';
 import css from 'highlight.js/lib/languages/css';
-import { useIntersectionObserver } from '@vueuse/core';
 import { computed, onUnmounted, ref } from 'vue';
 
 hljs.registerLanguage('css', css);
@@ -64,11 +64,9 @@ onUnmounted(() => {
 <template>
     <div
         ref="rootRef"
-        class="ide-preview relative overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 font-mono text-xs shadow-lg dark:border-white/10 dark:bg-neutral-900 min-h-[174px]"
+        class="ide-preview relative min-h-[174px] overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 font-mono text-xs shadow-lg dark:border-white/10 dark:bg-neutral-900"
     >
-        <div
-            class="flex items-center justify-between border-b border-neutral-200 bg-neutral-100 px-3 py-2 dark:border-white/10 dark:bg-neutral-800"
-        >
+        <div class="flex items-center justify-between border-b border-neutral-200 bg-neutral-100 px-3 py-2 dark:border-white/10 dark:bg-neutral-800">
             <div class="flex gap-1.5">
                 <div class="h-1.5 w-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500"></div>
                 <div class="h-1.5 w-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500"></div>
@@ -78,7 +76,9 @@ onUnmounted(() => {
         </div>
 
         <div class="relative p-3 leading-relaxed">
-            <pre class="ide-preview__pre m-0 whitespace-pre-wrap font-mono text-neutral-800 dark:text-neutral-200"><code class="ide-preview__code inline" v-html="highlightedCode"></code><span v-if="isTyping" class="ide-preview__cursor" aria-hidden="true"></span></pre>
+            <pre
+                class="ide-preview__pre m-0 font-mono whitespace-pre-wrap text-neutral-800 dark:text-neutral-200"
+            ><code class="ide-preview__code inline" v-html="highlightedCode"></code><span v-if="isTyping" class="ide-preview__cursor" aria-hidden="true"></span></pre>
         </div>
 
         <div
@@ -88,7 +88,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-@reference "../../css/app.css";
+@reference "../../../css/app.css";
 
 .ide-preview__pre {
     min-height: 1.5em;

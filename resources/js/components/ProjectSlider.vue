@@ -40,10 +40,10 @@ const { t } = useI18n();
 <template>
     <div class="relative flex w-full flex-col items-center justify-center overflow-hidden pt-16">
         <div class="px-6 text-center">
-            <h2 class="scramble-trigger relative pb-4 font-work-sans text-3xl font-medium text-neutral-900 md:text-4xl dark:text-white">
+            <h2 class="scramble-trigger relative pb-4 font-sans text-3xl font-medium text-neutral-900 md:text-4xl dark:text-white">
                 {{ t('portfolio.title') }}
             </h2>
-            <p class="text-sm tracking-widest text-neutral-500 uppercase dark:text-white/30">{{ t('portfolio.subtitle') }}</p>
+            <p class="text-sm uppercase tracking-widest text-neutral-500 dark:text-white/30">{{ t('portfolio.subtitle') }}</p>
         </div>
 
         <div class="w-full max-w-5xl">
@@ -82,7 +82,7 @@ const { t } = useI18n();
                     class="!flex !h-[300px] !w-[200px] flex-col items-center justify-center gap-2 md:!h-[440px] md:!w-[350px]"
                 >
                     <div
-                        class="group relative h-full w-full cursor-pointer overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-500 hover:shadow-xl hover:shadow-neutral-900/5 dark:bg-neutral-900 dark:hover:shadow-neutral-100/5 touch:shadow-xl touch:shadow-neutral-900/5 dark:touch:shadow-neutral-100/5"
+                        class="touch:shadow-xl touch:shadow-neutral-900/5 dark:touch:shadow-neutral-100/5 group relative h-full w-full cursor-pointer overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-500 hover:shadow-xl hover:shadow-neutral-900/5 dark:bg-neutral-900 dark:hover:shadow-neutral-100/5"
                         @click="handleCardClick(project.slug)"
                     >
                         <img
@@ -93,12 +93,12 @@ const { t } = useI18n();
 
                         <!-- Category Badge(s) (Top Left) -->
                         <div
-                            class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 touch:hidden"
+                            class="touch:hidden absolute left-4 top-4 z-20 flex flex-wrap gap-2 pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                         >
                             <span
                                 v-for="(category, index) in Array.isArray(project.category) ? project.category : [project.category]"
                                 :key="index"
-                                class="cursor-default rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-[10px] text-neutral-600 backdrop-blur-xs transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-white/10 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
+                                class="backdrop-blur-xs cursor-default rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-[10px] text-neutral-600 transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-white/10 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
                             >
                                 {{ category }}
                             </span>
@@ -106,15 +106,15 @@ const { t } = useI18n();
 
                         <!-- Overlay Text -->
                         <div
-                            class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100 touch:hidden"
+                            class="touch:hidden absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                         >
                             <div class="translate-y-4 transform transition-transform duration-500 group-hover:translate-y-0">
-                                <h3 class="mb-1 font-work-sans text-xl font-bold text-white md:text-2xl">{{ project.client }}</h3>
-                                <p class="line-clamp-2 font-work-sans text-xs text-white/80 md:text-sm">{{ project.title }}</p>
+                                <h3 class="mb-1 font-sans text-xl font-bold text-white md:text-2xl">{{ project.client }}</h3>
+                                <p class="line-clamp-2 text-xs text-white/80">{{ project.title }}</p>
                             </div>
                         </div>
                     </div>
-                    <h3 class="mobile-title font-work-sans text-base font-medium text-neutral-900 md:hidden dark:text-white">{{ project.client }}</h3>
+                    <h3 class="mobile-title font-sans text-base font-medium text-neutral-900 md:hidden dark:text-white">{{ project.client }}</h3>
                 </SwiperSlide>
             </Swiper>
         </div>
