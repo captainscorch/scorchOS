@@ -106,6 +106,7 @@
     "footer": {
         "contact": "Contact",
         "notes": "Notes",
+        "commits": "commits",
         "description": "This website is constantly evolving, expect regular updates and new commits. Last updated:",
         "loading": "Loading...",
         "quote": "\"We've always defined ourselves by the ability to overcome the impossible.\"",

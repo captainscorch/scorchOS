@@ -558,7 +558,7 @@ const activeCirclePosition = computed(() => {
 
                             <button
                                 @click="sharePost"
-                                class="share-item group relative flex items-center gap-2 rounded-full border border-neutral-200 bg-white/50 p-2 text-xs font-medium backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg dark:border-white/10 dark:bg-neutral-900/50 dark:hover:bg-neutral-800"
+                                class="share-item group relative flex cursor-pointer items-center gap-2 rounded-full border border-neutral-200 bg-white/50 p-2 text-xs font-medium backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg dark:border-white/10 dark:bg-neutral-900/50 dark:hover:bg-neutral-800"
                                 :title="copied ? t('blog.copied') : t('blog.share')"
                             >
                                 <lord-icon

@@ -107,6 +107,7 @@
     "footer": {
         "contact": "Kontakt",
         "notes": "Notizen",
+        "commits": "Commits",
         "description": "Diese Website entwickelt sich ständig weiter, regelmäßige Updates und neue Commits sind zu erwarten. Zuletzt aktualisiert:",
         "loading": "Lädt...",
         "quote": "\"Wir haben uns immer durch die Fähigkeit definiert, das Unmögliche zu überwinden.\"",
