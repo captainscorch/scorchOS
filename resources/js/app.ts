@@ -93,8 +93,8 @@ class TextScramble {
         for (let i = 0; i < length; i++) {
             const from = oldText[i] || '';
             const to = newText[i] || '';
-            const start = Math.floor(Math.random() * 20);
-            const end = start + Math.floor(Math.random() * 20);
+            const start = Math.floor(Math.random() * 60);
+            const end = start + Math.floor(Math.random() * 60);
             this.queue.push({
                 from,
                 to,
@@ -154,15 +154,21 @@ const applyScrambleEffect = (element: HTMLElement): void => {
     const initialText = element.innerText;
 
     let isHovered = false;
+    let isAnimating = false;
 
-    element.addEventListener('mouseover', () => {
+    element.addEventListener('mouseenter', () => {
+        if (isAnimating) {
+            return;
+        }
         isHovered = true;
+        isAnimating = true;
         fx.setText(initialText, initialText).then(() => {
+            isAnimating = false;
             isHovered = false;
         });
     });
 
-    element.addEventListener('mouseout', () => {
+    element.addEventListener('mouseleave', () => {
         isHovered = false;
     });
 
