@@ -164,7 +164,7 @@ const formatDate = (dateString: string): string => {
                         v-for="post in paginatedPosts"
                         :key="post.slug"
                         :href="`/blog/${post.category[0].toLowerCase()}/${post.slug}`"
-                        class="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-200/50 bg-brand-50/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/50 hover:shadow-2xl dark:border-brand-800/50 dark:bg-brand-950/50 dark:hover:border-brand-400/50"
+                        class="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-200/40 bg-brand-50/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/50 hover:shadow-2xl dark:border-brand-800/60 dark:bg-brand-950/50 dark:hover:border-brand-400/50"
                     >
                         <!-- Hover Gradient Overlay -->
                         <div

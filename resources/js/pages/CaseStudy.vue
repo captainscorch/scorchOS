@@ -604,7 +604,7 @@ onUnmounted(() => {
                 <div class="card-outline-1"></div>
                 <div class="card-outline-2"></div>
                 <div
-                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-brand-200/50 bg-brand-50/10 p-6 md:p-12 dark:border-brand-800/50 dark:bg-brand-950/50"
+                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-brand-200/40 bg-brand-50/10 p-6 md:p-12 dark:border-brand-800/60 dark:bg-brand-950/50"
                 >
                     <div class="grid grid-cols-1 gap-6 space-y-6 md:grid-cols-2 md:gap-12">
                         <div class="grid w-full grid-cols-1 gap-y-8 md:grid-cols-12 md:gap-y-12">

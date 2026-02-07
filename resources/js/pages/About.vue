@@ -410,9 +410,8 @@ const skills = computed(() => ({
             <!--<ProgressiveBlur position="bottom" class="fixed right-0 bottom-[-128px] left-0 z-20 hidden h-64 md:block" />-->
             <div id="bio" class="mx-auto flex flex-col items-start gap-4 md:grid md:grid-cols-12">
                 <div
-                    class="sticky top-0 z-10 col-span-12 -ml-4 w-[calc(100%+2rem)] px-4 pt-4 pb-0 md:sticky md:top-32 md:col-span-3 md:w-auto md:py-0"
+                    class="relative top-0 z-10 col-span-12 -ml-4 w-[calc(100%+2rem)] px-4 pt-4 pb-0 md:sticky md:top-32 md:col-span-3 md:w-auto md:py-0"
                 >
-                    <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full md:hidden" />
                     <PageTitle as="h1" class="sr-only"> {{ t('bio.title') }} </PageTitle>
                     <PageTitle as="h2" class="scramble-trigger relative pb-4"> {{ t('bio.sections.bio') }} </PageTitle>
                 </div>
@@ -659,10 +658,8 @@ const skills = computed(() => ({
             </div>
             <div id="skills" class="mx-auto flex flex-col items-start gap-4 md:grid md:grid-cols-12">
                 <div
-                    class="sticky top-0 z-10 col-span-12 -ml-4 w-[calc(100%+2rem)] px-4 pt-4 pb-0 md:sticky md:top-32 md:col-span-3 md:w-auto md:py-0"
+                    class="relative top-0 z-10 col-span-12 -ml-4 w-[calc(100%+2rem)] px-4 pt-4 pb-0 md:sticky md:top-32 md:col-span-3 md:w-auto md:py-0"
                 >
-                    <div class="absolute inset-0 -z-10 h-full w-full bg-white/90 backdrop-blur-md md:hidden dark:hidden"></div>
-                    <ProgressiveBlur class="absolute inset-0 -z-10 hidden h-full w-full md:hidden dark:block" />
                     <PageTitle as="h2" class="scramble-trigger relative pb-2 md:pb-4"> {{ t('bio.sections.skills') }} </PageTitle>
                     <button
                         type="button"
@@ -731,9 +728,8 @@ const skills = computed(() => ({
             </div>
             <div id="approach" class="mx-auto flex flex-col items-start gap-4 md:grid md:grid-cols-12">
                 <div
-                    class="sticky top-0 z-10 col-span-12 -ml-4 w-[calc(100%+2rem)] px-4 pt-4 pb-0 md:sticky md:top-32 md:col-span-3 md:w-auto md:py-0"
+                    class="relative top-0 z-10 col-span-12 -ml-4 w-[calc(100%+2rem)] px-4 pt-4 pb-0 md:sticky md:top-32 md:col-span-3 md:w-auto md:py-0"
                 >
-                    <ProgressiveBlur class="absolute inset-0 -z-10 h-full w-full md:hidden" />
                     <PageTitle as="h2" class="scramble-trigger relative pb-4">
                         {{ t('bio.approach.title') }}
                     </PageTitle>

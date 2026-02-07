@@ -136,7 +136,7 @@ onUnmounted(() => {
 
             <div class="flex flex-col gap-8 lg:flex-row lg:gap-16">
                 <div
-                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-brand-200/50 bg-brand-50/10 p-6 md:p-12 dark:border-brand-800/50 dark:bg-brand-950/50"
+                    class="flex min-h-[320px] flex-1 flex-col justify-between rounded-3xl border border-brand-200/40 bg-brand-50/10 p-6 md:p-12 dark:border-brand-800/60 dark:bg-brand-950/50"
                 >
                     <div>
                         <h3 class="mb-6 text-base font-medium text-neutral-900 dark:text-white">{{ t('footer.notes') }}</h3>
@@ -147,8 +147,8 @@ onUnmounted(() => {
                                 href="https://github.com/captainscorch/scorchOS/commits/main/"
                                 >{{ lastCommitDate || t('footer.loading') }}</a
                             >
-                            <span v-if="totalCommitCount !== null" class="text-neutral-500 dark:text-neutral-400"
-                                > ({{ totalCommitCount.toLocaleString() }} {{ t('footer.commits') }})</span
+                            <span v-if="totalCommitCount !== null" class="text-neutral-500 dark:text-neutral-400">
+                                ({{ totalCommitCount.toLocaleString() }} {{ t('footer.commits') }})</span
                             >
                         </p>
                         <div class="flex flex-col items-start gap-x-6 gap-y-2 md:flex-row">

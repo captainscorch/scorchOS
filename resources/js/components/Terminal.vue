@@ -287,12 +287,12 @@ const navigateHistory = (direction: 'up' | 'down') => {
 <template>
     <div
         v-if="isTerminalOpen"
-        class="fixed inset-0 z-50 bg-white/60 backdrop-blur-xs dark:bg-teal-black/60"
+        class="fixed inset-0 z-200 bg-white/60 backdrop-blur-xs dark:bg-teal-black/60"
         @click="!isResizing && $emit('close')"
     ></div>
     <div
         ref="_terminalWindow"
-        class="scorch-theme fixed top-1/2 left-1/2 z-100 flex h-auto max-h-[85vh] min-h-[330px] w-full max-w-4xl flex-col overflow-hidden rounded-xl border border-[#115e59] shadow-2xl transition-shadow duration-300 hover:shadow-[0_0_60px_-15px_rgba(42,177,147,0.3)]"
+        class="scorch-theme fixed top-1/2 left-1/2 z-200 flex h-auto max-h-[85vh] min-h-[330px] w-full max-w-4xl flex-col overflow-hidden rounded-xl border border-[#115e59] shadow-2xl transition-shadow duration-300 hover:shadow-[0_0_60px_-15px_rgba(42,177,147,0.3)]"
         :style="{
             left: isFullscreen ? '0' : modalPosition.x === null ? '50%' : `${modalPosition.x}px`,
             top: isFullscreen ? '0' : modalPosition.y === null ? '50%' : `${modalPosition.y}px`,
