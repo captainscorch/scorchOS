@@ -209,7 +209,7 @@ const formatSkillsWithSyntaxHighlighting = () => {
             leave-from-class="opacity-100"
             leave-to-class="opacity-0"
         >
-            <div v-if="isOpen" class="fixed inset-0 z-50 bg-white/60 backdrop-blur-xs dark:bg-teal-black/60" @click="!isResizing && $emit('close')">
+            <div v-if="isOpen" class="fixed inset-0 z-200 bg-white/60 backdrop-blur-xs dark:bg-teal-black/60" @click="!isResizing && $emit('close')">
                 <Transition
                     enter-active-class="transition duration-300 ease-out"
                     enter-from-class="opacity-0 scale-95"
