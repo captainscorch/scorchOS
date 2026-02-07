@@ -33,6 +33,18 @@ import { ChevronDown, CornerDownLeft } from 'lucide-vue-next';
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+// Glowing card effect configuration
+const CONFIG = {
+    proximity: 40,
+    spread: 80,
+    blur: 16,
+    gap: 32,
+    vertical: false,
+    opacity: 0,
+};
+
+let glowAnimationFrame: number | null = null;
+
 const { t, locale } = useI18n();
 const { getProject } = useProjects();
 const { posts, getAllCategories, getAllTags, getPostsByCategory } = usePosts();
@@ -44,11 +56,11 @@ const blogStats = computed(() => {
     const categories = getAllCategories();
     return {
         total: posts.value.length,
-        categories: categories.map(cat => ({
+        categories: categories.map((cat) => ({
             name: cat,
-            count: getPostsByCategory(cat).length
+            count: getPostsByCategory(cat).length,
         })),
-        totalTags: getAllTags().length
+        totalTags: getAllTags().length,
     };
 });
 
@@ -178,6 +190,40 @@ const isMobile = ref(false);
 
 const checkMobile = () => {
     isMobile.value = window.innerWidth <= 990;
+};
+
+// Glowing card pointer tracking
+const UPDATE = (event: PointerEvent) => {
+    if (isMobile.value) return;
+
+    if (glowAnimationFrame) {
+        cancelAnimationFrame(glowAnimationFrame);
+    }
+
+    glowAnimationFrame = requestAnimationFrame(() => {
+        const CARDS = document.querySelectorAll('.glowing-card') as NodeListOf<HTMLElement>;
+
+        for (const CARD of CARDS) {
+            const CARD_BOUNDS = CARD.getBoundingClientRect();
+            const isInProximity =
+                event.x > CARD_BOUNDS.left - CONFIG.proximity &&
+                event.x < CARD_BOUNDS.left + CARD_BOUNDS.width + CONFIG.proximity &&
+                event.y > CARD_BOUNDS.top - CONFIG.proximity &&
+                event.y < CARD_BOUNDS.top + CARD_BOUNDS.height + CONFIG.proximity;
+
+            CARD.style.setProperty('--active', isInProximity ? '1' : String(CONFIG.opacity));
+
+            if (isInProximity) {
+                const ANGLE =
+                    (Math.atan2(event.y - (CARD_BOUNDS.top + CARD_BOUNDS.height * 0.5), event.x - (CARD_BOUNDS.left + CARD_BOUNDS.width * 0.5)) *
+                        180) /
+                    Math.PI;
+                CARD.style.setProperty('--start', String((ANGLE < 0 ? ANGLE + 360 : ANGLE) + 90));
+            }
+        }
+
+        glowAnimationFrame = null;
+    });
 };
 
 // Mobile thumbnail preview
@@ -341,6 +387,40 @@ onMounted(() => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
+    const CONTAINER = document.querySelector('.glowing-card--container');
+
+    // Only add pointermove listener on desktop
+    if (!isMobile.value) {
+        document.body.addEventListener('pointermove', UPDATE);
+    }
+
+    // Handle resize between mobile and desktop for glow effect
+    const glowResizeHandler = () => {
+        const wasMobile = isMobile.value;
+        checkMobile();
+
+        if (wasMobile !== isMobile.value) {
+            if (isMobile.value) {
+                document.body.removeEventListener('pointermove', UPDATE);
+            } else {
+                document.body.addEventListener('pointermove', UPDATE);
+            }
+        }
+    };
+    window.addEventListener('resize', glowResizeHandler);
+
+    const RESTYLE = () => {
+        if (CONTAINER) {
+            (CONTAINER as HTMLElement).style.setProperty('--gap', String(CONFIG.gap));
+            (CONTAINER as HTMLElement).style.setProperty('--blur', String(CONFIG.blur));
+            (CONTAINER as HTMLElement).style.setProperty('--spread', String(CONFIG.spread));
+            (CONTAINER as HTMLElement).style.setProperty('--direction', CONFIG.vertical ? 'column' : 'row');
+            (CONTAINER as HTMLElement).style.setProperty('--opacity', String(CONFIG.opacity));
+        }
+    };
+
+    RESTYLE();
+
     setTimeout(() => {
         checkLyftdPosition();
         checkUnlimitedPosition();
@@ -387,6 +467,14 @@ onUnmounted(() => {
     if (whatIDoObserver && whatIDoRef.value) {
         whatIDoObserver.unobserve(whatIDoRef.value);
         whatIDoObserver.disconnect();
+    }
+
+    // Cleanup glowing card effect
+    if (glowAnimationFrame) {
+        cancelAnimationFrame(glowAnimationFrame);
+    }
+    if (!isMobile.value) {
+        document.body.removeEventListener('pointermove', UPDATE);
     }
 });
 
@@ -463,7 +551,7 @@ const fadeUpMotion = {
 
         <section class="relative flex h-full min-h-fit flex-col items-start justify-start gap-y-32 pb-16">
             <h1
-                class="relative max-w-[290px] font-work-sans text-3xl leading-[130%] font-bold md:max-w-full md:text-[clamp(2.25rem,5vw,5.6rem)] md:leading-[150%]"
+                class="relative max-w-[290px] font-sans text-3xl leading-[130%] font-bold md:max-w-full md:text-[clamp(2.25rem,5vw,5.6rem)] md:leading-[150%]"
             >
                 <TextReveal :text="t('home.tagline.prefix')" :delay="0.2" class="align-baseline" /><span class="hidden md:inline">&nbsp;</span>
                 <a
@@ -643,7 +731,7 @@ const fadeUpMotion = {
                     </h3>
                 </div>
 
-                <div class="mt-12 mb-16 grid grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-2 md:gap-6">
+                <div class="glowing-card--container mt-12 mb-16 grid grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-2 md:gap-6 lg:grid-cols-12">
                     <!-- Portfolio -->
                     <div
                         v-motion
@@ -652,179 +740,201 @@ const fadeUpMotion = {
                             ...fadeUpMotion.visibleOnce,
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 200 },
                         }"
-                        class="group portfolio-icon relative z-50 col-span-1 row-span-1 overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 hover:border-brand/50 hover:shadow-2xl md:col-span-4 md:row-span-1 dark:border-white/10 dark:bg-neutral-900/50"
+                        class="glowing-card mobile-focus-glow portfolio-icon group relative z-50 col-span-1 row-span-1 overflow-visible rounded-2xl md:col-span-4 md:row-span-1"
                     >
+                        <div class="glows"></div>
                         <div
-                            class="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                        ></div>
-                        <div class="relative z-10 flex h-full flex-col justify-between">
-                            <Link href="/portfolio">
-                                <div class="flex items-start justify-between">
-                                    <span
-                                        class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
-                                    >
-                                        <lord-icon
-                                            src="/icons/system-regular-165-view-carousel-hover-carousel.json"
-                                            trigger="morph"
-                                            target=".portfolio-icon"
-                                            style="width: 20px; height: 20px"
-                                            class="current-color opacity-60 group-hover:opacity-100"
-                                        >
-                                        </lord-icon>
-                                    </span>
-                                    <span
-                                        class="cursor-pointer rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-[10px] text-neutral-600 backdrop-blur-xs transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-white/10 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
-                                    >
-                                        {{ t('home.navigation.caseStudies') }}
-                                    </span>
-                                </div></Link
-                            >
-                            <div class="p-2 mt-8 md:mt-4">
+                            class="glowing-card-content relative h-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 group-hover:border-brand-400/50 group-hover:shadow-2xl dark:border-white/10 dark:bg-neutral-900/50"
+                        >
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-br from-brand-400/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            ></div>
+                            <div class="relative z-10 flex h-full flex-col justify-between">
                                 <Link href="/portfolio">
-                                    <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
-                                        {{ t('home.navigation.portfolio') }}
-                                    </h3></Link
-                                >
-
-                                <!-- Folder Directory Tree -->
-                                <div class="relative font-mono text-xs leading-relaxed text-neutral-600 dark:text-neutral-400">
-                                    <!-- Portfolio Folder Container -->
-                                    <div class="relative">
-                                        <div
-                                            v-if="isPortfolioExpanded"
-                                            class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
-                                        ></div>
-
-                                        <!-- Main Portfolio Folder -->
-                                        <button
-                                            type="button"
-                                            class="group group/portfolio relative mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
-                                            @click="togglePortfolio"
+                                    <div class="flex items-start justify-between">
+                                        <span
+                                            class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
                                         >
-                                            <FontAwesomeIcon
-                                                :icon="
-                                                    isPortfolioExpanded ? 'fa-sharp fa-light fa-chevron-down' : 'fa-sharp fa-light fa-chevron-right'
-                                                "
-                                                class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
-                                            />
-                                            <FontAwesomeIcon
-                                                :icon="isPortfolioExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
-                                                class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/portfolio:text-neutral-900 dark:text-neutral-500 dark:group-hover/portfolio:text-white"
-                                            />
-                                            <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
-                                                t('home.navigation.portfolioFolder')
-                                            }}</span>
-                                        </button>
+                                            <lord-icon
+                                                src="/icons/system-regular-165-view-carousel-hover-carousel.json"
+                                                trigger="morph"
+                                                target=".portfolio-icon"
+                                                style="width: 20px; height: 20px"
+                                                class="current-color opacity-60 group-hover:opacity-100"
+                                            >
+                                            </lord-icon>
+                                        </span>
+                                        <span
+                                            class="cursor-pointer rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-[10px] text-neutral-600 backdrop-blur-xs transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-white/10 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
+                                        >
+                                            {{ t('home.navigation.caseStudies') }}
+                                        </span>
+                                    </div></Link
+                                >
+                                <div class="mt-8 p-2 md:mt-4">
+                                    <Link href="/portfolio">
+                                        <h3 class="mb-1 font-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
+                                            {{ t('home.navigation.portfolio') }}
+                                        </h3></Link
+                                    >
 
-                                        <!-- Design Subfolder -->
-                                        <div v-if="isPortfolioExpanded" class="relative mb-1 ml-6">
+                                    <!-- Folder Directory Tree -->
+                                    <div class="relative font-mono text-xs leading-relaxed text-neutral-600 dark:text-neutral-400">
+                                        <!-- Portfolio Folder Container -->
+                                        <div class="relative">
                                             <div
-                                                v-if="isProductExpanded && productProjects.length > 0"
+                                                v-if="isPortfolioExpanded"
                                                 class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
                                             ></div>
 
+                                            <!-- Main Portfolio Folder -->
                                             <button
                                                 type="button"
-                                                class="group group/product mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
-                                                @click.stop="toggleProduct"
+                                                class="group/portfolio group relative mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
+                                                @click="togglePortfolio"
                                             >
                                                 <FontAwesomeIcon
                                                     :icon="
-                                                        isProductExpanded ? 'fa-sharp fa-light fa-chevron-down' : 'fa-sharp fa-light fa-chevron-right'
-                                                    "
-                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
-                                                />
-                                                <FontAwesomeIcon
-                                                    :icon="isProductExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
-                                                    class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/product:text-neutral-900 dark:text-neutral-500 dark:group-hover/product:text-white"
-                                                />
-                                                <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
-                                                    t('home.navigation.productFolder')
-                                                }}</span>
-                                            </button>
-                                            <!-- Product Projects -->
-                                            <div v-if="isProductExpanded" class="ml-8 space-y-0.5">
-                                                <Link
-                                                    v-for="project in productProjects"
-                                                    :key="project.id"
-                                                    :href="`/case-study/${project.slug}`"
-                                                    class="group/project flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
-                                                    @click.stop
-                                                >
-                                                    <FontAwesomeIcon
-                                                        icon="fa-sharp fa-light fa-file"
-                                                        class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
-                                                    />
-                                                    <span class="truncate leading-normal">{{ project.client }}</span>
-                                                    <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
-                                                        ><FontAwesomeIcon
-                                                            icon="fa-sharp fa-light fa-arrow-up-right"
-                                                            class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
-                                                    /></span>
-                                                </Link>
-                                            </div>
-                                        </div>
-
-                                        <!-- Development Subfolder -->
-                                        <div v-if="isPortfolioExpanded" class="relative ml-6">
-                                            <div
-                                                v-if="isDevelopmentExpanded && developmentProjects.length > 0"
-                                                class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
-                                            ></div>
-
-                                            <button
-                                                type="button"
-                                                class="group group/development mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
-                                                @click.stop="toggleDevelopment"
-                                            >
-                                                <FontAwesomeIcon
-                                                    :icon="
-                                                        isDevelopmentExpanded
+                                                        isPortfolioExpanded
                                                             ? 'fa-sharp fa-light fa-chevron-down'
                                                             : 'fa-sharp fa-light fa-chevron-right'
                                                     "
                                                     class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
                                                 />
                                                 <FontAwesomeIcon
-                                                    :icon="isDevelopmentExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
-                                                    class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/development:text-neutral-900 dark:text-neutral-500 dark:group-hover/development:text-white"
+                                                    :icon="isPortfolioExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
+                                                    class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/portfolio:text-neutral-900 dark:text-neutral-500 dark:group-hover/portfolio:text-white"
                                                 />
                                                 <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
-                                                    t('home.navigation.developmentFolder')
+                                                    t('home.navigation.portfolioFolder')
                                                 }}</span>
                                             </button>
-                                            <!-- Development Projects -->
-                                            <div v-if="isDevelopmentExpanded" class="ml-8 space-y-0.5">
-                                                <Link
-                                                    v-for="project in developmentProjects"
-                                                    :key="project.id"
-                                                    :href="`/case-study/${project.slug}`"
-                                                    class="group/project flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
-                                                    @click.stop
+
+                                            <!-- Design Subfolder -->
+                                            <div v-if="isPortfolioExpanded" class="relative mb-1 ml-6">
+                                                <div
+                                                    v-if="isProductExpanded && productProjects.length > 0"
+                                                    class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
+                                                ></div>
+
+                                                <button
+                                                    type="button"
+                                                    class="group/product group mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
+                                                    @click.stop="toggleProduct"
                                                 >
                                                     <FontAwesomeIcon
-                                                        icon="fa-sharp fa-light fa-file"
-                                                        class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
+                                                        :icon="
+                                                            isProductExpanded
+                                                                ? 'fa-sharp fa-light fa-chevron-down'
+                                                                : 'fa-sharp fa-light fa-chevron-right'
+                                                        "
+                                                        class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
                                                     />
-                                                    <span class="truncate leading-normal">{{ project.client }}</span>
-                                                    <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
-                                                        ><FontAwesomeIcon
-                                                            icon="fa-sharp fa-light fa-arrow-up-right"
-                                                            class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
-                                                    /></span>
-                                                </Link>
+                                                    <FontAwesomeIcon
+                                                        :icon="isProductExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
+                                                        class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/product:text-neutral-900 dark:text-neutral-500 dark:group-hover/product:text-white"
+                                                    />
+                                                    <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
+                                                        t('home.navigation.productFolder')
+                                                    }}</span>
+                                                </button>
+                                                <!-- Product Projects -->
+                                                <div v-if="isProductExpanded" class="ml-8 space-y-0.5">
+                                                    <Link
+                                                        v-for="project in productProjects"
+                                                        :key="project.id"
+                                                        :href="`/case-study/${project.slug}`"
+                                                        class="group/project relative flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
+                                                        @click.stop
+                                                    >
+                                                        <!-- Horizontal Line -->
+                                                        <!--
+                                                        <span
+                                                            class="pointer-events-none absolute top-1/2 left-[-19px] h-px w-[14px] -translate-y-1/2 bg-neutral-300 dark:bg-neutral-700"
+                                                        ></span>
+                                                        -->
+                                                        <FontAwesomeIcon
+                                                            icon="fa-sharp fa-light fa-file"
+                                                            class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
+                                                        />
+                                                        <span class="truncate leading-normal">{{ project.client }}</span>
+                                                        <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
+                                                            ><FontAwesomeIcon
+                                                                icon="fa-sharp fa-light fa-arrow-up-right"
+                                                                class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
+                                                        /></span>
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                            <!-- Development Subfolder -->
+                                            <div v-if="isPortfolioExpanded" class="relative ml-6">
+                                                <div
+                                                    v-if="isDevelopmentExpanded && developmentProjects.length > 0"
+                                                    class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
+                                                ></div>
+
+                                                <button
+                                                    type="button"
+                                                    class="group/development group mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
+                                                    @click.stop="toggleDevelopment"
+                                                >
+                                                    <FontAwesomeIcon
+                                                        :icon="
+                                                            isDevelopmentExpanded
+                                                                ? 'fa-sharp fa-light fa-chevron-down'
+                                                                : 'fa-sharp fa-light fa-chevron-right'
+                                                        "
+                                                        class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
+                                                    />
+                                                    <FontAwesomeIcon
+                                                        :icon="
+                                                            isDevelopmentExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'
+                                                        "
+                                                        class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/development:text-neutral-900 dark:text-neutral-500 dark:group-hover/development:text-white"
+                                                    />
+                                                    <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
+                                                        t('home.navigation.developmentFolder')
+                                                    }}</span>
+                                                </button>
+                                                <!-- Development Projects -->
+                                                <div v-if="isDevelopmentExpanded" class="ml-8 space-y-0.5">
+                                                    <Link
+                                                        v-for="project in developmentProjects"
+                                                        :key="project.id"
+                                                        :href="`/case-study/${project.slug}`"
+                                                        class="group/project relative flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
+                                                        @click.stop
+                                                    >
+                                                        <!-- Horizontal Line -->
+                                                        <!--
+                                                        <span
+                                                            class="hidden pointer-events-none absolute top-1/2 left-[-19px] h-px w-[14px] -translate-y-1/2 bg-neutral-300 dark:bg-neutral-700"
+                                                        ></span>
+                                                        -->
+                                                        <FontAwesomeIcon
+                                                            icon="fa-sharp fa-light fa-file"
+                                                            class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
+                                                        />
+                                                        <span class="truncate leading-normal">{{ project.client }}</span>
+                                                        <span class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
+                                                            ><FontAwesomeIcon
+                                                                icon="fa-sharp fa-light fa-arrow-up-right"
+                                                                class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
+                                                        /></span>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div
+                                class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-brand-400/10 blur-3xl transition-all duration-700 group-hover:bg-brand-400/20"
+                            ></div>
                         </div>
-                        <div
-                            class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-brand/10 blur-3xl transition-all duration-700 group-hover:bg-brand/20"
-                        ></div>
                     </div>
 
-                    
                     <!-- About -->
                     <div
                         ref="profileRef"
@@ -834,129 +944,140 @@ const fadeUpMotion = {
                             ...fadeUpMotion.visibleOnce,
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 300 },
                         }"
-                        class="group/card about-icon relative col-span-1 aspect-square overflow-hidden rounded-2xl border border-neutral-200 p-4 transition-all duration-500 hover:border-brand/50 hover:shadow-xl md:col-span-4 md:row-span-1 md:min-h-fit dark:border-white/10"
+                        class="glowing-card mobile-focus-glow group/card about-icon relative col-span-1 aspect-square overflow-visible rounded-2xl md:col-span-4 md:row-span-1 md:aspect-auto md:min-h-fit lg:aspect-square"
                     >
-                        <div class="absolute inset-0 z-0">
-                            <img
-                                src="/img/daniel.webp"
-                                alt="Daniel Schmier"
-                                class="h-full w-full object-cover transition-all duration-500 group-hover/card:scale-110 group-hover/card:brightness-110 group-hover/card:contrast-125"
-                            />
-                            <div class="absolute inset-0 bg-neutral-900/60 dark:bg-neutral-900/70"></div>
-                            <div
-                                class="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
-                                style="
-                                    background-image:
-                                        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.2) 1px, rgba(0, 0, 0, 0.2) 2px),
-                                        repeating-linear-gradient(
-                                            90deg,
-                                            transparent,
-                                            transparent 1px,
-                                            rgba(255, 255, 255, 0.15) 1px,
-                                            rgba(255, 255, 255, 0.15) 2px
-                                        );
-                                    mix-blend-mode: hard-light;
-                                    image-rendering: pixelated;
-                                "
-                            ></div>
-                        </div>
-
-                        <Link href="/about" class="absolute inset-0 z-10" aria-label="Go to About page"></Link>
-                        <div class="pointer-events-none relative z-20 flex h-full flex-row items-center justify-between gap-4">
-                            <div class="flex h-full flex-col justify-between">
-                                <span
-                                    class="flex size-12 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm dark:bg-white/10"
-                                >
-                                    <lord-icon
-                                        src="/icons/system-regular-8-account-hover-pinch.json"
-                                        trigger="morph"
-                                        target=".about-icon"
-                                        style="width: 20px; height: 20px"
-                                        class="current-color opacity-60 group-hover/card:opacity-100"
-                                    >
-                                    </lord-icon>
-                                </span>
-                                <div class="p-2">
-                                    <h3 class="mb-1 font-work-sans text-xl font-bold text-white md:text-2xl">{{ t('home.navigation.aboutMe') }}</h3>
-                                    <p class="line-clamp-2 text-xs text-white/80">{{ t('home.navigation.aboutDescription') }}</p>
-
-                                    <button
-                                        type="button"
-                                        class="pointer-events-auto mt-2 flex items-center gap-1.5 text-xs text-white/60 transition-all hover:text-white"
-                                        @click.stop="toggleCard"
-                                    >
-                                        <span class="hidden md:inline">{{ t('home.navigation.hoverToPreview') }}</span>
-                                        <span class="inline md:hidden">{{ t('home.navigation.tapToPreview') }}</span>
-                                        <FontAwesomeIcon
-                                            icon="fa-sharp fa-light fa-arrow-up-right"
-                                            class="h-2.5 w-2.5 transition-transform duration-200"
-                                        />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Full card preview modal -->
+                        <div class="glows"></div>
                         <div
-                            class="pointer-events-auto absolute inset-0 z-30 flex flex-col rounded-2xl border border-teal-800/40 bg-teal-black/90 p-4 backdrop-blur-md transition-all ease-out md:p-8 md:duration-300 md:group-hover/card:delay-600 md:group-hover/card:duration-300"
-                            :class="{
-                                'invisible opacity-0': !isCardOpen,
-                                'visible opacity-100': isCardOpen,
-                                'md:invisible md:opacity-0 md:group-hover/card:visible md:group-hover/card:opacity-100': true,
-                            }"
+                            class="glowing-card-content relative h-full overflow-hidden rounded-2xl border border-neutral-200 p-4 transition-all duration-500 group-hover/card:border-brand-400/50 group-hover/card:shadow-xl dark:border-white/10"
                         >
-                            <!-- Header -->
-                            <div class="flex items-start gap-3">
+                            <div class="absolute inset-0 z-0">
                                 <img
                                     src="/img/daniel.webp"
                                     alt="Daniel Schmier"
-                                    class="h-14 w-14 rounded-full border-2 border-teal-800/40 object-cover md:h-16 md:w-16"
+                                    class="h-full w-full object-cover transition-all duration-500 group-hover/card:scale-110 group-hover/card:brightness-110 group-hover/card:contrast-125"
                                 />
-                                <div class="flex-1">
-                                    <h3 class="text-sm font-medium text-teal-100">Daniel Schmier</h3>
-                                    <p class="text-xs text-teal-300/80">{{ t('home.profile.title') }}</p>
+                                <div class="absolute inset-0 bg-neutral-900/60 dark:bg-neutral-900/70"></div>
+                                <div
+                                    class="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
+                                    style="
+                                        background-image:
+                                            repeating-linear-gradient(
+                                                0deg,
+                                                transparent,
+                                                transparent 1px,
+                                                rgba(0, 0, 0, 0.2) 1px,
+                                                rgba(0, 0, 0, 0.2) 2px
+                                            ),
+                                            repeating-linear-gradient(
+                                                90deg,
+                                                transparent,
+                                                transparent 1px,
+                                                rgba(255, 255, 255, 0.15) 1px,
+                                                rgba(255, 255, 255, 0.15) 2px
+                                            );
+                                        mix-blend-mode: hard-light;
+                                        image-rendering: pixelated;
+                                    "
+                                ></div>
+                            </div>
+
+                            <Link href="/about" class="absolute inset-0 z-10" aria-label="Go to About page"></Link>
+                            <div class="pointer-events-none relative z-20 flex h-full flex-row items-center justify-between gap-4">
+                                <div class="flex h-full flex-col justify-between">
+                                    <span
+                                        class="flex size-12 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm dark:bg-white/10"
+                                    >
+                                        <lord-icon
+                                            src="/icons/system-regular-8-account-hover-pinch.json"
+                                            trigger="morph"
+                                            target=".about-icon"
+                                            style="width: 20px; height: 20px"
+                                            class="current-color opacity-60 group-hover/card:opacity-100"
+                                        >
+                                        </lord-icon>
+                                    </span>
+                                    <div class="p-2">
+                                        <h3 class="mb-1 font-sans text-xl font-bold text-white md:text-2xl">{{ t('home.navigation.aboutMe') }}</h3>
+                                        <p class="line-clamp-2 text-xs text-white/80">{{ t('home.navigation.aboutDescription') }}</p>
+
+                                        <button
+                                            type="button"
+                                            class="pointer-events-auto mt-2 flex items-center gap-1.5 text-xs text-white/60 transition-all hover:text-white"
+                                            @click.stop="toggleCard"
+                                        >
+                                            <span class="hidden md:inline">{{ t('home.navigation.hoverToPreview') }}</span>
+                                            <span class="inline md:hidden">{{ t('home.navigation.tapToPreview') }}</span>
+                                            <FontAwesomeIcon
+                                                icon="fa-sharp fa-light fa-arrow-up-right"
+                                                class="h-2.5 w-2.5 transition-transform duration-200"
+                                            />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
-                            <p class="mt-3 flex-1 text-xs leading-relaxed text-teal-50">
-                                {{ t('home.profile.description') }}
-                            </p>
-
-                            <!-- Info items -->
-                            <div class="mt-3 space-y-1.5 border-t border-teal-800/40 pt-3">
-                                <div class="flex items-center gap-2 text-xs text-teal-200">
-                                    <FontAwesomeIcon icon="fa-sharp fa-light fa-building" class="w-3.5 text-teal-400" />
-                                    <span>{{ t('home.profile.coFounder') }}</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-xs text-teal-300">
-                                    <FontAwesomeIcon icon="fa-sharp fa-light fa-code-branch" class="w-3.5 text-teal-400" />
-                                    <span>{{ t('home.profile.openSourceContributor') }}</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-xs text-teal-300">
-                                    <FontAwesomeIcon
-                                        icon="fa-sharp fa-light fa-starfighter"
-                                        class="w-3.5 cursor-pointer text-teal-400 transition-all duration-200 hover:scale-110"
-                                        :class="{
-                                            'starfighter-flying': isStarfighterFlying,
-                                            'starfighter-bounce': !isStarfighterFlying && !isStarfighterCooldown,
-                                        }"
-                                        @click.stop="triggerStarfighterAnimation"
-                                        @mouseenter="triggerStarfighterAnimation"
-                                    />
-                                    <span>{{ t('home.profile.starWarsEnthusiast') }}</span>
-                                </div>
-                            </div>
-
-                            <Link
-                                href="/about"
-                                class="group/learn-more mt-3 flex items-center gap-2 text-xs text-teal-300/80 transition-all duration-200 hover:text-teal-100"
+                            <!-- Full card preview modal -->
+                            <div
+                                class="pointer-events-auto absolute inset-0 z-30 flex flex-col rounded-2xl border border-teal-800/40 bg-teal-black/90 p-4 backdrop-blur-md transition-all ease-out md:p-8 md:duration-300 md:group-hover/card:delay-600 md:group-hover/card:duration-300"
+                                :class="{
+                                    'invisible opacity-0': !isCardOpen,
+                                    'visible opacity-100': isCardOpen,
+                                    'md:invisible md:opacity-0 md:group-hover/card:visible md:group-hover/card:opacity-100': true,
+                                }"
                             >
-                                {{ t('home.navigation.learnMore') }}
-                                <FontAwesomeIcon
-                                    icon="fa-sharp fa-light fa-arrow-up-right"
-                                    class="h-3 w-3 transition-all duration-200 group-hover/learn-more:translate-x-0.5 group-hover/learn-more:-translate-y-0.5"
-                                />
-                            </Link>
+                                <!-- Header -->
+                                <div class="flex items-start gap-3">
+                                    <img
+                                        src="/img/daniel.webp"
+                                        alt="Daniel Schmier"
+                                        class="h-14 w-14 rounded-full border-2 border-teal-800/40 object-cover md:h-16 md:w-16"
+                                    />
+                                    <div class="flex-1">
+                                        <h3 class="text-sm font-medium text-teal-100">Daniel Schmier</h3>
+                                        <p class="text-xs text-teal-300/80">{{ t('home.profile.title') }}</p>
+                                    </div>
+                                </div>
+
+                                <p class="mt-3 flex-1 text-xs leading-relaxed text-teal-50">
+                                    {{ t('home.profile.description') }}
+                                </p>
+
+                                <!-- Info items -->
+                                <div class="mt-3 space-y-1.5 border-t border-teal-800/40 pt-3">
+                                    <div class="flex items-center gap-2 text-xs text-teal-200">
+                                        <FontAwesomeIcon icon="fa-sharp fa-light fa-building" class="w-3.5 text-teal-400" />
+                                        <span>{{ t('home.profile.coFounder') }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-teal-300">
+                                        <FontAwesomeIcon icon="fa-sharp fa-light fa-code-branch" class="w-3.5 text-teal-400" />
+                                        <span>{{ t('home.profile.openSourceContributor') }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-teal-300">
+                                        <FontAwesomeIcon
+                                            icon="fa-sharp fa-light fa-starfighter"
+                                            class="w-3.5 cursor-pointer text-teal-400 transition-all duration-200 hover:scale-110"
+                                            :class="{
+                                                'starfighter-flying': isStarfighterFlying,
+                                                'starfighter-bounce': !isStarfighterFlying && !isStarfighterCooldown,
+                                            }"
+                                            @click.stop="triggerStarfighterAnimation"
+                                            @mouseenter="triggerStarfighterAnimation"
+                                        />
+                                        <span>{{ t('home.profile.starWarsEnthusiast') }}</span>
+                                    </div>
+                                </div>
+
+                                <Link
+                                    href="/about"
+                                    class="group/learn-more mt-3 flex items-center gap-2 text-xs text-teal-300/80 transition-all duration-200 hover:text-teal-100"
+                                >
+                                    {{ t('home.navigation.learnMore') }}
+                                    <FontAwesomeIcon
+                                        icon="fa-sharp fa-light fa-arrow-up-right"
+                                        class="h-3 w-3 transition-all duration-200 group-hover/learn-more:translate-x-0.5 group-hover/learn-more:-translate-y-0.5"
+                                    />
+                                </Link>
+                            </div>
                         </div>
                     </div>
 
@@ -969,65 +1090,82 @@ const fadeUpMotion = {
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 400 },
                         }"
                         href="/blog"
-                        class="group blog-icon relative col-span-1 overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 hover:border-brand/50 hover:shadow-xl md:col-span-4 dark:border-white/10 dark:bg-neutral-900/50"
+                        class="glowing-card mobile-tap-glow blog-icon group relative col-span-1 overflow-visible rounded-2xl md:col-span-4"
                     >
+                        <div class="glows"></div>
                         <div
-                            class="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                        ></div>
-                        <div class="relative z-10 flex h-full flex-col justify-between">
-                            <span
-                                class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
-                            >
-                                <lord-icon
-                                    src="/icons/system-regular-14-article-hover-article.json"
-                                    trigger="morph"
-                                    target=".blog-icon"
-                                    style="width: 20px; height: 20px"
-                                    class="current-color opacity-60 group-hover:opacity-100"
+                            class="glowing-card-content relative h-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 group-hover:border-brand-400/50 group-hover:shadow-xl dark:border-white/10 dark:bg-neutral-900/50"
+                        >
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-br from-brand-400/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            ></div>
+                            <div class="relative z-10 flex h-full flex-col justify-between">
+                                <span
+                                    class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
                                 >
-                                </lord-icon>
-                            </span>
-                            <div class="p-2 mt-8 md:mt-4">
-                                <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
-                                    {{ t('home.navigation.blog') }}
-                                </h3>
-                                <p class="line-clamp-2 text-xs text-neutral-600 dark:text-white/80">
-                                    {{ t('home.navigation.blogDescription') }}
-                                </p>
+                                    <lord-icon
+                                        src="/icons/system-regular-14-article-hover-article.json"
+                                        trigger="morph"
+                                        target=".blog-icon"
+                                        style="width: 20px; height: 20px"
+                                        class="current-color opacity-60 group-hover:opacity-100"
+                                    >
+                                    </lord-icon>
+                                </span>
+                                <div class="mt-8 p-2 md:mt-4">
+                                    <h3 class="mb-1 font-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
+                                        {{ t('home.navigation.blog') }}
+                                    </h3>
+                                    <p class="line-clamp-2 text-xs text-neutral-600 dark:text-white/80">
+                                        {{ t('home.navigation.blogDescription') }}
+                                    </p>
 
-                                <!-- Blog Stats -->
-                                <div class="space-y-3 font-mono text-xs mt-8">
-                                    <!-- Total Posts -->
-                                    <div class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-                                        <span class="text-brand dark:text-brand">~</span>
-                                        <span class="text-neutral-500 dark:text-neutral-500">$</span>
-                                        <span class="text-neutral-700 dark:text-neutral-300">blog</span>
-                                        <span class="text-neutral-500 dark:text-neutral-500">--count</span>
-                                    </div>
-                                    <div class="ml-4 flex items-baseline gap-2">
-                                        <span class="rounded bg-neutral-200 px-1.5 py-0.5 text-[10px] font-medium text-neutral-700 tabular-nums dark:bg-white/10 dark:text-neutral-300">{{ blogStats.total }}</span>
-                                        <span class="text-neutral-600 dark:text-neutral-400">{{ blogStats.total === 1 ? 'article' : 'articles' }}</span>
-                                    </div>
+                                    <!-- Blog Stats -->
+                                    <div class="mt-8 space-y-3 font-mono text-xs">
+                                        <!-- Total Posts -->
+                                        <div class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                                            <span class="text-brand-400 dark:text-brand">~</span>
+                                            <span class="text-neutral-500 dark:text-neutral-500">$</span>
+                                            <span class="text-neutral-700 dark:text-neutral-300">blog</span>
+                                            <span class="text-neutral-500 dark:text-neutral-500">--count</span>
+                                        </div>
+                                        <div class="ml-4 flex items-baseline gap-2">
+                                            <span
+                                                class="rounded bg-neutral-200 px-1.5 py-0.5 text-[10px] font-medium text-neutral-700 tabular-nums dark:bg-white/10 dark:text-neutral-300"
+                                                >{{ blogStats.total }}</span
+                                            >
+                                            <span class="text-neutral-600 dark:text-neutral-400">{{
+                                                blogStats.total === 1 ? 'article' : 'articles'
+                                            }}</span>
+                                        </div>
 
-                                    <!-- Categories -->
-                                    <div class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-                                        <span class="text-brand dark:text-brand">~</span>
-                                        <span class="text-neutral-500 dark:text-neutral-500">$</span>
-                                        <span class="text-neutral-700 dark:text-neutral-300">blog</span>
-                                        <span class="text-neutral-500 dark:text-neutral-500">--categories</span>
-                                    </div>
-                                    <div class="ml-4 space-y-1.5 items-baseline">
-                                        <div v-for="cat in blogStats.categories" :key="cat.name" class="flex items-center flex-row gap-2 justify-start">
-                                            <span class="rounded bg-neutral-200 px-1.5 py-0.5 text-[10px] font-medium text-neutral-700 tabular-nums dark:bg-white/10 dark:text-neutral-300">{{ cat.count }}</span>
-                                            <span class="text-neutral-600 dark:text-neutral-400">{{ t(`blog.categories.${cat.name}`) }}</span>
+                                        <!-- Categories -->
+                                        <div class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                                            <span class="text-brand-400 dark:text-brand-400">~</span>
+                                            <span class="text-neutral-500 dark:text-neutral-500">$</span>
+                                            <span class="text-neutral-700 dark:text-neutral-300">blog</span>
+                                            <span class="text-neutral-500 dark:text-neutral-500">--categories</span>
+                                        </div>
+                                        <div class="ml-4 items-baseline space-y-1.5">
+                                            <div
+                                                v-for="cat in blogStats.categories"
+                                                :key="cat.name"
+                                                class="flex flex-row items-center justify-start gap-2"
+                                            >
+                                                <span
+                                                    class="rounded bg-neutral-200 px-1.5 py-0.5 text-[10px] font-medium text-neutral-700 tabular-nums dark:bg-white/10 dark:text-neutral-300"
+                                                    >{{ cat.count }}</span
+                                                >
+                                                <span class="text-neutral-600 dark:text-neutral-400">{{ t(`blog.categories.${cat.name}`) }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div
+                                class="absolute -right-12 -bottom-12 h-48 w-48 rounded-full bg-brand-400/10 blur-3xl transition-all duration-700 group-hover:bg-brand-400/20"
+                            ></div>
                         </div>
-                        <div
-                            class="absolute -right-12 -bottom-12 h-48 w-48 rounded-full bg-brand/10 blur-3xl transition-all duration-700 group-hover:bg-brand/20"
-                        ></div>
                     </Link>
 
                     <!-- Past Work -->
@@ -1038,174 +1176,166 @@ const fadeUpMotion = {
                             ...fadeUpMotion.visibleOnce,
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 200 },
                         }"
-                        class="group past-work-icon relative z-50 col-span-1 row-span-1 overflow-visible rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 hover:border-brand/50 hover:shadow-2xl md:col-span-5 md:row-span-1 dark:border-white/10 dark:bg-neutral-900/50"
+                        class="glowing-card mobile-focus-glow past-work-icon group relative z-50 col-span-1 row-span-1 rounded-2xl md:col-span-6 md:row-span-1 lg:col-span-5"
                     >
+                        <div class="glows"></div>
                         <div
-                            class="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                        ></div>
-                        <div class="relative z-10 flex h-full flex-col justify-between">
-                            <Link href="/portfolio">
-                                <div class="flex items-start justify-between">
-                                    <span
-                                        class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
-                                    >
-                                        <lord-icon
-                                            src="/icons/system-regular-178-work-hover-work.json"
-                                            trigger="morph"
-                                            target=".past-work-icon"
-                                            style="width: 20px; height: 20px"
-                                            class="current-color opacity-60 group-hover:opacity-100"
-                                        >
-                                        </lord-icon>
-                                    </span>
-                                </div></Link
-                            >
-                            <div class="p-2 mt-8 md:mt-4">
+                            class="glowing-card-content relative h-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 group-hover:border-brand-400/50 group-hover:shadow-2xl dark:border-white/10 dark:bg-neutral-900/50"
+                        >
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-br from-brand-400/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            ></div>
+                            <div class="relative z-10 flex h-full flex-col justify-between">
                                 <Link href="/portfolio">
-                                    <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white capitalize">
-                                        {{ t('home.navigation.pastWorkFolder') }}
-                                    </h3></Link
-                                >
-
-                                <!-- Folder Directory Tree -->
-                                <div class="relative font-mono text-xs leading-relaxed text-neutral-600 dark:text-neutral-400 max-w-[300px]">
-                                    <!-- Past Work Folder (Main Level) -->
-                                    <div class="relative mt-2">
-                                        <div
-                                            v-if="isPastWorkExpanded && pastWorkLinks.length > 0"
-                                            class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
-                                        ></div>
-
-                                        <button
-                                            type="button"
-                                            class="group group/pastwork mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
-                                            @click="togglePastWork"
+                                    <div class="flex items-start justify-between">
+                                        <span
+                                            class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
                                         >
-                                            <FontAwesomeIcon
-                                                :icon="
-                                                    isPastWorkExpanded ? 'fa-sharp fa-light fa-chevron-down' : 'fa-sharp fa-light fa-chevron-right'
-                                                "
-                                                class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
-                                            />
-                                            <FontAwesomeIcon
-                                                :icon="isPastWorkExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
-                                                class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/pastwork:text-neutral-900 dark:text-neutral-500 dark:group-hover/pastwork:text-white"
-                                            />
-                                            <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
-                                                t('home.navigation.pastWorkFolder')
-                                            }}</span>
-                                        </button>
+                                            <lord-icon
+                                                src="/icons/system-regular-178-work-hover-work.json"
+                                                trigger="morph"
+                                                target=".past-work-icon"
+                                                style="width: 20px; height: 20px"
+                                                class="current-color opacity-60 group-hover:opacity-100"
+                                            >
+                                            </lord-icon>
+                                        </span></div
+                                ></Link>
+                                <div class="mt-8 p-2 md:mt-4">
+                                    <Link href="/portfolio">
+                                        <h3 class="mb-1 font-sans text-xl font-bold text-neutral-900 capitalize md:text-2xl dark:text-white">
+                                            {{ t('home.navigation.pastWorkFolder') }}
+                                        </h3></Link
+                                    >
 
-                                        <!-- Past Work Items -->
-                                        <div v-if="isPastWorkExpanded" class="ml-6 space-y-0.5">
-                                            <div class="flex w-full flex-row justify-start gap-12 pl-1">
-                                                <div class="flex flex-wrap gap-1">
-                                                    <div v-for="(link, index) in pastWorkLinks.slice(0, 4)" :key="link.url" class="space-y-0.5">
-                                                        <a
-                                                            :href="link.url"
-                                                            target="_blank"
-                                                            class="link-with-thumbnail"
-                                                            :class="{ 'is-active': activeThumbnailIndex === index }"
-                                                            @click.prevent="toggleThumbnail(index)"
+                                    <!-- Folder Directory Tree -->
+                                    <div class="relative max-w-[300px] font-mono text-xs leading-relaxed text-neutral-600 dark:text-neutral-400">
+                                        <!-- Past Work Folder (Main Level) -->
+                                        <div class="relative mt-2">
+                                            <div
+                                                v-if="isPastWorkExpanded && pastWorkLinks.length > 0"
+                                                class="absolute top-8 bottom-0 left-[13px] w-px bg-neutral-300 dark:bg-neutral-700"
+                                            ></div>
+
+                                            <button
+                                                type="button"
+                                                class="group/pastwork group mb-1 flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-left transition-all hover:bg-neutral-100/50 hover:text-neutral-900 dark:hover:bg-white/5 dark:hover:text-white"
+                                                @click="togglePastWork"
+                                            >
+                                                <FontAwesomeIcon
+                                                    :icon="
+                                                        isPastWorkExpanded
+                                                            ? 'fa-sharp fa-light fa-chevron-down'
+                                                            : 'fa-sharp fa-light fa-chevron-right'
+                                                    "
+                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-transform"
+                                                />
+                                                <FontAwesomeIcon
+                                                    :icon="isPastWorkExpanded ? 'fa-sharp fa-light fa-folder-open' : 'fa-sharp fa-light fa-folder'"
+                                                    class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/pastwork:text-neutral-900 dark:text-neutral-500 dark:group-hover/pastwork:text-white"
+                                                />
+                                                <span class="leading-normal font-medium text-neutral-700 dark:text-neutral-300">{{
+                                                    t('home.navigation.pastWorkFolder')
+                                                }}</span>
+                                            </button>
+
+                                            <!-- Past Work Items -->
+                                            <div v-if="isPastWorkExpanded" class="ml-6 space-y-0.5">
+                                                <div class="flex w-full flex-row justify-start gap-12 pl-1">
+                                                    <div class="flex flex-wrap gap-1">
+                                                        <div
+                                                            v-for="(link, index) in pastWorkLinks.slice(0, 4)"
+                                                            :key="link.url"
+                                                            class="past-work-column space-y-0.5"
                                                         >
-                                                            <div
-                                                                class="flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
+                                                            <a
+                                                                :href="link.url"
+                                                                target="_blank"
+                                                                class="link-with-thumbnail"
+                                                                :class="{ 'is-active': activeThumbnailIndex === index }"
+                                                                @click.prevent="toggleThumbnail(index)"
                                                             >
-                                                                <FontAwesomeIcon
-                                                                    icon="fa-sharp fa-light fa-browser"
-                                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
-                                                                />
-                                                                <span class="truncate leading-normal">{{ link.label }}</span>
-                                                                <span
-                                                                    class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
-                                                                    ><FontAwesomeIcon
-                                                                        icon="fa-sharp fa-light fa-arrow-up-right"
-                                                                        class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
-                                                                /></span>
                                                                 <div
-                                                                    class="thumbnail-preview-wrapper left-column"
-                                                                    :class="{ 'is-active': activeThumbnailIndex === index }"
+                                                                    class="flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
                                                                 >
-                                                                    <img
-                                                                        class="thumbnail-preview"
-                                                                        :src="link.image"
-                                                                        :alt="link.alt"
-                                                                        width="300"
-                                                                        height="300"
+                                                                    <FontAwesomeIcon
+                                                                        icon="fa-sharp fa-light fa-browser"
+                                                                        class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
                                                                     />
+                                                                    <span class="truncate leading-normal">{{ link.label }}</span>
+                                                                    <span
+                                                                        class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
+                                                                        ><FontAwesomeIcon
+                                                                            icon="fa-sharp fa-light fa-arrow-up-right"
+                                                                            class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
+                                                                    /></span>
+                                                                    <div
+                                                                        class="thumbnail-preview-wrapper past-work-column"
+                                                                        :class="{ 'is-active': activeThumbnailIndex === index }"
+                                                                    >
+                                                                        <img
+                                                                            class="thumbnail-preview"
+                                                                            :src="link.image"
+                                                                            :alt="link.alt"
+                                                                            width="300"
+                                                                            height="300"
+                                                                        />
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div v-for="(link, index) in pastWorkLinks.slice(4, 8)" :key="link.url" class="space-y-0.5">
-                                                        <a
-                                                            :href="link.url"
-                                                            target="_blank"
-                                                            class="link-with-thumbnail"
-                                                            :class="{ 'is-active': activeThumbnailIndex === index + 4 }"
-                                                            @click.prevent="toggleThumbnail(index + 4)"
+                                                            </a>
+                                                        </div>
+                                                        <div
+                                                            v-for="(link, index) in pastWorkLinks.slice(4, 8)"
+                                                            :key="link.url"
+                                                            class="past-work-column space-y-0.5"
                                                         >
-                                                            <div
-                                                                class="flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
+                                                            <a
+                                                                :href="link.url"
+                                                                target="_blank"
+                                                                class="link-with-thumbnail"
+                                                                :class="{ 'is-active': activeThumbnailIndex === index + 4 }"
+                                                                @click.prevent="toggleThumbnail(index + 4)"
                                                             >
-                                                                <FontAwesomeIcon
-                                                                    icon="fa-sharp fa-light fa-browser"
-                                                                    class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
-                                                                />
-                                                                <span class="truncate leading-normal">{{ link.label }}</span>
-                                                                <span
-                                                                    class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
-                                                                    ><FontAwesomeIcon
-                                                                        icon="fa-sharp fa-light fa-arrow-up-right"
-                                                                        class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
-                                                                /></span>
                                                                 <div
-                                                                    class="thumbnail-preview-wrapper left-column"
-                                                                    :class="{ 'is-active': activeThumbnailIndex === index + 4 }"
+                                                                    class="flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
                                                                 >
-                                                                    <img
-                                                                        class="thumbnail-preview"
-                                                                        :src="link.image"
-                                                                        :alt="link.alt"
-                                                                        width="300"
-                                                                        height="300"
+                                                                    <FontAwesomeIcon
+                                                                        icon="fa-sharp fa-light fa-browser"
+                                                                        class="h-3 w-3 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/project:text-neutral-900 dark:text-neutral-500 dark:group-hover/project:text-white"
                                                                     />
+                                                                    <span class="truncate leading-normal">{{ link.label }}</span>
+                                                                    <span
+                                                                        class="ml-auto hidden items-center justify-center group-hover/project:inline-flex"
+                                                                        ><FontAwesomeIcon
+                                                                            icon="fa-sharp fa-light fa-arrow-up-right"
+                                                                            class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
+                                                                    /></span>
+                                                                    <div
+                                                                        class="thumbnail-preview-wrapper past-work-column"
+                                                                        :class="{ 'is-active': activeThumbnailIndex === index + 4 }"
+                                                                    >
+                                                                        <img
+                                                                            class="thumbnail-preview"
+                                                                            :src="link.image"
+                                                                            :alt="link.alt"
+                                                                            width="300"
+                                                                            height="300"
+                                                                        />
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div
-                                                v-for="(link, index) in pastWorkLinks"
-                                                :key="link.url"
-                                                class="flex hidden items-center gap-2 px-1.5 py-1"
-                                            >
-                                                <FontAwesomeIcon icon="fa-sharp fa-light fa-file" class="h-3 w-3 flex-shrink-0 text-neutral-500" />
-                                                <a
-                                                    :href="link.url"
-                                                    target="_blank"
-                                                    class="link-with-thumbnail truncate leading-normal text-neutral-500 transition-all hover:cursor-ne-resize hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-white"
-                                                    :class="{ 'is-active': activeThumbnailIndex === index }"
-                                                    @click.prevent="toggleThumbnail(index)"
-                                                    >{{ link.label }}
-                                                    <div
-                                                        class="thumbnail-preview-wrapper left-column"
-                                                        :class="{ 'is-active': activeThumbnailIndex === index }"
-                                                    >
-                                                        <img class="thumbnail-preview" :src="link.image" :alt="link.alt" width="300" height="300" />
-                                                    </div>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div
+                                class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-brand-400/10 blur-3xl transition-all duration-700 group-hover:bg-brand-400/20"
+                            ></div>
                         </div>
-                        <div
-                            class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-brand/10 blur-3xl transition-all duration-700 group-hover:bg-brand/20"
-                        ></div>
                     </div>
 
                     <!-- Playground -->
@@ -1217,36 +1347,41 @@ const fadeUpMotion = {
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 500 },
                         }"
                         href="/playground"
-                        class="group playground-icon relative col-span-1 overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 transition-all duration-500 hover:border-brand/50 hover:shadow-xl md:col-span-7 dark:border-white/10 dark:bg-neutral-900/50"
+                        class="glowing-card mobile-tap-glow playground-icon group relative col-span-1 overflow-visible rounded-2xl md:col-span-6 lg:col-span-7"
                     >
-                        <div class="relative z-10 flex h-full min-h-0 flex-col justify-between p-4 transition-opacity duration-300">
-                            <div class="flex items-start justify-between">
-                                <span
-                                    class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
-                                >
-                                    <lord-icon
-                                        src="/icons/system-regular-166-science-hover-science.json"
-                                        trigger="morph"
-                                        target=".playground-icon"
-                                        style="width: 20px; height: 20px"
-                                        class="current-color opacity-60 group-hover:opacity-100"
+                        <div class="glows"></div>
+                        <div
+                            class="glowing-card-content relative h-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 transition-all duration-500 group-hover:border-brand-400/50 group-hover:shadow-xl dark:border-white/10 dark:bg-neutral-900/50"
+                        >
+                            <div class="relative z-10 flex h-full min-h-0 flex-col justify-between p-4 transition-opacity duration-300">
+                                <div class="flex items-start justify-between">
+                                    <span
+                                        class="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white"
                                     >
-                                    </lord-icon>
-                                </span>
-                            </div>
-                            
-                            <div class="p-2 mt-8 md:mt-4">
-                                <div>
-                                    <h3 class="mb-1 font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white capitalize">
-                                        {{ t('home.navigation.playground') }}
-                                    </h3>
-                                    <p class="line-clamp-2 text-xs text-neutral-600 dark:text-white/80">
-                                        {{ t('home.navigation.playgroundDescription') }}
-                                    </p>
+                                        <lord-icon
+                                            src="/icons/system-regular-166-science-hover-science.json"
+                                            trigger="morph"
+                                            target=".playground-icon"
+                                            style="width: 20px; height: 20px"
+                                            class="current-color opacity-60 group-hover:opacity-100"
+                                        >
+                                        </lord-icon>
+                                    </span>
                                 </div>
 
-                                <div class="overflow-hidden mt-8">
-                                    <IDEPreview />
+                                <div class="mt-8 p-2 md:mt-4">
+                                    <div>
+                                        <h3 class="mb-1 font-sans text-xl font-bold text-neutral-900 capitalize md:text-2xl dark:text-white">
+                                            {{ t('home.navigation.playground') }}
+                                        </h3>
+                                        <p class="line-clamp-2 text-xs text-neutral-600 dark:text-white/80">
+                                            {{ t('home.navigation.playgroundDescription') }}
+                                        </p>
+                                    </div>
+
+                                    <div class="mt-8 overflow-hidden">
+                                        <IDEPreview />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1258,7 +1393,7 @@ const fadeUpMotion = {
         <!-- Latest Articles -->
         <section v-if="latestPosts.length > 0">
             <div class="mb-4 flex items-end justify-between border-b border-neutral-200 pb-4 dark:border-white/10">
-                <h3 class="font-work-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
+                <h3 class="font-sans text-xl font-bold text-neutral-900 md:text-2xl dark:text-white">
                     {{ t('home.navigation.latestPosts') }}
                 </h3>
                 <Link
@@ -1278,11 +1413,11 @@ const fadeUpMotion = {
                     :key="post.slug"
                     :href="`/blog/${post.category[0].toLowerCase()}/${post.slug}`"
                     :class="`post-link-${post.slug}`"
-                    class="group relative flex items-center gap-4 overflow-hidden rounded-xl border border-transparent p-3 transition-all hover:border-brand/30 hover:bg-neutral-50 hover:shadow-lg dark:hover:bg-white/5"
+                    class="group relative flex items-center gap-4 overflow-hidden rounded-xl border border-transparent bg-brand-50/10 p-3 transition-all hover:border-brand-400/50 hover:shadow-lg dark:bg-brand-950/50 dark:hover:border-brand-400/50"
                 >
                     <!-- Hover Gradient Overlay -->
                     <div
-                        class="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                        class="absolute inset-0 z-0 bg-gradient-to-br from-brand-400/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                     ></div>
 
                     <div
@@ -1297,7 +1432,7 @@ const fadeUpMotion = {
                     </div>
 
                     <div class="relative z-10 flex flex-1 flex-col gap-0.5">
-                        <span class="font-medium text-neutral-900 transition-colors group-hover:text-brand dark:text-white">
+                        <span class="font-medium text-neutral-900 transition-colors group-hover:text-brand-400 dark:text-white">
                             {{ post.title }}
                         </span>
                         <div class="flex items-center gap-2 text-xs text-neutral-500">
@@ -1322,6 +1457,270 @@ const fadeUpMotion = {
         </section>
     </div>
 </template>
+
+<style>
+/* Glowing Card Effect */
+@property --start {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+}
+
+.glowing-card--container {
+    --spread: 60;
+    --blur: 16;
+    --gradient: linear-gradient(90deg, oklch(0.683 0.12 173.63) 0%, oklch(0.759 0.134 173.76) 50%, oklch(0.683 0.12 173.63) 100%);
+}
+
+.glowing-card {
+    --active: 0.15;
+    --start: 0;
+    position: relative;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.glowing-card:is(:hover, :focus-visible) {
+    z-index: 2;
+}
+
+.glows {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    filter: blur(calc(var(--blur) * 1px));
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    z-index: 0;
+    border-radius: inherit;
+}
+
+.glows::after,
+.glows::before {
+    content: '';
+    background: var(--gradient);
+    background-attachment: fixed;
+    position: absolute;
+    inset: -5px;
+    border: 6px solid transparent;
+    border-radius: inherit;
+    mask:
+        linear-gradient(#0000, #0000),
+        conic-gradient(from calc((var(--start) - (var(--spread) * 0.5)) * 1deg), #000 0deg, #fff, #0000 calc(var(--spread) * 1deg));
+    -webkit-mask:
+        linear-gradient(#0000, #0000),
+        conic-gradient(from calc((var(--start) - (var(--spread) * 0.5)) * 1deg), #000 0deg, #fff, #0000 calc(var(--spread) * 1deg));
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+    mask-clip: padding-box, border-box;
+    -webkit-mask-clip: padding-box, border-box;
+    opacity: var(--active);
+    transition: opacity 1s;
+}
+
+.glowing-card::before {
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    content: '';
+    pointer-events: none;
+    background: rgb(255 255 255 / 0.1);
+    background-attachment: fixed;
+    border-radius: inherit;
+    z-index: 1;
+    mask:
+        linear-gradient(#0000, #0000),
+        conic-gradient(
+            from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) * 1deg),
+            hsla(24, 100%, 53%, 0.15) 0deg,
+            white,
+            hsla(24, 100%, 53%, 0.15) calc(var(--spread) * 2.5deg)
+        );
+    -webkit-mask:
+        linear-gradient(#0000, #0000),
+        conic-gradient(
+            from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) * 1deg),
+            hsla(24, 100%, 53%, 0.15) 0deg,
+            white,
+            hsla(24, 100%, 53%, 0.15) calc(var(--spread) * 2.5deg)
+        );
+    mask-clip: padding-box, border-box;
+    -webkit-mask-clip: padding-box, border-box;
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+    opacity: var(--active);
+    transition: opacity 1s;
+}
+
+.glowing-card::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    background: var(--gradient);
+    background-attachment: fixed;
+    opacity: var(--active, 0);
+    transition: opacity 1s;
+    inset: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    z-index: 1;
+    mask:
+        linear-gradient(#0000, #0000),
+        conic-gradient(
+            from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) * 1deg),
+            #0000 0deg,
+            oklch(0.683 0.12 173.63),
+            #0000 calc(var(--spread) * 0.5deg)
+        );
+    -webkit-mask:
+        linear-gradient(#0000, #0000),
+        conic-gradient(
+            from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) * 1deg),
+            #0000 0deg,
+            oklch(0.683 0.12 173.63),
+            #0000 calc(var(--spread) * 0.5deg)
+        );
+    filter: brightness(1.5);
+    mask-clip: padding-box, border-box;
+    -webkit-mask-clip: padding-box, border-box;
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+}
+
+.glowing-card::before,
+.glowing-card::after {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+@media (max-width: 990px) {
+    .glowing-card {
+        --active: 0;
+        --start: 0;
+    }
+
+    .glows::after,
+    .glows::before {
+        display: none;
+    }
+
+    .glowing-card::before,
+    .glowing-card::after {
+        display: none;
+    }
+
+    .mobile-tap-glow .glowing-card-content {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .mobile-tap-glow .glowing-card-content::after {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(135deg, oklch(0.683 0.12 173.63 / 0.3) 0%, transparent 50%, oklch(0.683 0.12 173.63 / 0.1) 100%);
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0.4;
+        z-index: 1;
+    }
+
+    .mobile-tap-glow .glowing-card-content::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(circle at center, oklch(0.683 0.12 173.63 / 0.15) 0%, oklch(0.683 0.12 173.63 / 0.05) 50%, transparent 70%);
+        opacity: 0;
+        transform: scale(0.8);
+        transition: none;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .mobile-tap-glow:active .glowing-card-content::before {
+        animation: tapPulse 0.4s ease-out forwards;
+    }
+
+    @keyframes tapPulse {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(1.05);
+        }
+    }
+
+    .mobile-focus-glow .glowing-card-content {
+        position: relative;
+        overflow: hidden;
+        transition:
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .mobile-focus-glow .glowing-card-content::after {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(135deg, oklch(0.683 0.12 173.63 / 0.3) 0%, transparent 50%, oklch(0.683 0.12 173.63 / 0.1) 100%);
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0.4;
+        transition:
+            opacity 0.3s ease,
+            background 0.3s ease;
+        z-index: 1;
+    }
+
+    .mobile-focus-glow:active .glowing-card-content,
+    .mobile-focus-glow:focus-within .glowing-card-content {
+        box-shadow:
+            0 0 20px oklch(0.683 0.12 173.63 / 0.15),
+            0 0 40px oklch(0.683 0.12 173.63 / 0.1);
+        border: 1px solid oklch(0.683 0.12 173.63 / 0.5);
+    }
+
+    .mobile-focus-glow:active .glowing-card-content::after,
+    .mobile-focus-glow:focus-within .glowing-card-content::after {
+        opacity: 1;
+        background: linear-gradient(
+            135deg,
+            oklch(0.683 0.12 173.63 / 0.5) 0%,
+            oklch(0.683 0.12 173.63 / 0.2) 50%,
+            oklch(0.683 0.12 173.63 / 0.3) 100%
+        );
+    }
+}
+</style>
 
 <style scoped>
 @keyframes fa-bounce {
