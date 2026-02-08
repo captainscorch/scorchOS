@@ -287,7 +287,7 @@ const navigateHistory = (direction: 'up' | 'down') => {
 <template>
     <div
         v-if="isTerminalOpen"
-        class="fixed inset-0 z-200 bg-white/60 backdrop-blur-xs dark:bg-teal-black/60"
+        class="fixed inset-0 z-200 bg-off-white/75 backdrop-blur-xs dark:bg-teal-black/75"
         @click="!isResizing && $emit('close')"
     ></div>
     <div
