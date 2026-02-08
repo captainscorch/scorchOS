@@ -22,8 +22,9 @@ technologies:
     - Livewire
     - Alpine.js
     - Tailwind CSS
-    - Mapbox GL JS
+    - MySQL
     - Filament
+    - Mapbox GL JS
     - Laravel Cashier
     - Stripe
     - OpenAI API
