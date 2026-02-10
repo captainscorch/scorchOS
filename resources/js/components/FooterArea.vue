@@ -188,7 +188,7 @@ onUnmounted(() => {
                 </div>
             </div>
 
-            <div class="mt-8 mb-20 flex flex-col items-end justify-between gap-4 md:mt-16 md:mb-0 md:flex-row">
+            <div class="mt-8 mb-20 flex flex-col items-end justify-between gap-4 sm:mt-0 md:mb-0 md:flex-row lg:mt-16">
                 <div class="flex w-full flex-col items-center justify-between gap-x-8 gap-y-4 text-sm tracking-wide uppercase md:flex-row md:gap-y-0">
                     <p class="text-xs tracking-wider text-neutral-500 uppercase md:text-neutral-600">&copy; {{ t('footer.copyright') }} {{ year }}</p>
                     <div class="flex flex-row items-center gap-x-4">
