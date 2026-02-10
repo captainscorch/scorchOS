@@ -45,9 +45,11 @@ const project = computed(() => {
     return getProject(props.slug);
 });
 
-const pageTitle = computed(() => (project.value ? `${project.value.client} - Case Study` : t('caseStudy.notFound')));
+const pageTitle = computed(() => (project.value ? `${project.value.client} Case Study – Daniel Schmier` : t('caseStudy.notFound')));
 const pageDescription = computed(() => project.value?.story_preview || t('caseStudy.defaultDescription'));
-const ogTitle = computed(() => (project.value ? `${project.value.client} – ${project.value.title}` : 'Case Study'));
+const ogTitle = computed(() =>
+    project.value ? `${project.value.client}: ${project.value.title} Case Study – Daniel Schmier` : 'Case Study – Daniel Schmier',
+);
 const ogImage = computed(() => project.value?.image || '');
 
 const ogUrl = computed(() => {

@@ -30,9 +30,9 @@ const getCategoryIcon = (category: string | null) => {
     }
 };
 
-const pageTitle = 'Daniel Schmier - Blog';
+const pageTitle = 'Blog – Daniel Schmier';
 const pageDescription = 'Articles and insights on design, development, the creative industry and creative explorations.';
-const ogTitle = 'Daniel Schmier – Blog';
+const ogTitle = 'Blog – Daniel Schmier';
 
 const ogUrl = computed(() => {
     if (typeof window !== 'undefined') {

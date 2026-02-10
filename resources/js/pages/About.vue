@@ -27,9 +27,9 @@ defineEmits(['close']);
 const { t, tm, locale } = useI18n();
 const { open: openCommandMenu } = useCommandMenu();
 
-const pageTitle = 'Daniel Schmier - CV';
+const pageTitle = 'CV – Daniel Schmier';
 const pageDescription = 'Design Engineer specializing in full-stack development, product design, and modern web technologies.';
-const ogTitle = 'Daniel Schmier – CV';
+const ogTitle = 'CV – Daniel Schmier';
 
 const ogUrl = computed(() => {
     if (typeof window !== 'undefined') {

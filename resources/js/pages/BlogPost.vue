@@ -44,7 +44,7 @@ const { getPost } = usePosts();
 
 const post = computed(() => getPost(props.slug));
 
-const pageTitle = computed(() => post.value?.title ?? 'Blog Post');
+const pageTitle = computed(() => post.value?.title ? `${post.value.title} – Daniel Schmier` : 'Blog Post – Daniel Schmier');
 const pageDescription = computed(() => post.value?.excerpt ?? '');
 
 const ogUrl = computed(() => {

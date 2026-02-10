@@ -18,9 +18,9 @@ const { t, locale } = useI18n();
 const { open: openCommandMenu } = useCommandMenu();
 const { projects } = useProjects();
 
-const pageTitle = 'Daniel Schmier - Portfolio';
+const pageTitle = 'Portfolio – Daniel Schmier';
 const pageDescription = 'Case studies and portfolio of Daniel Schmier, showcasing work in product design, development, and branding.';
-const ogTitle = 'Daniel Schmier – Portfolio';
+const ogTitle = 'Portfolio – Daniel Schmier';
 
 const ogUrl = computed(() => {
     if (typeof window !== 'undefined') {

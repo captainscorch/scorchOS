@@ -21,9 +21,9 @@ library.add(faChevronDown, faFlask, faMicroscope, faCode);
 const { t } = useI18n();
 const { open: openCommandMenu } = useCommandMenu();
 
-const pageTitle = 'Daniel Schmier - Playground';
+const pageTitle = 'Playground – Daniel Schmier';
 const pageDescription = 'My lab for design engineering experiments and interactive demos.';
-const ogTitle = 'Daniel Schmier – Playground';
+const ogTitle = 'Playground – Daniel Schmier';
 
 const ogUrl = computed(() => {
     if (typeof window !== 'undefined') {

@@ -104,7 +104,7 @@ library.add(
     faBrowser,
 );
 
-const pageTitle = 'Daniel Schmier';
+const pageTitle = 'Daniel Schmier – Design Engineer';
 const pageDescription = 'Personal website, portfolio and code playground of Daniel Schmier.';
 const ogTitle = 'Daniel Schmier – Design Engineer';
 
