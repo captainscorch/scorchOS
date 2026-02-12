@@ -143,7 +143,7 @@ onUnmounted(() => {
                         <p class="mb-4 max-w-lg text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
                             {{ t('footer.description') }}
                             <a
-                                class="border-b border-b-teal-black/0 leading-[135%] text-neutral-900 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand-400 hover:opacity-100! dark:text-white"
+                                class="border-b border-b-neutral-300/50 leading-[135%] text-neutral-900 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand-400 hover:opacity-100! dark:border-b-neutral-600/50 dark:text-white dark:hover:border-b-brand-400"
                                 href="https://github.com/captainscorch/scorchOS/commits/main/"
                                 >{{ lastCommitDate || t('footer.loading') }}</a
                             >
