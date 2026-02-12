@@ -8,7 +8,7 @@
 
 # scorchOS
 
-scorchOS is my personal website, portfolio and playground, mixing my own aesthetic combined with taking inspiration from my favorite parts of macOS, command line interfaces and modern web applications. It is built primarily with Laravel, Inertia.js, Vue.js, Tailwind CSS.
+scorchOS is my personal website, portfolio, blog, and playground, mixing my own aesthetic combined with taking inspiration from my favorite parts of macOS, command line interfaces and modern web applications. It is built primarily with Laravel, Inertia.js, Vue.js, Tailwind CSS.
 
 ## Tech Stack
 

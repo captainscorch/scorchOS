@@ -105,7 +105,7 @@ library.add(
 );
 
 const pageTitle = 'Daniel Schmier – Design Engineer';
-const pageDescription = 'Personal website, portfolio and code playground of Daniel Schmier.';
+const pageDescription = 'Personal website, portfolio, blog, and code playground of Daniel Schmier.';
 const ogTitle = 'Daniel Schmier – Design Engineer';
 
 const ogUrl = computed(() => {

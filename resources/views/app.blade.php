@@ -27,7 +27,7 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         <title inertia>Daniel Schmier</title>
 
         <meta content="Daniel Schmier" name="author" />
-        <meta name="description" content="Personal website, portfolio and code playground of Daniel Schmier." inertia />
+        <meta name="description" content="Personal website, portfolio, blog, and code playground of Daniel Schmier." inertia />
 
         <meta name="theme-color" content="#f2f0ef" media="(prefers-color-scheme: light)" id="theme-color-light">
         <meta name="theme-color" content="#040e0c" media="(prefers-color-scheme: dark)" id="theme-color-dark">
@@ -50,14 +50,14 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ Request::url() }}" inertia>
         <meta inertia property="og:title" content="Daniel Schmier – Design Engineer" inertia>
-        <meta property="og:description" content="Personal website, portfolio and code playground of Daniel Schmier." inertia>
+        <meta property="og:description" content="Personal website, portfolio, blog, and code playground of Daniel Schmier." inertia>
         <meta property="og:image" content="{{ asset('img/captainscorch_meta.jpg') }}">
 
         <!-- Twitter (X) -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ Request::url() }}" inertia>
         <meta inertia property="twitter:title" content="Daniel Schmier – Design Engineer" inertia>
-        <meta property="twitter:description" content="Personal website, portfolio and code playground of Daniel Schmier." inertia>
+        <meta property="twitter:description" content="Personal website, portfolio, blog, and code playground of Daniel Schmier." inertia>
         <meta property="twitter:image" content="{{ asset('img/captainscorch_meta.jpg') }}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
