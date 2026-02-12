@@ -21,6 +21,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import FsLightbox from 'fslightbox-vue';
 import 'swiper/css';
 import { Mousewheel } from 'swiper/modules';
+import type { Swiper as SwiperInstance } from 'swiper/types';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { computed, nextTick, onUnmounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -40,6 +41,14 @@ const fineprintToggler = ref(false);
 
 const clickedImageIndex = ref<number | null>(null);
 const drawerContentRef = ref<HTMLElement | null>(null);
+const drawerVisibleIndices = ref<Set<number>>(new Set());
+const drawerWarmIndices = ref<Set<number>>(new Set());
+const drawerObserver = ref<IntersectionObserver | null>(null);
+
+const sliderSwiper = ref<SwiperInstance | null>(null);
+const sliderVisibleIndices = ref<Set<number>>(new Set());
+const sliderWarmIndices = ref<Set<number>>(new Set());
+let sliderVisibilityRafId: number | null = null;
 
 const project = computed(() => {
     return getProject(props.slug);
@@ -147,6 +156,7 @@ const sliderMedia = computed(() => {
         ...item,
         originalIndex: index,
         uniqueKey: `original-${index}`,
+        isDuplicate: false,
     }));
 
     const MIN_SLIDES = 8;
@@ -157,6 +167,7 @@ const sliderMedia = computed(() => {
             ...item,
             originalIndex: index,
             uniqueKey: `dup-${result.length}-${index}`,
+            isDuplicate: true,
         }));
         result = [...result, ...duplicates];
     }
@@ -199,6 +210,171 @@ const openDrawerAtImage = (index: number) => {
     isDrawerOpen.value = true;
 };
 
+const getWrappedIndices = (index: number, total: number, range: number): number[] => {
+    if (total <= 0) {
+        return [];
+    }
+
+    const indices = new Set<number>();
+    for (let i = -range; i <= range; i++) {
+        indices.add((index + i + total) % total);
+    }
+
+    return [...indices];
+};
+
+const updateSliderVisibility = () => {
+    const swiper = sliderSwiper.value;
+    const total = sliderMedia.value.length;
+
+    if (!swiper || total === 0) {
+        sliderVisibleIndices.value = new Set();
+        sliderWarmIndices.value = new Set();
+        return;
+    }
+
+    const visible = new Set<number>();
+    const slides = swiper.slides as unknown as HTMLElement[];
+
+    slides.forEach((slideElement) => {
+        if (!slideElement.classList.contains('swiper-slide-visible')) {
+            return;
+        }
+
+        const slideIndexValue = slideElement.getAttribute('data-swiper-slide-index');
+        if (slideIndexValue === null) {
+            return;
+        }
+
+        const slideIndex = Number(slideIndexValue);
+        if (!Number.isNaN(slideIndex)) {
+            visible.add(slideIndex);
+        }
+    });
+
+    if (visible.size === 0) {
+        const fallbackIndex = typeof swiper.realIndex === 'number' ? swiper.realIndex : 0;
+        getWrappedIndices(fallbackIndex, total, 3).forEach((index) => visible.add(index));
+    }
+
+    const warm = new Set<number>(visible);
+    visible.forEach((index) => {
+        getWrappedIndices(index, total, 2).forEach((warmIndex) => warm.add(warmIndex));
+    });
+
+    sliderVisibleIndices.value = visible;
+    sliderWarmIndices.value = warm;
+};
+
+const scheduleSliderVisibilityUpdate = () => {
+    if (sliderVisibilityRafId !== null) {
+        cancelAnimationFrame(sliderVisibilityRafId);
+    }
+
+    sliderVisibilityRafId = requestAnimationFrame(() => {
+        sliderVisibilityRafId = null;
+        updateSliderVisibility();
+    });
+};
+
+const shouldRenderSliderVideo = (index: number): boolean => {
+    if (!sliderSwiper.value) {
+        return index < 6;
+    }
+
+    return sliderWarmIndices.value.has(index);
+};
+
+const shouldAutoplaySliderVideo = (index: number): boolean => {
+    return sliderVisibleIndices.value.has(index) || sliderWarmIndices.value.has(index);
+};
+
+const shouldEagerLoadSliderImage = (index: number): boolean => {
+    if (!sliderSwiper.value) {
+        return index < 6;
+    }
+
+    return sliderWarmIndices.value.has(index);
+};
+
+const updateDrawerWarmIndices = () => {
+    const visible = [...drawerVisibleIndices.value];
+    if (visible.length === 0) {
+        drawerWarmIndices.value = new Set();
+        return;
+    }
+
+    const minVisible = Math.min(...visible);
+    const maxVisible = Math.max(...visible);
+    const warm = new Set<number>();
+
+    for (let index = minVisible - 1; index <= maxVisible + 1; index++) {
+        if (index >= 0 && index < galleryMedia.value.length) {
+            warm.add(index);
+        }
+    }
+
+    drawerWarmIndices.value = warm;
+};
+
+const setupDrawerObserver = async () => {
+    await nextTick();
+
+    if (!isDrawerOpen.value || !drawerContentRef.value) {
+        return;
+    }
+
+    drawerObserver.value?.disconnect();
+    drawerVisibleIndices.value = new Set();
+    drawerWarmIndices.value = new Set();
+
+    drawerObserver.value = new IntersectionObserver(
+        (entries) => {
+            const nextVisible = new Set(drawerVisibleIndices.value);
+
+            entries.forEach((entry) => {
+                const target = entry.target as HTMLElement;
+                const imageIndex = Number(target.dataset.imageIndex);
+
+                if (Number.isNaN(imageIndex)) {
+                    return;
+                }
+
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+                    nextVisible.add(imageIndex);
+                } else {
+                    nextVisible.delete(imageIndex);
+                }
+            });
+
+            drawerVisibleIndices.value = nextVisible;
+            updateDrawerWarmIndices();
+        },
+        {
+            root: drawerContentRef.value,
+            threshold: [0, 0.25, 0.5, 1],
+        },
+    );
+
+    const mediaElements = drawerContentRef.value.querySelectorAll<HTMLElement>('[data-image-index]');
+    mediaElements.forEach((element) => drawerObserver.value?.observe(element));
+};
+
+const teardownDrawerObserver = () => {
+    drawerObserver.value?.disconnect();
+    drawerObserver.value = null;
+    drawerVisibleIndices.value = new Set();
+    drawerWarmIndices.value = new Set();
+};
+
+const shouldRenderDrawerVideo = (index: number): boolean => {
+    if (drawerVisibleIndices.value.size === 0) {
+        return index < 4;
+    }
+
+    return drawerWarmIndices.value.has(index);
+};
+
 watch(isDrawerOpen, async (isOpen) => {
     if (isOpen && clickedImageIndex.value !== null) {
         // Ensure we don't try to scroll to an image beyond what's displayed
@@ -236,9 +412,26 @@ watch(isDrawerOpen, async (isOpen) => {
         await scrollToImage();
     }
 
+    if (isOpen) {
+        await setupDrawerObserver();
+    }
+
     if (!isOpen) {
+        teardownDrawerObserver();
         clickedImageIndex.value = null;
     }
+});
+
+watch(galleryRows, async () => {
+    if (!isDrawerOpen.value) {
+        return;
+    }
+
+    await setupDrawerObserver();
+});
+
+watch(sliderMedia, () => {
+    scheduleSliderVisibilityUpdate();
 });
 
 watch(isAnyDrawerOpen, (isOpen) => {
@@ -273,6 +466,11 @@ watch(isAnyDrawerOpen, (isOpen) => {
 });
 
 onUnmounted(() => {
+    teardownDrawerObserver();
+    if (sliderVisibilityRafId !== null) {
+        cancelAnimationFrame(sliderVisibilityRafId);
+    }
+
     const app = document.getElementById('app');
     if (app) {
         app.style.opacity = '';
@@ -376,6 +574,7 @@ onUnmounted(() => {
                     <Swiper
                         :slides-per-view="'auto'"
                         :space-between="24"
+                        :watch-slides-progress="true"
                         :grabCursor="true"
                         :mousewheel="{
                             forceToAxis: true,
@@ -385,10 +584,20 @@ onUnmounted(() => {
                         }"
                         :loop="true"
                         :modules="[Mousewheel]"
+                        @swiper="
+                            (instance) => {
+                                sliderSwiper = instance;
+                                scheduleSliderVisibilityUpdate();
+                            }
+                        "
+                        @setTranslate="scheduleSliderVisibilityUpdate"
+                        @transitionEnd="scheduleSliderVisibilityUpdate"
+                        @slideChange="scheduleSliderVisibilityUpdate"
                     >
                         <SwiperSlide
                             v-for="(media, index) in sliderMedia"
                             :key="media.uniqueKey"
+                            :data-original-index="media.originalIndex"
                             :class="getAspectRatio(media) === '16/9' || getAspectRatio(media) === 'video' ? '!w-[600px] md:!w-[800px]' : ''"
                             :style="
                                 getAspectRatio(media) !== '16/9' && getAspectRatio(media) !== 'video'
@@ -414,17 +623,28 @@ onUnmounted(() => {
                                     :src="media.src"
                                     :alt="(media as any).alt || `${project?.title} - Gallery ${index + 1}`"
                                     class="h-full w-full object-cover"
+                                    :loading="shouldEagerLoadSliderImage(index) ? 'eager' : 'lazy'"
+                                    decoding="async"
                                 />
                                 <video
-                                    v-else-if="media.type === 'video'"
+                                    v-else-if="media.type === 'video' && shouldRenderSliderVideo(index)"
                                     :src="media.src"
                                     :poster="(media as any).thumbnail"
                                     :aria-label="(media as any).alt || `${project?.title} - Gallery ${index + 1}`"
                                     class="h-full w-full object-cover"
                                     muted
                                     loop
-                                    autoplay
+                                    :autoplay="shouldAutoplaySliderVideo(index)"
                                     playsinline
+                                    :preload="sliderVisibleIndices.has(index) ? 'auto' : 'metadata'"
+                                />
+                                <img
+                                    v-else-if="media.type === 'video' && (media as any).thumbnail"
+                                    :src="(media as any).thumbnail"
+                                    :alt="(media as any).alt || `${project?.title} - Gallery ${index + 1}`"
+                                    class="h-full w-full object-cover"
+                                    :loading="shouldEagerLoadSliderImage(index) ? 'eager' : 'lazy'"
+                                    decoding="async"
                                 />
                             </div>
                         </SwiperSlide>
@@ -434,7 +654,7 @@ onUnmounted(() => {
                 <!-- Mobile: Gallery Card (prefers portrait items for side-by-side slots) -->
                 <div class="block px-6 lg:hidden">
                     <div
-                        class="cursor-pointer overflow-hidden rounded-3xl bg-neutral-50 p-4 shadow-[0_0_20px_rgba(0,0,0,0.12)] transition-transform active:scale-[0.98] md:p-6 dark:bg-neutral-900"
+                        class="cursor-pointer overflow-hidden rounded-3xl bg-neutral-50 p-4 shadow-[0_0_20px_rgba(0,0,0,0.12)] transition-transform md:p-6 dark:bg-neutral-900"
                         @click="openDrawerAtImage(0)"
                     >
                         <div class="grid grid-cols-2 gap-4 md:gap-6">
@@ -507,8 +727,8 @@ onUnmounted(() => {
                                 <video
                                     v-else-if="mobilePreviewMedia[2].type === 'video'"
                                     :src="mobilePreviewMedia[2].src"
-                                    :poster="(galleryMedia[2] as any).thumbnail"
-                                    :aria-label="(galleryMedia[2] as any).alt || `${project?.title} - Gallery 3`"
+                                    :poster="(mobilePreviewMedia[2] as any).thumbnail"
+                                    :aria-label="(mobilePreviewMedia[2] as any).alt || `${project?.title} - Gallery 3`"
                                     class="h-full w-full object-cover"
                                     muted
                                     loop
@@ -735,7 +955,7 @@ onUnmounted(() => {
                                         :alt="(row.items[0] as any).alt || `${project?.title} - Gallery ${row.items[0].originalIndex + 1}`"
                                     />
                                     <video
-                                        v-else-if="row.items[0].type === 'video'"
+                                        v-else-if="row.items[0].type === 'video' && shouldRenderDrawerVideo(row.items[0].originalIndex)"
                                         :src="row.items[0].src"
                                         :poster="(row.items[0] as any).thumbnail"
                                         :aria-label="(row.items[0] as any).alt || `${project?.title} - Gallery ${row.items[0].originalIndex + 1}`"
@@ -744,6 +964,15 @@ onUnmounted(() => {
                                         loop
                                         autoplay
                                         playsinline
+                                        :preload="drawerVisibleIndices.has(row.items[0].originalIndex) ? 'auto' : 'metadata'"
+                                    />
+                                    <img
+                                        v-else-if="row.items[0].type === 'video' && (row.items[0] as any).thumbnail"
+                                        :src="(row.items[0] as any).thumbnail"
+                                        :alt="(row.items[0] as any).alt || `${project?.title} - Gallery ${row.items[0].originalIndex + 1}`"
+                                        class="h-full w-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 </div>
                             </div>
@@ -764,7 +993,7 @@ onUnmounted(() => {
                                         :alt="(item as any).alt || `${project?.title} - Gallery ${item.originalIndex + 1}`"
                                     />
                                     <video
-                                        v-else-if="item.type === 'video'"
+                                        v-else-if="item.type === 'video' && shouldRenderDrawerVideo(item.originalIndex)"
                                         :src="item.src"
                                         :poster="(item as any).thumbnail"
                                         :aria-label="(item as any).alt || `${project?.title} - Gallery ${item.originalIndex + 1}`"
@@ -773,6 +1002,15 @@ onUnmounted(() => {
                                         loop
                                         autoplay
                                         playsinline
+                                        :preload="drawerVisibleIndices.has(item.originalIndex) ? 'auto' : 'metadata'"
+                                    />
+                                    <img
+                                        v-else-if="item.type === 'video' && (item as any).thumbnail"
+                                        :src="(item as any).thumbnail"
+                                        :alt="(item as any).alt || `${project?.title} - Gallery ${item.originalIndex + 1}`"
+                                        class="h-full w-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 </div>
                             </div>
