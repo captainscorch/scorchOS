@@ -8,7 +8,7 @@ color: '#ff8f8f'
 logo: 'way.food'
 width: '90%'
 height: 'md:aspect-[3/4]'
-spineHeight: 'h-28 md:h-36'
+spineHeight: 'h-24 md:h-36'
 date: '2024 — Present'
 website: https://way.food
 team:

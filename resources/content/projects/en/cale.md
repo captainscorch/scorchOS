@@ -8,7 +8,7 @@ color: '#434F61'
 logo: cale
 width: '92%'
 height: 'md:aspect-[3/4]'
-spineHeight: 'h-26 md:h-34'
+spineHeight: 'h-28 md:h-34'
 date: '2025'
 website: https://cale-design.com
 team:

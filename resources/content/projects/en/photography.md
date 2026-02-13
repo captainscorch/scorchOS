@@ -8,7 +8,7 @@ color: '#1a1a1a'
 logo: gallery
 width: '96%'
 height: 'md:aspect-[4/6]'
-spineHeight: 'h-28 md:h-36'
+spineHeight: 'h-26 md:h-36'
 date: 'Early Age — Present'
 team:
     - src: /img/daniel.webp

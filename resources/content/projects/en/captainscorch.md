@@ -8,7 +8,7 @@ color: '#2ab193'
 logo: portfolio
 width: '88%'
 height: 'md:aspect-[3/4]'
-spineHeight: 'h-22 md:h-30'
+spineHeight: 'h-28 md:h-30'
 date: '2025 — Present'
 website: https://captainscor.ch
 team:

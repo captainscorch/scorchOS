@@ -8,7 +8,7 @@ color: '#1b1b18'
 logo: gastro
 width: '85%'
 height: 'md:aspect-[4/6]'
-spineHeight: h-28
+spineHeight: h-32
 date: '2026'
 website: https://gastroenterologie-kassel.com
 team:
