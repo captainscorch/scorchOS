@@ -61,7 +61,7 @@ media:
       src: /img/portfolio/tamplen/tamplen_landscape_3.webp
       alt: 'Tamplen Plastic Surgery - Desktop Before and After Gallery and Filters'
 title: 'Premium Multi-Location Plastic Surgery Website'
-story_preview: 'A high-performance, SEO-optimized website for Dr. Tamplen — a nationally recognized rhinoplasty specialist with practices in Scottsdale, Orinda, and San Diego. Featuring location-aware navigation, an optimized before/after gallery handling hundreds of images, and dedicated Google Ads funnels.'
+story_preview: 'A high-performance, SEO-optimized website for Dr. Tamplen — a nationally recognized rhinoplasty specialist with practices in Scottsdale, Orinda, and San Diego. Featuring location-aware navigation, an optimized before/after gallery handling hundreds of images, and dedicated Google Ads funnels'
 fineprint: "A long-term partnership built on trust. From initial redesign to ongoing optimization, I've handled design, development, and performance marketing — helping Dr. Tamplen's practice grow across three locations."
 fineprint_media: /img/portfolio/tamplen/tamplen_landscape_1.webp
 fineprint_media_alt: 'Tamplen Plastic Surgery - Desktop Landingpage Hero Area'

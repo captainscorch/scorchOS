@@ -1,7 +1,7 @@
 ---
 slug: tamplen
 title: 'Premium Multi-Location Website für Plastische Chirurgie'
-story_preview: 'Eine high-performance, SEO-optimierte Website für Dr. Tamplen — ein in den USA landesweit anerkannter Rhinoplastik-Spezialist mit Praxen in Scottsdale, Orinda und San Diego. Mit standortbezogener Navigation, einer optimierten Vorher/Nachher-Galerie für hunderte Bilder und dedizierten Google Ads Funnels.'
+story_preview: 'Eine high-performance, SEO-optimierte Website für Dr. Tamplen — ein in den USA landesweit anerkannter Rhinoplastik-Spezialist mit Praxen in Scottsdale, Orinda und San Diego. Mit standortbezogener Navigation, einer optimierten Vorher/Nachher-Galerie für hunderte Bilder und dedizierten Google Ads Funnels'
 fineprint: 'Eine langfristige Partnerschaft, gebaut auf Vertrauen. Vom initialen Redesign bis zur laufenden Optimierung habe ich Design, Entwicklung und Performance Marketing übernommen und Dr. Tamplens Praxis beim Wachstum über drei Standorte hinweg unterstützt.'
 ---
 

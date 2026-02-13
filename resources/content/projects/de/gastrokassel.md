@@ -1,7 +1,7 @@
 ---
 slug: gastroenterologie-kassel
 title: 'Arztpraxis-Website mit minimalistischem Branding'
-story_preview: 'Dr. med. H. Habibi kam mit einem dringenden Anliegen auf mich zu: Er übernahm eine Arztpraxis und brauchte schnell eine professionelle Web-Präsenz. Ich lieferte eine individuelle, SEO-optimierte Website mit einer grundlegenden Markenidentität — alles in kürzester Zeit.'
+story_preview: 'Dr. med. H. Habibi kam mit einem dringenden Anliegen auf mich zu: Er übernahm eine Arztpraxis und brauchte schnell eine professionelle Web-Präsenz. Ich lieferte eine individuelle, SEO-optimierte Website mit einer grundlegenden Markenidentität — alles in kürzester Zeit'
 fineprint: 'Ein Projekt mit engem Zeitrahmen, das beweist, dass knappe Deadlines nicht bedeuten, Abstriche machen zu müssen. Individuelle Entwicklung, grundlegende Markenidentität und SEO-Optimierung — alles schnell geliefert, ohne Kompromisse bei der Qualität.'
 ---
 

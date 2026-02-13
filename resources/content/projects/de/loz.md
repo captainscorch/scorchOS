@@ -1,7 +1,7 @@
 ---
 slug: loz
 title: 'DTC Shopify Store für Mundpflege Startup'
-story_preview: 'Ein brutalistischer, wirkungsstarker Shopify Store für Loz — feuchtigkeitsspendende Minz-Lutschtabletten gegen Mundtrockenheit. Mit einem komplett maßgeschneiderten Theme, gestenbasierten Medien-Slidern, animierter Rabattlogik und einem Abo-Flow powered by ReCharge.'
+story_preview: 'Ein brutalistischer, wirkungsstarker Shopify Store für Loz — feuchtigkeitsspendende Minz-Lutschtabletten gegen Mundtrockenheit. Mit einem komplett maßgeschneiderten Theme, gestenbasierten Medien-Slidern, animierter Rabattlogik und einem Abo-Flow powered by ReCharge'
 fineprint: 'Brutalistischer E-Commerce Store, konzipiert für Conversion. Ein maßgeschneiderter Shopify-Build, der mutige Ästhetik mit Abo-Logik und gestaffelten Rabatt-Flows in Einklang bringt – bereit, mit der Marke zu skalieren.'
 ---
 

@@ -1,7 +1,7 @@
 ---
 slug: 'captainscor.ch'
 title: 'Meine persönliche Website, Portfolio mit Case Studies, Blog & Playground'
-story_preview: 'captainscor.ch ist meine persönliche Website, Portfolio, Blog und Spielwiese — eine Mischung aus meiner eigenen Ästhetik mit Inspiration von macOS, Kommandozeilen-Interfaces und modernen Webanwendungen. Gebaut mit Laravel, Inertia.js, Vue.js und Tailwind CSS.'
+story_preview: 'captainscor.ch ist meine persönliche Website, Portfolio, Blog und Spielwiese — eine Mischung aus meiner eigenen Ästhetik mit Inspiration von macOS, Kommandozeilen-Interfaces und modernen Webanwendungen. Gebaut mit Laravel, Inertia.js, Vue.js und Tailwind CSS'
 fineprint: 'Ein Portfolio, das auch ein Statement ist. Von mir als kreative Sandbox gebaut — wo meine Liebe für Design, Entwicklung, Technologie und Details an einem Ort zusammenkommt.'
 ---
 

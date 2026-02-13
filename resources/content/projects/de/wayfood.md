@@ -1,7 +1,7 @@
 ---
 slug: 'way.food'
 title: 'Foodtruck & Catering Vergleichsportal'
-story_preview: 'Zusammen mit meinem Team bei unlimited haben wir way.food von Grund auf aufgebaut — eine neue Plattform, die Foodtrucks, Caterer, Partyservices und Eventveranstalter miteinander verbindet. Ich war verantwortlich für die technische Architektur, DevOps und die Full-Stack-Entwicklung. Mittlerweile skaliert auf über 1.000 Nutzer, 300+ Anbieter und siebenstelligen Traffic.'
+story_preview: 'Zusammen mit meinem Team bei unlimited haben wir way.food von Grund auf aufgebaut — eine neue Plattform, die Foodtrucks, Caterer, Partyservices und Eventveranstalter miteinander verbindet. Ich war verantwortlich für die technische Architektur, DevOps und die Full-Stack-Entwicklung. Mittlerweile skaliert auf über 1.000 Nutzer, 300+ Anbieter und siebenstelligen Traffic'
 fineprint: 'Von Null zum Marktführer. Ich bin stolz darauf, einen komplexen, mehrseitigen Marktplatz in ein klares und schnelles Erlebnis verwandelt zu haben. Von Strategie und Produkt-Roadmap über Creative Direction bis zur Full-Stack-Entwicklung — ich war für jede Ebene dieser Plattform verantwortlich.'
 ---
 

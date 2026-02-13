@@ -177,7 +177,7 @@ media:
       src: /img/portfolio/photography/photography_portrait_46.webp
       alt: 'Photography gallery portrait 46'
 title: 'Gallery of my favorite photos from around the world'
-story_preview: 'A curated collection of my favorite photographs over the last years—a journey through nature, cities, and portraits. From hobby to professional work, photography is a constant passion and creative outlet for me.'
+story_preview: 'A curated collection of my favorite photographs over the last years—a journey through nature, cities, and portraits. From hobby to professional work, photography is a constant passion and creative outlet for me'
 fineprint: 'A personal showcase of my photography work over the last years. Each image represents a moment, a place, or a person worth remembering.'
 fineprint_media: /img/portfolio/photography/photography_landscape_21.webp
 fineprint_media_alt: 'Photography gallery landscape'

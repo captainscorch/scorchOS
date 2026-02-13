@@ -1,7 +1,7 @@
 ---
 id: 6
 slug: 'captainscor.ch'
-client: 'My Portfolio Website'
+client: 'Portfolio Website'
 category: ['Design', 'Development']
 image: /img/portfolio/captainscorch/captainscorch_portrait_1.webp
 color: '#2ab193'
@@ -67,7 +67,7 @@ media:
       src: /img/portfolio/captainscorch/captainscorch_landscape_4.webp
       alt: 'captainscor.ch - Desktop Home Bento Grid Layout'
 title: 'My Personal Website, Portfolio with Case Studies, Blog & Playground'
-story_preview: 'captainscor.ch is my personal website, portfolio, blog, and playground — blending my own aesthetic with inspiration from macOS, command line interfaces, and modern web applications. Built with Laravel, Inertia.js, Vue.js, and Tailwind CSS.'
+story_preview: 'captainscor.ch is my personal website, portfolio, blog, and playground — blending my own aesthetic with inspiration from macOS, command line interfaces, and modern web applications. Built with Laravel, Inertia.js, Vue.js, and Tailwind CSS'
 fineprint: "A portfolio that's also a statement. Built by me as a creative sandbox — where my love for design, development, technology and detail comes together in one place."
 fineprint_media: /img/portfolio/captainscorch/captainscorch_landscape_5.webp
 fineprint_media_alt: 'captainscor.ch - Desktop Landing Page'

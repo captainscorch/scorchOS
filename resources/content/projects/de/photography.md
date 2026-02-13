@@ -1,7 +1,7 @@
 ---
 slug: photography
 title: 'Galerie meiner Lieblingsfotos aus der ganzen Welt'
-story_preview: 'Eine kuratierte Sammlung meiner Lieblingsfotos der letzten Jahre – eine Reise durch Natur, Städte und Porträts. Vom Hobby bis hin zur professionellen Arbeit ist die Fotografie eine konstante Leidenschaft und kreativer Ausdruck für mich.'
+story_preview: 'Eine kuratierte Sammlung meiner Lieblingsfotos der letzten Jahre – eine Reise durch Natur, Städte und Porträts. Vom Hobby bis hin zur professionellen Arbeit ist die Fotografie eine konstante Leidenschaft und kreativer Ausdruck für mich'
 fineprint: 'Eine persönliche Präsentation meiner Fotografie-Arbeit der letzten Jahre. Jedes Bild repräsentiert einen Moment, einen Ort oder eine Person, die es wert ist, in Erinnerung zu bleiben.'
 ---
 

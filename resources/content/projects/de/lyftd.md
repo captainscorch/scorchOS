@@ -1,7 +1,7 @@
 ---
 slug: lyftd
 title: 'Smart Training, Stronger You — Full-Stack Workout-Tracking-Plattform'
-story_preview: 'lyftd ist mein Passion Project — eine anspruchsvolle Workout-Tracking-Plattform, die ich von Grund auf gebaut habe, um den gesamten Lebenszyklus von Trainingsprogrammen zu managen. Mit KI-gestütztem Coaching, umfassenden Analytics, Abonnements und Plan-Sharing.'
+story_preview: 'lyftd ist mein Passion Project — eine anspruchsvolle Workout-Tracking-Plattform, die ich von Grund auf gebaut habe, um den gesamten Lebenszyklus von Trainingsprogrammen zu managen. Mit KI-gestütztem Coaching, umfassenden Analytics, Abonnements und Plan-Sharing'
 fineprint: 'Komplett alleine gebaut als meine persönliche Sandbox für Full-Stack-Produktentwicklung. Von Authentifizierungs-Flows bis zur Payment-Integration, von KI-Coaching bis zu Achievement-Systemen — jede Zeile Code stammt von mir. Hier pushe ich meine Grenzen als Entwickler.'
 ---
 

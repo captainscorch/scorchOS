@@ -89,7 +89,7 @@ media:
       src: /img/portfolio/wayfood/wayfood_landscape_5.webp
       alt: 'way.food - Desktop Admin Dashboard'
 title: 'Foodtruck & Catering Comparison Portal'
-story_preview: 'Together with my team at unlimited, we built way.food from the ground up — a new platform connecting foodtrucks, caterers, party services, and event organizers with each other. I owned the technical architecture, DevOps, and full-stack development. Now scaled to 1,000+ users, 300+ providers, and 7-figure traffic.'
+story_preview: 'Together with my team at unlimited, we built way.food from the ground up — a new platform connecting foodtrucks, caterers, party services, and event organizers with each other. I owned the technical architecture, DevOps, and full-stack development. Now scaled to 1,000+ users, 300+ providers, and 7-figure traffic'
 fineprint: "From zero to market leader. I'm proud of turning a complex, multi-party marketplace into a clear and fast experience. From strategy and product roadmap to creative direction and full-stack development — I owned every layer of this platform."
 fineprint_media: /img/portfolio/wayfood/wayfood_landscape_1.webp
 fineprint_media_alt: 'way.food - Desktop Provider Information Page'

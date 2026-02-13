@@ -1,7 +1,7 @@
 ---
 slug: cale
 title: 'Minimalistischer Shopify Store für Premium-Möbel & Wohnaccessoires'
-story_preview: 'Ein minimalistischer, von skandinavischer Design- und Interior-Aesthetik inspirierter Shopify Store für cale design — Premium-Möbel und Wohnaccessoires. Mit 800+ Produkten, interaktiven 3D-Renderings, KI-generierten Lifestyle-Bildern und einem voll integrierten Omnichannel-Setup mit POS und Performance Marketing.'
+story_preview: 'Ein minimalistischer, von skandinavischer Design- und Interior-Aesthetik inspirierter Shopify Store für cale design — Premium-Möbel und Wohnaccessoires. Mit 800+ Produkten, interaktiven 3D-Renderings, KI-generierten Lifestyle-Bildern und einem voll integrierten Omnichannel-Setup mit POS und Performance Marketing'
 fineprint: 'Full-Service E-Commerce von der Linse bis zum Checkout. Entwicklung, Fotografie, 3D-Visualisierung, POS-Integration und Performance Marketing — alles vereint unter einem minimalistischen Designsystem, gebaut für Skalierung.'
 ---
 

@@ -99,7 +99,7 @@ media:
       src: /img/portfolio/lyftd/lyftd_landscape_5.webp
       alt: 'lyftd.app - Desktop Workout Session Detail Table View'
 title: 'Smart Training, Stronger You — Full-Stack Workout Tracking Platform'
-story_preview: 'lyftd is my passion project — a sophisticated workout tracking platform I built from scratch to manage the entire lifecycle of training programs. Featuring AI-powered coaching, comprehensive analytics, subscriptions, and plan sharing.'
+story_preview: 'lyftd is my passion project — a sophisticated workout tracking platform I built from scratch to manage the entire lifecycle of training programs. Featuring AI-powered coaching, comprehensive analytics, subscriptions, and plan sharing'
 fineprint: 'Built entirely solo as my personal sandbox for full-stack product development. From authentication flows to payment integration, from AI coaching to achievement systems — every line of code is mine. This is where I push my limits as a developer.'
 fineprint_media: /img/portfolio/lyftd/lyftd_landscape_1.webp
 fineprint_media_alt: 'lyftd.app - Workout Tracking Interface'

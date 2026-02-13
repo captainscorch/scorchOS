@@ -60,7 +60,7 @@ media:
       src: /img/portfolio/icemaenner/icemaenner_landscape_3.webp
       alt: 'ICEMÄNNER - Desktop Product Page Product Explanation Graphic'
 title: 'High-energy B2B & B2C Ecommerce Experience'
-story_preview: 'A high-energy, trend-focused global commerce experience for ICEMÄNNER. Featuring a custom Shopify setup with advanced B2B/B2C logic, automated warehouse integration, and a design that hits as hard as the drinks.'
+story_preview: 'A high-energy, trend-focused global commerce experience for ICEMÄNNER. Featuring a custom Shopify setup with advanced B2B/B2C logic, automated warehouse integration, and a design that hits as hard as the drinks'
 fineprint: 'Engineered for the hype. A showcase in balancing viral aesthetics with rigid B2B logistics, ensuring the shop scales as fast as the brand grows.'
 fineprint_media: /img/portfolio/icemaenner/icemaenner_landscape_4.webp
 fineprint_media_alt: 'ICEMÄNNER - Mobile Product Page Variants'

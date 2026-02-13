@@ -65,7 +65,7 @@ media:
       src: /img/portfolio/cale/cale_landscape_3.webp
       alt: 'cale design - Desktop Masthead Area'
 title: 'Minimalist Shopify Store for Premium Furniture & home accessories'
-story_preview: 'A minimalist, by Scandinavian design and interior aesthetic inspired Shopify store for cale design — premium furniture and home accessories. Featuring 800+ products, interactive 3D renders, AI-generated lifestyle imagery, and a fully integrated omnichannel setup with POS and performance marketing.'
+story_preview: 'A minimalist, by Scandinavian design and interior aesthetic inspired Shopify store for cale design — premium furniture and home accessories. Featuring 800+ products, interactive 3D renders, AI-generated lifestyle imagery, and a fully integrated omnichannel setup with POS and performance marketing'
 fineprint: 'Full-service e-commerce from lens to checkout. Development, photography, 3D visualization, POS integration, and performance marketing — all unified under one minimalist design system built to scale.'
 fineprint_media: /img/portfolio/cale/cale_landscape_6.webp
 fineprint_media_alt: 'cale design - Desktop Product Detail Page'

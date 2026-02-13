@@ -1,7 +1,7 @@
 ---
 slug: icemaenner
 title: 'High-Energy B2B & B2C E-Commerce Experience'
-story_preview: 'Ein fast-paced, trendorientiertes globales Commerce-Erlebnis für ICEMÄNNER. Mit einem maßgeschneiderten Shopify-Setup inklusive erweiterter B2B/B2C-Logik, automatisierter Lagerintegration und einem Design, das so wie Drinks richtig abliefert.'
+story_preview: 'Ein fast-paced, trendorientiertes globales Commerce-Erlebnis für ICEMÄNNER. Mit einem maßgeschneiderten Shopify-Setup inklusive erweiterter B2B/B2C-Logik, automatisierter Lagerintegration und einem Design, das so wie Drinks richtig abliefert'
 fineprint: 'Engineered for the hype. Ein Showcase in der Balance zwischen viraler Ästhetik und kompromissloser B2B-Logistik – damit der Shop genauso schnell skaliert wie die Marke wächst.'
 ---
 

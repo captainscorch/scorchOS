@@ -56,7 +56,7 @@ media:
       thumbnail: /img/portfolio/loz/loz_portrait_video_1.webp
       alt: 'Loz - Mobile Landingpage'
 title: 'DTC Shopify Store for Oral Care Startup'
-story_preview: 'A brutalist, high-impact Shopify store for Loz — moisturizing mint lozenges tackling dry mouth. Featuring a fully custom theme with gesture-based media sliders, animated discount logic, and a subscription flow powered by ReCharge.'
+story_preview: 'A brutalist, high-impact Shopify store for Loz — moisturizing mint lozenges tackling dry mouth. Featuring a fully custom theme with gesture-based media sliders, animated discount logic, and a subscription flow powered by ReCharge'
 fineprint: 'Brutalist e-commerce store, engineered for conversion. A custom Shopify build balancing bold aesthetics with subscription logic and tiered discount flows — ready to scale with the brand.'
 fineprint_media: /img/portfolio/loz/loz_landscape_1.webp
 fineprint_media_alt: 'Loz - Mobile Product Page and Footer Area'
