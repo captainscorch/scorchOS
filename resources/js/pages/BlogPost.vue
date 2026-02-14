@@ -44,7 +44,7 @@ const { getPost } = usePosts();
 
 const post = computed(() => getPost(props.slug));
 
-const pageTitle = computed(() => post.value?.title ? `${post.value.title} – Daniel Schmier` : 'Blog Post – Daniel Schmier');
+const pageTitle = computed(() => (post.value?.title ? `${post.value.title} – Daniel Schmier` : 'Blog Post – Daniel Schmier'));
 const pageDescription = computed(() => post.value?.excerpt ?? '');
 
 const ogUrl = computed(() => {
@@ -468,9 +468,9 @@ const activeCirclePosition = computed(() => {
         <meta property="og:description" :content="pageDescription" />
 
         <!-- Twitter (X) -->
-        <meta property="twitter:url" :content="ogUrl" />
-        <meta property="twitter:title" :content="pageTitle" />
-        <meta property="twitter:description" :content="pageDescription" />
+        <meta name="twitter:url" :content="ogUrl" />
+        <meta name="twitter:title" :content="pageTitle" />
+        <meta name="twitter:description" :content="pageDescription" />
 
         <!-- JSON-LD -->
         <component :is="'script'" type="application/ld+json">

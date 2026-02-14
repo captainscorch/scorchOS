@@ -54,11 +54,11 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         <meta property="og:image" content="{{ asset('img/captainscorch_meta.jpg') }}">
 
         <!-- Twitter (X) -->
-        <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:url" content="{{ Request::url() }}" inertia>
-        <meta inertia property="twitter:title" content="Daniel Schmier – Design Engineer" inertia>
-        <meta property="twitter:description" content="Personal website, portfolio, blog, and code playground of Daniel Schmier." inertia>
-        <meta property="twitter:image" content="{{ asset('img/captainscorch_meta.jpg') }}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:url" content="{{ Request::url() }}" inertia>
+        <meta inertia name="twitter:title" content="Daniel Schmier – Design Engineer" inertia>
+        <meta name="twitter:description" content="Personal website, portfolio, blog, and code playground of Daniel Schmier." inertia>
+        <meta name="twitter:image" content="{{ asset('img/captainscorch_meta.jpg') }}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=work-sans:400,500,600,700" rel="stylesheet" />

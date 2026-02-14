@@ -505,9 +505,9 @@ const fadeUpMotion = {
         <meta property="og:description" :content="pageDescription" />
 
         <!-- Twitter (X) -->
-        <meta property="twitter:url" :content="ogUrl" />
-        <meta property="twitter:title" :content="ogTitle" />
-        <meta property="twitter:description" :content="pageDescription" />
+        <meta name="twitter:url" :content="ogUrl" />
+        <meta name="twitter:title" :content="ogTitle" />
+        <meta name="twitter:description" :content="pageDescription" />
     </Head>
     <div ref="pageContainer" class="mx-auto h-full min-h-dvh max-w-7xl px-6 pt-32 md:pt-40 lg:px-8">
         <!-- Header / Navigation -->

@@ -496,10 +496,10 @@ onUnmounted(() => {
         <meta property="og:image" :content="ogImage" />
 
         <!-- Twitter (X) -->
-        <meta property="twitter:url" :content="ogUrl" />
-        <meta property="twitter:title" :content="ogTitle" />
-        <meta property="twitter:description" :content="pageDescription" />
-        <meta property="twitter:image" :content="ogImage" />
+        <meta name="twitter:url" :content="ogUrl" />
+        <meta name="twitter:title" :content="ogTitle" />
+        <meta name="twitter:description" :content="pageDescription" />
+        <meta name="twitter:image" :content="ogImage" />
     </Head>
 
     <div

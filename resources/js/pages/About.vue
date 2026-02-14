@@ -344,9 +344,9 @@ const skills = computed(() => ({
         <meta property="og:description" :content="pageDescription" />
 
         <!-- Twitter (X) -->
-        <meta property="twitter:url" :content="ogUrl" />
-        <meta property="twitter:title" :content="ogTitle" />
-        <meta property="twitter:description" :content="pageDescription" />
+        <meta name="twitter:url" :content="ogUrl" />
+        <meta name="twitter:title" :content="ogTitle" />
+        <meta name="twitter:description" :content="pageDescription" />
     </Head>
     <div class="min-h-screen bg-white pt-32 pb-20 text-neutral-900 md:pt-40 md:pb-0 dark:bg-black dark:text-white">
         <!-- Header / Navigation -->
