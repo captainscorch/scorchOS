@@ -22,6 +22,7 @@ import {
     faFolder,
     faFolderOpen,
     faStarfighter,
+    faUpRightFromSquare,
     faUserBountyHunter,
 } from '@fortawesome/sharp-light-svg-icons';
 import { faMoon, faSun } from '@fortawesome/sharp-solid-svg-icons';
@@ -102,6 +103,7 @@ library.add(
     faArrowUpRight,
     faArrowUpRight,
     faBrowser,
+    faUpRightFromSquare,
 );
 
 const pageTitle = 'Daniel Schmier – Design Engineer';
@@ -925,6 +927,26 @@ const fadeUpMotion = {
                                                     </Link>
                                                 </div>
                                             </div>
+
+                                            <Link
+                                                v-if="isPortfolioExpanded"
+                                                href="/portfolio"
+                                                class="group/more-case-studies mt-1 ml-6 flex items-center gap-2 rounded px-1.5 py-1 text-neutral-500 transition-all hover:cursor-ne-resize hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-white/5 dark:hover:text-white"
+                                            >
+                                                <FontAwesomeIcon
+                                                    icon="fa-sharp fa-light fa-up-right-from-square"
+                                                    class="h-3.5 w-3.5 flex-shrink-0 text-neutral-500 transition-all duration-200 group-hover/more-case-studies:text-neutral-900 dark:text-neutral-500 dark:group-hover/more-case-studies:text-white"
+                                                />
+                                                <span class="truncate leading-normal">
+                                                    {{ t('home.navigation.moreCaseStudiesFolder') }}
+                                                </span>
+                                                <span class="ml-auto hidden items-center justify-center group-hover/more-case-studies:inline-flex">
+                                                    <FontAwesomeIcon
+                                                        icon="fa-sharp fa-light fa-arrow-up-right"
+                                                        class="h-3 w-3 flex-shrink-0 text-neutral-900 dark:text-white"
+                                                    />
+                                                </span>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
