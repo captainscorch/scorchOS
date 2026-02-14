@@ -1,13 +1,13 @@
 ---
 slug: 'captainscor.ch'
 title: 'Meine persönliche Website, Portfolio mit Case Studies, Blog & Playground'
-story_preview: 'captainscor.ch ist meine persönliche Website, Portfolio, Blog und Spielwiese — eine Mischung aus meiner eigenen Ästhetik mit Inspiration von macOS, Kommandozeilen-Interfaces und modernen Webanwendungen. Gebaut mit Laravel, Inertia.js, Vue.js und Tailwind CSS'
+story_preview: 'captainscor.ch ist meine persönliche Website, Portfolio, Blog und Playground — eine Mischung aus meiner eigenen Ästhetik mit Inspiration von macOS, Kommandozeilen-Interfaces und modernen Webanwendungen. Gebaut mit Laravel, Inertia.js, Vue.js und Tailwind CSS'
 fineprint: 'Ein Portfolio, das auch ein Statement ist. Von mir als kreative Sandbox gebaut — wo meine Liebe für Design, Entwicklung, Technologie und Details an einem Ort zusammenkommt.'
 ---
 
 # Wo Design auf die Kommandozeile trifft
 
-captainscor.ch ist mehr als ein Portfolio — es ist mein kreativer Spielplatz, auf dem ich meine Liebe für sauberes Design mit meiner Leidenschaft für Entwicklung verbinde. Die Seite zieht Inspiration aus meinen Lieblings-Interfaces: der Eleganz von **macOS**, der rohen Kraft der **Kommandozeile** und der Flüssigkeit moderner **Webanwendungen**.
+captainscor.ch ist mehr als ein Portfolio — es ist mein kreativer Playground, auf dem ich meine Liebe für sauberes Design mit meiner Leidenschaft für Entwicklung verbinde. Die Seite zieht Inspiration aus meinen Lieblings-Interfaces: der Eleganz von **macOS**, der rohen Kraft der **Kommandozeile** und der Flüssigkeit moderner **Webanwendungen**.
 
 ## Die Technologie, die ich liebe
 
@@ -55,6 +55,6 @@ Einzelne Case Studies bieten eine moderne **Swiper.js Galerie** mit automatische
 
 Beiträge sind schlichte **Markdown-Dateien** mit YAML-Frontmatter für Metadaten — geparst mit **gray-matter** und in ein kleines Composable gefüttert. Eine Datei pro Beitrag hält Content und Metadaten zusammen und ist damit leicht editierbar — ganz ohne CMS.
 
-## Ein lebendiger Spielplatz
+## Ein lebendiger Playground
 
 Diese Seite ist nie fertig. Hier experimentiere ich mit neuen Techniken, überschreite kreative Grenzen und zeige nicht nur, was ich gebaut habe — sondern wie ich denke.
