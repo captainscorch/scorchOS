@@ -10,11 +10,10 @@ import { i18n } from './i18n';
 import GlobalLayout from '@/components/GlobalLayout.vue';
 import Loader from '@/components/Loader.vue';
 import { MotionPlugin } from '@vueuse/motion';
-import { defineElement } from 'lord-icon-element';
-import lottie from 'lottie-web';
+import { defineElement } from '@lordicon/element';
 import { ref } from 'vue';
 
-defineElement(lottie.loadAnimation);
+defineElement();
 
 const appName = import.meta.env.VITE_APP_NAME || 'scorchOS';
 
