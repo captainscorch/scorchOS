@@ -166,7 +166,7 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         </div>
     </main>
 
-    <script>
+    <script data-cfasync="false">
         class Terminal {
             constructor() {
                 this.input = document.getElementById('terminal-input');
