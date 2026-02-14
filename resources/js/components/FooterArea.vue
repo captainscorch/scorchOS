@@ -5,12 +5,12 @@ import { useSocials } from '@/composables/useSocials';
 import { setLocale } from '@/i18n';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faClockEight, faLocationArrow } from '@fortawesome/sharp-light-svg-icons';
-import { faMoon, faSun } from '@fortawesome/sharp-solid-svg-icons';
+import { faMoon, faSunBright } from '@fortawesome/sharp-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { useDark, useToggle } from '@vueuse/core';
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-library.add(faLocationArrow, faClockEight, faMoon, faSun);
+library.add(faLocationArrow, faClockEight, faMoon, faSunBright);
 
 const { t, locale } = useI18n();
 const socials = useSocials();
@@ -219,7 +219,7 @@ onUnmounted(() => {
                         <Switch :model-value="isDark" @update:model-value="toggleTheme" class="-mt-0.5">
                             <template #thumb>
                                 <FontAwesomeIcon v-if="isDark" icon="fa-sharp fa-solid fa-moon" class="text-[10px]" />
-                                <FontAwesomeIcon v-else icon="fa-sharp fa-solid fa-sun" class="text-[10px]" />
+                                <FontAwesomeIcon v-else icon="fa-sharp fa-solid fa-sun-bright" class="text-[10px]" />
                             </template>
                         </Switch>
                     </div>

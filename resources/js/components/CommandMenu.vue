@@ -5,7 +5,7 @@ import { useCommandMenu } from '@/composables/useCommandMenu';
 import { useTerminal } from '@/composables/useTerminal';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faInstagram, faLinkedin, faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faArrowRight, faCheck, faEnvelope, faGlobe, faMoon, faSun, faText } from '@fortawesome/sharp-light-svg-icons';
+import { faArrowRight, faCheck, faEnvelope, faGlobe, faMoon, faSunBright, faText } from '@fortawesome/sharp-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { router } from '@inertiajs/vue3';
 import { useDark, useMagicKeys } from '@vueuse/core';
@@ -17,7 +17,7 @@ import 'vue-sonner/style.css';
 
 import { setLocale } from '@/i18n';
 
-library.add(faArrowRight, faInstagram, faXTwitter, faLinkedin, faGithub, faEnvelope, faMoon, faSun, faGlobe, faCheck, faText);
+library.add(faArrowRight, faInstagram, faXTwitter, faLinkedin, faGithub, faEnvelope, faMoon, faSunBright, faGlobe, faCheck, faText);
 
 const { t, locale } = useI18n();
 const { isOpen, close, toggle } = useCommandMenu();
@@ -249,7 +249,7 @@ const markSvg = `<svg version="1.1" id="captainscorch_logo" xmlns="http://www.w3
             <CommandSeparator />
             <CommandGroup :heading="t('commandMenu.groups.settings')">
                 <CommandItem value="light theme mode CMD + L" @select="isDark = false" class="group">
-                    <FontAwesomeIcon icon="fa-sharp fa-light fa-sun" class="mr-1.5 ml-0.5 h-4 w-4 opacity-60 group-hover:opacity-100" />
+                    <FontAwesomeIcon icon="fa-sharp fa-light fa-sun-bright" class="mr-1.5 ml-0.5 h-4 w-4 opacity-60 group-hover:opacity-100" />
                     <span>{{ t('commandMenu.settings.light') }}</span>
                     <div class="ml-auto flex items-center justify-end">
                         <FontAwesomeIcon v-if="!isDark" icon="fa-sharp fa-light fa-check" class="mr-4 h-4 w-4 opacity-60 group-hover:opacity-100" />
