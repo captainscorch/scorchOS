@@ -55,10 +55,10 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         <div id="terminal-header" class="bg-[#0a1a18] px-4 py-3 relative flex items-center justify-end md:justify-center border-b border-[#115e59]/40 cursor-grab active:cursor-grabbing select-none">
             <!-- Window Controls (Left) -->
             <div class="absolute left-4 flex items-center space-x-2 group">
-                <button onclick="window.location.href='/'" class="h-3 w-3 flex items-center justify-center rounded-full bg-[#ff5f56] text-[8px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ff5f56]/80" title="Close">
+                <button onclick="window.location.href='/'" class="h-3 w-3 flex items-center justify-center rounded-full bg-[#ff5f56] text-[12px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ff5f56]/80" title="Close">
                     <span class="opacity-0 group-hover:opacity-100">✕</span>
                 </button>
-                <div class="h-3 w-3 flex items-center justify-center rounded-full bg-[#ffbd2e] text-[8px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ffbd2e]/80" title="Minimize">
+                <div class="h-3 w-3 flex items-center justify-center rounded-full bg-[#ffbd2e] text-[12px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ffbd2e]/80" title="Minimize">
                     <span class="opacity-0 group-hover:opacity-100">−</span>
                 </div>
                 <button onclick="toggleFullscreen()" class="h-3 w-3 flex items-center justify-center rounded-full bg-[#27c93f] text-[6px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#27c93f]/80" title="Toggle Fullscreen">

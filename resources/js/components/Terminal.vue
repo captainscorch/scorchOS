@@ -317,13 +317,13 @@ const navigateHistory = (direction: 'up' | 'down') => {
             <div class="group absolute left-4 flex items-center space-x-2">
                 <button
                     @click="$emit('close')"
-                    class="flex h-3 w-3 items-center justify-center rounded-full bg-[#ff5f56] text-[8px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ff5f56]/80"
+                    class="flex h-3 w-3 items-center justify-center rounded-full bg-[#ff5f56] text-[12px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ff5f56]/80"
                     title="Close"
                 >
                     <span class="opacity-0 group-hover:opacity-100">✕</span>
                 </button>
                 <div
-                    class="flex h-3 w-3 items-center justify-center rounded-full bg-[#ffbd2e] text-[8px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ffbd2e]/80"
+                    class="flex h-3 w-3 items-center justify-center rounded-full bg-[#ffbd2e] text-[12px] font-bold text-black/50 opacity-100 transition-all hover:bg-[#ffbd2e]/80"
                     title="Minimize"
                 >
                     <span class="opacity-0 group-hover:opacity-100">−</span>
