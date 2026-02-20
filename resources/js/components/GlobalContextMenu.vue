@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger } from '@/components/ui/context-menu';
+import { useI18n } from 'vue-i18n';
 import { toast } from 'vue-sonner';
+
+const { t } = useI18n();
 
 const copyToClipboard = async (text: string, type: 'Mark' | 'URL') => {
     try {
@@ -48,7 +51,7 @@ const handleCopyUrl = () => {
                     class="current-color mr-2 h-4 w-4 opacity-60 group-hover/item:opacity-100"
                 >
                 </lord-icon>
-                <span>Back</span>
+                <span>{{ t('globalContextMenu.back') }}</span>
                 <div class="ml-auto flex items-center gap-1">
                     <div
                         class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-sm text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
@@ -72,7 +75,7 @@ const handleCopyUrl = () => {
                     class="current-color mr-2 h-4 w-4 opacity-60 group-hover/item:opacity-100"
                 >
                 </lord-icon>
-                <span>Forward</span>
+                <span>{{ t('globalContextMenu.forward') }}</span>
                 <div class="ml-auto flex items-center gap-1">
                     <div
                         class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-sm text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
@@ -96,7 +99,7 @@ const handleCopyUrl = () => {
                     class="current-color mr-2 h-4 w-4 opacity-60 group-hover/item:opacity-100"
                 >
                 </lord-icon>
-                <span>Reload</span>
+                <span>{{ t('globalContextMenu.reload') }}</span>
                 <div class="ml-auto flex items-center gap-1">
                     <div
                         class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-sm text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
@@ -151,7 +154,7 @@ const handleCopyUrl = () => {
                         />
                     </g>
                 </svg>
-                <span>Copy Mark as SVG</span>
+                <span>{{ t('commandMenu.brandAssets.copyMarkAsSvg') }}</span>
             </ContextMenuItem>
             <ContextMenuItem @select="handleCopyUrl" class="group/item gap-2">
                 <lord-icon
@@ -162,7 +165,7 @@ const handleCopyUrl = () => {
                     class="current-color mr-2 h-4 w-4 opacity-60 group-hover/item:opacity-100"
                 >
                 </lord-icon>
-                <span>Copy URL to Clipboard</span>
+                <span>{{ t('globalContextMenu.copyUrlToClipboard') }}</span>
             </ContextMenuItem>
         </ContextMenuContent>
     </ContextMenu>

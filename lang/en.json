@@ -104,6 +104,13 @@
             "copyFailed": "Failed to copy to clipboard"
         }
     },
+    "globalContextMenu": {
+        "back": "Back",
+        "forward": "Forward",
+        "reload": "Reload",
+        "copyMarkAsSvg": "Copy Mark as SVG",
+        "copyUrlToClipboard": "Copy URL to Clipboard"
+    },
     "footer": {
         "contact": "Contact",
         "notes": "Notes",

@@ -105,6 +105,13 @@
             "copyFailed": "Kopieren in Zwischenablage fehlgeschlagen"
         }
     },
+    "globalContextMenu": {
+        "back": "Zurück",
+        "forward": "Vorwärts",
+        "reload": "Aktualisieren",
+        "copyMarkAsSvg": "Marke als SVG kopieren",
+        "copyUrlToClipboard": "URL kopieren"
+    },
     "footer": {
         "contact": "Kontakt",
         "notes": "Notizen",
