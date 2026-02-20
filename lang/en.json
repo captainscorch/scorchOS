@@ -101,6 +101,7 @@
         "toast": {
             "copied": "{type} copied to clipboard",
             "copiedDescription": "You can now paste it into your design tool.",
+            "copiedUrlDescription": "You can now share the link.",
             "copyFailed": "Failed to copy to clipboard"
         }
     },

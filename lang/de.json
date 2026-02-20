@@ -102,6 +102,7 @@
         "toast": {
             "copied": "{type} in Zwischenablage kopiert",
             "copiedDescription": "Du kannst es jetzt in dein Design-Tool einfügen.",
+            "copiedUrlDescription": "Du kannst den Link jetzt teilen.",
             "copyFailed": "Kopieren in Zwischenablage fehlgeschlagen"
         }
     },
