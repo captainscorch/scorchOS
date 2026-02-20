@@ -456,6 +456,7 @@
 .link-with-thumbnail {
     position: relative;
     display: inline-block;
+    z-index: 10;
 }
 
 .thumbnail-preview-wrapper {
@@ -504,6 +505,14 @@
 }
 
 @media (max-width: 990px) {
+    h1 .link-with-thumbnail.is-active {
+        z-index: 120;
+    }
+
+    h1 .link-with-thumbnail.is-active .thumbnail-preview-wrapper.is-active {
+        z-index: 130;
+    }
+
     .thumbnail-preview-wrapper {
         left: 0;
         right: 0;
