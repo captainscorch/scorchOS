@@ -62,7 +62,7 @@ const handleCopyUrl = () => {
                     </div>
                     <span class="text-sm text-neutral-500 dark:text-neutral-400">+</span>
                     <div
-                        class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[10px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
+                        class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[11px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
                     >
                         <span>←</span>
                     </div>
@@ -86,7 +86,7 @@ const handleCopyUrl = () => {
                     </div>
                     <span class="text-sm text-neutral-500 dark:text-neutral-400">+</span>
                     <div
-                        class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[10px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
+                        class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[11px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
                     >
                         <span>→</span>
                     </div>
@@ -110,7 +110,7 @@ const handleCopyUrl = () => {
                     </div>
                     <span class="text-sm text-neutral-500 dark:text-neutral-400">+</span>
                     <div
-                        class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[10px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
+                        class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[11px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
                     >
                         <span>R</span>
                     </div>

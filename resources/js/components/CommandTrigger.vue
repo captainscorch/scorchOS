@@ -21,7 +21,7 @@ defineEmits(['click']);
                 <span>⌘</span>
             </div>
             <div
-                class="hidden size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 font-mono text-[10px] text-neutral-500 group-hover:text-neutral-900 md:flex dark:border-white/10 dark:bg-neutral-800/80 dark:text-white/70 dark:group-hover:text-white"
+                class="hidden size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 font-mono text-[11px] text-neutral-500 group-hover:text-neutral-900 md:flex dark:border-white/10 dark:bg-neutral-800/80 dark:text-white/70 dark:group-hover:text-white"
             >
                 <span>K</span>
             </div>

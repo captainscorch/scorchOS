@@ -264,7 +264,7 @@ const handleCopyMark = () => {
                             </div>
                             <span class="text-sm text-neutral-500 dark:text-neutral-400">+</span>
                             <div
-                                class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[10px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
+                                class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[11px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
                             >
                                 <span class="leading-none">L</span>
                             </div>
@@ -284,7 +284,7 @@ const handleCopyMark = () => {
                             </div>
                             <span class="text-sm text-neutral-500 dark:text-neutral-400">+</span>
                             <div
-                                class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[10px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
+                                class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 text-[11px] text-neutral-500 dark:border-white/10 dark:bg-neutral-800/80 dark:text-neutral-400"
                             >
                                 <span class="leading-none">D</span>
                             </div>
@@ -296,7 +296,7 @@ const handleCopyMark = () => {
                         <div
                             class="mr-3 flex h-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 px-1 dark:border-neutral-700 dark:bg-neutral-800"
                         >
-                            <span class="font-mono text-[10px] leading-none text-neutral-500 dark:text-neutral-400">EN</span>
+                            <span class="font-mono text-[11px] leading-none text-neutral-500 dark:text-neutral-400">EN</span>
                         </div>
                         <span>{{ t('commandMenu.settings.english') }}</span>
                     </div>
@@ -313,7 +313,7 @@ const handleCopyMark = () => {
                         <div
                             class="mr-3 flex h-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 px-1 dark:border-neutral-700 dark:bg-neutral-800"
                         >
-                            <span class="font-mono text-[10px] leading-none text-neutral-500 dark:text-neutral-400">DE</span>
+                            <span class="font-mono text-[11px] leading-none text-neutral-500 dark:text-neutral-400">DE</span>
                         </div>
                         <span>{{ t('commandMenu.settings.deutsch') }}</span>
                     </div>
@@ -338,7 +338,7 @@ const handleCopyMark = () => {
                         <div
                             class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800"
                         >
-                            <CornerDownLeft class="size-2.5 text-neutral-500 dark:text-neutral-400" />
+                            <CornerDownLeft class="size-3 text-neutral-500 dark:text-neutral-400" />
                         </div>
                     </div>
                     <div class="flex items-center gap-1">
@@ -346,7 +346,7 @@ const handleCopyMark = () => {
                         <div
                             class="flex h-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 px-1 dark:border-neutral-700 dark:bg-neutral-800"
                         >
-                            <span class="font-mono text-[10px] leading-none text-neutral-500 dark:text-neutral-400">Esc</span>
+                            <span class="font-mono text-[11px] leading-none text-neutral-500 dark:text-neutral-400">Esc</span>
                         </div>
                     </div>
                 </div>
