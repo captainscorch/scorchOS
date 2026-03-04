@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\ContentSlugs;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,9 +16,13 @@ Route::get('/portfolio', function () {
     return Inertia::render('Portfolio');
 })->name('portfolio');
 
-Route::get('/case-study/{slug}', function ($slug) {
+Route::get('/case-study/{slug}', function (ContentSlugs $contentSlugs, string $slug) {
+    if (! $contentSlugs->isValidCaseStudy($slug)) {
+        abort(404);
+    }
+
     return Inertia::render('CaseStudy', [
-        'slug' => $slug
+        'slug' => $slug,
     ]);
 })->name('case-study');
 
@@ -29,10 +34,14 @@ Route::get('/playground', function () {
     return Inertia::render('Playground');
 })->name('playground');
 
-Route::get('/blog/{category}/{slug}', function ($category, $slug) {
+Route::get('/blog/{category}/{slug}', function (ContentSlugs $contentSlugs, string $category, string $slug) {
+    if (! $contentSlugs->isValidBlogPost($slug)) {
+        abort(404);
+    }
+
     return Inertia::render('BlogPost', [
         'slug' => $slug,
-        'category' => $category
+        'category' => $category,
     ]);
 })->name('blog-post');
 

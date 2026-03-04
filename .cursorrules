@@ -10,7 +10,7 @@ Key Principles
 - Favor dependency injection and service containers.
 
 PHP/Laravel
-- Use PHP 8.2+ features when appropriate (e.g., typed properties, match expressions).
+- Use PHP 8.4+ features when appropriate (e.g., typed properties, match expressions).
 - Follow PSR-12 coding standards.
 - Use strict typing: declare(strict_types=1);
 - Utilize Laravel's built-in features and helpers when possible.
@@ -79,6 +79,7 @@ scorchOS/
 │   │   ├── Controllers/
 │   │   └── Middleware/
 │   ├── Models/
+│   ├── Services/
 ├── resources/
 │   ├── js/
 │   │   └── pages/
