@@ -1165,7 +1165,7 @@ const fadeUpMotion = {
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 400 },
                         }"
                         href="/blog"
-                        class="glowing-card mobile-tap-glow blog-icon group relative col-span-1 overflow-visible rounded-2xl md:col-span-4"
+                        class="glowing-card mobile-focus-glow blog-icon group relative col-span-1 overflow-visible rounded-2xl md:col-span-4"
                     >
                         <div class="glows"></div>
                         <div
@@ -1422,7 +1422,7 @@ const fadeUpMotion = {
                             transition: { ...fadeUpMotion.visibleOnce.transition, delay: 500 },
                         }"
                         href="/playground"
-                        class="glowing-card mobile-tap-glow playground-icon group relative col-span-1 overflow-visible rounded-2xl md:col-span-6 lg:col-span-7"
+                        class="glowing-card mobile-focus-glow playground-icon group relative col-span-1 overflow-visible rounded-2xl md:col-span-6 lg:col-span-7"
                     >
                         <div class="glows"></div>
                         <div
@@ -1686,63 +1686,6 @@ const fadeUpMotion = {
     .glowing-card::before,
     .glowing-card::after {
         display: none;
-    }
-
-    .mobile-tap-glow .glowing-card-content {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .mobile-tap-glow .glowing-card-content::after {
-        content: '';
-        position: absolute;
-        inset: -1px;
-        border-radius: inherit;
-        padding: 1px;
-        background: linear-gradient(135deg, oklch(0.683 0.12 173.63 / 0.3) 0%, transparent 50%, oklch(0.683 0.12 173.63 / 0.1) 100%);
-        -webkit-mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-        mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-        opacity: 0.4;
-        z-index: 1;
-    }
-
-    .mobile-tap-glow .glowing-card-content::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: radial-gradient(circle at center, oklch(0.683 0.12 173.63 / 0.15) 0%, oklch(0.683 0.12 173.63 / 0.05) 50%, transparent 70%);
-        opacity: 0;
-        transform: scale(0.8);
-        transition: none;
-        pointer-events: none;
-        z-index: 2;
-    }
-
-    .mobile-tap-glow:active .glowing-card-content::before {
-        animation: tapPulse 0.4s ease-out forwards;
-    }
-
-    @keyframes tapPulse {
-        0% {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        50% {
-            opacity: 1;
-            transform: scale(1);
-        }
-        100% {
-            opacity: 0;
-            transform: scale(1.05);
-        }
     }
 
     .mobile-focus-glow .glowing-card-content {
