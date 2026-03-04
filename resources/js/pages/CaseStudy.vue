@@ -14,6 +14,7 @@ import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHeader, Dr
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useCommandMenu } from '@/composables/useCommandMenu';
 import { useProjects } from '@/composables/useProjects';
+import { useSocials } from '@/composables/useSocials';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeftLong, faArrowUpRight } from '@fortawesome/sharp-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -32,9 +33,10 @@ const props = defineProps<{
     slug: string;
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const { open: openCommandMenu } = useCommandMenu();
 const { getProject } = useProjects();
+const socials = useSocials();
 const isDrawerOpen = ref(false);
 const isStoryDrawerOpen = ref(false);
 const fineprintToggler = ref(false);
@@ -54,7 +56,7 @@ const project = computed(() => {
     return getProject(props.slug);
 });
 
-const pageTitle = computed(() => (project.value ? `${project.value.client} Case Study – Daniel Schmier` : t('caseStudy.notFound')));
+const pageTitle = computed(() => `${project.value?.client ?? ''} Case Study – Daniel Schmier`);
 const pageDescription = computed(() => project.value?.story_preview || t('caseStudy.defaultDescription'));
 const ogTitle = computed(() =>
     project.value ? `${project.value.client}: ${project.value.title} Case Study – Daniel Schmier` : 'Case Study – Daniel Schmier',
@@ -66,6 +68,73 @@ const ogUrl = computed(() => {
         return window.location.href;
     }
     return '';
+});
+
+const jsonLd = computed(() => {
+    if (!project.value) {
+        return null;
+    }
+
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://captainscor.ch';
+    const caseStudyUrl = `${baseUrl}/case-study/${project.value.slug}`;
+    const webPageId = `${caseStudyUrl}#webpage`;
+    const articleId = `${caseStudyUrl}#article`;
+    const imageUrl = project.value.image.startsWith('http') ? project.value.image : `${baseUrl}${project.value.image}`;
+    const personId = `${baseUrl}#person`;
+    const websiteId = `${baseUrl}#website`;
+    const socialProfiles = socials
+        .filter((social) => social.url.startsWith('http://') || social.url.startsWith('https://'))
+        .map((social) => social.url);
+    const about = [...new Set([...(project.value.services ?? []), ...(project.value.technologies ?? [])])].map((item) => ({
+        '@type': 'Thing',
+        name: item,
+    }));
+
+    return {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'Person',
+                '@id': personId,
+                name: 'Daniel Schmier',
+                url: baseUrl,
+                image: `${baseUrl}/img/favicons/web-app-manifest-512x512.png`,
+                sameAs: socialProfiles,
+            },
+            {
+                '@type': 'WebSite',
+                '@id': websiteId,
+                name: 'Daniel Schmier',
+                url: baseUrl,
+                publisher: { '@id': personId },
+            },
+            {
+                '@type': 'WebPage',
+                '@id': webPageId,
+                url: caseStudyUrl,
+                name: `${project.value.client}: ${project.value.title}`,
+                isPartOf: { '@id': websiteId },
+                about: { '@id': articleId },
+            },
+            {
+                '@type': 'Article',
+                '@id': articleId,
+                headline: `${project.value.client}: ${project.value.title}`,
+                description: project.value.story_preview,
+                image: [imageUrl],
+                datePublished: project.value.date,
+                inLanguage: locale.value === 'de' ? 'de-DE' : 'en-US',
+                url: caseStudyUrl,
+                author: { '@id': personId },
+                publisher: { '@id': personId },
+                about,
+                isPartOf: { '@id': websiteId },
+                mainEntityOfPage: {
+                    '@id': webPageId,
+                },
+            },
+        ],
+    };
 });
 
 const isAnyDrawerOpen = computed(() => isDrawerOpen.value || isStoryDrawerOpen.value);
@@ -500,6 +569,11 @@ onUnmounted(() => {
         <meta name="twitter:title" :content="ogTitle" />
         <meta name="twitter:description" :content="pageDescription" />
         <meta name="twitter:image" :content="ogImage" />
+
+        <!-- JSON-LD -->
+        <component :is="'script'" v-if="jsonLd" type="application/ld+json">
+            {{ JSON.stringify(jsonLd) }}
+        </component>
     </Head>
 
     <div

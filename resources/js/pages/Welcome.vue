@@ -7,6 +7,7 @@ import TextReveal from '@/components/TextReveal.vue';
 import { useCommandMenu } from '@/composables/useCommandMenu';
 import { usePosts } from '@/composables/usePosts';
 import { useProjects } from '@/composables/useProjects';
+import { useSocials } from '@/composables/useSocials';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faAddressCard,
@@ -49,6 +50,7 @@ let glowAnimationFrame: number | null = null;
 const { t, locale } = useI18n();
 const { getProject } = useProjects();
 const { posts, getAllCategories, getAllTags, getPostsByCategory } = usePosts();
+const socials = useSocials();
 
 const latestPosts = computed(() => posts.value.slice(0, 3));
 
@@ -115,6 +117,52 @@ const ogUrl = computed(() => {
         return window.location.href;
     }
     return '';
+});
+
+const jsonLd = computed(() => {
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://captainscor.ch';
+    const profileImage = `${baseUrl}/img/favicons/web-app-manifest-512x512.png`;
+    const personId = `${baseUrl}#person`;
+    const websiteId = `${baseUrl}#website`;
+    const homePageId = `${baseUrl}#webpage`;
+    const socialProfiles = socials
+        .filter((social) => social.url.startsWith('http://') || social.url.startsWith('https://'))
+        .map((social) => social.url);
+
+    return {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'Person',
+                '@id': personId,
+                name: 'Daniel Schmier',
+                url: baseUrl,
+                image: profileImage,
+                sameAs: socialProfiles,
+                homeLocation: {
+                    '@type': 'Place',
+                    name: 'Kassel, Germany',
+                },
+            },
+            {
+                '@type': 'WebSite',
+                '@id': websiteId,
+                name: 'Daniel Schmier',
+                url: baseUrl,
+                inLanguage: locale.value === 'de' ? 'de-DE' : 'en-US',
+                publisher: { '@id': personId },
+            },
+            {
+                '@type': 'WebPage',
+                '@id': homePageId,
+                name: pageTitle,
+                description: pageDescription,
+                url: baseUrl,
+                isPartOf: { '@id': websiteId },
+                about: { '@id': personId },
+            },
+        ],
+    };
 });
 
 // Portfolio folder structure
@@ -510,6 +558,11 @@ const fadeUpMotion = {
         <meta name="twitter:url" :content="ogUrl" />
         <meta name="twitter:title" :content="ogTitle" />
         <meta name="twitter:description" :content="pageDescription" />
+
+        <!-- JSON-LD -->
+        <component :is="'script'" type="application/ld+json">
+            {{ JSON.stringify(jsonLd) }}
+        </component>
     </Head>
     <div ref="pageContainer" class="mx-auto h-full min-h-dvh max-w-7xl px-6 pt-32 md:pt-40 lg:px-8">
         <!-- Header / Navigation -->

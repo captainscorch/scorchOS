@@ -8,6 +8,7 @@ import MarkdownImage from '@/components/MarkdownImage.vue';
 import ProgressiveBlur from '@/components/ProgressiveBlur.vue';
 import { useCommandMenu } from '@/composables/useCommandMenu';
 import { usePosts } from '@/composables/usePosts';
+import { useSocials } from '@/composables/useSocials';
 import { marked, slugify } from '@/utils/markdown';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowUpRight, faArrowUpToLine, faBarsSort, faChevronDown } from '@fortawesome/sharp-light-svg-icons';
@@ -36,13 +37,15 @@ const updateHeights = () => {
 
 const props = defineProps<{
     slug: string;
+    category?: string;
 }>();
 
 const { t, locale } = useI18n();
 const { open: openCommandMenu } = useCommandMenu();
 const { getPost } = usePosts();
+const socials = useSocials();
 
-const post = computed(() => getPost(props.slug));
+const post = computed(() => getPost(props.slug)!);
 
 const pageTitle = computed(() => (post.value?.title ? `${post.value.title} – Daniel Schmier` : 'Blog Post – Daniel Schmier'));
 const pageDescription = computed(() => post.value?.excerpt ?? '');
@@ -55,38 +58,66 @@ const ogUrl = computed(() => {
 });
 
 const jsonLd = computed(() => {
-    if (!post.value) return {};
+    if (!post.value) {
+        return null;
+    }
 
     const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://captainscor.ch';
-    const postUrl = `${baseUrl}/blog/${post.value.category[0].toLowerCase()}/${post.value.slug}`;
+    const postUrl =
+        typeof window !== 'undefined' ? window.location.href : `${baseUrl}/blog/${props.category ?? 'journal'}/${post.value.slug}`;
+    const webPageId = `${postUrl}#webpage`;
+    const postId = `${postUrl}#blogposting`;
     const siteMetaImage = `${baseUrl}/img/captainscorch_meta.jpg`;
+    const personId = `${baseUrl}#person`;
+    const websiteId = `${baseUrl}#website`;
+    const socialProfiles = socials
+        .filter((social) => social.url.startsWith('http://') || social.url.startsWith('https://'))
+        .map((social) => social.url);
 
     return {
         '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: post.value.title,
-        description: post.value.excerpt,
-        image: [siteMetaImage],
-        datePublished: post.value.date,
-        author: [
+        '@graph': [
             {
                 '@type': 'Person',
+                '@id': personId,
                 name: 'Daniel Schmier',
                 url: baseUrl,
+                image: `${baseUrl}/img/favicons/web-app-manifest-512x512.png`,
+                sameAs: socialProfiles,
+            },
+            {
+                '@type': 'WebSite',
+                '@id': websiteId,
+                name: 'Daniel Schmier',
+                url: baseUrl,
+                publisher: { '@id': personId },
+            },
+            {
+                '@type': 'WebPage',
+                '@id': webPageId,
+                url: postUrl,
+                name: post.value.title,
+                description: post.value.excerpt,
+                isPartOf: { '@id': websiteId },
+                about: { '@id': postId },
+            },
+            {
+                '@type': 'BlogPosting',
+                '@id': postId,
+                headline: post.value.title,
+                description: post.value.excerpt,
+                image: [siteMetaImage],
+                datePublished: post.value.date,
+                inLanguage: locale.value === 'de' ? 'de-DE' : 'en-US',
+                url: postUrl,
+                author: { '@id': personId },
+                publisher: { '@id': personId },
+                isPartOf: { '@id': websiteId },
+                mainEntityOfPage: {
+                    '@id': webPageId,
+                },
             },
         ],
-        publisher: {
-            '@type': 'Organization',
-            name: 'captainscorch',
-            logo: {
-                '@type': 'ImageObject',
-                url: `${baseUrl}/img/captainscorch_logo.svg`,
-            },
-        },
-        mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': postUrl,
-        },
     };
 });
 
@@ -473,7 +504,7 @@ const activeCirclePosition = computed(() => {
         <meta name="twitter:description" :content="pageDescription" />
 
         <!-- JSON-LD -->
-        <component :is="'script'" type="application/ld+json">
+        <component :is="'script'" v-if="jsonLd" type="application/ld+json">
             {{ JSON.stringify(jsonLd) }}
         </component>
     </Head>
@@ -529,7 +560,7 @@ const activeCirclePosition = computed(() => {
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="flex flex-col gap-12 lg:grid lg:grid-cols-12">
                 <!-- Main Content -->
-                <main v-if="post" class="min-w-0 lg:col-span-9 lg:pr-20">
+                <main class="min-w-0 lg:col-span-9 lg:pr-20">
                     <!-- Article Header -->
                     <header class="mb-12">
                         <!-- Categories -->
@@ -786,25 +817,6 @@ const activeCirclePosition = computed(() => {
                 </aside>
             </div>
         </div>
-
-        <!-- Not Found -->
-        <main v-if="!post" class="mx-auto max-w-3xl px-6 lg:px-8">
-            <div class="flex flex-col items-center justify-center py-24 text-center">
-                <div
-                    class="post-not-found-area mb-6 flex size-16 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-100 text-neutral-400 dark:border-white/10 dark:bg-white/5 dark:text-neutral-500"
-                >
-                    <lord-icon
-                        src="/icons/system-regular-14-article-hover-article.json"
-                        trigger="hover"
-                        target=".post-not-found-area"
-                        delay="2000"
-                        class="current-color size-8"
-                    />
-                </div>
-                <h1 class="mb-2 font-sans text-xl font-bold text-neutral-900 dark:text-white">{{ t('blog.postNotFound.title') }}</h1>
-                <p class="mb-6 text-neutral-600 dark:text-neutral-400">{{ t('blog.postNotFound.description') }}</p>
-            </div>
-        </main>
 
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <FooterArea />

@@ -8,6 +8,7 @@ import SectionTitle from '@/components/global/typography/SectionTitle.vue';
 import ProgressiveBlur from '@/components/ProgressiveBlur.vue';
 import SkillsModal from '@/components/SkillsModal.vue';
 import { useCommandMenu } from '@/composables/useCommandMenu';
+import { useSocials } from '@/composables/useSocials';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowsFromLine, faArrowsToLine, faMinus, faPlus, faTimes } from '@fortawesome/sharp-light-svg-icons';
 import { faDot } from '@fortawesome/sharp-solid-svg-icons';
@@ -26,6 +27,7 @@ defineEmits(['close']);
 
 const { t, tm, locale } = useI18n();
 const { open: openCommandMenu } = useCommandMenu();
+const socials = useSocials();
 
 const pageTitle = 'CV – Daniel Schmier';
 const pageDescription = 'Design Engineer specializing in full-stack development, product design, and modern web technologies.';
@@ -36,6 +38,48 @@ const ogUrl = computed(() => {
         return window.location.href;
     }
     return '';
+});
+
+const jsonLd = computed(() => {
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://captainscor.ch';
+    const profileImage = `${baseUrl}/img/favicons/web-app-manifest-512x512.png`;
+    const personId = `${baseUrl}#person`;
+    const websiteId = `${baseUrl}#website`;
+    const aboutPageId = `${baseUrl}/about#webpage`;
+    const socialProfiles = socials
+        .filter((social) => social.url.startsWith('http://') || social.url.startsWith('https://'))
+        .map((social) => social.url);
+
+    return {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'Person',
+                '@id': personId,
+                name: 'Daniel Schmier',
+                url: baseUrl,
+                image: profileImage,
+                sameAs: socialProfiles,
+            },
+            {
+                '@type': 'WebSite',
+                '@id': websiteId,
+                name: 'Daniel Schmier',
+                url: baseUrl,
+                publisher: { '@id': personId },
+            },
+            {
+                '@type': 'AboutPage',
+                '@id': aboutPageId,
+                name: pageTitle,
+                description: pageDescription,
+                url: `${baseUrl}/about`,
+                mainEntity: { '@id': personId },
+                about: { '@id': personId },
+                isPartOf: { '@id': websiteId },
+            },
+        ],
+    };
 });
 
 interface TimelineItem {
@@ -347,6 +391,11 @@ const skills = computed(() => ({
         <meta name="twitter:url" :content="ogUrl" />
         <meta name="twitter:title" :content="ogTitle" />
         <meta name="twitter:description" :content="pageDescription" />
+
+        <!-- JSON-LD -->
+        <component :is="'script'" type="application/ld+json">
+            {{ JSON.stringify(jsonLd) }}
+        </component>
     </Head>
     <div class="min-h-screen bg-white pt-32 pb-20 text-neutral-900 md:pt-40 md:pb-0 dark:bg-black dark:text-white">
         <!-- Header / Navigation -->
