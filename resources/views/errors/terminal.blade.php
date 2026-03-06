@@ -166,22 +166,40 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         </div>
     </main>
 
+    @php
+        $projectSlugs = app(\App\Services\ContentSlugs::class)->caseStudySlugs();
+    @endphp
     <script data-cfasync="false">
-        class Terminal {
-            constructor() {
-                this.input = document.getElementById('terminal-input');
-                this.outputContainer = document.getElementById('output-container');
-                this.history = [];
-                this.historyIndex = -1;
-                this.fileSystem = {
-                    '~': ['scorchOS', 'Documents', 'Downloads', 'Projects'],
-                    '~/scorchOS': ['app', 'bootstrap', 'config', 'database', 'public', 'resources', 'routes', 'storage', 'tests', 'vendor', '.env', 'artisan', 'composer.json', 'package.json', 'phpunit.xml', 'README.md', 'vite.config.js'],
-                    '~/Projects': ['lyftd', 'way.food', 'loz'],
-                };
-                this.currentDir = '~/scorchOS';
-                
-                this.init();
-            }
+        (function() {
+            const projectSlugs = @json($projectSlugs);
+            const baseRoutes = {
+                '/': '/',
+                '/home': '/',
+                '/about': '/about',
+                '/portfolio': '/portfolio',
+                '/blog': '/blog',
+                '/playground': '/playground',
+            };
+            projectSlugs.forEach(slug => {
+                baseRoutes['/case-study/' + slug] = '/case-study/' + slug;
+            });
+
+            class Terminal {
+                constructor() {
+                    this.input = document.getElementById('terminal-input');
+                    this.outputContainer = document.getElementById('output-container');
+                    this.history = [];
+                    this.historyIndex = -1;
+                    this.fileSystem = {
+                        '~': ['scorchOS', 'Documents', 'Downloads', 'Projects'],
+                        '~/scorchOS': ['app', 'bootstrap', 'config', 'database', 'public', 'resources', 'routes', 'storage', 'tests', 'vendor', '.env', 'artisan', 'composer.json', 'package.json', 'phpunit.xml', 'README.md', 'vite.config.js'],
+                        '~/Projects': projectSlugs,
+                    };
+                    this.routes = baseRoutes;
+                    this.currentDir = '~/scorchOS';
+
+                    this.init();
+                }
 
             init() {
                 this.setupDrag();
@@ -253,6 +271,7 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
 <span class="text-[#2ab193]">Available commands:</span>
   <span class="text-[#60a5fa]">cd</span>       Change directory
   <span class="text-[#60a5fa]">ls</span>       List directory contents
+  <span class="text-[#60a5fa]">ls -la</span>   List all available pages/routes
   <span class="text-[#60a5fa]">clear</span>    Clear the terminal screen
   <span class="text-[#60a5fa]">pwd</span>      Print working directory
   <span class="text-[#60a5fa]">whoami</span>   Print current user
@@ -267,12 +286,23 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
                         document.getElementById('suggested-actions').classList.add('hidden');
                         break;
                     case 'ls':
-                        const files = this.fileSystem[this.currentDir] || [];
-                        const formattedFiles = files.map(f => {
-                            if (f.includes('.')) return `<span class="text-[#ccfbf1]">${f}</span>`;
-                            return `<span class="text-[#60a5fa] font-bold">${f}/</span>`;
-                        }).join('  ');
-                        this.printOutput(formattedFiles);
+                        const lsFiles = this.fileSystem[this.currentDir] || [];
+                        const showAllPages = args.some(a => a === '-la' || a === '-l' || a === '-a' || a === '-al');
+                        if (showAllPages) {
+                            const pageList = Object.entries(this.routes)
+                                .sort(([a], [b]) => a.localeCompare(b))
+                                .map(([path, target]) =>
+                                    `<span class="text-[#7a7684]">drwxr-xr-x</span>  <span class="text-(--color-brand-400)">${path}</span>  <span class="text-[#efe8e4]">→ ${target}</span>`
+                                )
+                                .join('\n');
+                            this.printOutput(`<span class="text-[#7a7684]"># Available pages (cd /path to navigate):</span>\n${pageList}`);
+                        } else {
+                            const formattedFiles = lsFiles.map(f => {
+                                if (f.includes('.')) return `<span class="text-[#efe8e4]">${f}</span>`;
+                                return `<span class="text-(--color-brand-400) font-bold">${f}/</span>`;
+                            }).join('  ');
+                            this.printOutput(formattedFiles);
+                        }
                         break;
                     case 'pwd':
                         this.printOutput(this.currentDir);
@@ -294,7 +324,7 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
                         window.location.href = '/';
                         break;
                     default:
-                        this.printOutput(`<span class="text-[#ff5f56]">zsh: command not found: ${baseCmd}</span>`);
+                        this.printOutput(`<span class="text-[#ff5f56]">zsh: command not found: ${this.escapeHtml(baseCmd)}</span>`);
                 }
 
                 const terminalBody = document.getElementById('terminal-body');
@@ -307,28 +337,38 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
                     window.location.href = '/';
                     return;
                 }
-                
+
                 if (path === '..') {
-                    if (this.currentDir === '~/scorchOS') this.currentDir = '~';
+                    if (this.currentDir === '~/scorchOS' || this.currentDir === '~/Projects') this.currentDir = '~';
                     else if (this.currentDir === '~') this.printOutput('Already at root level for this session.');
                     return;
                 }
 
                 if (path.startsWith('/')) {
-                    if (path === '/home') window.location.href = '/';
-                    else if (path === '/about') window.location.href = '/about';
-                    else if (path === '/portfolio') window.location.href = '/portfolio';
-                    else if (path === '/blog') window.location.href = '/blog';
-                    else if (path === '/playground') window.location.href = '/playground';
-                    else this.printOutput(`<span class="text-[#ff5f56]">cd: no such file or directory: ${path}</span>`);
+                    const target = this.routes[path];
+                    if (target) {
+                        window.location.href = target;
+                    } else {
+                        this.printOutput(`<span class="text-[#ff5f56]">cd: no such file or directory: ${this.escapeHtml(path)}</span>`);
+                    }
                     return;
                 }
 
-                const target = this.currentDir === '~' ? path : `${this.currentDir}/${path}`;
-                if (this.fileSystem[this.currentDir] && this.fileSystem[this.currentDir].includes(path.replace('/', ''))) {
-                     this.printOutput(`<span class="text-[#64748b]">cd: ${path}: permission denied (simulated)</span>`);
+                const normalizedPath = path.replace(/\/$/, '');
+                const currentFiles = this.fileSystem[this.currentDir] || [];
+
+                if (currentFiles.includes(normalizedPath)) {
+                    if (this.currentDir === '~' && (normalizedPath === 'scorchOS' || normalizedPath === 'Projects')) {
+                        this.currentDir = '~/' + normalizedPath;
+                        return;
+                    }
+                    if (this.currentDir === '~/Projects') {
+                        window.location.href = '/case-study/' + normalizedPath;
+                        return;
+                    }
+                    this.printOutput(`<span class="text-[#64748b]">cd: ${this.escapeHtml(path)}: permission denied (simulated)</span>`);
                 } else {
-                    this.printOutput(`<span class="text-[#ff5f56]">cd: no such file or directory: ${path}</span>`);
+                    this.printOutput(`<span class="text-[#ff5f56]">cd: no such file or directory: ${this.escapeHtml(path)}</span>`);
                 }
             }
 
@@ -439,6 +479,7 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         window.addEventListener('DOMContentLoaded', () => {
             new Terminal();
         });
+        })();
 
         function focusInput() {
             document.getElementById('terminal-input').focus();

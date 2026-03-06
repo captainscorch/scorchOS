@@ -44,6 +44,17 @@ const routes = computed(() => {
     return baseRoutes;
 });
 
+const escapeHtml = (text: string): string => {
+    const map: Record<string, string> = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;',
+    };
+    return text.replace(/[&<>"']/g, (m) => map[m]);
+};
+
 watch(isTerminalOpen, (isOpen) => {
     if (isOpen) {
         setInitialSize();
@@ -164,6 +175,7 @@ const handleCommand = (cmd: string) => {
 <span class="text-[#2ab193]">Available commands:</span>
   <span class="text-[#60a5fa]">cd</span>       Change directory
   <span class="text-[#60a5fa]">ls</span>       List directory contents
+  <span class="text-[#60a5fa]">ls -la</span>   List all available pages/routes
   <span class="text-[#60a5fa]">clear</span>    Clear the terminal screen
   <span class="text-[#60a5fa]">pwd</span>      Print working directory
   <span class="text-[#60a5fa]">whoami</span>   Print current user
@@ -175,16 +187,29 @@ const handleCommand = (cmd: string) => {
             showInitialCommand.value = false;
             showOutput.value = false;
             return;
-        case 'ls':
-            const files = fileSystem.value[currentDir.value] || [];
-            output = files
-                .map((f) => {
-                    const isDir = !f.includes('.') && !currentDir.value.includes('Projects');
-                    if (isDir) return `<span class="text-[#60a5fa] font-bold">${f}/</span>`;
-                    return `<span class="text-[#ccfbf1]">${f}</span>`;
-                })
-                .join('  ');
+        case 'ls': {
+            const lsFiles = fileSystem.value[currentDir.value] || [];
+            const showAllPages = args.some((a) => a === '-la' || a === '-l' || a === '-a' || a === '-al');
+            if (showAllPages) {
+                const pageList = Object.entries(routes.value)
+                    .sort(([a], [b]) => a.localeCompare(b))
+                    .map(
+                        ([path, target]) =>
+                            `<span class="text-[#7a7684]">drwxr-xr-x</span>  <span class="text-(--color-brand-400)">${path}</span>  <span class="text-[#efe8e4]">→ ${target}</span>`,
+                    )
+                    .join('\n');
+                output = `<span class="text-[#7a7684]"># Available pages (cd /path to navigate):</span>\n${pageList}`;
+            } else {
+                output = lsFiles
+                    .map((f) => {
+                        const isDir = !f.includes('.') && !currentDir.value.includes('Projects');
+                        if (isDir) return `<span class="text-(--color-brand-400) font-bold">${f}/</span>`;
+                        return `<span class="text-[#efe8e4]">${f}</span>`;
+                    })
+                    .join('  ');
+            }
             break;
+        }
         case 'pwd':
             output = currentDir.value;
             break;
@@ -201,7 +226,7 @@ const handleCommand = (cmd: string) => {
             window.location.href = '/';
             return;
         default:
-            output = `<span class="text-[#ff5f56]">zsh: command not found: ${baseCmd}</span>`;
+            output = `<span class="text-[#ff5f56]">zsh: command not found: ${escapeHtml(baseCmd)}</span>`;
     }
 
     if (output) {
@@ -236,12 +261,15 @@ const handleCd = (path: string) => {
         if (targetRoute) {
             window.location.href = targetRoute;
         } else {
-            outputLines.value.push({ type: 'output', content: `<span class="text-[#ff5f56]">cd: no such file or directory: ${path}</span>` });
+            outputLines.value.push({
+                type: 'output',
+                content: `<span class="text-[#ff5f56]">cd: no such file or directory: ${escapeHtml(path)}</span>`,
+            });
         }
         return;
     }
 
-    const normalizedPath = path.replace('/', '');
+    const normalizedPath = path.replace(/\/$/, '');
     const currentFiles = fileSystem.value[currentDir.value] || [];
 
     if (currentFiles.includes(normalizedPath)) {
@@ -255,9 +283,12 @@ const handleCd = (path: string) => {
             return;
         }
 
-        outputLines.value.push({ type: 'output', content: `<span class="text-[#64748b]">cd: ${path}: permission denied (simulated)</span>` });
+        outputLines.value.push({
+            type: 'output',
+            content: `<span class="text-[#64748b]">cd: ${escapeHtml(path)}: permission denied (simulated)</span>`,
+        });
     } else {
-        outputLines.value.push({ type: 'output', content: `<span class="text-[#ff5f56]">cd: no such file or directory: ${path}</span>` });
+        outputLines.value.push({ type: 'output', content: `<span class="text-[#ff5f56]">cd: no such file or directory: ${escapeHtml(path)}</span>` });
     }
 };
 
