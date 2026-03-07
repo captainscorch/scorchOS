@@ -1,11 +1,12 @@
 ```vue
 <script setup lang="ts">
+import { router } from '@inertiajs/vue3';
 import { useModalWindow } from '@/composables/useModalWindow';
 import { useProjects } from '@/composables/useProjects';
 import { useTerminal } from '@/composables/useTerminal';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
-const { isOpen: isTerminalOpen } = useTerminal();
+const { isOpen: isTerminalOpen, close: closeTerminal } = useTerminal();
 
 const {
     modalRef: _terminalWindow,
@@ -223,7 +224,8 @@ const handleCommand = (cmd: string) => {
             output = `<span class="text-[#ff5f56]">Password required for sudo. Access denied.</span>`;
             break;
         case 'exit':
-            window.location.href = '/';
+            closeTerminal();
+            router.visit('/');
             return;
         default:
             output = `<span class="text-[#ff5f56]">zsh: command not found: ${escapeHtml(baseCmd)}</span>`;
@@ -259,7 +261,8 @@ const handleCd = (path: string) => {
     if (path.startsWith('/')) {
         const targetRoute = routes.value[path];
         if (targetRoute) {
-            window.location.href = targetRoute;
+            closeTerminal();
+            router.visit(targetRoute);
         } else {
             outputLines.value.push({
                 type: 'output',
@@ -279,7 +282,8 @@ const handleCd = (path: string) => {
         }
 
         if (currentDir.value === '~/Projects') {
-            window.location.href = `/case-study/${normalizedPath}`;
+            closeTerminal();
+            router.visit(`/case-study/${normalizedPath}`);
             return;
         }
 
