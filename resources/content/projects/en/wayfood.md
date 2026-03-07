@@ -59,7 +59,7 @@ media:
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_8.webp
-      alt: 'way.food - Desktop Open Bookings DetailsPage'
+      alt: 'way.food - Desktop Open Bookings Details Page'
     - type: video
       src: /img/portfolio/wayfood/wayfood_landscape_video_2.webm
       thumbnail: /img/portfolio/wayfood/wayfood_landscape_video_2.webp

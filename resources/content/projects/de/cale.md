@@ -7,7 +7,7 @@ fineprint: 'Full-Service E-Commerce von der Linse bis zum Checkout. Entwicklung,
 
 # Skandinavische Schlichtheit im großen Stil
 
-cale design ist eine neue Marke für hochwertige Designmöbel, minimalistisches Interieur und Wohnaccessoires — alles aus eigener Manufaktur gefertigt. Die Herausforderung: einen digitalen Storefront bauen, der diese Handwerkskunst würdigt und gleichzeitig einen massiven, vielfältigen Katalog bewältigt.
+cale design ist eine neue Marke für hochwertige Designmöbel, minimalistisches Interieur und Wohnaccessoires — alles aus eigener Manufaktur gefertigt. Die Herausforderung: eine digitalen Storefront bauen, der diese Handwerkskunst würdigt und gleichzeitig einen massiven, vielfältigen Katalog bewältigt.
 
 ## Clean by Design
 

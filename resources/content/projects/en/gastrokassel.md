@@ -46,7 +46,7 @@ media:
       aspectRatio: '4/5'
       src: /img/portfolio/gastrokassel/gastrokassel_portrait_video_2.webm
       thumbnail: /img/portfolio/gastrokassel/gastrokassel_portrait_video_2.webp
-      alt: 'Gastroenterologie Kassel - Mobile Hamburer Menu Animation'
+      alt: 'Gastroenterologie Kassel - Mobile Hamburger Menu Animation'
 title: 'Medical Practice Website with Minimalist Branding'
 story_preview: "Dr. med. H. Habibi approached me with an urgent need: he was taking over a doctor's office and needed a professional web presence — fast. I delivered a custom-built, SEO-optimized website with a basic brand identity, all on a tight timeline"
 fineprint: "A rapid-turnaround project proving that tight deadlines don't mean cutting corners. Custom development, basic brand identity, and SEO optimization — all delivered fast without compromising quality."
