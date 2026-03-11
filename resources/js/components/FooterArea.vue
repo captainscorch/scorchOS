@@ -54,7 +54,7 @@ const switchLanguage = (lang: string) => {
 // Clock functionality
 const currentTime = ref('');
 const timezone = ref('');
-let clockInterval: number | null = null;
+let clockInterval: ReturnType<typeof setInterval> | null = null;
 
 const updateClock = () => {
     const now = new Date();
