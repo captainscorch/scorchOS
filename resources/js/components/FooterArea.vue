@@ -198,7 +198,7 @@ onUnmounted(() => {
                         <a
                             href="/llms.txt"
                             target="_blank"
-                            class="text-xs tracking-wider text-neutral-500 normal-case no-underline transition-colors hover:text-neutral-800 md:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300"
+                            class="text-xs tracking-wider text-neutral-500 normal-case no-underline transition-colors hover:text-neutral-600 md:text-neutral-600 md:hover:text-neutral-700 dark:hover:text-neutral-400"
                             :title="t('footer.llmsTxtTitle')"
                             >{{ t('footer.llmsTxt') }}</a
                         >
