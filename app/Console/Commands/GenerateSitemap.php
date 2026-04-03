@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Services\LlmsTxtGenerator;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
@@ -23,7 +24,7 @@ class GenerateSitemap extends Command
      *
      * @var string
      */
-    protected $description = 'Generate the sitemap.';
+    protected $description = 'Generate sitemap.xml and llms.txt.';
 
     /**
      * Execute the console command.
@@ -76,7 +77,9 @@ class GenerateSitemap extends Command
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
 
-        $this->info('Sitemap generated successfully!');
+        LlmsTxtGenerator::fromAppConfig()->writeToFile(public_path('llms.txt'));
+
+        $this->info('Sitemap and llms.txt generated successfully.');
 
         return self::SUCCESS;
     }

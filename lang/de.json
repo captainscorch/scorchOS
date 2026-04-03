@@ -122,7 +122,9 @@
         "quote": "\"Wir haben uns immer durch die Fähigkeit definiert, das Unmögliche zu überwinden.\"",
         "quoteAttribution": "– Cooper (Interstellar)",
         "socials": "Social Media",
-        "copyright": "Copyright"
+        "copyright": "Copyright",
+        "llmsTxt": "llms.txt",
+        "llmsTxtTitle": "Kuratierter Überblick für KI-Assistenten, Agenten und Tools"
     },
     "portfolio": {
         "views": {
@@ -294,6 +296,10 @@
         "copyCode": "Code kopieren",
         "copied": "Kopiert!",
         "share": "Artikel teilen",
+        "copyAsMarkdown": "Als Markdown kopieren",
+        "copyAsMarkdownLoading": "Wird geladen...",
+        "copyAsMarkdownTitle": "Beitrag als Markdown kopieren.",
+        "copyMarkdownFailed": "Kopieren fehlgeschlagen",
         "resetDemo": "Demo zurücksetzen",
         "backToBlog": "Zurück zum Blog",
         "viewInPlayground": "Im Playground ansehen",

@@ -1,0 +1,47 @@
+# captainscor.ch
+
+> Personal portfolio of Daniel Schmier (captainscorch): Design Engineer specializing in full-stack development, product design, and modern web technologies.
+
+Use the pages below for structured context about projects, articles, and contact paths.
+
+## Site
+
+- [Home](https://scorchos.test/): Landing and overview.
+- [About](https://scorchos.test/about): About me / CV.
+- [Portfolio](https://scorchos.test/portfolio): Selected case studies and personal projects.
+- [Blog](https://scorchos.test/blog): Articles and insights on design, development and beyond.
+- [Playground](https://scorchos.test/playground): Experiments and interactive demos.
+
+## Case studies
+
+- **Gastroenterologie Kassel** — [Medical Practice Website with Minimalist Branding](https://scorchos.test/case-study/gastroenterologie-kassel)
+- **way.food** — [Foodtruck & Catering Comparison Portal](https://scorchos.test/case-study/way.food)
+- **cale design** — [Minimalist Shopify Store for Premium Furniture & home accessories](https://scorchos.test/case-study/cale)
+- **Portfolio Website** — [My Personal Website, Portfolio with Case Studies, Blog & Playground](https://scorchos.test/case-study/captainscor.ch)
+- **ICEMÄNNER** — [High-energy B2B & B2C Ecommerce Experience](https://scorchos.test/case-study/icemaenner)
+- **Loz** — [DTC Shopify Store for Oral Care Startup](https://scorchos.test/case-study/loz)
+- **lyftd.app** — [Smart Training, Stronger You — Full-Stack Workout Tracking Platform](https://scorchos.test/case-study/lyftd)
+- **Personal Gallery** — [Gallery of my favorite photos from around the world](https://scorchos.test/case-study/photography)
+- **Tamplen Plastic Surgery** — [Premium Multi-Location Plastic Surgery Website](https://scorchos.test/case-study/tamplen)
+
+## Blog
+
+Each post is also available as Markdown at the same path with a `.md` suffix (`?lang=` / `Accept-Language` supported).
+
+- [Beyond Prompts: Architecting with AI](https://scorchos.test/blog/journal/beyond-prompts-architecting-with-ai) · [Markdown](https://scorchos.test/blog/journal/beyond-prompts-architecting-with-ai.md)
+- [Mastering Concentric Border Radius](https://scorchos.test/blog/craft/concentric-border-radius) · [Markdown](https://scorchos.test/blog/craft/concentric-border-radius.md)
+- [Enhanced Security for Laravel Forge nginx Configurations](https://scorchos.test/blog/craft/laravel-forge-nginx-security) · [Markdown](https://scorchos.test/blog/craft/laravel-forge-nginx-security.md)
+
+## Contact
+
+- [Instagram](https://www.instagram.com/captainscorch)
+- [X (Twitter)](https://x.com/captainscorch)
+- [LinkedIn](https://www.linkedin.com/in/captainscorch)
+- [GitHub](https://github.com/captainscorch)
+- [Email](mailto:hi@captainscor.ch)
+
+## Optional
+
+- [Robots](https://scorchos.test/robots.txt): Crawl directives for automated agents.
+- [Sitemap](https://scorchos.test/sitemap.xml): Index of canonical public URLs on the site.
+- [llms.txt](https://scorchos.test/llms.txt): This LLM-oriented overview file.

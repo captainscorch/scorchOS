@@ -190,7 +190,19 @@ onUnmounted(() => {
 
             <div class="mt-8 mb-20 flex flex-col items-end justify-between gap-4 sm:mt-0 md:mb-0 md:flex-row lg:mt-16">
                 <div class="flex w-full flex-col items-center justify-between gap-x-8 gap-y-4 text-sm tracking-wide uppercase md:flex-row md:gap-y-0">
-                    <p class="text-xs tracking-wider text-neutral-500 uppercase md:text-neutral-600">&copy; {{ t('footer.copyright') }} {{ year }}</p>
+                    <div class="flex flex-col items-center gap-2 md:flex-row md:items-center md:gap-4">
+                        <p class="text-xs tracking-wider text-neutral-500 uppercase md:text-neutral-600">
+                            &copy; {{ t('footer.copyright') }} {{ year }}
+                        </p>
+                        <span class="hidden h-3 w-px shrink-0 bg-neutral-400/45 md:block dark:bg-neutral-500/45" aria-hidden="true" />
+                        <a
+                            href="/llms.txt"
+                            target="_blank"
+                            class="text-xs tracking-wider text-neutral-500 normal-case no-underline transition-colors hover:text-neutral-800 md:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300"
+                            :title="t('footer.llmsTxtTitle')"
+                            >{{ t('footer.llmsTxt') }}</a
+                        >
+                    </div>
                     <div class="flex flex-row items-center gap-x-4">
                         <div class="flex flex-row items-center gap-x-4">
                             <button

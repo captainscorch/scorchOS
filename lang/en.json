@@ -121,7 +121,9 @@
         "quote": "\"We've always defined ourselves by the ability to overcome the impossible.\"",
         "quoteAttribution": "– Cooper (Interstellar)",
         "socials": "Socials",
-        "copyright": "Copyright"
+        "copyright": "Copyright",
+        "llmsTxt": "llms.txt",
+        "llmsTxtTitle": "Curated site overview for AI assistants, agents and tools"
     },
     "portfolio": {
         "views": {
@@ -293,6 +295,10 @@
         "copyCode": "Copy code",
         "copied": "Copied!",
         "share": "Share article",
+        "copyAsMarkdown": "Copy as Markdown",
+        "copyAsMarkdownLoading": "Loading...",
+        "copyAsMarkdownTitle": "Copy article text as Markdown.",
+        "copyMarkdownFailed": "Could not copy",
         "resetDemo": "Reset demo",
         "backToBlog": "Back to Blog",
         "viewInPlayground": "View in Playground",

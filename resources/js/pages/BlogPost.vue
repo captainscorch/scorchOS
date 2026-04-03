@@ -47,6 +47,78 @@ const socials = useSocials();
 
 const post = computed(() => getPost(props.slug)!);
 
+const markdownSourceUrl = computed(() => {
+    const categorySegment = props.category ?? post.value.category[0]?.toLowerCase() ?? 'journal';
+    return `/blog/${categorySegment}/${post.value.slug}.md?lang=${locale.value}`;
+});
+
+const MARKDOWN_COPY_LOADING_REVEAL_MS = 200;
+
+const markdownCopied = ref(false);
+const markdownCopying = ref(false);
+const markdownCopyFailed = ref(false);
+const markdownLoadingVisible = ref(false);
+let markdownCopyTimer: ReturnType<typeof setTimeout> | null = null;
+let markdownLoadingDelayTimer: ReturnType<typeof setTimeout> | null = null;
+
+const clearMarkdownCopyTimer = (): void => {
+    if (markdownCopyTimer !== null) {
+        clearTimeout(markdownCopyTimer);
+        markdownCopyTimer = null;
+    }
+};
+
+const clearMarkdownLoadingDelayTimer = (): void => {
+    if (markdownLoadingDelayTimer !== null) {
+        clearTimeout(markdownLoadingDelayTimer);
+        markdownLoadingDelayTimer = null;
+    }
+};
+
+const copyMarkdownForAi = async (): Promise<void> => {
+    if (markdownCopying.value) {
+        return;
+    }
+
+    clearMarkdownCopyTimer();
+    clearMarkdownLoadingDelayTimer();
+    markdownCopyFailed.value = false;
+    markdownCopied.value = false;
+    markdownLoadingVisible.value = false;
+    markdownCopying.value = true;
+
+    markdownLoadingDelayTimer = setTimeout(() => {
+        markdownLoadingDelayTimer = null;
+        if (markdownCopying.value) {
+            markdownLoadingVisible.value = true;
+        }
+    }, MARKDOWN_COPY_LOADING_REVEAL_MS);
+
+    try {
+        const response = await fetch(markdownSourceUrl.value);
+        if (!response.ok) {
+            throw new Error('Markdown request failed');
+        }
+        const text = await response.text();
+        await navigator.clipboard.writeText(text);
+        markdownCopied.value = true;
+        markdownCopyTimer = setTimeout(() => {
+            markdownCopied.value = false;
+            markdownCopyTimer = null;
+        }, 2000);
+    } catch {
+        markdownCopyFailed.value = true;
+        markdownCopyTimer = setTimeout(() => {
+            markdownCopyFailed.value = false;
+            markdownCopyTimer = null;
+        }, 2500);
+    } finally {
+        clearMarkdownLoadingDelayTimer();
+        markdownLoadingVisible.value = false;
+        markdownCopying.value = false;
+    }
+};
+
 const pageTitle = computed(() => (post.value?.title ? `${post.value.title} – Daniel Schmier` : 'Blog Post – Daniel Schmier'));
 const pageDescription = computed(() => post.value?.excerpt ?? '');
 
@@ -63,8 +135,7 @@ const jsonLd = computed(() => {
     }
 
     const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://captainscor.ch';
-    const postUrl =
-        typeof window !== 'undefined' ? window.location.href : `${baseUrl}/blog/${props.category ?? 'journal'}/${post.value.slug}`;
+    const postUrl = typeof window !== 'undefined' ? window.location.href : `${baseUrl}/blog/${props.category ?? 'journal'}/${post.value.slug}`;
     const webPageId = `${postUrl}#webpage`;
     const postId = `${postUrl}#blogposting`;
     const siteMetaImage = `${baseUrl}/img/captainscorch_meta.jpg`;
@@ -381,6 +452,8 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+    clearMarkdownCopyTimer();
+    clearMarkdownLoadingDelayTimer();
     window.removeEventListener('resize', updateHeights);
     window.removeEventListener('scroll', updateActiveHeading);
 });
@@ -580,32 +653,80 @@ const activeCirclePosition = computed(() => {
                         </PageTitle>
 
                         <!-- Meta & Share -->
-                        <div class="mt-4 flex items-center justify-between">
-                            <div class="flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
+                        <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                            <div class="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400">
                                 <span>{{ formatDate(post.date) }}</span>
                                 <span>•</span>
                                 <span>{{ post.readingTime }} {{ t('blog.readingTime') }}</span>
                             </div>
 
-                            <button
-                                @click="sharePost"
-                                class="share-item group relative flex cursor-pointer items-center gap-2 rounded-full border border-neutral-200 bg-white/50 p-2 text-xs font-medium backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg dark:border-white/10 dark:bg-neutral-900/50 dark:hover:bg-neutral-800"
-                                :title="copied ? t('blog.copied') : t('blog.share')"
-                            >
-                                <lord-icon
-                                    src="/icons/system-regular-98-link-hover-link.json"
-                                    trigger="hover"
-                                    target=".share-item"
-                                    style="width: 18px; height: 18px"
-                                    class="current-color opacity-60 group-hover:opacity-100"
-                                />
-                                <span
-                                    v-if="copied"
-                                    class="absolute -bottom-8 left-1/2 -translate-x-1/2 rounded bg-neutral-900 px-2 py-1 text-xs whitespace-nowrap text-white shadow-lg dark:bg-white dark:text-black"
+                            <div class="flex items-center gap-3">
+                                <button
+                                    type="button"
+                                    @click="sharePost"
+                                    class="share-item group relative flex cursor-pointer items-center gap-2 rounded-full border border-neutral-200 bg-white/50 p-2 text-xs font-medium text-neutral-900 backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg dark:border-white/10 dark:bg-neutral-900/50 dark:text-white dark:hover:bg-neutral-800"
+                                    :title="copied ? t('blog.copied') : t('blog.share')"
                                 >
-                                    {{ t('blog.copied') }}
-                                </span>
-                            </button>
+                                    <lord-icon
+                                        src="/icons/system-regular-98-link-hover-link.json"
+                                        trigger="hover"
+                                        target=".share-item"
+                                        style="width: 18px; height: 18px"
+                                        class="current-color opacity-60 transition-all group-hover:opacity-100"
+                                    />
+                                    <span
+                                        v-if="copied"
+                                        class="absolute -bottom-8 left-1/2 -translate-x-1/2 rounded bg-neutral-900 px-2 py-1 text-xs whitespace-nowrap text-white shadow-lg dark:bg-white dark:text-black"
+                                    >
+                                        {{ t('blog.copied') }}
+                                    </span>
+                                </button>
+                                <button
+                                    type="button"
+                                    class="copy-md-btn group relative flex min-h-9 cursor-pointer items-center rounded-full border border-neutral-200 bg-white/50 px-3 py-2 text-xs font-medium text-neutral-900 backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg dark:border-white/10 dark:bg-neutral-900/50 dark:text-white dark:hover:bg-neutral-800"
+                                    :title="t('blog.copyAsMarkdownTitle')"
+                                    :aria-busy="markdownCopying"
+                                    @click="copyMarkdownForAi"
+                                >
+                                    <span
+                                        class="flex items-center gap-1.5 opacity-60 transition-opacity group-hover:opacity-100 group-active:opacity-100"
+                                    >
+                                        <svg class="size-5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208 128" aria-hidden="true">
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="10"
+                                                d="M15,5h178c5.523,0,10,4.477,10,10v98c0,5.523-4.477,10-10,10H15c-5.523,0-10-4.477-10-10V15C5,9.477,9.477,5,15,5z"
+                                            />
+                                            <path
+                                                fill="currentColor"
+                                                d="M30,98V30h20l20,25l20-25h20v68H90V59L70,84L50,59v39H30z M155,98l-30-33h20V30h20v35h20L155,98z"
+                                            />
+                                        </svg>
+                                        <span class="relative inline-flex items-center">
+                                            <span class="invisible whitespace-nowrap select-none" aria-hidden="true">{{
+                                                t('blog.copyAsMarkdown')
+                                            }}</span>
+                                            <span class="absolute top-1/2 left-0 -translate-y-1/2 whitespace-nowrap">
+                                                <span v-if="markdownLoadingVisible" class="opacity-70">{{ t('blog.copyAsMarkdownLoading') }}</span>
+                                                <span v-else>{{ t('blog.copyAsMarkdown') }}</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span
+                                        v-if="markdownCopied"
+                                        class="absolute -bottom-8 left-1/2 -translate-x-1/2 rounded bg-neutral-900 px-2 py-1 text-xs whitespace-nowrap text-white shadow-lg dark:bg-white dark:text-black"
+                                    >
+                                        {{ t('blog.copied') }}
+                                    </span>
+                                    <span
+                                        v-if="markdownCopyFailed"
+                                        class="absolute -bottom-8 left-1/2 -translate-x-1/2 rounded bg-neutral-900 px-2 py-1 text-xs whitespace-nowrap text-white shadow-lg dark:bg-white dark:text-black"
+                                    >
+                                        {{ t('blog.copyMarkdownFailed') }}
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </header>
 

@@ -56,6 +56,35 @@ class ContentSlugs
     }
 
     /**
+     * Path to the Markdown source file for a blog post, for a given locale (en|de).
+     * Falls back to English when no translation file exists.
+     */
+    public function blogPostSourceMarkdownPath(string $slug, string $locale): ?string
+    {
+        if (! $this->isValidBlogPost($slug)) {
+            return null;
+        }
+
+        $locale = $locale === 'de' ? 'de' : 'en';
+
+        foreach (glob(resource_path('content/posts/en/*.md')) ?: [] as $englishPath) {
+            if ($this->slugFromMarkdownFile($englishPath) !== $slug) {
+                continue;
+            }
+
+            if ($locale === 'en') {
+                return $englishPath;
+            }
+
+            $translatedPath = resource_path('content/posts/de/'.basename($englishPath));
+
+            return is_readable($translatedPath) ? $translatedPath : $englishPath;
+        }
+
+        return null;
+    }
+
+    /**
      * @return array<int, string>
      */
     private function loadSlugsFromMarkdownDirectory(string $globPattern): array

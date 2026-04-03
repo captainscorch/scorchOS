@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogPostMarkdownController;
 use App\Services\ContentSlugs;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,6 +34,8 @@ Route::get('/blog', function () {
 Route::get('/playground', function () {
     return Inertia::render('Playground');
 })->name('playground');
+
+Route::get('/blog/{category}/{slug}.md', BlogPostMarkdownController::class)->name('blog-post.markdown');
 
 Route::get('/blog/{category}/{slug}', function (ContentSlugs $contentSlugs, string $category, string $slug) {
     if (! $contentSlugs->isValidBlogPost($slug)) {
