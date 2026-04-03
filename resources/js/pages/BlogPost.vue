@@ -653,7 +653,7 @@ const activeCirclePosition = computed(() => {
                         </PageTitle>
 
                         <!-- Meta & Share -->
-                        <div class="mt-8 flex flex-wrap items-center justify-between gap-3">
+                        <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
                             <div class="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400">
                                 <span>{{ formatDate(post.date) }}</span>
                                 <span>•</span>
