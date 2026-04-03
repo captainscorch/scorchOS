@@ -37,6 +37,7 @@ class GenerateSitemap extends Command
         $sitemap->add(Url::create('/about')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
         $sitemap->add(Url::create('/portfolio')->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
         $sitemap->add(Url::create('/blog')->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
+        $sitemap->add(Url::create('/playground')->setPriority(0.7)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
 
         // Projects (Case Studies) — content is Markdown + frontmatter, not JSON
         $projectFiles = glob(resource_path('content/projects/en/*.md')) ?: [];
