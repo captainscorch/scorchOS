@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import hljs from 'highlight.js/lib/core';
 import css from 'highlight.js/lib/languages/css';
+import diff from 'highlight.js/lib/languages/diff';
 import javascript from 'highlight.js/lib/languages/javascript';
 import json from 'highlight.js/lib/languages/json';
 import markdown from 'highlight.js/lib/languages/markdown';
@@ -8,13 +9,14 @@ import php from 'highlight.js/lib/languages/php';
 import sql from 'highlight.js/lib/languages/sql';
 import typescript from 'highlight.js/lib/languages/typescript';
 import xml from 'highlight.js/lib/languages/xml';
+import yaml from 'highlight.js/lib/languages/yaml';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-// Register languages
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('css', css);
+hljs.registerLanguage('diff', diff);
 hljs.registerLanguage('html', xml);
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('json', json);
@@ -22,6 +24,8 @@ hljs.registerLanguage('php', php);
 hljs.registerLanguage('sql', sql);
 hljs.registerLanguage('mysql', sql);
 hljs.registerLanguage('markdown', markdown);
+hljs.registerLanguage('yaml', yaml);
+hljs.registerLanguage('yml', yaml);
 
 const props = withDefaults(
     defineProps<{
@@ -45,7 +49,6 @@ const copied = ref(false);
 const highlightedCode = computed(() => {
     const lang = props.language.toLowerCase();
 
-    // Check if language is registered
     if (hljs.getLanguage(lang)) {
         try {
             return hljs.highlight(props.code, { language: lang }).value;
@@ -54,7 +57,6 @@ const highlightedCode = computed(() => {
         }
     }
 
-    // Fallback to auto-detection or plain text
     try {
         return hljs.highlightAuto(props.code).value;
     } catch {
@@ -89,10 +91,13 @@ const displayLanguage = computed(() => {
         css: 'CSS',
         html: 'HTML',
         json: 'JSON',
+        diff: 'DIFF',
         php: 'PHP',
         sql: 'SQL',
         mysql: 'MySQL',
         markdown: 'Markdown',
+        yaml: 'YAML',
+        yml: 'YAML',
         plaintext: 'Text',
     };
     return langMap[props.language.toLowerCase()] || props.language.toUpperCase();
@@ -195,15 +200,21 @@ const displayLanguage = computed(() => {
     padding: 16px;
 }
 
-/* Syntax highlighting colors */
 .code-block :deep(.hljs-keyword),
 .code-block :deep(.hljs-selector-tag) {
     @apply text-purple-600 dark:text-purple-400;
 }
 
-.code-block :deep(.hljs-string),
-.code-block :deep(.hljs-attr) {
+.code-block :deep(.hljs-string) {
     @apply text-green-600 dark:text-green-400;
+}
+
+.code-block :deep(.hljs-attr) {
+    @apply text-cyan-600 dark:text-cyan-400;
+}
+
+.code-block :deep(.hljs-punctuation) {
+    @apply text-neutral-500 dark:text-neutral-500;
 }
 
 .code-block :deep(.hljs-number),
@@ -213,6 +224,14 @@ const displayLanguage = computed(() => {
 
 .code-block :deep(.hljs-comment) {
     @apply text-neutral-500 italic dark:text-neutral-500;
+}
+
+.code-block :deep(.hljs-addition) {
+    @apply text-green-700 dark:text-green-400;
+}
+
+.code-block :deep(.hljs-deletion) {
+    @apply text-red-600 dark:text-red-400;
 }
 
 .code-block :deep(.hljs-function),
@@ -233,5 +252,67 @@ const displayLanguage = computed(() => {
 .code-block :deep(.hljs-selector-class),
 .code-block :deep(.hljs-selector-id) {
     @apply text-yellow-600 dark:text-yellow-400;
+}
+
+.code-block :deep(.hljs-selector-attr) {
+    @apply text-yellow-700 dark:text-yellow-500;
+}
+
+.code-block :deep(.hljs-tag),
+.code-block :deep(.hljs-name) {
+    @apply text-indigo-600 dark:text-indigo-400;
+}
+
+.code-block :deep(.hljs-built_in) {
+    @apply text-violet-600 dark:text-violet-400;
+}
+
+.code-block :deep(.hljs-meta) {
+    @apply text-slate-500 dark:text-slate-400;
+}
+
+.code-block :deep(.hljs-type) {
+    @apply text-teal-600 dark:text-teal-400;
+}
+
+.code-block :deep(.hljs-regexp) {
+    @apply text-amber-600 dark:text-amber-400;
+}
+
+.code-block :deep(.hljs-params),
+.code-block :deep(.hljs-subst) {
+    @apply text-neutral-700 dark:text-neutral-300;
+}
+
+.code-block :deep(.hljs-symbol) {
+    @apply text-amber-500 dark:text-amber-500;
+}
+
+.code-block :deep(.hljs-section) {
+    @apply text-fuchsia-600 dark:text-fuchsia-400;
+}
+
+.code-block :deep(.hljs-link) {
+    @apply text-sky-600 underline decoration-sky-500/30 dark:text-sky-400;
+}
+
+.code-block :deep(.hljs-bullet) {
+    @apply text-neutral-500 dark:text-neutral-500;
+}
+
+.code-block :deep(.hljs-code) {
+    @apply text-stone-600 dark:text-stone-400;
+}
+
+.code-block :deep(.hljs-strong) {
+    @apply font-semibold text-neutral-900 dark:text-neutral-100;
+}
+
+.code-block :deep(.hljs-emphasis) {
+    @apply italic;
+}
+
+.code-block :deep(.hljs-quote) {
+    @apply text-neutral-600 dark:text-neutral-400;
 }
 </style>
