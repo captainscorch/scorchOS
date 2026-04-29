@@ -940,7 +940,7 @@ onUnmounted(() => {
                             <!-- Date -->
                             <div class="col-span-12 flex flex-col gap-4 md:col-span-12 md:flex-row md:items-start md:gap-12">
                                 <LabelText size="xs" weight="semibold" class="w-24">{{ t('caseStudy.date') }}</LabelText>
-                                <SectionTitle as="span">{{ project?.date }}</SectionTitle>
+                                <SectionTitle as="span" class="-mt-[3px]">{{ project?.date }}</SectionTitle>
                             </div>
 
                             <!-- Website -->

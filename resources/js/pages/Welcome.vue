@@ -167,7 +167,7 @@ const jsonLd = computed(() => {
 
 // Portfolio folder structure
 const productSlugs = ['lyftd', 'way.food'];
-const developmentSlugs = ['loz', 'tamplen'];
+const developmentSlugs = ['messtechnik-sassner', 'tamplen'];
 
 const productProjects = computed(() => {
     return productSlugs.map((slug) => getProject(slug)).filter((p): p is NonNullable<typeof p> => p != null);
@@ -218,6 +218,12 @@ const pastWorkLinks = [
         label: 'Gastro Kassel',
         image: '/img/projects/gastroenterologie-kassel-thumbnail.webp',
         alt: 'Gastroenterologie Kassel',
+    },
+    {
+        url: 'https://messtechnik-sassner.de',
+        label: 'Sassner Mess- und Ortungstechnik',
+        image: '/img/projects/messtechnik-sassner-thumbnail.webp',
+        alt: 'Sassner Mess- und Ortungstechnik',
     },
 ];
 
@@ -1360,7 +1366,7 @@ const fadeUpMotion = {
                                                             </a>
                                                         </div>
                                                         <div
-                                                            v-for="(link, index) in pastWorkLinks.slice(4, 8)"
+                                                            v-for="(link, index) in pastWorkLinks.slice(4)"
                                                             :key="link.url"
                                                             class="past-work-column space-y-0.5"
                                                         >

@@ -7,7 +7,7 @@ image: /img/portfolio/tamplen/tamplen_portrait_1.webp
 color: '#b89b7e'
 logo: tamplen
 width: '80%'
-height: 'md:aspect-[4/5]'
+height: 'md:aspect-[4/6]'
 spineHeight: 'h-32 md:h-34'
 date: '2025'
 website: https://tamplenplasticsurgery.com
