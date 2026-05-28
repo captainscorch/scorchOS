@@ -66,7 +66,7 @@ fineprint_media: /img/portfolio/messtechnik-sassner/messtechniksassner_landscape
 fineprint_media_alt: 'Sassner Mess- und Ortungstechnik - Icon Mark on different brand color backgrounds'
 ---
 
-# Precision, On Location and On Site
+# Precision, On-Site and On-Screen
 
 Sassner Mess- und Ortungstechnik works where millimetres and signal integrity decide outcomes. The brief was simple: build a website that reads like a measurement report, not a marketing brochure — and do it fast. **Two weeks from a rough logo idea to a live site**, with me handling the full stack: brand identity, editorial content, design, and development.
 
