@@ -1,7 +1,7 @@
 ---
 slug: messtechnik-sassner
 title: 'B2B-Website für Mess- und Ortungstechnik'
-story_preview: 'Sassner Mess- und Ortungstechnik ist ein Leckortung und Messtechnik-Betrieb. Aus dem Logo-Entwurf des Kunden habe ich die komplette Markenidentität geformt und die Website auf Basis dieser gestaltet — Logo, Wortmarke, Farbpalette, Typografie, redaktionelle Inhalte, Design und Entwicklung, in zwei Wochen ausgeliefert'
+story_preview: 'Sassner Mess- und Ortungstechnik ist ein Betrieb für Leckortung und Messtechnik. Aus dem Logo-Entwurf des Kunden habe ich die komplette Markenidentität geformt und die Website auf Basis dieser gestaltet — Logo, Wortmarke, Farbpalette, Typografie, redaktionelle Inhalte, Design und Entwicklung, in zwei Wochen ausgeliefert'
 fineprint: 'Zwei Wochen vom Logo-Entwurf und Website-Briefing bis zum Launch. Markenidentität, redaktionelle Inhalte, Design und ein individueller Laravel-/Inertia-Build, optimiert für SEO, GEO und bereit für Lead-Generierung.'
 ---
 
