@@ -113,6 +113,15 @@ const syncScrollbarWidth = () => {
     document.documentElement.style.setProperty('--sbw', `${Math.max(width, 0)}px`);
 };
 
+// The peel sheet paints the page gradient at the document's own scale, so it needs the
+// document height the gradient is sized to
+const syncPageHeight = () => {
+    const height = document.documentElement.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--page-height', `${Math.round(height)}px`);
+};
+
+let pageObserver: ResizeObserver | null = null;
+
 const preloadMark = () => {
     isMarkLoaded.value = true;
 };
@@ -213,7 +222,10 @@ const calculateTimeDifference = () => {
 
 onMounted(async () => {
     syncScrollbarWidth();
+    syncPageHeight();
     window.addEventListener('resize', syncScrollbarWidth, { passive: true });
+    pageObserver = new ResizeObserver(syncPageHeight);
+    pageObserver.observe(document.documentElement);
 
     // Both effects need the canvas to actually render; without WebGL2 the components
     // fall back to plain DOM and would drop their revealed layer, so hand over to the arrow.
@@ -253,6 +265,7 @@ onMounted(async () => {
 onUnmounted(() => {
     notesObserver?.disconnect();
     sheetObserver?.disconnect();
+    pageObserver?.disconnect();
     window.removeEventListener('resize', syncScrollbarWidth);
     if (clockInterval) {
         clearInterval(clockInterval);
@@ -366,7 +379,7 @@ onUnmounted(() => {
                 :zone="196"
                 :curl="320"
                 :bow="30"
-                :shade="0.35"
+                :shade="0.12"
                 :shine="2"
                 :shine-distance="1200"
                 :bulge="5"
@@ -374,7 +387,7 @@ onUnmounted(() => {
                 class="w-full"
                 :style="sheetHeight ? { height: `${sheetHeight}px` } : undefined"
             >
-                <div class="h-full w-full bg-white dark:bg-black">
+                <div class="peel-sheet h-full w-full bg-white dark:bg-black">
                     <div ref="sheetRef" class="mx-auto w-full max-w-7xl px-6 pt-10 pb-32 lg:px-8" :class="{ 'pb-28': isLandingPage }">
                         <FooterBottomBar :is-dark="isDark" :year="year" @switch-language="switchLanguage" @toggle-theme="toggleTheme" />
                     </div>

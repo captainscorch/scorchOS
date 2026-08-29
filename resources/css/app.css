@@ -153,11 +153,24 @@
     }
 
     .page-welcome {
-        @apply bg-background bg-[linear-gradient(160deg,_#f2f0ef_0%,_rgb(242,240,239)_50%,_rgb(229_228_228)_80%,_rgb(42_177_147_/_100%)_100%)];
+        --page-gradient: linear-gradient(160deg, #f2f0ef 0%, rgb(242 240 239) 50%, rgb(229 228 228) 80%, rgb(42 177 147) 100%);
+        @apply bg-background;
+        background-image: var(--page-gradient);
     }
 
     .dark.page-welcome {
-        @apply bg-background bg-[linear-gradient(160deg,_#040e0c_0%,_rgb(1_2_2)_50%,_rgb(9_28_25)_80%,_#11473b_100%)];
+        --page-gradient: linear-gradient(160deg, #040e0c 0%, rgb(1 2 2) 50%, rgb(9 28 25) 80%, #11473b 100%);
+        @apply bg-background;
+        background-image: var(--page-gradient);
+    }
+
+    /* The peel sheet is the page floor, so it carries the same gradient, sized to the
+       document and pinned to its bottom edge — a flat colour cannot follow a diagonal. */
+    .peel-sheet {
+        background-image: var(--page-gradient, none);
+        background-size: 100% var(--page-height, 100%);
+        background-position: 0 100%;
+        background-repeat: no-repeat;
     }
 
     body {
