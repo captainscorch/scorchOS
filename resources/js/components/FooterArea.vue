@@ -393,10 +393,12 @@ onUnmounted(() => {
             <FooterBottomBar class="mb-0!" :is-dark="isDark" :year="year" @switch-language="switchLanguage" @toggle-theme="toggleTheme" />
 
             <!-- Everywhere the peel cannot run, the arrow is how the mark gets found -->
-            <div class="flex flex-col items-center pt-20 pb-16">
+            <!-- The floating page nav is fixed 24px off the bottom, so the arrow has to clear
+                 it; subpages already carry 80px of their own padding below the footer -->
+            <div class="flex flex-col items-center pt-16 md:pt-20 md:pb-16" :class="isLandingPage ? 'pb-32' : 'pb-12'">
                 <button
                     type="button"
-                    class="mark-toggle group/mark relative flex size-11 cursor-pointer items-center justify-center rounded-full border border-neutral-200/80 text-neutral-400 transition-colors duration-300 hover:border-brand-400/60 hover:text-brand-400 dark:border-white/10 dark:text-neutral-600 dark:hover:border-brand-400/60 dark:hover:text-brand-400"
+                    class="mark-toggle group/mark relative flex size-11 cursor-pointer items-center justify-center rounded-full border border-neutral-200/80 text-neutral-400 transition-colors duration-300 hover:border-brand-400/60 hover:text-brand-400 dark:border-white/25 dark:text-neutral-400 dark:hover:border-brand-400/60 dark:hover:text-brand-400"
                     :class="{ 'is-open': isMarkOpen }"
                     :aria-expanded="isMarkOpen"
                     aria-controls="footer-mark"
