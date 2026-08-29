@@ -33,8 +33,7 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         <meta content="Daniel Schmier" name="author" />
         <meta name="description" content="Personal website, portfolio, blog, and code playground of Daniel Schmier." inertia />
 
-        <meta name="theme-color" content="#f2f0ef" media="(prefers-color-scheme: light)" id="theme-color-light">
-        <meta name="theme-color" content="#040e0c" media="(prefers-color-scheme: dark)" id="theme-color-dark">
+        <meta name="theme-color" content="#040e0c">
         
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="preconnect" href="https://stats.captainscor.ch" crossorigin>

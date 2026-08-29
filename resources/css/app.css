@@ -157,7 +157,7 @@
     }
 
     .dark.page-welcome {
-        @apply bg-background bg-[linear-gradient(160deg,_#040e0c_0%,_rgb(1_2_2)_50%,_rgb(9_28_25)_80%,_rgb(42_177_147_/_35%)_100%)];
+        @apply bg-background bg-[linear-gradient(160deg,_#040e0c_0%,_rgb(1_2_2)_50%,_rgb(9_28_25)_80%,_#11473b_100%)];
     }
 
     body {
