@@ -164,40 +164,45 @@ const formatDate = (dateString: string): string => {
                         v-for="post in paginatedPosts"
                         :key="post.slug"
                         :href="`/blog/${post.category[0].toLowerCase()}/${post.slug}`"
-                        class="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-200/40 bg-brand-50/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/50 hover:shadow-2xl dark:border-brand-800/60 dark:bg-brand-950/50 dark:hover:border-brand-400/50"
+                        class="group relative flex flex-col"
                     >
-                        <!-- Hover Gradient Overlay -->
+                        <!-- Lift lives on the inner layer so the hovered link keeps its own hit area -->
                         <div
-                            class="absolute inset-0 z-0 bg-gradient-to-br from-brand-400/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                        ></div>
-
-                        <!-- Categories -->
-                        <div class="relative z-10 mb-4 flex flex-wrap gap-2">
-                            <span
-                                v-for="category in post.category"
-                                :key="category"
-                                class="cursor-default rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1 text-[10px] text-neutral-600 transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
-                            >
-                                {{ t(`blog.categories.${category}`) }}
-                            </span>
-                        </div>
-
-                        <!-- Title -->
-                        <h3
-                            class="relative z-10 mb-2 font-sans text-xl font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 dark:text-white dark:group-hover:text-neutral-200"
+                            class="relative flex h-full flex-col overflow-hidden rounded-2xl border border-brand-200/40 bg-brand-50/10 p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-brand-400/50 group-hover:shadow-2xl dark:border-brand-800/60 dark:bg-brand-950/50 dark:group-hover:border-brand-400/50"
                         >
-                            {{ post.title }}
-                        </h3>
+                            <!-- Hover Gradient Overlay -->
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-br from-brand-400/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            ></div>
 
-                        <!-- Excerpt -->
-                        <p class="relative z-10 mb-8 line-clamp-3 flex-1 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-                            {{ post.excerpt }}
-                        </p>
+                            <!-- Categories -->
+                            <div class="relative z-10 mb-4 flex flex-wrap gap-2">
+                                <span
+                                    v-for="category in post.category"
+                                    :key="category"
+                                    class="cursor-default rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1 text-[10px] text-neutral-600 transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
+                                >
+                                    {{ t(`blog.categories.${category}`) }}
+                                </span>
+                            </div>
 
-                        <!-- Footer: Date & Reading Time -->
-                        <div class="relative z-10 flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-500">
-                            <span>{{ formatDate(post.date) }}</span>
-                            <span>{{ post.readingTime }} {{ t('blog.readingTime') }}</span>
+                            <!-- Title -->
+                            <h3
+                                class="relative z-10 mb-2 font-sans text-xl font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 dark:text-white dark:group-hover:text-neutral-200"
+                            >
+                                {{ post.title }}
+                            </h3>
+
+                            <!-- Excerpt -->
+                            <p class="relative z-10 mb-8 line-clamp-3 flex-1 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+                                {{ post.excerpt }}
+                            </p>
+
+                            <!-- Footer: Date & Reading Time -->
+                            <div class="relative z-10 flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-500">
+                                <span>{{ formatDate(post.date) }}</span>
+                                <span>{{ post.readingTime }} {{ t('blog.readingTime') }}</span>
+                            </div>
                         </div>
                     </Link>
                 </div>

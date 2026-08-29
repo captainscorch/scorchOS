@@ -210,34 +210,39 @@ const onLeave = (el: Element, done: () => void) => {
                         v-for="project in projects"
                         :key="project.id"
                         :href="`/case-study/${project.slug}`"
-                        class="group relative aspect-[4/5] w-[calc(50%-0.5rem)] transform cursor-pointer overflow-hidden rounded-2xl bg-neutral-500 opacity-0 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-neutral-900/5 md:w-[calc(100%/3-1rem)] lg:w-[calc(25%-1.125rem)] xl:w-[calc(20%-1.2rem)] dark:bg-neutral-900 dark:hover:shadow-neutral-100/5"
+                        class="group relative aspect-[4/5] w-[calc(50%-0.5rem)] cursor-pointer opacity-0 md:w-[calc(100%/3-1rem)] lg:w-[calc(25%-1.125rem)] xl:w-[calc(20%-1.2rem)]"
                         :class="project.height"
                     >
-                        <img
-                            :src="project.image"
-                            :alt="project.title"
-                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-
-                        <!-- Category Badge(s) (Top Left) -->
+                        <!-- Lift lives on the inner layer so the hovered link keeps its own hit area -->
                         <div
-                            class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 touch:hidden"
+                            class="relative h-full w-full transform overflow-hidden rounded-2xl bg-neutral-500 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-neutral-900/5 dark:bg-neutral-900 dark:group-hover:shadow-neutral-100/5"
                         >
-                            <span
-                                v-for="(category, index) in Array.isArray(project.category) ? project.category : [project.category]"
-                                :key="index"
-                                class="cursor-default rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-[10px] text-neutral-600 backdrop-blur-xs transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-white/10 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
+                            <img
+                                :src="project.image"
+                                :alt="project.title"
+                                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
+
+                            <!-- Category Badge(s) (Top Left) -->
+                            <div
+                                class="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 touch:hidden"
                             >
-                                {{ category }}
-                            </span>
-                        </div>
+                                <span
+                                    v-for="(category, index) in Array.isArray(project.category) ? project.category : [project.category]"
+                                    :key="index"
+                                    class="cursor-default rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-[10px] text-neutral-600 backdrop-blur-xs transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-white/10 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
+                                >
+                                    {{ category }}
+                                </span>
+                            </div>
 
-                        <div
-                            class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100 touch:hidden"
-                        >
-                            <div class="translate-y-4 transform transition-transform duration-500 group-hover:translate-y-0">
-                                <h3 class="mb-1 font-sans text-xl font-bold text-white md:text-2xl">{{ project.client }}</h3>
-                                <p class="line-clamp-2 text-xs text-white/80">{{ project.title }}</p>
+                            <div
+                                class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100 touch:hidden"
+                            >
+                                <div class="translate-y-4 transform transition-transform duration-500 group-hover:translate-y-0">
+                                    <h3 class="mb-1 font-sans text-xl font-bold text-white md:text-2xl">{{ project.client }}</h3>
+                                    <p class="line-clamp-2 text-xs text-white/80">{{ project.title }}</p>
+                                </div>
                             </div>
                         </div>
                     </Link>
