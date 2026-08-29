@@ -401,10 +401,29 @@ const triggerStarfighterAnimation = () => {
 };
 
 // Scroll to navigation grid when Enter is pressed and "What I Do" is visible
-const scrollToNextArea = () => {
-    if (navigationGridRef.value && isWhatIDoVisible.value) {
-        navigationGridRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' });
+const descriptionRevealRef = ref<InstanceType<typeof TextReveal> | null>(null);
+let releaseTimer: ReturnType<typeof setTimeout> | null = null;
+
+const releaseDescription = () => {
+    if (releaseTimer) {
+        clearTimeout(releaseTimer);
+        releaseTimer = null;
     }
+
+    window.removeEventListener('scrollend', releaseDescription);
+    descriptionRevealRef.value?.release();
+};
+
+const scrollToNextArea = () => {
+    if (!navigationGridRef.value) return;
+
+    // Park the headline until the page has settled, so the reveal plays on arrival
+    // instead of scrubbing past while the smooth scroll is still running
+    descriptionRevealRef.value?.hold();
+    window.addEventListener('scrollend', releaseDescription, { once: true });
+    releaseTimer = setTimeout(releaseDescription, 1600);
+
+    navigationGridRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 const handleKeyDown = (event: KeyboardEvent) => {
@@ -517,6 +536,8 @@ onUnmounted(() => {
     document.documentElement.classList.remove('page-welcome');
     document.removeEventListener('click', handleClickOutside);
     document.removeEventListener('keydown', handleKeyDown);
+    window.removeEventListener('scrollend', releaseDescription);
+    if (releaseTimer) clearTimeout(releaseTimer);
     window.removeEventListener('resize', checkMobile);
     window.removeEventListener('resize', checkLyftdPosition);
     window.removeEventListener('resize', checkUnlimitedPosition);
@@ -769,11 +790,18 @@ const fadeUpMotion = {
                             <CornerDownLeft class="size-2.5 text-neutral-500 dark:text-neutral-400" />
                         </div>
                         <span v-if="!isMobile" class="ml-2 text-xs text-neutral-500 dark:text-neutral-400">{{ t('home.intro.scrollHint') }}</span>
-                        <div
+                        <button
                             v-if="isMobile"
-                            class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800"
+                            type="button"
+                            :aria-label="t('home.intro.continue')"
+                            class="-m-2.5 flex cursor-pointer p-2.5"
+                            @click="scrollToNextArea"
                         >
-                            <ChevronDown class="size-2.5 text-neutral-500 dark:text-neutral-400" /></div
+                            <span
+                                class="flex size-5 items-center justify-center rounded-sm border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800"
+                            >
+                                <ChevronDown class="size-2.5 text-neutral-500 dark:text-neutral-400" />
+                            </span></button
                     ></span>
                     <span v-if="isMobile" class="text-xs text-neutral-500 dark:text-neutral-400">{{ t('home.intro.swipeHint') }}</span>
                 </div>
@@ -782,6 +810,7 @@ const fadeUpMotion = {
                 <div class="relative mt-32 scroll-mt-32" ref="navigationGridRef">
                     <h3 class="text-base font-medium text-neutral-900 dark:text-white">
                         <TextReveal
+                            ref="descriptionRevealRef"
                             :scroll-trigger="true"
                             :scrub="1"
                             start="top 50%"

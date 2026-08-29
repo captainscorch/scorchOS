@@ -54,6 +54,7 @@
             "whoAmI": "Who am I?",
             "scrollHint": "(scroll down or hit Enter to continue)",
             "swipeHint": "(swipe down to continue)",
+            "continue": "Continue to the overview",
             "description": "I'm a design engineer based in Germany with a passion for creating modern and functional digital experiences."
         }
     },

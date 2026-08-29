@@ -37,28 +37,35 @@ const props = withDefaults(
 const container = ref<HTMLElement | null>(null);
 let animation: gsap.core.Tween | gsap.core.Timeline | null = null;
 
+const HIDDEN_STATE: gsap.TweenVars = {
+    opacity: 0,
+    color: 'oklch(70.8% 0 0)', // neutral-400
+    filter: 'blur(4px)',
+    y: 8,
+    x: 2,
+    willChange: 'transform, opacity, filter',
+    transformStyle: 'preserve-3d',
+    backfaceVisibility: 'hidden',
+};
+
+const chars = (): NodeListOf<Element> | [] => container.value?.querySelectorAll('.char') ?? [];
+
+const killAnimation = () => {
+    if (!animation) return;
+
+    animation.scrollTrigger?.kill();
+    animation.kill();
+    animation = null;
+};
+
 const animate = () => {
     if (!container.value) return;
 
     // Kill existing animation/trigger if re-running
-    if (animation) {
-        animation.scrollTrigger?.kill();
-        animation.kill();
-    }
-
-    const chars = container.value.querySelectorAll('.char');
+    killAnimation();
 
     // Reset initial state
-    gsap.set(chars, {
-        opacity: 0,
-        color: 'oklch(70.8% 0 0)', // neutral-400
-        filter: 'blur(4px)',
-        y: 8,
-        x: 2,
-        willChange: 'transform, opacity, filter',
-        transformStyle: 'preserve-3d',
-        backfaceVisibility: 'hidden',
-    });
+    gsap.set(chars(), HIDDEN_STATE);
 
     const animationConfig: gsap.TweenVars = {
         opacity: 1,
@@ -74,7 +81,7 @@ const animate = () => {
     };
 
     if (props.scrollTrigger) {
-        animation = gsap.to(chars, {
+        animation = gsap.to(chars(), {
             ...animationConfig,
             scrollTrigger: {
                 trigger: container.value,
@@ -87,7 +94,7 @@ const animate = () => {
             },
         });
     } else {
-        animation = gsap.to(chars, animationConfig);
+        animation = gsap.to(chars(), animationConfig);
     }
 };
 
@@ -97,15 +104,38 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-    if (animation) {
-        animation.scrollTrigger?.kill();
-        animation.kill();
-    }
+    killAnimation();
     // Clean up ScrollTrigger instances
     ScrollTrigger.getAll().forEach((t) => {
         if (t.trigger === container.value) t.kill();
     });
 });
+
+// Lets a caller park the text out of sight while it scrolls the block into place,
+// then play the reveal in one go instead of scrubbing past it on the way down.
+const hold = () => {
+    killAnimation();
+    gsap.set(chars(), HIDDEN_STATE);
+};
+
+const release = () => {
+    if (!container.value) return;
+
+    killAnimation();
+    animation = gsap.to(chars(), {
+        opacity: 1,
+        color: 'inherit',
+        filter: 'blur(0px)',
+        y: 0,
+        x: 0,
+        duration: props.duration,
+        stagger: props.stagger,
+        ease: 'power2.out',
+        clearProps: 'willChange,transformStyle,backfaceVisibility,filter',
+    });
+};
+
+defineExpose({ hold, release });
 
 watch(
     () => props.text,
