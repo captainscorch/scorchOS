@@ -30,18 +30,20 @@ final class LlmsTxtGenerator
     {
         $u = $this->baseUrl;
 
+        $markdownNote = 'Each entry is also available as Markdown at the same path with a `.md` suffix (`?lang=` / `Accept-Language` supported).';
+
         $caseStudyLines = array_map(
             fn (array $row): string => sprintf(
-                '- **%s** — [%s](%s/case-study/%s)',
+                '- **%s** — [%s](%s/case-study/%s) · [Markdown](%s/case-study/%s.md)',
                 $this->escapeMarkdownLinkLabel($row['client']),
                 $this->escapeMarkdownLinkLabel($row['title']),
+                $u,
+                rawurlencode($row['slug']),
                 $u,
                 rawurlencode($row['slug']),
             ),
             $this->caseStudyRows(),
         );
-
-        $blogIntro = 'Each post is also available as Markdown at the same path with a `.md` suffix (`?lang=` / `Accept-Language` supported).';
 
         $blogLines = array_map(
             fn (array $row): string => sprintf(
@@ -77,11 +79,15 @@ MARKDOWN;
 - [GitHub](https://github.com/captainscorch)
 - [Email](mailto:hi@captainscor.ch)
 
-## Optional
+## XML sitemaps
 
-- [Robots]({$u}/robots.txt): Crawl directives for automated agents.
 - [Sitemap]({$u}/sitemap.xml): Index of canonical public URLs on the site.
+
+## Agent files
+
+- [Robots]({$u}/robots.txt): Crawl directives and Content-Signal preferences (`search=yes, ai-input=yes, ai-train=yes`).
 - [llms.txt]({$u}/llms.txt): This LLM-oriented overview file.
+- [agents.md]({$u}/agents.md): Operating manual for AI agents.
 MARKDOWN;
 
         return <<<MARKDOWN
@@ -91,14 +97,18 @@ MARKDOWN;
 
 Use the pages below for structured context about projects, articles, and contact paths.
 
+Pages are not locale-prefixed — one URL serves English and German, switched in the browser. This file is a compact map for search and AI agents. The **agent operating manual** — how markdown exports work, which URLs to deep-link, and what must stay human-confirmed — lives at [/agents.md]({$u}/agents.md).
+
 {$siteBlock}
 ## Case studies
+
+{$markdownNote}
 
 {$this->joinLines($caseStudyLines)}
 
 ## Blog
 
-{$blogIntro}
+{$markdownNote}
 
 {$this->joinLines($blogLines)}
 

@@ -32,4 +32,30 @@ class BlogPostMarkdownTest extends TestCase
     {
         $this->get('/blog/journal/this-slug-does-not-exist-xyz.md')->assertNotFound();
     }
+
+    public function test_blog_post_html_advertises_its_markdown_export(): void
+    {
+        $response = $this->get('/blog/craft/concentric-border-radius');
+
+        $response->assertOk();
+        $this->assertStringContainsString(
+            'rel="alternate"; type="text/markdown"',
+            (string) $response->headers->get('Link'),
+        );
+        $this->assertStringContainsString(
+            '/blog/craft/concentric-border-radius.md',
+            (string) $response->headers->get('Link'),
+        );
+    }
+
+    public function test_markdown_export_does_not_advertise_itself(): void
+    {
+        $response = $this->get('/blog/craft/concentric-border-radius.md');
+
+        $response->assertOk();
+        $this->assertStringNotContainsString(
+            'type="text/markdown"',
+            (string) $response->headers->get('Link'),
+        );
+    }
 }

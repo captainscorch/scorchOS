@@ -7,6 +7,7 @@ import PageTitle from '@/components/global/typography/PageTitle.vue';
 import MarkdownImage from '@/components/MarkdownImage.vue';
 import ProgressiveBlur from '@/components/ProgressiveBlur.vue';
 import { useCommandMenu } from '@/composables/useCommandMenu';
+import { useMarkdownAlternate } from '@/composables/useMarkdownAlternate';
 import { usePosts } from '@/composables/usePosts';
 import { useSocials } from '@/composables/useSocials';
 import { marked, slugify } from '@/utils/markdown';
@@ -43,6 +44,7 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const { open: openCommandMenu } = useCommandMenu();
 const { getPost } = usePosts();
+const { markdownAlternateUrl } = useMarkdownAlternate();
 const socials = useSocials();
 
 const post = computed(() => getPost(props.slug)!);
@@ -565,6 +567,7 @@ const activeCirclePosition = computed(() => {
     <Head :title="pageTitle">
         <!-- Standard meta tags -->
         <meta name="description" :content="pageDescription" />
+        <link rel="alternate" type="text/markdown" :href="markdownAlternateUrl" title="Markdown" />
 
         <!-- Open Graph / Facebook (Meta) -->
         <meta property="og:url" :content="ogUrl" />

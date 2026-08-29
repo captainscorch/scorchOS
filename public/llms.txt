@@ -4,33 +4,39 @@
 
 Use the pages below for structured context about projects, articles, and contact paths.
 
+Pages are not locale-prefixed — one URL serves English and German, switched in the browser. This file is a compact map for search and AI agents. The **agent operating manual** — how markdown exports work, which URLs to deep-link, and what must stay human-confirmed — lives at [/agents.md](https://captainscor.ch/agents.md).
+
 ## Site
 
-- [Home](https://scorchos.test/): Landing and overview.
-- [About](https://scorchos.test/about): About me / CV.
-- [Portfolio](https://scorchos.test/portfolio): Selected case studies and personal projects.
-- [Blog](https://scorchos.test/blog): Articles and insights on design, development and beyond.
-- [Playground](https://scorchos.test/playground): Experiments and interactive demos.
+- [Home](https://captainscor.ch/): Landing and overview.
+- [About](https://captainscor.ch/about): About me / CV.
+- [Portfolio](https://captainscor.ch/portfolio): Selected case studies and personal projects.
+- [Blog](https://captainscor.ch/blog): Articles and insights on design, development and beyond.
+- [Playground](https://captainscor.ch/playground): Experiments and interactive demos.
 
 ## Case studies
 
-- **Gastroenterologie Kassel** — [Medical Practice Website with Minimalist Branding](https://scorchos.test/case-study/gastroenterologie-kassel)
-- **way.food** — [Foodtruck & Catering Comparison Portal](https://scorchos.test/case-study/way.food)
-- **cale design** — [Minimalist Shopify Store for Premium Furniture & home accessories](https://scorchos.test/case-study/cale)
-- **Portfolio Website** — [My Personal Website, Portfolio with Case Studies, Blog & Playground](https://scorchos.test/case-study/captainscor.ch)
-- **ICEMÄNNER** — [High-energy B2B & B2C Ecommerce Experience](https://scorchos.test/case-study/icemaenner)
-- **Loz** — [DTC Shopify Store for Oral Care Startup](https://scorchos.test/case-study/loz)
-- **lyftd.app** — [Smart Training, Stronger You — Full-Stack Workout Tracking Platform](https://scorchos.test/case-study/lyftd)
-- **Personal Gallery** — [Gallery of my favorite photos from around the world](https://scorchos.test/case-study/photography)
-- **Tamplen Plastic Surgery** — [Premium Multi-Location Plastic Surgery Website](https://scorchos.test/case-study/tamplen)
+Each entry is also available as Markdown at the same path with a `.md` suffix (`?lang=` / `Accept-Language` supported).
+
+- **Sassner Mess- und Ortungstechnik** — [B2B Website for Measurement & Positioning Technology](https://captainscor.ch/case-study/messtechnik-sassner) · [Markdown](https://captainscor.ch/case-study/messtechnik-sassner.md)
+- **Gastroenterologie Kassel** — [Medical Practice Website with Minimalist Branding](https://captainscor.ch/case-study/gastroenterologie-kassel) · [Markdown](https://captainscor.ch/case-study/gastroenterologie-kassel.md)
+- **Tamplen Plastic Surgery** — [Premium Multi-Location Plastic Surgery Website](https://captainscor.ch/case-study/tamplen) · [Markdown](https://captainscor.ch/case-study/tamplen.md)
+- **way.food** — [Foodtruck & Catering Comparison Portal](https://captainscor.ch/case-study/way.food) · [Markdown](https://captainscor.ch/case-study/way.food.md)
+- **cale design** — [Minimalist Shopify Store for Premium Furniture & home accessories](https://captainscor.ch/case-study/cale) · [Markdown](https://captainscor.ch/case-study/cale.md)
+- **Portfolio Website** — [My Personal Website, Portfolio with Case Studies, Blog & Playground](https://captainscor.ch/case-study/captainscor.ch) · [Markdown](https://captainscor.ch/case-study/captainscor.ch.md)
+- **ICEMÄNNER** — [High-energy B2B & B2C Ecommerce Experience](https://captainscor.ch/case-study/icemaenner) · [Markdown](https://captainscor.ch/case-study/icemaenner.md)
+- **Loz** — [DTC Shopify Store for Oral Care Startup](https://captainscor.ch/case-study/loz) · [Markdown](https://captainscor.ch/case-study/loz.md)
+- **lyftd.app** — [Smart Training, Stronger You — Full-Stack Workout Tracking Platform](https://captainscor.ch/case-study/lyftd) · [Markdown](https://captainscor.ch/case-study/lyftd.md)
+- **Personal Gallery** — [Gallery of my favorite photos from around the world](https://captainscor.ch/case-study/photography) · [Markdown](https://captainscor.ch/case-study/photography.md)
 
 ## Blog
 
-Each post is also available as Markdown at the same path with a `.md` suffix (`?lang=` / `Accept-Language` supported).
+Each entry is also available as Markdown at the same path with a `.md` suffix (`?lang=` / `Accept-Language` supported).
 
-- [Beyond Prompts: Architecting with AI](https://scorchos.test/blog/journal/beyond-prompts-architecting-with-ai) · [Markdown](https://scorchos.test/blog/journal/beyond-prompts-architecting-with-ai.md)
-- [Mastering Concentric Border Radius](https://scorchos.test/blog/craft/concentric-border-radius) · [Markdown](https://scorchos.test/blog/craft/concentric-border-radius.md)
-- [Enhanced Security for Laravel Forge nginx Configurations](https://scorchos.test/blog/craft/laravel-forge-nginx-security) · [Markdown](https://scorchos.test/blog/craft/laravel-forge-nginx-security.md)
+- [A CMS-Free Blog with Markdown and Gray Matter](https://captainscor.ch/blog/craft/cms-free-blog-with-gray-matter) · [Markdown](https://captainscor.ch/blog/craft/cms-free-blog-with-gray-matter.md)
+- [Beyond Prompts: Architecting with AI](https://captainscor.ch/blog/journal/beyond-prompts-architecting-with-ai) · [Markdown](https://captainscor.ch/blog/journal/beyond-prompts-architecting-with-ai.md)
+- [Mastering Concentric Border Radius](https://captainscor.ch/blog/craft/concentric-border-radius) · [Markdown](https://captainscor.ch/blog/craft/concentric-border-radius.md)
+- [Enhanced Security for Laravel Forge nginx Configurations](https://captainscor.ch/blog/craft/laravel-forge-nginx-security) · [Markdown](https://captainscor.ch/blog/craft/laravel-forge-nginx-security.md)
 
 ## Contact
 
@@ -40,8 +46,12 @@ Each post is also available as Markdown at the same path with a `.md` suffix (`?
 - [GitHub](https://github.com/captainscorch)
 - [Email](mailto:hi@captainscor.ch)
 
-## Optional
+## XML sitemaps
 
-- [Robots](https://scorchos.test/robots.txt): Crawl directives for automated agents.
-- [Sitemap](https://scorchos.test/sitemap.xml): Index of canonical public URLs on the site.
-- [llms.txt](https://scorchos.test/llms.txt): This LLM-oriented overview file.
+- [Sitemap](https://captainscor.ch/sitemap.xml): Index of canonical public URLs on the site.
+
+## Agent files
+
+- [Robots](https://captainscor.ch/robots.txt): Crawl directives and Content-Signal preferences (`search=yes, ai-input=yes, ai-train=yes`).
+- [llms.txt](https://captainscor.ch/llms.txt): This LLM-oriented overview file.
+- [agents.md](https://captainscor.ch/agents.md): Operating manual for AI agents.

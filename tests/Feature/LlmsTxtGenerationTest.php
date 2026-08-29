@@ -23,4 +23,14 @@ class LlmsTxtGenerationTest extends TestCase
         $this->assertStringContainsString('/case-study/cale', $content);
         $this->assertStringContainsString(' · [Markdown](', $content);
     }
+
+    public function test_llms_txt_points_at_the_agent_operating_manual(): void
+    {
+        $this->artisan('sitemap:generate')->assertSuccessful();
+
+        $content = (string) file_get_contents(public_path('llms.txt'));
+        $this->assertStringContainsString('## Agent files', $content);
+        $this->assertStringContainsString('/agents.md', $content);
+        $this->assertStringContainsString('Content-Signal', $content);
+    }
 }

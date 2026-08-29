@@ -65,9 +65,27 @@ class ContentSlugs
             return null;
         }
 
+        return $this->sourceMarkdownPath('content/posts', $slug, $locale);
+    }
+
+    /**
+     * Path to the Markdown source file for a case study, for a given locale (en|de).
+     * Falls back to English when no translation file exists.
+     */
+    public function caseStudySourceMarkdownPath(string $slug, string $locale): ?string
+    {
+        if (! $this->isValidCaseStudy($slug)) {
+            return null;
+        }
+
+        return $this->sourceMarkdownPath('content/projects', $slug, $locale);
+    }
+
+    private function sourceMarkdownPath(string $directory, string $slug, string $locale): ?string
+    {
         $locale = $locale === 'de' ? 'de' : 'en';
 
-        foreach (glob(resource_path('content/posts/en/*.md')) ?: [] as $englishPath) {
+        foreach (glob(resource_path($directory.'/en/*.md')) ?: [] as $englishPath) {
             if ($this->slugFromMarkdownFile($englishPath) !== $slug) {
                 continue;
             }
@@ -76,7 +94,7 @@ class ContentSlugs
                 return $englishPath;
             }
 
-            $translatedPath = resource_path('content/posts/de/'.basename($englishPath));
+            $translatedPath = resource_path($directory.'/de/'.basename($englishPath));
 
             return is_readable($translatedPath) ? $translatedPath : $englishPath;
         }

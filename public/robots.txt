@@ -1,4 +1,6 @@
+# Content Signals (contentsignals.org) — search / ai-input / ai-train deliberately all "yes".
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Disallow:
 
 Sitemap: https://captainscor.ch/sitemap.xml

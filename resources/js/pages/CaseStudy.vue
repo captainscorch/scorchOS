@@ -13,6 +13,7 @@ import TextReveal from '@/components/TextReveal.vue';
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useCommandMenu } from '@/composables/useCommandMenu';
+import { useMarkdownAlternate } from '@/composables/useMarkdownAlternate';
 import { useProjects } from '@/composables/useProjects';
 import { useSocials } from '@/composables/useSocials';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -36,6 +37,7 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const { open: openCommandMenu } = useCommandMenu();
 const { getProject } = useProjects();
+const { markdownAlternateUrl } = useMarkdownAlternate();
 const socials = useSocials();
 const isDrawerOpen = ref(false);
 const isStoryDrawerOpen = ref(false);
@@ -557,6 +559,7 @@ onUnmounted(() => {
     <Head :title="pageTitle">
         <!-- Standard meta tags -->
         <meta name="description" :content="pageDescription" />
+        <link rel="alternate" type="text/markdown" :href="markdownAlternateUrl" title="Markdown" />
 
         <!-- Open Graph / Facebook (Meta) -->
         <meta property="og:url" :content="ogUrl" />

@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\AgentsMarkdownController;
 use App\Http\Controllers\BlogPostMarkdownController;
+use App\Http\Controllers\CaseStudyMarkdownController;
 use App\Services\ContentSlugs;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+Route::get('/agents.md', AgentsMarkdownController::class)->name('agents.markdown');
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -16,6 +20,8 @@ Route::get('/about', function () {
 Route::get('/portfolio', function () {
     return Inertia::render('Portfolio');
 })->name('portfolio');
+
+Route::get('/case-study/{slug}.md', CaseStudyMarkdownController::class)->name('case-study.markdown');
 
 Route::get('/case-study/{slug}', function (ContentSlugs $contentSlugs, string $slug) {
     if (! $contentSlugs->isValidCaseStudy($slug)) {
