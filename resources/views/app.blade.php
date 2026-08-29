@@ -24,6 +24,10 @@ Designed & developed by captainscor.ch (https://captainscor.ch)
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1, minimal-ui, maximum-scale=1, user-scalable=no">
 
+        @if (config('app.origin_trial_token'))
+            <meta http-equiv="origin-trial" content="{{ config('app.origin_trial_token') }}">
+        @endif
+
         <title inertia>Daniel Schmier</title>
 
         <meta content="Daniel Schmier" name="author" />

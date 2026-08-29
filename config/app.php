@@ -56,6 +56,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Chrome Origin Trial Token
+    |--------------------------------------------------------------------------
+    |
+    | Opt this origin into an experimental browser feature. Currently used for
+    | "HTMLInCanvas", which the footer's decrypt effect needs. Register a token
+    | for the production origin at https://developer.chrome.com/origintrials.
+    |
+    */
+
+    'origin_trial_token' => env('ORIGIN_TRIAL_TOKEN'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |

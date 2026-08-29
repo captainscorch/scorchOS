@@ -124,7 +124,11 @@
         "socials": "Social Media",
         "copyright": "Copyright",
         "llmsTxt": "llms.txt",
-        "llmsTxtTitle": "Kuratierter Überblick für KI-Assistenten, Agenten und Tools"
+        "llmsTxtTitle": "Kuratierter Überblick für KI-Assistenten, Agenten und Tools",
+        "agentsMd": "agents.md",
+        "agentsMdTitle": "Handbuch für KI-Agenten: Discovery, Markdown-Exporte und Grenzen",
+        "markShow": "Zeichen einblenden",
+        "markHide": "Zeichen ausblenden"
     },
     "portfolio": {
         "views": {

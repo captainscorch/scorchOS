@@ -1,4 +1,5 @@
 resources/js/components/ui/*
+resources/js/components/canvasui/*
 resources/js/ziggy.js
 resources/views/mail/*
 node_modules

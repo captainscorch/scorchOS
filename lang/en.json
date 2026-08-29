@@ -123,7 +123,11 @@
         "socials": "Socials",
         "copyright": "Copyright",
         "llmsTxt": "llms.txt",
-        "llmsTxtTitle": "Curated site overview for AI assistants, agents and tools"
+        "llmsTxtTitle": "Curated site overview for AI assistants, agents and tools",
+        "agentsMd": "agents.md",
+        "agentsMdTitle": "Operating manual for AI agents: discovery, markdown exports, and limits",
+        "markShow": "Reveal the mark",
+        "markHide": "Hide the mark"
     },
     "portfolio": {
         "views": {
