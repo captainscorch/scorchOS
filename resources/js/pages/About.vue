@@ -345,19 +345,27 @@ const formatSingleDate = (dateString: string): string => {
 
 const skills = computed(() => ({
     designTools: ['Figma', 'Adobe CC', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'],
-    codeLanguages: ['HTML', 'CSS', 'JavaScript', 'PHP', 'Liquid'],
+    codeLanguages: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'PHP', 'Blade', 'Liquid', 'SQL'],
     technologies: [
         {
             category: t('bio.skills.categories.backend'),
-            items: ['PHP: Laravel, Livewire, Filament, Nova, Jetstream, Cashier, Spark, Inertia', 'JS: Nuxt', 'Shopify: Liquid, Hydrogen, Oxygen'],
+            items: [
+                'PHP: Laravel, Statamic, Livewire, Filament, Nova, Jetstream, Cashier, Spark, Inertia, Horizon, PHPUnit',
+                'JS: Nuxt',
+                'Shopify: Liquid, Hydrogen (React), Oxygen, Sanity',
+            ],
         },
         {
             category: t('bio.skills.categories.frontend'),
-            items: ['JS: Vue.js, Alpine.js', 'CSS: Tailwind, Bootstrap'],
+            items: ['JS: Vue.js, Alpine.js, GSAP, Three.js', 'CSS: Tailwind, shadcn-vue, Bootstrap'],
+        },
+        {
+            category: t('bio.skills.categories.mobile'),
+            items: ['Capacitor, iOS, Xcode, TestFlight, Swift (native plugins)'],
         },
         {
             category: t('bio.skills.categories.devOps'),
-            items: ['CLI, Git, CI/CD, AWS, Docker, S3, EC2, Nginx, Node.js, Envoyer, Forge'],
+            items: ['CLI, Git, GitHub Actions, CI/CD, AWS, Hetzner, Cloudflare, Docker, S3, EC2, Nginx, Node.js, Vite, Valet, Envoyer, Forge'],
         },
         {
             category: t('bio.skills.categories.databases'),
@@ -365,12 +373,12 @@ const skills = computed(() => ({
         },
         {
             category: t('bio.skills.categories.misc'),
-            items: ['Homebrew, Prompt Engineering, Agents, MCP, Cursor, OpenAI API'],
+            items: ['Homebrew, Prompt Engineering, Agents, MCP, Claude Code (CLI), Claude API, OpenAI API, Cursor'],
         },
         {
             category: t('bio.skills.categories.analytics'),
             items: [
-                'Google Analytics, Google Tag Manager, Google Search Console, Google Lighthouse, PageSpeed Insights, Conversions API, Microsoft Clarity, Meta Pixel, Hotjar',
+                'Google Analytics, Google Tag Manager, Google Search Console, Google Lighthouse, PageSpeed Insights, Conversions API, Google Consent Mode, Cloudflare Web Analytics, Microsoft Clarity, Meta Pixel, Hotjar',
             ],
         },
     ],
@@ -713,7 +721,7 @@ const skills = computed(() => ({
                     <button
                         type="button"
                         @click="openSkillsModal"
-                        class="mt-2 mb-4 w-fit border-b border-b-neutral-300/50 text-left text-xs text-neutral-500 transition-all hover:cursor-pointer hover:border-b-brand-400 hover:text-neutral-700 dark:border-b-neutral-600/50 dark:text-neutral-400 dark:hover:border-b-brand-400 dark:hover:text-neutral-200"
+                        class="mt-2 mb-4 w-fit border-b border-b-neutral-300/50 text-left text-xs text-neutral-500 transition-all hover:cursor-ne-resize hover:border-b-brand-400 hover:text-neutral-700 dark:border-b-neutral-600/50 dark:text-neutral-400 dark:hover:border-b-brand-400 dark:hover:text-neutral-200"
                     >
                         <FontAwesomeIcon icon="fa-sharp fa-light fa-code" class="mr-1.5" />
                         {{ t('bio.skills.viewSkillsInCode') }}

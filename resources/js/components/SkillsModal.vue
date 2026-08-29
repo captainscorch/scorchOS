@@ -78,21 +78,39 @@ onUnmounted(() => {
 });
 
 const skillsData = {
-    languages: ['German (native)', 'Englisch (professional – C2)'],
-    codeLanguages: ['HTML', 'CSS', 'JavaScript', 'PHP', 'Liquid'],
+    languages: ['German (native)', 'English (professional, C2)'],
+    codeLanguages: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'PHP', 'Blade', 'Liquid', 'SQL'],
     technologies: {
         backend: {
-            php: ['Laravel', 'Livewire', 'Filament', 'Nova', 'Jetstream', 'Cashier', 'Spark', 'Inertia'],
+            php: ['Laravel', 'Statamic', 'Livewire', 'Filament', 'Nova', 'Jetstream', 'Cashier', 'Spark', 'Inertia', 'Horizon', 'PHPUnit'],
             js: ['Nuxt'],
-            shopify: ['Liquid', 'Hydrogen', 'Oxygen'],
+            shopify: ['Liquid', 'Hydrogen (React)', 'Oxygen', 'Sanity'],
         },
         frontend: {
-            js: ['Vue.js', 'Alpine.js'],
-            css: ['Tailwind', 'Bootstrap'],
+            js: ['Vue.js', 'Alpine.js', 'GSAP', 'Three.js'],
+            css: ['Tailwind', 'shadcn-vue', 'Bootstrap'],
         },
-        devOps: ['CLI', 'Git', 'CI/CD', 'AWS', 'Docker', 'S3', 'EC2', 'Nginx', 'Node.js', 'Envoyer', 'Forge'],
+        mobile: ['Capacitor', 'iOS', 'Xcode', 'TestFlight', 'Swift (native plugins)'],
+        devOps: [
+            'CLI',
+            'Git',
+            'GitHub Actions',
+            'CI/CD',
+            'AWS',
+            'Hetzner',
+            'Cloudflare',
+            'Docker',
+            'S3',
+            'EC2',
+            'Nginx',
+            'Node.js',
+            'Vite',
+            'Valet',
+            'Envoyer',
+            'Forge',
+        ],
         databases: ['MySQL', 'SQLite', 'GraphQL'],
-        misc: ['Homebrew', 'Prompt Engineering', 'Agents', 'MCP', 'Cursor', 'OpenAI API'],
+        misc: ['Homebrew', 'Prompt Engineering', 'Agents', 'MCP', 'Claude Code (CLI)', 'Claude API', 'OpenAI API', 'Cursor'],
     },
     designTools: ['Figma', 'Adobe CC', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'],
     analytics: [
@@ -102,6 +120,8 @@ const skillsData = {
         'Google Lighthouse',
         'PageSpeed Insights',
         'Conversions API',
+        'Google Consent Mode',
+        'Cloudflare Web Analytics',
         'Microsoft Clarity',
         'Meta Pixel',
         'Hotjar',
@@ -150,6 +170,11 @@ ${skillsData.technologies.frontend.js.map((tech) => `      "${tech}"`).join(',\n
 ${skillsData.technologies.frontend.css.map((tech) => `      "${tech}"`).join(',\n')}
     ]
   },
+
+  // Mobile
+  mobile: [
+${skillsData.technologies.mobile.map((tech) => `    "${tech}"`).join(',\n')}
+  ],
 
   // Dev Ops
   devOps: [
