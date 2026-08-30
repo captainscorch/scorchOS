@@ -166,8 +166,8 @@ const jsonLd = computed(() => {
 });
 
 // Portfolio folder structure
-const productSlugs = ['lyftd', 'way.food'];
-const developmentSlugs = ['messtechnik-sassner', 'tamplen'];
+const productSlugs = ['lyftd', 'way.food', 'unlimited-dock'];
+const developmentSlugs = ['tamplen'];
 
 const productProjects = computed(() => {
     return productSlugs.map((slug) => getProject(slug)).filter((p): p is NonNullable<typeof p> => p != null);
@@ -1290,10 +1290,10 @@ const fadeUpMotion = {
                     >
                         <div class="glows"></div>
                         <div
-                            class="glowing-card-content relative h-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 group-hover:border-brand-400/50 group-hover:shadow-2xl dark:border-white/10 dark:bg-neutral-900/50"
+                            class="glowing-card-content relative h-full rounded-2xl border border-neutral-200 bg-white/100 p-4 backdrop-blur-md transition-all duration-500 group-hover:border-brand-400/50 group-hover:shadow-2xl dark:border-white/10 dark:bg-neutral-900/50"
                         >
                             <div
-                                class="absolute inset-0 z-0 bg-gradient-to-br from-brand-400/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                                class="absolute inset-0 z-0 rounded-2xl bg-gradient-to-br from-brand-400/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                             ></div>
                             <div class="relative z-10 flex h-full flex-col justify-between">
                                 <Link href="/portfolio">
@@ -1442,9 +1442,11 @@ const fadeUpMotion = {
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-brand-400/10 blur-3xl transition-all duration-700 group-hover:bg-brand-400/20"
-                            ></div>
+                            <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-2xl">
+                                <div
+                                    class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-brand-400/10 blur-3xl transition-all duration-700 group-hover:bg-brand-400/20"
+                                ></div>
+                            </div>
                         </div>
                     </div>
 

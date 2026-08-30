@@ -558,6 +558,19 @@
         pointer-events: auto;
     }
 
+    .link-with-thumbnail.is-active {
+        z-index: 120;
+    }
+
+    .link-with-thumbnail.is-active .thumbnail-preview-wrapper.past-work-column.is-active {
+        opacity: 1;
+        transform: translate(0%, 36px);
+        left: 0;
+        right: auto;
+        pointer-events: auto;
+        z-index: 130;
+    }
+
     .link-with-thumbnail.is-active .thumbnail-preview-wrapper.left-column.is-active {
         opacity: 1;
         transform: translate(0%, -135px);
