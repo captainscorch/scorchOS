@@ -93,6 +93,10 @@ media:
       alt: 'lyftd.app - Trainer Workspace with Student Roster'
     - type: image
       aspectRatio: '16/9'
+      src: /img/portfolio/lyftd/lyftd_landscape_7.webp
+      alt: 'lyftd.app - Trainer Analytics with Student Progress Charts'
+    - type: image
+      aspectRatio: '16/9'
       src: /img/portfolio/lyftd/lyftd_landscape_6.webp
       alt: 'lyftd.app - Yearly Training Wrapped'
     - type: image
