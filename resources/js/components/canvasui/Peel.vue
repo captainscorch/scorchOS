@@ -722,6 +722,7 @@ watch(
       <div
         v-if="native"
         ref="contentEl"
+        drawable="true"
         style="
           position: relative;
           width: 100%;

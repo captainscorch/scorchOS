@@ -1126,6 +1126,7 @@ watch(
       <div
         v-if="native"
         ref="contentEl"
+        drawable="true"
         style="position: relative; width: 100%; height: 100%; overflow: auto"
       >
         <slot />
