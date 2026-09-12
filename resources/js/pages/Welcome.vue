@@ -167,7 +167,7 @@ const jsonLd = computed(() => {
 
 // Portfolio folder structure
 const productSlugs = ['lyftd', 'way.food', 'unlimited-dock'];
-const developmentSlugs = ['tamplen', 'stadtwerke-havelberg'];
+const developmentSlugs = ['tamplen'];
 
 const productProjects = computed(() => {
     return productSlugs.map((slug) => getProject(slug)).filter((p): p is NonNullable<typeof p> => p != null);
