@@ -128,6 +128,9 @@ const skillsData = {
     ],
     openSource: [
         {
+            project: 'Omarchy (omarchy.org, Omarchy Design team)',
+        },
+        {
             project: 'Laravel Cashier',
         },
     ],

@@ -167,7 +167,7 @@ const jsonLd = computed(() => {
 
 // Portfolio folder structure
 const productSlugs = ['lyftd', 'way.food', 'unlimited-dock'];
-const developmentSlugs = ['tamplen'];
+const developmentSlugs = ['tamplen', 'stadtwerke-havelberg'];
 
 const productProjects = computed(() => {
     return productSlugs.map((slug) => getProject(slug)).filter((p): p is NonNullable<typeof p> => p != null);
@@ -200,6 +200,7 @@ const togglePastWork = () => {
 };
 
 const pastWorkLinks = [
+    { url: 'https://omarchy.org', label: 'Omarchy', image: '/img/projects/omarchy-thumbnail.webp', alt: 'Omarchy' },
     { url: 'https://way.food', label: 'way.food', image: '/img/projects/wayfood-thumbnail.webp', alt: 'way.food' },
     { url: 'https://theloz.co', label: 'The Loz', image: '/img/projects/loz-thumbnail.webp', alt: 'The Loz' },
     { url: 'https://icemaenner.com', label: 'Icemänner', image: '/img/projects/icemaenner-thumbnail.webp', alt: 'Icemänner' },
@@ -212,19 +213,13 @@ const pastWorkLinks = [
         alt: 'Tamplen Plastic Surgery',
     },
     { url: 'https://cale-design.com', label: 'cale design', image: '/img/projects/caledesign-thumbnail.webp', alt: 'cale design' },
-    { url: 'https://icc-offroad.de', label: 'ICC Offroad', image: '/img/projects/icc-offroad-thumbnail.webp', alt: 'ICC Offroad' },
-    {
-        url: 'https://gastroenterologie-kassel.com',
-        label: 'Gastro Kassel',
-        image: '/img/projects/gastroenterologie-kassel-thumbnail.webp',
-        alt: 'Gastroenterologie Kassel',
-    },
     {
         url: 'https://messtechnik-sassner.de',
         label: 'Sassner Mess- und Ortungstechnik',
         image: '/img/projects/messtechnik-sassner-thumbnail.webp',
         alt: 'Sassner Mess- und Ortungstechnik',
     },
+    { url: 'https://icc-offroad.de', label: 'ICC Offroad', image: '/img/projects/icc-offroad-thumbnail.webp', alt: 'ICC Offroad' },
 ];
 
 const isCardOpen = ref(false);

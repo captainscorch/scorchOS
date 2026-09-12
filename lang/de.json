@@ -207,6 +207,17 @@
         ],
         "timeline": [
             {
+                "date": "2026-08-30 - Present",
+                "title": "Omarchy Design",
+                "content": "Mitglied im Omarchy Design Team",
+                "list": [
+                    "Open-Source-Design- und Frontend-Arbeit an omarchy.org, der Website von DHHs Linux-Distribution.",
+                    "Logo-Animation, News- und Kennzahlen-Sektionen, Installer, Teams und Testimonials für das Website-Redesign von omarchy.org entworfen und gebaut."
+                ],
+                "company": "Omarchy",
+                "companyLogo": "/img/companies/omarchy.png"
+            },
+            {
                 "date": "2018-07-20 - Present",
                 "title": "unlimited.studio GmbH",
                 "content": "Co-Founder / Managing Director",
