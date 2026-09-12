@@ -325,6 +325,30 @@
     @apply my-6 border-l-4 border-neutral-300 pl-4 text-neutral-500 italic dark:border-neutral-700 dark:text-neutral-400;
 }
 
+/* X posts in the official embed markup, rendered as a static card so the page
+   makes no request to X. Dropping widgets.js in later turns them live. */
+.prose blockquote.twitter-tweet {
+    @apply relative my-8 rounded-2xl border border-neutral-200 bg-neutral-50 p-5 pr-14 text-neutral-800 not-italic dark:border-white/10 dark:bg-white/[0.03] dark:text-neutral-200;
+    border-left-width: 1px;
+}
+
+.prose blockquote.twitter-tweet p {
+    @apply mb-3 text-[15px] leading-relaxed;
+}
+
+.prose blockquote.twitter-tweet > a {
+    @apply text-sm;
+}
+
+/* The X mark top right, linking to the post like the live embed does. */
+.prose blockquote.twitter-tweet a.x-link {
+    @apply absolute top-4 right-4 flex size-8 items-center justify-center rounded-full border-0 bg-neutral-200/70 text-neutral-500 transition-colors hover:bg-neutral-300 hover:text-neutral-900 dark:bg-white/10 dark:text-neutral-400 dark:hover:bg-white/20 dark:hover:text-white;
+}
+
+.prose blockquote.twitter-tweet a.x-link svg {
+    @apply size-3.5;
+}
+
 .prose code {
     @apply rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-sm text-neutral-800 font-stretch-95% dark:bg-neutral-800 dark:text-neutral-200;
 }

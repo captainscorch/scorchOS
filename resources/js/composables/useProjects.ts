@@ -38,6 +38,7 @@ export interface Project {
     fineprint: string;
     fineprint_media?: string;
     fineprint_media_alt?: string;
+    fineprint_media_poster?: string;
     website?: string;
 }
 
@@ -62,6 +63,7 @@ interface ProjectFrontmatter {
     fineprint: string;
     fineprint_media?: string;
     fineprint_media_alt?: string;
+    fineprint_media_poster?: string;
     website?: string;
 }
 
@@ -135,6 +137,7 @@ function parseEnProjectMd(path: string, raw: string): Project {
         fineprint: fm.fineprint ?? '',
         fineprint_media: fm.fineprint_media,
         fineprint_media_alt: fm.fineprint_media_alt,
+        fineprint_media_poster: fm.fineprint_media_poster,
         website: fm.website,
     };
 }

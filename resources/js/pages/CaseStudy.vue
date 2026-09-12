@@ -16,6 +16,7 @@ import { useCommandMenu } from '@/composables/useCommandMenu';
 import { useMarkdownAlternate } from '@/composables/useMarkdownAlternate';
 import { useProjects } from '@/composables/useProjects';
 import { useSocials } from '@/composables/useSocials';
+import { marked } from '@/utils/markdown';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeftLong, faArrowUpRight } from '@fortawesome/sharp-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -57,6 +58,9 @@ let sliderVisibilityRafId: number | null = null;
 const project = computed(() => {
     return getProject(props.slug);
 });
+// The fineprint may carry an inline link, e.g. to a repository.
+const fineprintIsVideo = computed(() => /\.(webm|mp4)$/.test(project.value?.fineprint_media || ''));
+const fineprintHtml = computed(() => (project.value?.fineprint ? (marked.parseInline(project.value.fineprint) as string) : ''));
 
 const pageTitle = computed(() => `${project.value?.client ?? ''} Case Study – Daniel Schmier`);
 const pageDescription = computed(() => project.value?.story_preview || t('caseStudy.defaultDescription'));
@@ -909,7 +913,7 @@ onUnmounted(() => {
                         <div class="grid w-full grid-cols-1 gap-y-8 md:grid-cols-12 md:gap-y-12">
                             <!-- Team -->
                             <div class="col-span-12 flex flex-col gap-4 md:col-span-12 md:flex-row md:items-start md:gap-12">
-                                <LabelText size="xs" weight="semibold" class="w-24">{{ t('caseStudy.team') }}</LabelText>
+                                <LabelText size="xs" weight="semibold" class="w-24 shrink-0">{{ t('caseStudy.team') }}</LabelText>
                                 <div class="flex -space-x-3">
                                     <TooltipProvider>
                                         <Tooltip v-for="(member, index) in project?.team" :key="index">
@@ -928,7 +932,7 @@ onUnmounted(() => {
 
                             <!-- Services -->
                             <div class="col-span-12 flex flex-col gap-4 md:col-span-12 md:flex-row md:items-start md:gap-12">
-                                <LabelText size="xs" weight="semibold" class="w-24">{{ t('caseStudy.tools') }}</LabelText>
+                                <LabelText size="xs" weight="semibold" class="w-24 shrink-0">{{ t('caseStudy.tools') }}</LabelText>
                                 <div class="flex flex-wrap gap-2">
                                     <span
                                         v-for="(service, index) in project?.services"
@@ -942,7 +946,7 @@ onUnmounted(() => {
 
                             <!-- Date -->
                             <div class="col-span-12 flex flex-col gap-4 md:col-span-12 md:flex-row md:items-start md:gap-12">
-                                <LabelText size="xs" weight="semibold" class="w-24">{{ t('caseStudy.date') }}</LabelText>
+                                <LabelText size="xs" weight="semibold" class="w-24 shrink-0">{{ t('caseStudy.date') }}</LabelText>
                                 <SectionTitle as="span" class="-mt-[3px]">{{ project?.date }}</SectionTitle>
                             </div>
 
@@ -951,7 +955,7 @@ onUnmounted(() => {
                                 v-if="project?.website"
                                 class="col-span-12 -mt-1 flex flex-col gap-4 md:col-span-12 md:flex-row md:items-start md:gap-12"
                             >
-                                <LabelText size="xs" weight="semibold" class="w-24">{{ t('caseStudy.website') }}</LabelText>
+                                <LabelText size="xs" weight="semibold" class="w-24 shrink-0">{{ t('caseStudy.website') }}</LabelText>
                                 <a :href="project.website" target="_blank" rel="noopener noreferrer" class="group -mt-0.5 flex items-center gap-2">
                                     <SectionTitle as="span" class="transition-colors group-hover:text-neutral-500 dark:group-hover:text-neutral-400">
                                         {{ formatWebsiteUrl(project.website) }}
@@ -966,7 +970,7 @@ onUnmounted(() => {
                         <div class="space-y-3">
                             <SectionTitle as="h3">{{ t('caseStudy.fineprint') }}</SectionTitle>
                             <BodyText>
-                                {{ project?.fineprint }}
+                                <span class="prose" v-html="fineprintHtml" />
                             </BodyText>
                         </div>
                     </div>
@@ -974,7 +978,18 @@ onUnmounted(() => {
                         class="mt-10 aspect-video w-full translate-y-0 cursor-pointer overflow-hidden rounded-2xl bg-neutral-100 transition-transform duration-300 hover:translate-y-1 hover:scale-[1.02] dark:bg-neutral-900"
                         @click="fineprintToggler = !fineprintToggler"
                     >
-                        <img :src="project?.fineprint_media" :alt="project?.fineprint_media_alt" class="h-full w-full object-cover" />
+                        <video
+                            v-if="fineprintIsVideo"
+                            :src="project?.fineprint_media"
+                            :poster="project?.fineprint_media_poster"
+                            :aria-label="project?.fineprint_media_alt"
+                            class="h-full w-full object-cover"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                        />
+                        <img v-else :src="project?.fineprint_media" :alt="project?.fineprint_media_alt" class="h-full w-full object-cover" />
                         <FsLightbox :toggler="fineprintToggler" :sources="[project?.fineprint_media]" />
                     </div>
                 </div>
