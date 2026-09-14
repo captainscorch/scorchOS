@@ -47,6 +47,9 @@ watch(isDark, () => {
 useMagicKeys({
     passive: false,
     onEventFired(e) {
+        // fires for keydown and keyup alike; a keyup with the modifier still
+        // held would toggle the menu straight back shut
+        if (e.type !== 'keydown') return;
         if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
             e.preventDefault();
             toggle();

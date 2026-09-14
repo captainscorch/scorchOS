@@ -8,6 +8,7 @@ import { setLocale } from '@/i18n';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faClockEight, faLocationArrow } from '@fortawesome/sharp-light-svg-icons';
 import { faMoon, faSunBright } from '@fortawesome/sharp-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { useDark, useIntersectionObserver, useToggle } from '@vueuse/core';
 import { computed, defineAsyncComponent, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
