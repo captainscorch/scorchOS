@@ -1,13 +1,13 @@
 ---
-id: 3
+id: 4
 slug: messtechnik-sassner
 client: 'Sassner Mess- und Ortungstechnik'
 category: ['Design', 'Development', 'Branding']
-image: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_1.webp
+image: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_6.webp
 color: '#e4312b'
 logo: sassner
 width: '85%'
-height: 'md:aspect-[4/5]'
+height: 'md:aspect-[3/4]'
 spineHeight: h-32
 date: '2026'
 website: https://messtechnik-sassner.de
@@ -42,6 +42,18 @@ media:
       aspectRatio: '4/5'
       src: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_3.webp
       alt: 'Sassner Mess- und Ortungstechnik - Brand Identity'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_5.webp
+      alt: 'Sassner Mess- und Ortungstechnik - Work Jacket Mockup'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/messtechnik-sassner/messtechniksassner_landscape_6.webp
+      alt: 'Sassner Mess- und Ortungstechnik - Business Card Print Design'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/messtechnik-sassner/messtechniksassner_landscape_5.webp
+      alt: 'Sassner Mess- und Ortungstechnik - Vehicle Lettering Mockup'
     - type: video
       aspectRatio: '4/5'
       src: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_video_1.webm
