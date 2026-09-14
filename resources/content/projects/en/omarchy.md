@@ -7,7 +7,7 @@ image: /img/portfolio/omarchy/omarchy_portrait_1.webp
 color: '#82fb9c'
 logo: omarchy
 width: '94%'
-height: 'md:aspect-[4/5]'
+height: 'md:aspect-[3/4]'
 spineHeight: 'h-26 md:h-32'
 date: '2026 — Present'
 team:
