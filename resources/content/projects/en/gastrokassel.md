@@ -7,7 +7,7 @@ image: /img/portfolio/gastrokassel/gastrokassel_portrait_2.webp
 color: '#1b1b18'
 logo: gastro
 width: '85%'
-height: 'md:aspect-[3/4]'
+height: 'md:aspect-[4/5]'
 spineHeight: h-32
 date: '2026'
 website: https://gastroenterologie-kassel.com
@@ -31,22 +31,43 @@ media:
       alt: 'Gastroenterologie Kassel - Desktop Hero Area'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/gastrokassel/gastrokassel_portrait_video_1.webm
-      thumbnail: /img/portfolio/gastrokassel/gastrokassel_portrait_video_1.webp
-      alt: 'Gastroenterologie Kassel - Mobile Homepage'
+      src: /img/portfolio/gastrokassel/gastrokassel_portrait_video_2.webm
+      thumbnail: /img/portfolio/gastrokassel/gastrokassel_portrait_video_2.webp
+      alt: 'Gastroenterologie Kassel - Mobile Contact Form Interaction'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/gastrokassel/gastrokassel_portrait_3.webp
       alt: 'Gastroenterologie Kassel - Brand Identity'
     - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/gastrokassel/gastrokassel_landscape_3.webp
+      alt: 'Gastroenterologie Kassel - Desktop Contact Area with Contact Form, Practice Details and Map'
+    - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/gastrokassel/gastrokassel_portrait_1.webp
       alt: 'Gastroenterologie Kassel - Mobile Content Areas'
     - type: video
+      aspectRatio: video
+      src: /img/portfolio/gastrokassel/gastrokassel_landscape_video_1.webm
+      thumbnail: /img/portfolio/gastrokassel/gastrokassel_landscape_video_1.webp
+      alt: 'Gastroenterologie Kassel - Desktop Homepage Scroll with On-Scroll Animations'
+    - type: image
       aspectRatio: '4/5'
-      src: /img/portfolio/gastrokassel/gastrokassel_portrait_video_2.webm
-      thumbnail: /img/portfolio/gastrokassel/gastrokassel_portrait_video_2.webp
+      src: /img/portfolio/gastrokassel/gastrokassel_portrait_4.webp
+      alt: 'Gastroenterologie Kassel - Mobile Contact Page and Contact Form'
+    - type: video
+      aspectRatio: '4/5'
+      src: /img/portfolio/gastrokassel/gastrokassel_portrait_video_1.webm
+      thumbnail: /img/portfolio/gastrokassel/gastrokassel_portrait_video_1.webp
       alt: 'Gastroenterologie Kassel - Mobile Hamburger Menu Animation'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/gastrokassel/gastrokassel_portrait_5.webp
+      alt: 'Gastroenterologie Kassel - Mobile Practice Succession and Opening Times'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/gastrokassel/gastrokassel_landscape_4.webp
+      alt: 'Gastroenterologie Kassel - Desktop Profile and Career Area'
 title: 'Medical Practice Website with Minimalist Branding'
 story_preview: "Dr. med. H. Habibi approached me with an urgent need: he was taking over a doctor's office and needed a professional web presence — fast. I delivered a custom-built, SEO-optimized website with a basic brand identity, all on a tight timeline"
 fineprint: "A rapid-turnaround project proving that tight deadlines don't mean cutting corners. Custom development, basic brand identity, and SEO optimization — all delivered fast without compromising quality."
@@ -69,6 +90,10 @@ The doctor didn't have an established visual identity, so I created one: a cohes
 ## Motion & Interactivity
 
 To elevate the user experience beyond a static medical website, I integrated **VueUse Motion** for smooth on-page-load animations and scroll-based interactions. Since the site is a full Single Page Application powered by Inertia.js, I could also implement seamless **page transitions** — no jarring reloads, just fluid navigation between pages and sections.
+
+## Contact & Appointment Requests
+
+After launch, the site grew a dedicated contact page: a contact form with inquiry reasons (appointment, colonoscopy, gastroscopy, follow-up, screening), privacy consent, and quiet spam defences — a honeypot field, a timing check and rate limiting — instead of a captcha. Requests reach the practice as queued mails with a confirmation copy to the sender, next to opening hours, practice details and a map.
 
 ## The Result
 

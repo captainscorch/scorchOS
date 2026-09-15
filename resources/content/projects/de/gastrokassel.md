@@ -21,6 +21,10 @@ Der Arzt hatte keine etablierte visuelle Identität, also habe ich eine erstellt
 
 Um das Nutzererlebnis über eine statische Arztpraxis-Website hinaus zu heben, habe ich **VueUse Motion** für flüssige Animationen beim Seitenladen und scroll-basierte Interaktionen integriert. Da die Seite eine vollständige Single Page Application mit Inertia.js ist, konnte ich auch nahtlose **Seitenübergänge** implementieren — kein ruckartiges Neuladen, sondern fließende Navigation zwischen Seiten und Bereichen.
 
+## Kontakt & Terminanfragen
+
+Nach dem Launch bekam die Seite eine eigene Kontaktseite: ein Kontaktformular mit Anfragegrund (Termin, Darmspiegelung, Magenspiegelung, Befundbesprechung, Vorsorge), Datenschutz-Einwilligung und leisem Spamschutz — Honeypot-Feld, Zeitprüfung und Rate-Limit statt Captcha. Anfragen erreichen die Praxis als Mail aus der Queue, der Absender bekommt eine Kopie — daneben Öffnungszeiten, Praxisdaten und Karte.
+
 ## Das Ergebnis
 
 Eine moderne, schnelle und professionelle Web-Präsenz, die Patienten hilft, die benötigten Informationen zu finden und Dr. Habibis Praxis als vertrauenswürdige Anlaufstelle für Gastroenterologie etabliert.
