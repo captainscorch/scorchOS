@@ -644,7 +644,7 @@ onUnmounted(() => {
                             {{ project?.client }}
                         </PageTitle>
 
-                        <LabelText as="h2">
+                        <LabelText as="h2" class="max-w-3xl text-balance">
                             {{ project?.title }}
                         </LabelText>
                     </div>
