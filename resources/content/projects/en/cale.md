@@ -4,7 +4,7 @@ slug: cale
 client: 'cale design'
 category: ['Development', 'Photography', 'Marketing']
 image: /img/portfolio/cale/cale_portrait_1.webp
-color: '#434F61'
+color: '#CAB58B'
 logo: cale
 width: '92%'
 height: 'md:aspect-[4/6]'

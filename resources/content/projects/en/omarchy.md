@@ -4,7 +4,7 @@ slug: omarchy
 client: Omarchy
 category: ['Design', 'Development', 'Open Source']
 image: /img/portfolio/omarchy/omarchy_portrait_1.webp
-color: '#82fb9c'
+color: '#9ece6a'
 logo: omarchy
 width: '94%'
 height: 'md:aspect-[3/4]'
