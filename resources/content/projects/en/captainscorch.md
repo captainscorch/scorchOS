@@ -7,7 +7,7 @@ image: /img/portfolio/captainscorch/captainscorch_portrait_1.webp
 color: '#2ab193'
 logo: portfolio
 width: '88%'
-height: 'md:aspect-[3/4]'
+height: 'md:aspect-[4/5]'
 spineHeight: 'h-28 md:h-30'
 date: '2025 — Present'
 website: https://captainscor.ch
@@ -54,18 +54,28 @@ media:
       aspectRatio: '4/5'
       src: /img/portfolio/captainscorch/captainscorch_portrait_6.webp
       alt: 'captainscor.ch - Mobile Terminal Interface'
+    - type: video
+      aspectRatio: '16/9'
+      src: /img/portfolio/captainscorch/captainscorch_landscape_video_1.webm
+      thumbnail: /img/portfolio/captainscorch/captainscorch_landscape_video_1.webp
+      alt: 'captainscor.ch - Desktop Contact Section with the Decrypt Reveal Following the Cursor'
+    - type: video
+      aspectRatio: '16/9'
+      src: /img/portfolio/captainscorch/captainscorch_landscape_video_2.webm
+      thumbnail: /img/portfolio/captainscorch/captainscorch_landscape_video_2.webp
+      alt: 'captainscor.ch - Desktop Footer Peeling Open to the Orbitable ASCII Mark'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/captainscorch/captainscorch_landscape_2.webp
-      alt: 'captainscor.ch - Desktop 404 Error Page in Terminal Style'
+      src: /img/portfolio/captainscorch/captainscorch_landscape_4.webp
+      alt: 'captainscor.ch - Desktop Home Bento Grid Layout'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/captainscorch/captainscorch_landscape_3.webp
       alt: 'captainscor.ch - Desktop Blog Article Page'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/captainscorch/captainscorch_landscape_4.webp
-      alt: 'captainscor.ch - Desktop Home Bento Grid Layout'
+      src: /img/portfolio/captainscorch/captainscorch_landscape_2.webp
+      alt: 'captainscor.ch - Desktop 404 Error Page in Terminal Style'
 title: 'My Personal Website, Portfolio with Case Studies, Blog & Playground'
 story_preview: 'captainscor.ch is my personal website, portfolio, blog, and playground — blending my own aesthetic with inspiration from macOS, command line interfaces, and modern web applications. Built with Laravel, Inertia.js, Vue.js, and Tailwind CSS'
 fineprint: "A portfolio that's also a statement. Built by me as a creative sandbox — where my love for design, development, technology and detail comes together in one place."
@@ -122,6 +132,18 @@ Individual case studies feature a modern **Swiper.js gallery** with automatic as
 ## Blog: Markdown + Frontmatter
 
 Posts are plain **markdown files** with YAML frontmatter for metadata — parsed with **gray-matter** and fed into a small composable. One file per post keeps content and metadata together, making it easy to edit — all without a CMS.
+
+## The Contact Block Decrypts Under the Cursor
+
+The notes card in the contact section is not plain text — it is a canvas. The card renders as a monochrome teal cipher, and only what the cursor is near resolves into readable characters, with a soft edge so the two states blend instead of switching. Move the pointer away and the words scramble again.
+
+It runs on WebGL2 plus Chrome's HTML-in-canvas API, which rasterizes the live card into a texture the shader can paint over. That API is still an origin trial, so the effect shows up in Chrome for now; wherever the browser can't do it — or wherever the pointer is a finger rather than a cursor — the card quietly renders as ordinary text.
+
+## A Page Floor You Can Peel
+
+The very bottom of every page behaves like a sheet of paper. Bring the cursor down to the edge and the sheet curls away, uncovering my logo as an ASCII rendering underneath. The mark is a real 3D object: grab it and it orbits with the drag, let go and it eases back to its starting angle after a few seconds of stillness.
+
+Getting there took one detour. I first built the peel across the full page, but a WebGL canvas wrapped around the whole layout swallows the decrypt reveal entirely, and there was no compromise between the two — so the peel now stays in the bottom band, where it costs nothing. Browsers without the canvas API get an animated chevron instead, which unfolds the same mark in a panel.
 
 ## A Living Playground
 

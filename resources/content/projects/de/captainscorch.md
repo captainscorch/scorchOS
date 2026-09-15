@@ -55,6 +55,18 @@ Einzelne Case Studies bieten eine moderne **Swiper.js Galerie** mit automatische
 
 Beiträge sind schlichte **Markdown-Dateien** mit YAML-Frontmatter für Metadaten — geparst mit **gray-matter** und in ein kleines Composable gefüttert. Eine Datei pro Beitrag hält Content und Metadaten zusammen und ist damit leicht editierbar — ganz ohne CMS.
 
+## Der Kontaktbereich entschlüsselt sich unter dem Cursor
+
+Die Notes-Karte im Kontaktbereich ist kein normaler Text, sondern ein Canvas. Die Karte rendert als monochrome Teal-Chiffre, und nur was in der Nähe des Cursors liegt, löst sich in lesbare Zeichen auf — mit weicher Kante, damit die beiden Zustände ineinander übergehen statt umzuschalten. Bewegt man den Zeiger weg, verschlüsselt sich der Text wieder.
+
+Das läuft über WebGL2 und Chromes HTML-in-Canvas-API, die die lebende Karte in eine Textur rastert, über die der Shader malen kann. Diese API steckt noch in einem Origin Trial, der Effekt erscheint also vorerst in Chrome. Wo der Browser das nicht kann — oder wo mit dem Finger statt mit dem Cursor bedient wird — rendert die Karte schlicht als normaler Text.
+
+## Ein Seitenboden zum Abziehen
+
+Der untere Rand jeder Seite verhält sich wie ein Blatt Papier. Führt man den Cursor an die Kante, rollt sich das Blatt weg und gibt darunter mein Logo als ASCII-Rendering frei. Die Marke ist ein echtes 3D-Objekt: Man greift sie und sie dreht sich mit der Bewegung mit, lässt man los, gleitet sie nach ein paar Sekunden Stillstand zurück in ihren Ausgangswinkel.
+
+Dahin führte ein Umweg. Zuerst hatte ich den Peel über die ganze Seite gebaut, aber ein WebGL-Canvas um das komplette Layout schluckt den Decrypt-Reveal vollständig, und einen Kompromiss zwischen beiden gab es nicht — deshalb bleibt der Peel im unteren Band, wo er nichts kostet. Browser ohne die Canvas-API bekommen stattdessen einen animierten Chevron, der dieselbe Marke in einem Panel aufklappt.
+
 ## Ein lebendiger Playground
 
 Diese Seite ist nie fertig. Hier experimentiere ich mit neuen Techniken, überschreite kreative Grenzen und zeige nicht nur, was ich gebaut habe — sondern wie ich denke.
