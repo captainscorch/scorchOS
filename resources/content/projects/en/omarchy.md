@@ -98,7 +98,7 @@ fineprint_media_alt: 'omarchy.org - Home page in Tokyo Night, the pixel field al
 
 # A tweet, a weekend, and a seat at the table.
 
-On August 30, 2026, DHH posted that the Omarchy homepage had outgrown itself and that he wanted to spin up an Omarchy Design team. The application was simple: send a redesign to design@omarchy.org, and if it vibes, you're in. I liked what DHH was doing with Omarchy, an operating system built for the age of agents, and as a terminal and tech geek I wanted to be part of that. I had also just spent months on canvas-driven interfaces for my own projects. So I spent the day on it.
+On August 30, 2026, DHH posted that the Omarchy homepage had outgrown itself and that he wanted to spin up an Omarchy Design team. The application was simple: submit a redesign, and if it vibes, you're in. I liked what DHH was doing with Omarchy, an operating system built for the age of agents, and as a terminal and tech geek I wanted to be part of that. I had also just spent months on canvas-driven interfaces for my own projects. So I spent the day on it.
 
 <blockquote class="twitter-tweet"><a class="x-link" href="https://x.com/dhh/status/2093946369731854766" aria-label="View on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><p lang="en" dir="ltr">I think the current homepage design/layout for Omarchy has outgrown itself! I'd like to spin up a new Omarchy Design team to work on that (and other projects). Interested? Send a redesign of the homepage to design@omarchy.org. If it vibes, you're in.</p>&mdash; DHH (@dhh) <a href="https://x.com/dhh/status/2093946369731854766">August 30, 2026</a></blockquote>
 
@@ -119,7 +119,6 @@ The team formed within days. Barış Girişmen's design became the foundation fo
 - **The installer:** An install section that walks through what the ISO actually does, with the Try apps for Mac and Windows beside it and a note on what to do before booting
 - **Teams:** All teams as avatar clusters on one line of the home page, and a teams page laid out the same way
 - **People love Omarchy:** The testimonials section, quoting what people posted on X after installing it, with a link to more of them
-- **The details:** The install command kept to two lines on a phone, the installer's note to one line, the mark's stroke order fixed after a refactor shifted it
 
 ## The Launch
 
