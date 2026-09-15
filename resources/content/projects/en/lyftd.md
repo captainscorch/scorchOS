@@ -7,7 +7,7 @@ image: /img/portfolio/lyftd/lyftd_portrait_1.webp
 color: '#fc6612'
 logo: lyftd
 width: '100%'
-height: 'md:aspect-[4/5]'
+height: 'md:aspect-[4/6]'
 spineHeight: 'h-26 md:h-32'
 date: '2024 — Present'
 website: https://lyftd.app
