@@ -7,7 +7,7 @@ image: /img/portfolio/wayfood/wayfood_portrait_1.webp
 color: '#ff8f8f'
 logo: 'way.food'
 width: '90%'
-height: 'md:aspect-[3/4]'
+height: 'md:aspect-[4/5]'
 spineHeight: 'h-24 md:h-36'
 date: '2024 — Present'
 website: https://way.food
@@ -36,11 +36,27 @@ media:
       aspectRatio: video
       src: /img/portfolio/wayfood/wayfood_landscape_video_3.webm
       thumbnail: /img/portfolio/wayfood/wayfood_landscape_video_3.webp
-      alt: 'way.food - Desktop Customer Navigation Process'
+      alt: 'way.food - Desktop Booking Wizard from Landing Page to Discover Results'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/wayfood/wayfood_portrait_2.webp
       alt: 'way.food - Mobile Landing Page and Discover Search'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_6.webp
+      alt: 'way.food - Mobile Landing Page Sections How It Works and Why way.food'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_10.webp
+      alt: 'way.food - Desktop Landing Page How It Works Steps with Glass Icons'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_11.webp
+      alt: 'way.food - Desktop Landing Page Why Book via way.food Cards with Glass Icons'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_9.webp
+      alt: 'way.food - Desktop Booking Wizard Location Step with Popular Cities'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/wayfood/wayfood_portrait_5.webp
@@ -48,7 +64,15 @@ media:
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/wayfood/wayfood_portrait_3.webp
-      alt: 'way.food - Interactive Provider Map with Live Results'
+      alt: 'way.food - Mobile Interactive Provider Map with Live Results'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_2.webp
+      alt: 'way.food - Desktop Discover Search with Bookable Packages'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_3.webp
+      alt: 'way.food - Desktop Provider Profile with Availability Check'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/wayfood/wayfood_portrait_4.webp
@@ -57,23 +81,11 @@ media:
       aspectRatio: '4/5'
       src: /img/portfolio/wayfood/wayfood_portrait_video_1.webm
       thumbnail: /img/portfolio/wayfood/wayfood_portrait_video_1.webp
-      alt: 'way.food - Mobile Customer Navigation Process'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/wayfood/wayfood_landscape_2.webp
-      alt: 'way.food - Discover Search with Bookable Packages'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/wayfood/wayfood_landscape_9.webp
-      alt: 'way.food - Event Funnel Wizard with Location Autocomplete'
+      alt: 'way.food - Mobile Discover Search and Package Booking Sheet'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_8.webp
-      alt: 'way.food - Booking Chat with Offer and Payment Summary'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/wayfood/wayfood_landscape_5.webp
-      alt: 'way.food - Payment Plan with Deposit, Balance and Buyer Protection'
+      alt: 'way.food - Desktop Booking Chat with Offer and Payment Summary'
     - type: video
       src: /img/portfolio/wayfood/wayfood_landscape_video_2.webm
       thumbnail: /img/portfolio/wayfood/wayfood_landscape_video_2.webp
@@ -81,23 +93,24 @@ media:
     - type: video
       src: /img/portfolio/wayfood/wayfood_landscape_video_1.webm
       thumbnail: /img/portfolio/wayfood/wayfood_landscape_video_1.webp
-      alt: 'way.food - Desktop Provider Signup AI Description Generation'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/wayfood/wayfood_landscape_3.webp
-      alt: 'way.food - Provider Profile with Availability Check'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/wayfood/wayfood_landscape_4.webp
-      alt: 'way.food - Provider Analytics Dashboard'
+      alt: 'way.food - Desktop Provider Signup AI Description Optimization'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_7.webp
-      alt: 'way.food - Provider Package Management'
+      alt: 'way.food - Desktop Provider Package Management'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/wayfood/wayfood_landscape_video_4.webm
+      thumbnail: /img/portfolio/wayfood/wayfood_landscape_video_4.webp
+      alt: 'way.food - Desktop Package Builder with Starter Templates and Live Preview'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_4.webp
+      alt: 'way.food - Desktop Provider Analytics Dashboard'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_6.webp
-      alt: 'way.food - Provider Booking Management with Stripe Payouts'
+      alt: 'way.food - Desktop Provider Booking Management with Stripe Payouts'
 title: 'Foodtruck & Catering Booking Platform'
 story_preview: 'Together with my team at unlimited, we built way.food from the ground up — starting as a comparison portal for foodtrucks, caterers, and party services, now grown into a full transactional booking platform with real payments on Stripe Connect. I own the technical architecture, DevOps, and full-stack development. Scaled to 1,000+ users, 300+ providers, and 7-figure traffic'
 fineprint: "From zero to market leader. I'm proud of turning a complex, multi-party marketplace into a real payments platform, complete with Stripe Connect, tax-correct invoicing, and a booking engine that carries a transaction from first message to settled payout. From strategy and product roadmap to creative direction and full-stack development — I owned every layer of this platform."
