@@ -65,10 +65,6 @@ media:
       src: /img/portfolio/stadtwerke-havelberg/stadtwerke-havelberg_portrait_video_1.webm
       thumbnail: /img/portfolio/stadtwerke-havelberg/stadtwerke-havelberg_portrait_video_1.webp
       alt: 'Stadtwerke Havelberg - Mobile Menu with Accordion Sections and Tariff Calculator'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/stadtwerke-havelberg/stadtwerke-havelberg_landscape_6.webp
-      alt: 'Stadtwerke Havelberg - Desktop Product Worlds: Electricity, Gas, District Heating, E-Mobility, Leisure Pool, Careers'
     - type: video
       aspectRatio: video
       src: /img/portfolio/stadtwerke-havelberg/stadtwerke-havelberg_landscape_video_3.webm
@@ -77,8 +73,8 @@ media:
 title: 'Relaunch Concept for a Municipal Utility'
 story_preview: 'A self-initiated relaunch concept for Stadtwerke Havelberg, not a commissioned project: Laravel, Statamic 6, Inertia and Vue with a live tariff calculator, fault-tolerant search, a CMS-switchable outage overlay and dark mode.'
 fineprint: "A self-initiated concept. Stadtwerke Havelberg didn't commission it: tariffs and news are sample content, only the public contact details are real."
-fineprint_media: /img/portfolio/stadtwerke-havelberg/stadtwerke-havelberg_landscape_7.webp
-fineprint_media_alt: 'Stadtwerke Havelberg - Desktop Leisure Pool Teaser and Service Area'
+fineprint_media: /img/portfolio/stadtwerke-havelberg/stadtwerke-havelberg_landscape_6.webp
+fineprint_media_alt: 'Stadtwerke Havelberg - Desktop Product Worlds: Electricity, Gas, District Heating, E-Mobility, Leisure Pool, Careers'
 ---
 
 # A Relaunch Nobody Ordered
@@ -107,11 +103,7 @@ For outages there is a **crisis overlay**: one switch in the CMS puts a full-wid
 
 Accessibility is built in rather than retrofitted, oriented on the BITV requirements public bodies work with: a skip link to the content, visible focus rings on every interactive element, proper ARIA roles for tabs, groups and dialogs, and motion that stops when the visitor prefers reduced motion. **Dark mode** is a toggle in the header and the mobile menu, light by default and remembered per device.
 
-The motion that is there earns its place: sections reveal on scroll, and energy lines pulse across the hero photo. Schema.org markup describes the utility as a LocalBusiness, opening hours included, straight from the CMS.
-
-## Pitch Tooling: The Preview Dock
-
-The demo carries its own sales layer. A **preview dock** in the corner lists what is already working, not just designed: dark mode, search, the outage overlay, the PDF engine, accessibility, the CMS login. Every entry can be tried on the spot. Next to it sits a contact button that opens a modal with a direct line to me, and every link that leads nowhere yet opens a short notice instead of a dead end. The demo explains itself in a meeting, or without one.
+The motion that is there earns its place: sections reveal on scroll, and energy lines pulse across the hero photo. Schema.org markup describes the utility as a LocalBusiness, opening hours included, straight from the CMS. A small **preview dock** in the corner lists what already works, dark mode, search, outage overlay, PDF, CMS login, and lets a visitor try each one on the spot.
 
 ## What It Is For
 
