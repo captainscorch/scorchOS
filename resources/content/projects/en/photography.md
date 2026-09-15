@@ -7,7 +7,7 @@ image: /img/portfolio/photography/photography_portrait_29.webp
 color: '#1a1a1a'
 logo: gallery
 width: '96%'
-height: 'md:aspect-[4/6]'
+height: 'md:aspect-[3/4]'
 spineHeight: 'h-26 md:h-36'
 date: 'Early Age — Present'
 team:

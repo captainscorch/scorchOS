@@ -7,7 +7,7 @@ image: /img/portfolio/icemaenner/icemaenner_portrait_1.webp
 color: '#63B7E7'
 logo: icemaenner
 width: '80%'
-height: 'md:aspect-[4/5]'
+height: 'md:aspect-[4/6]'
 spineHeight: 'h-24 md:h-32'
 date: '2025'
 website: https://icemaenner.com

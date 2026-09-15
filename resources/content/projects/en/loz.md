@@ -7,7 +7,7 @@ image: /img/portfolio/loz/loz_portrait_1.webp
 color: '#6F7BD4'
 logo: loz
 width: '95%'
-height: 'md:aspect-[3/4]'
+height: 'md:aspect-[4/5]'
 spineHeight: 'h-24 md:h-30'
 date: '2024 — 2025'
 website: https://theloz.co
