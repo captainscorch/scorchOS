@@ -323,6 +323,8 @@ onUnmounted(() => {
                                     <a
                                         class="border-b border-b-neutral-300/50 leading-[135%] text-neutral-900 transition-all group-hover:opacity-50 hover:cursor-ne-resize hover:border-b-brand-400 hover:opacity-100! dark:border-b-neutral-600/50 dark:text-white dark:hover:border-b-brand-400"
                                         href="https://github.com/captainscorch/scorchOS/commits/main/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         >{{ lastCommitDate || t('footer.loading') }}</a
                                     >
                                     <span v-if="totalCommitCount !== null" class="text-neutral-500 dark:text-neutral-400">
