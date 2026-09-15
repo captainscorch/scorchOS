@@ -7,7 +7,7 @@ fineprint: 'Omarchy ist die Linux-Distribution von [David Heinemeier Hansson (DH
 
 # Ein Tweet, ein Wochenende, ein Platz am Tisch.
 
-Am 30. August 2026 hat DHH gepostet, dass die Omarchy-Homepage sich selbst entwachsen ist und er ein Omarchy Design Team aufbauen will. Die Bewerbung war einfach: ein Redesign an design@omarchy.org schicken, und wenn es passt, bist du drin. Mir gefiel, was DHH mit Omarchy macht, ein Betriebssystem für das Zeitalter der Agenten, und als Terminal- und Tech-Geek wollte ich Teil davon sein. Dazu hatte ich gerade Monate mit Canvas-Interfaces für meine eigenen Projekte verbracht. Also habe ich den Tag darauf verwendet.
+Am 30. August 2026 hat DHH gepostet, dass die Omarchy-Homepage sich selbst entwachsen ist und er ein Omarchy Design Team aufbauen will. Die Bewerbung war einfach: ein Redesign einreichen, und wenn es passt, bist du drin. Mir gefiel, was DHH mit Omarchy macht, ein Betriebssystem für das Zeitalter der Agenten, und als Terminal- und Tech-Geek wollte ich Teil davon sein. Dazu hatte ich gerade Monate mit Canvas-Interfaces für meine eigenen Projekte verbracht. Also habe ich den Tag darauf verwendet.
 
 <blockquote class="twitter-tweet"><a class="x-link" href="https://x.com/dhh/status/2093946369731854766" aria-label="View on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><p lang="en" dir="ltr">I think the current homepage design/layout for Omarchy has outgrown itself! I'd like to spin up a new Omarchy Design team to work on that (and other projects). Interested? Send a redesign of the homepage to design@omarchy.org. If it vibes, you're in.</p>&mdash; DHH (@dhh) <a href="https://x.com/dhh/status/2093946369731854766">August 30, 2026</a></blockquote>
 
@@ -28,7 +28,6 @@ Das Team stand innerhalb weniger Tage. Barış Girişmens Entwurf wurde das Fund
 - **Der Installer:** Eine Install-Sektion, die zeigt, was die ISO tatsächlich tut, daneben die Try-Apps für Mac und Windows und ein Hinweis, was vor dem Booten zu tun ist
 - **Teams:** Alle Teams als Avatar-Cluster in einer Zeile auf der Homepage und eine Teams-Seite im selben Layout
 - **People love Omarchy:** Die Testimonial-Sektion, die zitiert, was Leute nach der Installation auf X gepostet haben, mit Link zu mehr davon
-- **Die Details:** Der Install-Befehl auf dem Handy auf zwei Zeilen gehalten, die Installer-Notiz auf eine, die Strichreihenfolge der Marke repariert, nachdem ein Refactor sie verschoben hatte
 
 ## Der Launch
 

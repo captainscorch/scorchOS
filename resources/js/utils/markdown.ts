@@ -34,6 +34,15 @@ export const configureMarked = () => {
         return link;
     };
 
+    // Raw HTML in the markdown (embedded tweets, hand-written anchors)
+    // bypasses the link renderer: give its external anchors the same
+    // target and rel, unless the author set a target already
+    const originalHtml = renderer.html;
+    renderer.html = function (token: any) {
+        const html = originalHtml.call(this, token) as string;
+        return html.replace(/<a\s(?![^>]*\btarget=)([^>]*\bhref="(?:https?:)?\/\/[^"]*"[^>]*)>/g, '<a target="_blank" rel="noopener noreferrer" $1>');
+    };
+
     // Global heading renderer: add IDs for TOC
     renderer.heading = function (token: any, ...args: any[]) {
         const text = token.text || token;
