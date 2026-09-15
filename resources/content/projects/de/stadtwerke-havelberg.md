@@ -31,11 +31,7 @@ Für Störungen gibt es ein **Krisen-Overlay**: Ein Schalter im CMS legt ein Ban
 
 Barrierefreiheit ist eingebaut statt nachgerüstet, orientiert an der BITV, mit der öffentliche Stellen arbeiten: Skip-Link zum Inhalt, sichtbare Fokus-Ringe auf jedem interaktiven Element, saubere ARIA-Rollen für Tabs, Gruppen und Dialoge, und Bewegung, die stillsteht, sobald der Besucher reduzierte Bewegung wünscht. **Dark Mode** ist ein Schalter im Header und im mobilen Menü, standardmäßig hell und pro Gerät gemerkt.
 
-Die Bewegung, die bleibt, verdient ihren Platz: Sektionen blenden beim Scrollen ein, Energielinien pulsieren über das Hero-Foto. Schema.org-Markup beschreibt das Stadtwerk als LocalBusiness, Öffnungszeiten inklusive, direkt aus dem CMS.
-
-## Pitch-Werkzeug: das Vorschau-Dock
-
-Die Demo bringt ihre eigene Vertriebsschicht mit. Ein **Vorschau-Dock** in der Ecke listet, was schon funktioniert und nicht nur entworfen ist: Dark Mode, Suche, Störungs-Overlay, PDF-Engine, Barrierefreiheit, CMS-Login. Jeder Eintrag lässt sich sofort ausprobieren. Daneben sitzt ein Kontakt-Button, der ein Modal mit dem direkten Draht zu mir öffnet, und jeder Link, der noch ins Leere führt, öffnet einen kurzen Hinweis statt einer Sackgasse. Die Demo erklärt sich im Termin selbst. Oder ohne Termin.
+Die Bewegung, die bleibt, verdient ihren Platz: Sektionen blenden beim Scrollen ein, Energielinien pulsieren über das Hero-Foto. Schema.org-Markup beschreibt das Stadtwerk als LocalBusiness, Öffnungszeiten inklusive, direkt aus dem CMS. Ein kleines **Vorschau-Dock** in der Ecke listet, was schon funktioniert, Dark Mode, Suche, Störungs-Overlay, PDF, CMS-Login, und lässt jeden Punkt direkt ausprobieren.
 
 ## Wofür das Ganze
 
