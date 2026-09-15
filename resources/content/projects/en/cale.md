@@ -7,9 +7,9 @@ image: /img/portfolio/cale/cale_portrait_1.webp
 color: '#434F61'
 logo: cale
 width: '92%'
-height: 'md:aspect-[3/4]'
+height: 'md:aspect-[4/6]'
 spineHeight: 'h-28 md:h-34'
-date: '2025'
+date: '2025 - 2026'
 website: https://cale-design.com
 team:
     - src: /img/daniel.webp
@@ -27,48 +27,71 @@ technologies:
 media:
     - type: video
       aspectRatio: video
-      src: /img/portfolio/cale/cale_landscape_video_1.webm
-      thumbnail: /img/portfolio/cale/cale_landscape_video_1.webp
-      alt: 'cale design - Desktop Add to Cart Flow'
+      src: /img/portfolio/cale/cale_landscape_video_5.webm
+      thumbnail: /img/portfolio/cale/cale_landscape_video_5.webp
+      alt: 'cale design - Desktop Landingpage Scroll-Through: Hero, Product Videos, Own Designs, Theme Grid, Rooms & Looks, Selection, FAQ, Blog'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/cale/cale_portrait_2.webp
-      alt: 'cale design - Mobile Cart Drawer Free Shipping Interaction'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/cale/cale_landscape_5.webp
-      alt: 'cale design - Mobile Cart Drawer Upsale Interaction'
+      alt: 'cale design - Mobile Product Page and Cart Drawer with Free Shipping Bar and Upsell'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/cale/cale_landscape_video_1.webm
+      thumbnail: /img/portfolio/cale/cale_landscape_video_1.webp
+      alt: 'cale design - Desktop Customer Flow: Colour Pick, Add to Cart, Free Gift, Cart Drawer, Checkout'
     - type: video
       aspectRatio: '4/5'
       src: /img/portfolio/cale/cale_portrait_video_1.webm
       thumbnail: /img/portfolio/cale/cale_portrait_video_1.webp
-      alt: 'cale design - Mobile Collection Slider'
+      alt: 'cale design - Mobile Add to Cart Flow with Free Gift Modal and Cart Drawer'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/cale/cale_landscape_1.webp
-      alt: 'cale design - Desktop Collection Page with Filtering and Sorting'
+      src: /img/portfolio/cale/cale_landscape_3.webp
+      alt: 'cale design - Desktop Landingpage Highlight of the Own Designs ELVA, LIV, ALVA and ANDERS'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/cale/cale_landscape_7.webp
+      alt: 'cale design - Desktop Theme Grid with Six Photo Tiles from Own Product and Interior Photography'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/cale/cale_landscape_video_3.webm
+      thumbnail: /img/portfolio/cale/cale_landscape_video_3.webp
+      alt: 'cale design - Desktop Shop the Room: Curated Room Looks and a Room Collection with Shoppable Photo Hotspots'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/cale/cale_portrait_3.webp
+      alt: 'cale design - Mobile Shop the Room Overview and Room 01 Collection with Interior Photography'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/cale/cale_landscape_6.webp
+      alt: 'cale design - Desktop Room Collection with Shoppable Product Hotspots'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/cale/cale_landscape_video_4.webm
+      thumbnail: /img/portfolio/cale/cale_landscape_video_4.webp
+      alt: 'cale design - Desktop 3D Product Viewer'
     - type: video
       aspectRatio: video
       src: /img/portfolio/cale/cale_landscape_video_2.webm
       thumbnail: /img/portfolio/cale/cale_landscape_video_2.webp
-      alt: 'cale design - Desktop 3D Product Viewer'
+      alt: 'cale design - Desktop Navigation with Product Mega Menu and Selection Menu'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/cale/cale_portrait_4.webp
+      alt: 'cale design - Mobile Own Designs Section with ELVA Line Drawing and Theme Tile Photography'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/cale/cale_landscape_2.webp
-      alt: 'cale design - Desktop Shop the Look Section'
+      src: /img/portfolio/cale/cale_landscape_5.webp
+      alt: 'cale design - Desktop Collection Page Kitchen Roll Holders ALVA and ANDERS with Filtering'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/cale/cale_landscape_4.webp
-      alt: 'cale design - Desktop Landingpage Collection Overview'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/cale/cale_landscape_3.webp
-      alt: 'cale design - Desktop Masthead Area'
+      src: /img/portfolio/cale/cale_landscape_1.webp
+      alt: 'cale design - Desktop Masthead with the Hero Slideshow of the Own Designs LIV and ELVA'
 title: 'Minimalist Shopify Store for Premium Furniture & home accessories'
 story_preview: 'A minimalist, by Scandinavian design and interior aesthetic inspired Shopify store for cale design — premium furniture and home accessories. Featuring 800+ products, interactive 3D renders, AI-generated lifestyle imagery, and a fully integrated omnichannel setup with POS and performance marketing'
 fineprint: 'Full-service e-commerce from lens to checkout. Development, photography, 3D visualization, POS integration, and performance marketing — all unified under one minimalist design system built to scale.'
-fineprint_media: /img/portfolio/cale/cale_landscape_6.webp
-fineprint_media_alt: 'cale design - Desktop Product Detail Page'
+fineprint_media: /img/portfolio/cale/cale_landscape_4.webp
+fineprint_media_alt: 'cale design - Desktop Product Page ELVA Multi-Shelf'
 ---
 
 # Scandinavian Simplicity at Scale
