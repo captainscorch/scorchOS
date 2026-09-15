@@ -7,7 +7,7 @@ image: /img/portfolio/unlimited-dock/unlimited-dock_portrait_1.webp
 color: '#fe3312'
 logo: dock
 width: '94%'
-height: 'md:aspect-[4/5]'
+height: 'md:aspect-[3/4]'
 spineHeight: 'h-26 md:h-32'
 date: '2026 — Present'
 team:
@@ -32,6 +32,11 @@ media:
       aspectRatio: '16/9'
       src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_1.webp
       alt: 'unlimited.dock - Task List with Status Groups and Project Properties'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_1.webm
+      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_1.webp
+      alt: 'unlimited.dock - Desktop Quick Add: Create a Task with the C Shortcut, Priority and Due Date'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/unlimited-dock/unlimited-dock_portrait_2.webp
@@ -44,6 +49,11 @@ media:
       aspectRatio: '16/9'
       src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_2.webp
       alt: 'unlimited.dock - Command Palette with Active Task Filter'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_2.webm
+      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_2.webp
+      alt: 'unlimited.dock - Desktop Command Palette: Search and Open a Task in the Peek Panel'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_3.webp
@@ -72,6 +82,11 @@ media:
       aspectRatio: '16/9'
       src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_13.webp
       alt: 'unlimited.dock - Running Timer in the Top Bar'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_3.webm
+      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_3.webp
+      alt: 'unlimited.dock - Desktop Timer Panel: Pick a Project and Budget Line, Add a Note, Start the Timer'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/unlimited-dock/unlimited-dock_portrait_4.webp
