@@ -49,7 +49,7 @@ export interface DecryptRevealOptions {
 }
 
 export interface DecryptRevealElements {
-  /** Canvas with layoutsubtree that hosts the HTML content. */
+  /** Canvas that hosts the HTML content. Carries both layoutsubtree and content="drawable": Chrome renamed the attribute mid-trial, so both spellings stay until the old one is gone. */
   source: HTMLCanvasElement;
   /** The element inside the source canvas that gets captured. */
   content: HTMLElement;
@@ -1117,6 +1117,7 @@ watch(
     <canvas
       ref="sourceEl"
       layoutsubtree="true"
+      content="drawable"
       :style="
         native
           ? 'position: absolute; inset: 0; width: 100%; height: 100%'
