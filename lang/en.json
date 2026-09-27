@@ -29,6 +29,9 @@
             "playground": "Playground",
             "comingSoon": "Coming Soon",
             "playgroundDescription": "A lab for my design engineering experiments.",
+            "showreel": "Showreel",
+            "showreelDescription": "Selected work from 2024 to 2026, in under a minute.",
+            "showreelPlay": "Play with sound",
             "comingSoonDescription": "Coming soon.",
             "aboutMe": "About me",
             "learnMore": "Learn more",
@@ -130,6 +133,10 @@
         "markShow": "Reveal the mark",
         "markHide": "Hide the mark"
     },
+    "showreel": {
+        "title": "Showreel 2026",
+        "description": "Daniel Schmier, design engineer: selected work from 2024 to 2026."
+    },
     "portfolio": {
         "views": {
             "covers": "Covers",
@@ -137,6 +144,7 @@
         },
         "title": "Case Studies",
         "subtitle": "Explore other projects",
+        "showreel": "Watch the showreel",
         "hero": {
             "line1": "Where design meets code,",
             "line2": "crafted with dedication and precision."

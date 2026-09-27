@@ -30,6 +30,9 @@
             "playground": "Playground",
             "comingSoon": "Demnächst",
             "playgroundDescription": "Ein Labor für meine Design-Engineering-Experimente.",
+            "showreel": "Showreel",
+            "showreelDescription": "Ausgewählte Arbeiten von 2024 bis 2026, in unter einer Minute.",
+            "showreelPlay": "Mit Ton abspielen",
             "comingSoonDescription": "In Kürze verfügbar.",
             "aboutMe": "Über mich",
             "learnMore": "Mehr erfahren",
@@ -131,6 +134,10 @@
         "markShow": "Zeichen einblenden",
         "markHide": "Zeichen ausblenden"
     },
+    "showreel": {
+        "title": "Showreel 2026",
+        "description": "Daniel Schmier, Design Engineer: ausgewählte Arbeiten von 2024 bis 2026."
+    },
     "portfolio": {
         "views": {
             "covers": "Cover",
@@ -138,6 +145,7 @@
         },
         "title": "Case Studies",
         "subtitle": "Andere Projekte erkunden",
+        "showreel": "Showreel ansehen",
         "hero": {
             "line1": "Design trifft Code,",
             "line2": "geformt mit Hingabe und Präzision."
