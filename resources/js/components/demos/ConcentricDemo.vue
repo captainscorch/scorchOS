@@ -1,32 +1,22 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
-// Interactive controls
 const innerRadius = ref(12);
 const padding = ref(16);
-const useConcentricRadius = ref(true);
 
-// Calculate outer radius
-const outerRadius = computed(() => {
-    if (useConcentricRadius.value) {
-        return innerRadius.value + padding.value;
-    }
-    // Non-concentric: use same radius for both
-    return innerRadius.value;
-});
+// The outer curve shares the inner curve's center only when the padding is added to its radius.
+const outerRadius = computed(() => innerRadius.value + padding.value);
 
-// Reset to defaults
 const reset = () => {
     innerRadius.value = 12;
     padding.value = 16;
-    useConcentricRadius.value = true;
 };
 </script>
 
 <template>
     <div class="interactive-demo overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-neutral-900">
         <!-- Preview Area -->
-        <div class="flex min-h-[280px] items-center justify-center gap-4 p-8 md:gap-12 md:gap-16">
+        <div class="flex min-h-[280px] items-center justify-center gap-4 p-8 md:gap-16">
             <!-- Non-Concentric Example -->
             <div class="flex flex-col items-center gap-4">
                 <div
@@ -72,8 +62,8 @@ const reset = () => {
                 <!-- Inner Radius Slider -->
                 <div class="flex-1">
                     <div class="mb-2 flex items-center justify-between">
-                        <label class="text-xs font-medium text-neutral-600 dark:text-neutral-400">Inner Radius</label>
-                        <span class="font-mono text-xs text-neutral-500">{{ innerRadius }}px</span>
+                        <label class="text-xs font-medium text-neutral-600 dark:text-neutral-400">Inner radius</label>
+                        <span class="font-mono text-xs text-neutral-500 tabular-nums">{{ innerRadius }} px</span>
                     </div>
                     <input
                         v-model.number="innerRadius"
@@ -88,7 +78,7 @@ const reset = () => {
                 <div class="flex-1">
                     <div class="mb-2 flex items-center justify-between">
                         <label class="text-xs font-medium text-neutral-600 dark:text-neutral-400">Padding</label>
-                        <span class="font-mono text-xs text-neutral-500">{{ padding }}px</span>
+                        <span class="font-mono text-xs text-neutral-500 tabular-nums">{{ padding }} px</span>
                     </div>
                     <input
                         v-model.number="padding"

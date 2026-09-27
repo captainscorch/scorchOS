@@ -272,7 +272,7 @@
     transform-origin: center;
 }
 
-/* Typography */
+/* Typography. Interactive demos embedded in posts keep their own utilities, hence the :not() guards. */
 .prose {
     @apply space-y-4 text-neutral-700 dark:text-neutral-300;
 }
@@ -285,35 +285,35 @@
     @apply mt-8 font-sans text-xl font-semibold text-neutral-900 dark:text-white;
 }
 
-.prose h3 {
+.prose h3:not(.interactive-demo *) {
     @apply mt-8 font-sans text-lg font-medium text-neutral-900 dark:text-white;
 }
 
-.prose h4 {
+.prose h4:not(.interactive-demo *) {
     @apply mt-8 font-sans text-base font-medium text-neutral-900 dark:text-white;
 }
 
-.prose p {
+.prose p:not(.interactive-demo *) {
     @apply text-base leading-relaxed text-neutral-600 dark:text-neutral-300;
 }
 
-.prose strong {
+.prose strong:not(.interactive-demo *) {
     @apply font-bold text-neutral-900 dark:text-white;
 }
 
-.prose a {
+.prose a:not(.interactive-demo *) {
     @apply w-fit border-b border-b-neutral-300/50 text-neutral-600 transition-colors hover:cursor-ne-resize hover:border-b-brand-400 hover:text-neutral-700 dark:border-b-neutral-600/50 dark:text-neutral-300 dark:hover:border-b-brand-400 dark:hover:text-neutral-200;
 }
 
-.prose ul {
+.prose ul:not(.interactive-demo *) {
     @apply my-6 ml-6 list-outside list-disc space-y-2 text-neutral-600 dark:text-neutral-300;
 }
 
-.prose ol {
+.prose ol:not(.interactive-demo *) {
     @apply my-6 ml-6 list-outside list-decimal space-y-2 text-neutral-600 dark:text-neutral-300;
 }
 
-.prose li {
+.prose li:not(.interactive-demo *) {
     @apply text-base leading-relaxed;
 }
 

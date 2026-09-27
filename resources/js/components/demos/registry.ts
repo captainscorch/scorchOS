@@ -22,4 +22,15 @@ for (const path of Object.keys(demoModules)) {
  */
 export const COMPONENT_TO_PLAYGROUND_ID: Record<string, string> = {
     ConcentricDemo: 'concentric-radius',
+    TabularNumbersDemo: 'tabular-numbers',
+    AsciiObjectDemo: 'ascii-object',
+    InlineEditDemo: 'inline-edit',
+    LoadingThresholdsDemo: 'loading-thresholds',
+    HoverLiftDemo: 'hover-lift',
+    ComposerRulesDemo: 'composer-rules',
+    ToolCallCardsDemo: 'tool-call-cards',
+    StickToBottomDemo: 'stick-to-bottom',
+    HoverIntentDemo: 'hover-intent',
+    OptimisticUndoDemo: 'optimistic-undo',
+    CommandMenuEtiquetteDemo: 'command-menu-etiquette',
 };
