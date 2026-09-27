@@ -3,6 +3,7 @@ import CommandTrigger from '@/components/CommandTrigger.vue';
 import FooterArea from '@/components/FooterArea.vue';
 import IDEPreview from '@/components/playground/IDEPreview.vue';
 import ProgressiveBlur from '@/components/ProgressiveBlur.vue';
+import ShowreelTile from '@/components/ShowreelTile.vue';
 import TextReveal from '@/components/TextReveal.vue';
 import { useCommandMenu } from '@/composables/useCommandMenu';
 import { usePosts } from '@/composables/usePosts';
@@ -1493,6 +1494,16 @@ const fadeUpMotion = {
                             </div>
                         </div>
                     </Link>
+
+                    <!-- Showreel -->
+                    <ShowreelTile
+                        v-motion
+                        :initial="fadeUpMotion.initial"
+                        :visible-once="{
+                            ...fadeUpMotion.visibleOnce,
+                            transition: { ...fadeUpMotion.visibleOnce.transition, delay: 200 },
+                        }"
+                    />
                 </div>
             </div>
         </section>

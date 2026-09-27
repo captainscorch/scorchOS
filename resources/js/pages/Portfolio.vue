@@ -2,6 +2,7 @@
 import CommandTrigger from '@/components/CommandTrigger.vue';
 import FooterArea from '@/components/FooterArea.vue';
 import ProgressiveBlur from '@/components/ProgressiveBlur.vue';
+import ShowreelDialog from '@/components/ShowreelDialog.vue';
 import TextReveal from '@/components/TextReveal.vue';
 import { useCommandMenu } from '@/composables/useCommandMenu';
 import { useProjects } from '@/composables/useProjects';
@@ -9,12 +10,15 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/sharp-light-svg-icons';
 import { Head, Link } from '@inertiajs/vue3';
 import gsap from 'gsap';
+import { Play } from 'lucide-vue-next';
 import { computed, nextTick, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 library.add(faTimes);
 
 const { t, locale } = useI18n();
+
+const isShowreelOpen = ref(false);
 const { open: openCommandMenu } = useCommandMenu();
 const { projects } = useProjects();
 
@@ -200,6 +204,20 @@ const onLeave = (el: Element, done: () => void) => {
                     <br />
                     <TextReveal :text="t('portfolio.hero.line2')" class="text-neutral-400 dark:text-white/30" :delay="1.5" />
                 </h1>
+                <button
+                    type="button"
+                    class="group mt-8 inline-flex cursor-pointer items-center gap-3 rounded-full border border-neutral-200 bg-neutral-100 py-1.5 pr-4 pl-1.5 text-sm font-medium text-neutral-900 transition-colors duration-300 hover:border-brand-400/60 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-brand-400/60"
+                    @click="isShowreelOpen = true"
+                >
+                    <span
+                        class="flex size-8 items-center justify-center rounded-full bg-neutral-900 text-white transition-colors duration-300 group-hover:bg-brand-400 dark:bg-white dark:text-black"
+                    >
+                        <Play class="size-3.5 translate-x-px fill-current" aria-hidden="true" />
+                    </span>
+                    {{ t('portfolio.showreel') }}
+                    <span class="font-mono text-xs text-neutral-500 tabular-nums dark:text-white/40">0:56</span>
+                </button>
+                <ShowreelDialog v-model:open="isShowreelOpen" />
             </div>
 
             <!-- Views -->
