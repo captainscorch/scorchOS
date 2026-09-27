@@ -45,7 +45,7 @@ Bei der Ausführung glänzt lyftd. Seit 2.1 ist sie auf beiden Plattformen ein G
 
 - **Präzises Tracking:** Sätze, Wiederholungen, Gewicht, Dauer und RPE in Echtzeit protokollieren
 - **Loggen, dann rückgängig:** Ein geloggter Satz steht sofort da, und die Pause startet im selben Moment. Fünf Sekunden lang bietet die Pausenleiste „Rückgängig" an, auch wenn der Satz noch in der Offline-Queue wartet
-- **Pausen-Timer:** Eine unten fixierte Pausenleiste mit −15 s, +15 s, Pause und Überspringen, läuft nativ auch bei gesperrtem Handy weiter. Das Display bleibt zwischen den Sätzen an
+- **Pausen-Timer:** Eine unten fixierte Pausenleiste mit −15 s, +15 s, Pause und Überspringen, läuft nativ auch bei gesperrtem Handy weiter. Das Display bleibt zwischen den Sätzen an, und eine Live Activity zeigt den Countdown in der Dynamic Island und auf dem Sperrbildschirm
 - **Dynamisches Hinzufügen von Übungen:** Neue Übungen mitten in der Session hinzufügen — entweder einmalig für das aktuelle Workout oder für alle zukünftigen Sessions im Plan
 - **Skip-Logik:** Sätze oder ganze Übungen überspringen mit intelligentem Completion-Tracking
 - **Auto-Vervollständigung:** Sessions aus vorherigen Wochen werden automatisch mit einem Hinweis versehen abgeschlossen

@@ -48,6 +48,11 @@ media:
       aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_9.webp
       alt: 'lyftd.app - Gym Mode with Pinned Rest Bar and Undo for the Logged Set'
+    - type: video
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_video_4.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_4.webp
+      alt: 'lyftd.app - Rest Countdown as a Live Activity in the Dynamic Island and on the Lock Screen'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_8.webp
@@ -174,7 +179,7 @@ The execution engine is where lyftd shines. Since 2.1 it's a gym screen on both 
 
 - **Precision Tracking:** Log sets, reps, weight, duration, and RPE in real-time
 - **Log, then undo:** A logged set shows up at once and the rest starts in the same moment. For five seconds the rest bar offers Undo, even while the set is still waiting in the offline queue
-- **Rest Timer:** A rest bar pinned to the bottom with −15 s, +15 s, pause and skip, running natively even when the phone is locked. The screen stays on between sets
+- **Rest Timer:** A rest bar pinned to the bottom with −15 s, +15 s, pause and skip, running natively even when the phone is locked. The screen stays on between sets, and a Live Activity puts the countdown in the Dynamic Island and on the Lock Screen
 - **Dynamic Exercise Addition:** Add new exercises mid-session — either as a one-off for the current workout or propagated to all future sessions in the plan
 - **Skip Logic:** Skip sets or entire exercises with intelligent completion tracking
 - **Auto-Completion:** Sessions from previous weeks are automatically completed with a note
