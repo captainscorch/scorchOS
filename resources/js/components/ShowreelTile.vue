@@ -75,7 +75,7 @@ watch([isVisible, reducedMotion, isOpen], () => {
                     >
                         <Play class="size-3.5 fill-current" aria-hidden="true" />
                         {{ t('home.navigation.showreelPlay') }}
-                        <span class="font-mono text-white/60 tabular-nums">0:56</span>
+                        <span class="font-mono text-white/60 tabular-nums">1:00</span>
                     </span>
                 </div>
             </div>

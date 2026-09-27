@@ -215,7 +215,7 @@ const onLeave = (el: Element, done: () => void) => {
                         <Play class="size-3.5 translate-x-px fill-current" aria-hidden="true" />
                     </span>
                     {{ t('portfolio.showreel') }}
-                    <span class="font-mono text-xs text-neutral-500 tabular-nums dark:text-white/40">0:56</span>
+                    <span class="font-mono text-xs text-neutral-500 tabular-nums dark:text-white/40">1:00</span>
                 </button>
                 <ShowreelDialog v-model:open="isShowreelOpen" />
             </div>
