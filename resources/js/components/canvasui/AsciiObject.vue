@@ -35,6 +35,8 @@ export interface AsciiObjectOptions {
   environmentIntensity?: number;
   /** Roughness override applied to every material (0 to 1). Negative keeps the asset's own values. */
   roughness?: number;
+  /** Color multiplied into every material. Empty string keeps the asset's own colors. */
+  tint?: string;
   /** Size of the longest side of the object in scene units. The camera sits about 4 units away. */
   scale?: number;
   /** Horizontal offset of the object in scene units. */
@@ -103,6 +105,7 @@ const DEFAULTS: Required<AsciiObjectOptions> = {
   highlight: "#066aff",
   environmentIntensity: 1,
   roughness: -1,
+  tint: "",
   scale: 3,
   xOffset: 0,
   yOffset: 0,
@@ -1126,6 +1129,15 @@ export function createAsciiObject(
           config.roughness >= 0
             ? config.roughness
             : standard.userData.baseRoughness;
+        if (!standard.color) continue;
+        if (standard.userData.baseColor === undefined) {
+          standard.userData.baseColor = standard.color.clone();
+        }
+        if (config.tint) {
+          standard.color.set(config.tint);
+        } else {
+          standard.color.copy(standard.userData.baseColor);
+        }
       }
     });
   }
