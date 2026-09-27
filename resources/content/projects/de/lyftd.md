@@ -1,13 +1,13 @@
 ---
 slug: lyftd
 title: 'Smart Training, Stronger You — Workout-Tracking-Plattform mit nativer iOS-App und KI-Coaching-Agent'
-story_preview: 'lyftd ist mein Passion Project — eine anspruchsvolle Workout-Tracking-Plattform, die ich von Grund auf gebaut habe, um den gesamten Lebenszyklus von Trainingsprogrammen zu managen. Jetzt mit nativer iOS-App und einem KI-Coach, der direkt auf deinem Plan handelt, dazu umfassende Analytics, Abonnements und eine Plattform für Trainer'
+story_preview: 'lyftd ist mein Passion Project — eine anspruchsvolle Workout-Tracking-Plattform, die ich von Grund auf gebaut habe, um den gesamten Lebenszyklus von Trainingsprogrammen zu managen. Jetzt mit nativer iOS-App, einem KI-Coach, der direkt auf deinem Plan handelt, und einer Trainer-Plattform, die auch auf dem iPhone läuft. Version 2.1 ist seit dem 27. September 2026 live'
 fineprint: 'Komplett alleine gebaut als meine persönliche Sandbox für Full-Stack-Produktentwicklung. Von Authentifizierungs-Flows bis zur Payment-Integration, von einer nativen iOS-App bis zu einem KI-Coaching-Agenten mit eigenem Harness — jede Zeile Code stammt von mir. Hier pushe ich meine Grenzen als Entwickler.'
 ---
 
 # Ich konnte keinen Workout-Tracker finden, der mir gefiel, also habe ich meinen eigenen gebaut.
 
-lyftd entstand aus persönlicher Frustration mit bestehenden Fitness-Apps — sie waren entweder umständlich, voller Werbung oder hatten nicht die Flexibilität, die ich brauchte. Ich wollte ein Tool, das sich premium anfühlt, nahtlos auf all meinen Geräten funktioniert und sich meinem Trainingsstil anpasst. Also habe ich es gebaut. Aus der Web-App ist inzwischen eine native iOS-App geworden, dazu ein KI-Coach, der nicht nur redet, sondern handelt.
+lyftd entstand aus persönlicher Frustration mit bestehenden Fitness-Apps — sie waren entweder umständlich, voller Werbung oder hatten nicht die Flexibilität, die ich brauchte. Ich wollte ein Tool, das sich premium anfühlt, nahtlos auf all meinen Geräten funktioniert und sich meinem Trainingsstil anpasst. Also habe ich es gebaut. Aus der Web-App ist inzwischen eine native iOS-App geworden, dazu ein KI-Coach, der nicht nur redet, sondern handelt. Version 2.1, live seit dem 27. September 2026, dreht sich um die Stunde im Gym und die Wochen drumherum.
 
 ## Die Vision
 
@@ -33,6 +33,7 @@ lyftd gibt es jetzt als echte iOS-App, aktuell im TestFlight vor dem Launch. Es 
 
 Das Planungssystem ist auf Flexibilität ausgelegt:
 
+- **Vier Fragen zum Start:** Neue Accounts beantworten vor der Paywall Ziel, Erfahrung, Trainingstage pro Woche und Equipment und starten mit einem passenden Plan
 - **Individuelle Workout-Pläne:** Mehrwochen-Pläne mit konfigurierbarer Dauer, Deload-Wochen und tageweiser Planung
 - **Übungskonfiguration:** Sätze, Wiederholungen, Gewicht, Ziel-RPE, Pausenzeiten und Volumen-Tracking pro Übung
 - **Trainingstiefe:** Supersätze, Warm-up-Ramps, Myo-Reps, seitengetrenntes Tracking, halbe Wiederholungen und ein eingebauter Plattenrechner
@@ -40,10 +41,11 @@ Das Planungssystem ist auf Flexibilität ausgelegt:
 - **Plan-Sharing & Duplizierung:** Pläne mit Viewer- oder Editor-Berechtigungen teilen, ganze Pläne, einzelne Tage oder spezifische Übungen klonen
 - **Einheiten nach Wahl:** kg/lbs und RPE/RIR als App-weite Nutzereinstellung
 
-Bei der Ausführung glänzt lyftd:
+Bei der Ausführung glänzt lyftd. Seit 2.1 ist sie auf beiden Plattformen ein Gym-Screen:
 
 - **Präzises Tracking:** Sätze, Wiederholungen, Gewicht, Dauer und RPE in Echtzeit protokollieren
-- **Pausen-Timer:** Automatischer Countdown zwischen Sätzen mit Pause/Resume-Funktionalität, läuft nativ auch bei gesperrtem Handy weiter
+- **Loggen, dann rückgängig:** Ein geloggter Satz steht sofort da, und die Pause startet im selben Moment. Fünf Sekunden lang bietet die Pausenleiste „Rückgängig" an, auch wenn der Satz noch in der Offline-Queue wartet
+- **Pausen-Timer:** Eine unten fixierte Pausenleiste mit −15 s, +15 s, Pause und Überspringen, läuft nativ auch bei gesperrtem Handy weiter. Das Display bleibt zwischen den Sätzen an
 - **Dynamisches Hinzufügen von Übungen:** Neue Übungen mitten in der Session hinzufügen — entweder einmalig für das aktuelle Workout oder für alle zukünftigen Sessions im Plan
 - **Skip-Logik:** Sätze oder ganze Übungen überspringen mit intelligentem Completion-Tracking
 - **Auto-Vervollständigung:** Sessions aus vorherigen Wochen werden automatisch mit einem Hinweis versehen abgeschlossen
@@ -57,6 +59,7 @@ Der AI Coach hat als Post-Workout-Feedback angefangen. Heute ist er ein vollwert
 - **Du behältst die Kontrolle:** Jede vorgeschlagene Änderung erscheint als Alt-gegen-Neu-Diff-Karte. Du übernimmst oder verwirfst sie explizit, und beim Übernehmen validiert der Server noch einmal gegen deinen aktuellen Plan, bevor irgendetwas geschrieben wird
 - **Post-Workout-Feedback-Loop:** Nach jeder Session schreibt der Coach Anpassungsempfehlungen. Du hakst ab, welche übernommen werden, künftige Sessions passen sich entsprechend an, und die Historie bleibt als Snapshot erhalten — nichts wird im Nachhinein umgeschrieben
 - **Wöchentliche und monatliche Recaps:** Die KI vergleicht Volumen, Adherence, PRs und Streaks mit der Vorperiode, inklusive Deload-Empfehlung, wenn die Anstrengung steigt, das Gewicht aber stagniert
+- **Vorschläge als Status-Karten:** Seit 2.1 zeigt jeder Vorschlag, wo er steht (wartet auf dich, wird übernommen, erledigt, fehlgeschlagen, abgelehnt), und bleibt im Chat. Eine leise „Grundlage"-Zeile listet, was der Coach vor seiner Antwort tatsächlich gelesen hat. Das Muster stammt aus meiner Demo [Tool-Calls als Status-Karten](/playground#tool-call-cards)
 - **Plan-Generator:** Ziele, Trainingstage pro Woche, Equipment und Verletzungen rein — ein kompletter, überprüfbarer Plan raus. Schlägt außerdem den nächsten Trainingsblock vor, sobald ein Plan ausläuft
 - **Logging in natürlicher Sprache:** „Bankdrücken 3x8 80kg" eintippen, und es wird zur geloggten Übung
 - **Guardrails:** OpenAI-Moderation auf jeder Eingabe, Rate-Limits pro Abo-Stufe, jede Interaktion wird geloggt
@@ -69,6 +72,7 @@ Der AI Coach hat als Post-Workout-Feedback angefangen. Heute ist er ein vollwert
 - **Plan-Verteilung:** Pläne und Templates einzelnen Klienten oder ganzen Gruppen auf einmal zuweisen
 - **Reporting:** Per-Klient-Statistiken, gebrandete PDF-Fortschrittsberichte und ein wöchentlicher Adherence-Digest per Mail
 - **Kommunikation:** Direkter Trainer-Klient-Chat, dazu Intake-Fragebögen zum Onboarding neuer Klienten
+- **Coaching auf dem iPhone:** Seit 2.1 läuft der Coaching-Loop nativ in der iOS-App: Inbox, Athleten-Hub, Notizen, Pläne und Einladungen. Athleten schicken einen wöchentlichen Check-in, und ein Acht-Wochen-Raster zeigt geplant gegen erledigt für das ganze Roster
 - **Physio-Modus:** Ein Pain-Tracking-Modus für Reha- und Physiotherapie-Anwendungsfälle
 - **White-Label-Branding:** Trainer können ihre eigene Marke auf die Experience ihrer Klienten legen
 
@@ -108,4 +112,4 @@ Ich habe eine Gamification-Ebene gebaut, um User-Engagement und Retention zu fö
 
 ## Ein lebendes Produkt
 
-lyftd ist mehr als ein Side Project — es ist ein reelles Produkt, das echte Nutzer bedient. Das jüngste Release, locker das größte seit lyftd live ist, hat aus der Web-App eine Plattform gemacht: eine native iOS-App, ein KI-Coach, der auf deinem Plan handelt statt ihn nur zu kommentieren, und eine Trainer-Plattform für Coaches, die ihre Klienten darüber betreuen. Es entwickelt sich ständig weiter, während ich mit neuen Techniken experimentiere, und gibt mir praktische Erfahrung in allem von Datenbankschema-Design über native App-Entwicklung bis zu KI-Agent-Design und Abo-Management.
+lyftd ist mehr als ein Side Project — es ist ein echtes Produkt, live auf lyftd.app, die iOS-App steckt im TestFlight vor dem Launch im App Store. Release 2.0, locker das größte seit lyftd live ist, hat aus der Web-App eine Plattform gemacht: eine native iOS-App, ein KI-Coach, der auf deinem Plan handelt statt ihn nur zu kommentieren, und eine Trainer-Plattform für Coaches, die ihre Klienten darüber betreuen. Es entwickelt sich ständig weiter, während ich mit neuen Techniken experimentiere, und gibt mir praktische Erfahrung in allem von Datenbankschema-Design über native App-Entwicklung bis zu KI-Agent-Design und Abo-Management.
