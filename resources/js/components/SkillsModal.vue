@@ -87,12 +87,14 @@ const skillsData = {
             shopify: ['Liquid', 'Hydrogen (React)', 'Oxygen', 'Sanity'],
         },
         frontend: {
-            js: ['Vue.js', 'Alpine.js', 'GSAP', 'Three.js'],
+            js: ['Vue.js', 'React', 'Astro', 'Alpine.js'],
             css: ['Tailwind', 'shadcn-vue', 'Bootstrap'],
         },
+        motion: ['Remotion', 'GSAP', 'Three.js'],
         mobile: ['Capacitor', 'iOS', 'Xcode', 'TestFlight', 'Swift (native plugins)'],
         devOps: [
             'CLI',
+            'Homebrew',
             'Git',
             'GitHub Actions',
             'CI/CD',
@@ -110,7 +112,7 @@ const skillsData = {
             'Forge',
         ],
         databases: ['MySQL', 'SQLite', 'GraphQL'],
-        misc: ['Homebrew', 'Prompt Engineering', 'Agents', 'MCP', 'Claude Code (CLI)', 'Claude API', 'OpenAI API', 'Cursor'],
+        ai: ['Claude Code (CLI)', 'Claude API', 'OpenAI API', 'Agents', 'MCP', 'Prompt Engineering', 'Cursor'],
     },
     designTools: ['Figma', 'Adobe CC', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'],
     analytics: [
@@ -128,7 +130,7 @@ const skillsData = {
     ],
     openSource: [
         {
-            project: 'Omarchy (omarchy.org, Omarchy Design team)',
+            project: 'Omarchy (omarchy.org)',
         },
         {
             project: 'Laravel Cashier',
@@ -174,6 +176,11 @@ ${skillsData.technologies.frontend.css.map((tech) => `      "${tech}"`).join(',\
     ]
   },
 
+  // Motion
+  motion: [
+${skillsData.technologies.motion.map((tech) => `    "${tech}"`).join(',\n')}
+  ],
+
   // Mobile
   mobile: [
 ${skillsData.technologies.mobile.map((tech) => `    "${tech}"`).join(',\n')}
@@ -189,9 +196,9 @@ ${skillsData.technologies.devOps.map((tech) => `    "${tech}"`).join(',\n')}
 ${skillsData.technologies.databases.map((db) => `    "${db}"`).join(',\n')}
   ],
 
-  // Misc
-  misc: [
-${skillsData.technologies.misc.map((item) => `    "${item}"`).join(',\n')}
+  // AI
+  ai: [
+${skillsData.technologies.ai.map((item) => `    "${item}"`).join(',\n')}
   ]
 };
 
@@ -205,7 +212,7 @@ const analytics = [
 ${skillsData.analytics.map((item) => `  "${item}"`).join(',\n')}
 ];
 
-// 05 OPEN SOURCE CONTRIBUTIONS
+// 06 OPEN SOURCE CONTRIBUTIONS
 const openSourceContributions = [
 ${skillsData.openSource.map((contrib) => `  {\n    project: "${contrib.project}",\n  }`).join(',\n')}
 ];
