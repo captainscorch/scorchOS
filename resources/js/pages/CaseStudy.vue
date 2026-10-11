@@ -64,6 +64,16 @@ const fineprintHtml = computed(() => (project.value?.fineprint ? (marked.parseIn
 
 const pageTitle = computed(() => `${project.value?.client ?? ''} Case Study – Daniel Schmier`);
 const pageDescription = computed(() => project.value?.story_preview || t('caseStudy.defaultDescription'));
+// The preview reveals at most 300 characters. A longer one is cut at the
+// last whole word and gets an ellipsis; a shorter one shows as written.
+const PREVIEW_LIMIT = 300;
+const storyPreview = computed(() => {
+    const text = (project.value?.story_preview ?? '').trim();
+    if (text.length <= PREVIEW_LIMIT) return text;
+    const cut = text.slice(0, PREVIEW_LIMIT + 1);
+    const end = cut.lastIndexOf(' ');
+    return `${cut.slice(0, end > 0 ? end : PREVIEW_LIMIT).replace(/[\s,;:.\-–—]+$/, '')}…`;
+});
 const ogTitle = computed(() =>
     project.value ? `${project.value.client}: ${project.value.title} Case Study – Daniel Schmier` : 'Case Study – Daniel Schmier',
 );
@@ -853,7 +863,7 @@ onUnmounted(() => {
                             start="top 80%"
                             end="+=400"
                             :markers="false"
-                            :text="project?.story_preview?.substring(0, 300) + '...'"
+                            :text="storyPreview"
                         />
                     </span>
 
