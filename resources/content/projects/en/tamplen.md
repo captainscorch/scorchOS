@@ -53,6 +53,18 @@ media:
       src: /img/portfolio/tamplen/tamplen_portrait_6.webp
       alt: 'Tamplen Plastic Surgery - Mobile Procedures and Before and After Details'
     - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/tamplen/tamplen_portrait_7.webp
+      alt: 'Tamplen Plastic Surgery - Mobile Testimonials Page with Google Reviews'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/tamplen/tamplen_portrait_8.webp
+      alt: 'Tamplen Plastic Surgery - Mobile Review Sources, Patient Stories and RealSelf Reviews'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/tamplen/tamplen_landscape_4.webp
+      alt: 'Tamplen Plastic Surgery - Desktop Testimonials Page Hero'
+    - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/tamplen/tamplen_landscape_2.webp
       alt: 'Tamplen Plastic Surgery - Desktop Procedures Page - Four Step Process'
