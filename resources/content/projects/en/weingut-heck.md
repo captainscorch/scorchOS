@@ -1,5 +1,5 @@
 ---
-id: 18
+id: 5
 slug: weingut-heck
 client: 'Weingut Heck'
 category: ['Development']
@@ -23,18 +23,20 @@ technologies:
     - TypeScript
     - Tailwind CSS
 media:
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/weingut-heck/weingut-heck_landscape_2.webp
-      alt: 'Weingut Heck - Desktop Product Teaser with the Watercolour Collage and the Bottle Picker'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/weingut-heck/weingut-heck_landscape_video_1.webm
+      thumbnail: /img/portfolio/weingut-heck/weingut-heck_landscape_video_1.webp
+      alt: 'Weingut Heck - Desktop Home from the HECK Stage to the Top Drops, with the Bottle Picker Switching Wine and Collage'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/weingut-heck/weingut-heck_portrait_1.webp
       alt: 'Weingut Heck - Mobile Home Stage and Product Teaser'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/weingut-heck/weingut-heck_landscape_5.webp
-      alt: 'Weingut Heck - Desktop Wine Accordion with Lying Bottles and the Open Concept Wines Row'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/weingut-heck/weingut-heck_landscape_video_2.webm
+      thumbnail: /img/portfolio/weingut-heck/weingut-heck_landscape_video_2.webp
+      alt: 'Weingut Heck - Desktop Wine Accordion: a Lying Bottle Flies into Its Showcase Pose as the Row Opens'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/weingut-heck/weingut-heck_landscape_4.webp
@@ -43,10 +45,6 @@ media:
       aspectRatio: '4/5'
       src: /img/portfolio/weingut-heck/weingut-heck_portrait_2.webp
       alt: 'Weingut Heck - Mobile Wines Stage and Philosophy Stage'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/weingut-heck/weingut-heck_landscape_3.webp
-      alt: 'Weingut Heck - Desktop Mission Section with the Sticker Headline and Halftone Illustration'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/weingut-heck/weingut-heck_landscape_16.webp
@@ -60,21 +58,9 @@ media:
       src: /img/portfolio/weingut-heck/weingut-heck_landscape_7.webp
       alt: 'Weingut Heck - Desktop Card Grid with Tastings and Events'
     - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/weingut-heck/weingut-heck_portrait_3.webp
-      alt: 'Weingut Heck - Mobile Winery Stage and Contact Page'
-    - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/weingut-heck/weingut-heck_landscape_8.webp
       alt: 'Weingut Heck - Desktop Philosophy Stage'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/weingut-heck/weingut-heck_landscape_9.webp
-      alt: 'Weingut Heck - Desktop Real Wild Child Section with the Owners'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/weingut-heck/weingut-heck_landscape_10.webp
-      alt: 'Weingut Heck - Desktop Next Generation Section with Polaroid Cards'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/weingut-heck/weingut-heck_landscape_11.webp
@@ -93,10 +79,6 @@ media:
       alt: 'Weingut Heck - Desktop Gallery with Shaped Image Masks'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/weingut-heck/weingut-heck_landscape_12.webp
-      alt: 'Weingut Heck - Desktop Contact Page with Seasonal Opening Hours'
-    - type: image
-      aspectRatio: '16/9'
       src: /img/portfolio/weingut-heck/weingut-heck_landscape_18.webp
       alt: 'Weingut Heck - Desktop Menu with Photo Cards for the Subpages'
     - type: image
@@ -107,17 +89,9 @@ media:
       aspectRatio: '16/9'
       src: /img/portfolio/weingut-heck/weingut-heck_landscape_13.webp
       alt: 'Weingut Heck - Desktop News Page with the Newsletter Signup'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/weingut-heck/weingut-heck_portrait_5.webp
-      alt: 'Weingut Heck - Mobile News Page and Mission Section'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/weingut-heck/weingut-heck_landscape_14.webp
-      alt: 'Weingut Heck - Desktop Quality Section with the Award Logo Wall'
 title: 'Website Relaunch for a Family Winery in Rheinhessen'
 story_preview: 'A new website for Weingut Heck in Alsheim: a design full of watercolour, halftone illustration and stickers, built as a Statamic site with server-side rendering, scroll-driven animation, an age gate and a newsletter with double opt-in.'
-fineprint: 'The design came from Marie Grob and Jacky Grob. I built the site, from the CMS and the animation system to the age gate, the cookie consent and the newsletter, and I run the hosting. Launch in October 2026.'
+fineprint: 'The design came from [Marie Grob](https://mariegrob.com) and [Jacky Grob](https://jackygrob.com). I built the site, from the CMS and the animation system to the age gate, the cookie consent and the newsletter.'
 fineprint_media: /img/portfolio/weingut-heck/weingut-heck_landscape_1.webp
 fineprint_media_alt: 'Weingut Heck - Desktop Home Stage with the HECK Wordmark over the Vineyard Photo'
 ---

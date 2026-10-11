@@ -2,7 +2,7 @@
 slug: weingut-heck
 title: 'Website-Relaunch für ein Familienweingut in Rheinhessen'
 story_preview: 'Eine neue Website für das Weingut Heck in Alsheim: ein Design voller Aquarell, Halbton-Illustration und Sticker, gebaut als Statamic-Seite mit serverseitigem Rendering, Scroll-Animationen, Age-Gate und Newsletter mit Double-Opt-in.'
-fineprint: 'Das Design kam von Marie Grob und Jacky Grob. Ich habe die Seite gebaut, vom CMS und dem Animationssystem bis zu Age-Gate, Cookie-Consent und Newsletter, und betreibe das Hosting. Livegang im Oktober 2026.'
+fineprint: 'Das Design kam von [Marie Grob](https://mariegrob.com) und [Jacky Grob](https://jackygrob.com). Ich habe die Seite gebaut, vom CMS und dem Animationssystem bis zu Age-Gate, Cookie-Consent und Newsletter.'
 ---
 
 # Ein Design, das nicht stillhält
