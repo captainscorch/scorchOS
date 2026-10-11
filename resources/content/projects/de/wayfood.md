@@ -28,6 +28,29 @@ Das Kernprodukt ist nicht mehr das Durchstöbern, sondern die Buchung selbst. An
 - **Anzahlung per Stripe:** Eine Anzahlung sichert die Buchung, der Rest wird vor dem Event eingezogen
 - **Fünf Wege in eine Buchung:** die direkte Sofortbuchung, eine im Chat verhandelte Änderungsanfrage, ein individuelles Angebot auf Anfrage, ein von unserem Support gebautes Concierge-Angebot oder ein Lead von der Landingpage, der später konvertiert
 
+## Die Anbieterseite als Buchungstresen
+
+Discover zeigt jetzt Anbieter statt einzelner Pakete. Ein Klick führt auf eine Anbieterseite, neu gebaut als Hub: Galerie, Bewertungen, Bestseller-Pakete und eine Anfrage-Box, die Datum und Gästezahl aus der Suche übernimmt. Wer ein Paket übernimmt und Extras dazunimmt, sieht Gesamtpreis, Anzahlung, Personal und Anfahrt Zeile für Zeile, bevor überhaupt eine Adresse eingetippt ist. Passt die Gästezahl nicht zum Paket, gibt es eine Korrektur mit einem Tipp statt einer Fehlermeldung.
+
+- **Such-Pill:** Wo, Wann und Wie viele in einer Leiste, Kalender und Gästezahl öffnen sich direkt darunter
+- **Bottom Sheets auf dem Handy:** Anfrage-Box, Discover-Filter und Navigation öffnen als Drawer vom unteren Rand
+- **Buchungsmodal:** Anlass, Extras, Eventadresse und Bedingungen in einem Schritt, danach direkt in den Stripe-Checkout
+- **Ehrlich bei der Verfügbarkeit:** Ist an einem Tag nur noch ein Slot frei, sagen es Karte und Anfrage-Box
+
+## Verhandeln im Chat
+
+Nicht jedes Event passt in ein Paket. Für alles Individuelle öffnet die Anfrage einen Chat zwischen Kunde und Anbieter, und der Anbieter antwortet mit einem verbindlichen Angebot: Preis pro Gast, Personal, Anfahrt, Extras und Anzahlung, aufgeschlüsselt wie bei einer Direktbuchung und als PDF abrufbar. Der Kunde nimmt es im Chat an oder lehnt ab und zahlt die Anzahlung direkt dort. Der Anbieter sieht denselben Verlauf von der anderen Seite, mit seiner Auszahlung statt des Kundenpreises und Buttons zum Korrigieren oder Zurückziehen. Telefonnummer und E-Mail bleiben verborgen, bis die Buchung bezahlt ist, damit der Auftrag nicht an der Plattform vorbeiläuft.
+
+## Antworten vor den Fragen
+
+Ein durchsuchbares FAQ trennt seine Antworten nach Veranstaltern, Anbietern und Partnern, mit Kategorie-Navigation und einer Kontaktbox für alles, was dort nicht steht. Anzahlung, Stornierung und höhere Gewalt bekommen jeweils eine eigene Antwort statt eines Verweises auf die AGB.
+
+## Kleine Teile, ein System
+
+Der neue Footer inszeniert die Marke als Foodtruck-Szene im Clay-Look, der Newsletter öffnet als Modal. Navigations-Drawer, Kontomenü und die Sprach- und Länderwahl (drei Sprachen, fünf Märkte, jeweils mit eigener Währung) teilen sich einen Look. Die Anbieter-Formulare laufen auf Komponenten, portiert aus Arc UI: Geld- und Zahlenfelder, die beim Tippen formatieren, Upload-Zonen mit einem einheitlichen Drag-Zustand, gleitende Tabs, ein Toast-Stack und Bestätigungsdialoge statt des Browser-confirm().
+
+Auch die Mails haben ein eigenes Audit bekommen. Anbieter bekommen höchstens eine Onboarding-Mail pro Tag, Buchungsbestätigung und Stornobedingungen kommen in einer Mail mit ihren Dokumenten, und eine Admin-Seite rendert jede Mail, die der Server verschicken kann, zur Prüfung vor dem Versand.
+
 ## Zahlungen, Steuern und Belege
 
 Jede Buchung läuft über **Stripe Connect** mit Destination Charges. Die Plattformprovision wird als Application Fee auf Anbieterseite einbehalten, Auszahlungen laufen automatisiert, Streitfälle lösen automatisch einen Zahlungsstopp aus.
@@ -46,11 +69,14 @@ Suchergebnisse ranken nach einem **transparenten, gewichteten Score** aus Abo-St
 
 Anbieter steuern ihr Geschäft aus einem eigenen Cockpit:
 
-- **Buchungen & Analytics:** Eine Buchungstabelle plus Dashboard für Umsatz, Anfragen und Antwortzeiten
+- **Registrierung in fünf Schritten:** Basis, Angebot, Einsatz, Bilder & Links, Abschluss. Jeder Schritt speichert einen Entwurf, ein Zähler zeigt die offenen Pflichtfelder, die Beschreibung formuliert auf Wunsch die KI um, und bleibt ein Entwurf liegen, kommt eine Erinnerung
+- **Dashboard & Statistik:** KPI-Kacheln mit 30-Tage-Trends, Zeitraumvergleich, eigener Zeitraum aus dem Kalender und ein Jahr Profilaufrufe als Heatmap
+- **Benachrichtigungen:** Jede Anbieter-Mail landet zusätzlich in der Glocke im Dashboard
+- **Buchungseingang:** Status-Tabs für offene, bestätigte, erledigte und stornierte Buchungen
 - **Paket- & Extras-Builder:** Anbieter stellen ihr Angebot und ihre Preise selbst zusammen
 - **Verfügbarkeitskalender:** Kapazität und geblockte Termine, direkt an die Buchungsstrecke angebunden
 - **Verifizierte Bewertungen:** Nur Kunden mit abgeschlossener, verifizierter Buchung können bewerten
-- **Vier Abo-Stufen:** Free, Basic, Premium und Premium+, jeweils mit mehr Sichtbarkeit und Werkzeugen
+- **Vier Abo-Stufen:** Free, Basic, Premium und Premium+ als Plan-Karten, mit einem echten Dialog vor jedem kostenpflichtigen Wechsel
 
 ## Admin & Operations
 

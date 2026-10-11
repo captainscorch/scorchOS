@@ -36,68 +36,127 @@ media:
       aspectRatio: video
       src: /img/portfolio/wayfood/wayfood_landscape_video_3.webm
       thumbnail: /img/portfolio/wayfood/wayfood_landscape_video_3.webp
-      alt: 'way.food - Desktop Booking Wizard from Landing Page to Discover Results'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/wayfood/wayfood_portrait_2.webp
-      alt: 'way.food - Mobile Landing Page and Discover Search'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/wayfood/wayfood_portrait_6.webp
-      alt: 'way.food - Mobile Landing Page Sections How It Works and Why way.food'
+      alt: 'way.food - Desktop Booking Flow from the Search Pill via Discover and the Provider Profile to Checkout'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_10.webp
-      alt: 'way.food - Desktop Landing Page How It Works Steps with Glass Icons'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/wayfood/wayfood_landscape_11.webp
-      alt: 'way.food - Desktop Landing Page Why Book via way.food Cards with Glass Icons'
+      alt: 'way.food - Desktop Landing Page How It Works Steps'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_9.webp
-      alt: 'way.food - Desktop Booking Wizard Location Step with Popular Cities'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/wayfood/wayfood_portrait_5.webp
-      alt: 'way.food - Mobile Filter with Live Budget Estimate'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/wayfood/wayfood_portrait_3.webp
-      alt: 'way.food - Mobile Interactive Provider Map with Live Results'
+      alt: 'way.food - Desktop Search Pill with a Date Range in the Calendar Panel'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_2.webp
-      alt: 'way.food - Desktop Discover Search with Bookable Packages'
+      alt: 'way.food - Desktop Discover with Provider Cards and Active Filter Chips'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_2.webp
+      alt: 'way.food - Mobile Landing Page and Discover Results'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_7.webp
+      alt: 'way.food - Mobile Discover Filter Drawer and Navigation Drawer'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_20.webp
+      alt: 'way.food - Desktop Provider Profile with Photo Gallery, Key Facts and Request Box'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_3.webp
-      alt: 'way.food - Desktop Provider Profile with Availability Check'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/wayfood/wayfood_portrait_4.webp
-      alt: 'way.food - Mobile Provider Profiles'
+      alt: 'way.food - Desktop Provider Profile with Bestseller Packages and Live Request Box'
     - type: video
       aspectRatio: '4/5'
       src: /img/portfolio/wayfood/wayfood_portrait_video_1.webm
       thumbnail: /img/portfolio/wayfood/wayfood_portrait_video_1.webp
-      alt: 'way.food - Mobile Discover Search and Package Booking Sheet'
+      alt: 'way.food - Mobile Provider Profile with Package Selection and Request Sheet'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_4.webp
+      alt: 'way.food - Mobile Provider Profile and Request Sheet with Price Breakdown'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_12.webp
+      alt: 'way.food - Desktop Booking Modal with Extras, Event Details and Deposit'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_8.webp
-      alt: 'way.food - Desktop Booking Chat with Offer and Payment Summary'
+      alt: 'way.food - Desktop Booking Chat with Binding Offer, Deposit and Messages'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_11.webp
+      alt: 'way.food - Desktop Booking Chat from the Provider Side with Payout and Offer Actions'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_3.webp
+      alt: 'way.food - Mobile Booking Chat from the Customer Side'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_9.webp
+      alt: 'way.food - Mobile Booking Chat from the Provider Side'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_18.webp
+      alt: 'way.food - Desktop FAQ with Search, Categories and an Open Answer'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_14.webp
+      alt: 'way.food - Desktop Navigation Drawer'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_13.webp
+      alt: 'way.food - Desktop Footer with Food Truck Scene and Newsletter'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_19.webp
+      alt: 'way.food - Desktop Account Menu'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_6.webp
+      alt: 'way.food - Mobile Footer and Language and Country Sheet'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_8.webp
+      alt: 'way.food - Mobile Account Menu and Notification Bell'
     - type: video
+      aspectRatio: video
       src: /img/portfolio/wayfood/wayfood_landscape_video_2.webm
       thumbnail: /img/portfolio/wayfood/wayfood_landscape_video_2.webp
-      alt: 'way.food - Desktop Provider Signup Process'
+      alt: 'way.food - Desktop Provider Signup in Five Steps with Saved Draft'
     - type: video
+      aspectRatio: video
       src: /img/portfolio/wayfood/wayfood_landscape_video_1.webm
       thumbnail: /img/portfolio/wayfood/wayfood_landscape_video_1.webp
       alt: 'way.food - Desktop Provider Signup AI Description Optimization'
     - type: image
       aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_16.webp
+      alt: 'way.food - Desktop Provider Dashboard with 30-Day Trends'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_5.webp
+      alt: 'way.food - Mobile Provider Dashboard'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/wayfood/wayfood_portrait_10.webp
+      alt: 'way.food - Mobile Provider Analytics'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/wayfood/wayfood_landscape_video_5.webm
+      thumbnail: /img/portfolio/wayfood/wayfood_landscape_video_5.webp
+      alt: 'way.food - Desktop Provider Analytics with Period Comparison and Custom Range'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_4.webp
+      alt: 'way.food - Desktop Provider Analytics with Eight KPI Tiles, Charts and Yearly Heatmap'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/wayfood/wayfood_landscape_6.webp
+      alt: 'way.food - Desktop Provider Booking Inbox with Status Tabs'
+    - type: image
+      aspectRatio: '16/9'
       src: /img/portfolio/wayfood/wayfood_landscape_7.webp
-      alt: 'way.food - Desktop Provider Package Management'
+      alt: 'way.food - Desktop Provider Package Table with the Actions Menu'
     - type: video
       aspectRatio: video
       src: /img/portfolio/wayfood/wayfood_landscape_video_4.webm
@@ -105,12 +164,8 @@ media:
       alt: 'way.food - Desktop Package Builder with Starter Templates and Live Preview'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/wayfood/wayfood_landscape_4.webp
-      alt: 'way.food - Desktop Provider Analytics Dashboard'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/wayfood/wayfood_landscape_6.webp
-      alt: 'way.food - Desktop Provider Booking Management with Stripe Payouts'
+      src: /img/portfolio/wayfood/wayfood_landscape_17.webp
+      alt: 'way.food - Desktop Subscription Page with Plan Cards'
 title: 'Foodtruck & Catering Booking Platform'
 story_preview: 'Together with my team at unlimited, we built way.food from the ground up — starting as a comparison portal for foodtrucks, caterers, and party services, now grown into a full transactional booking platform with real payments on Stripe Connect. I own the technical architecture, DevOps, and full-stack development. Scaled to 1,000+ users, 300+ providers, and 7-figure traffic'
 fineprint: "From zero to market leader. I'm proud of turning a complex, multi-party marketplace into a real payments platform, complete with Stripe Connect, tax-correct invoicing, and a booking engine that carries a transaction from first message to settled payout. From strategy and product roadmap to creative direction and full-stack development — I owned every layer of this platform."
@@ -141,6 +196,29 @@ The core of way.food is no longer just browsing — it's booking. Providers buil
 - **Deposit checkout:** A Stripe deposit secures the booking, with the remainder collected before the event
 - **Five ways a booking can start:** an instant direct booking, a change request negotiated in chat, a custom price-on-request offer, a concierge offer built by our support team, or a landing-page lead converted later
 
+## The Provider Page as a Booking Desk
+
+Discover now lists providers instead of loose packages, and a click leads to a provider page rebuilt as a hub: gallery, ratings, bestseller packages and a request box that takes date and guest count over from the search. Taking a package and adding extras updates the total, the deposit, staff and travel costs line by line, before anyone has typed an address. A guest count outside a package's range gets a one-tap fix instead of an error message.
+
+- **Search pill:** Where, when and how many in one bar, with the calendar and the guest count opening in place
+- **Bottom sheets on the phone:** The request box, the Discover filters and the navigation open as drawers from the bottom edge
+- **Booking modal:** Occasion, extras, event address and terms in one step, then straight into the Stripe checkout
+- **Open about availability:** When a date has one slot left, the card and the request box say so
+
+## Negotiating in the Chat
+
+Not every event fits a package. For anything custom, the request opens a chat between customer and provider, and the provider answers with a binding offer: price per guest, staff, travel, extras and deposit, laid out like a direct booking and available as a PDF. The customer accepts or declines in the chat itself and pays the deposit right there. The provider sees the same thread from the other side, with the payout instead of the customer price and buttons to correct or withdraw the offer. Phone number and e-mail stay hidden until the booking is paid, so the deal does not move off the platform.
+
+## Answers Before Questions
+
+A searchable FAQ splits its answers into organisers, providers and partners, with category navigation and a contact box for everything it does not cover. Deposit, cancellation and force majeure each get their own answer instead of a pointer to the terms.
+
+## Small Parts, One System
+
+The new footer stages the brand as a food truck scene in a clay look, with the newsletter as a modal. Navigation drawer, account menu and the language and country switcher (three languages, five markets, each with its own currency) share one look. The provider forms run on components ported from Arc UI: money and number fields that format while typing, upload zones with one drag state, gliding tabs, a toast stack and confirm dialogs instead of the browser's confirm().
+
+The mails got an audit of their own. Providers get at most one onboarding mail a day, the booking confirmation and the cancellation terms travel in one mail with their documents, and an admin page renders every mail the server can send, for review before it goes out.
+
 ## Payments, Tax, and Paper Trail
 
 Every booking runs through a **Stripe Connect** setup with destination charges — the platform commission is taken as an application fee on the provider's side, payouts are automated, and disputes trigger holds automatically.
@@ -159,11 +237,14 @@ Search results are ranked by a **transparent, weighted score** — subscription 
 
 Providers manage their business from a dedicated cockpit:
 
-- **Bookings & analytics:** A bookings table plus a dashboard for revenue, requests, and response times
+- **Signup in five steps:** Basics, offer, service area, images and links, wrap-up. Every step saves a draft, a counter shows the open required fields, the description gets an AI rewrite on request, and a reminder goes out when a draft is left open
+- **Dashboard & analytics:** KPI tiles with 30-day trends, period comparison, a custom range from the calendar and a year of profile views as a heatmap
+- **Notification bell:** Every provider mail also lands in the dashboard
+- **Bookings inbox:** Status tabs for open, confirmed, done and cancelled bookings
 - **Packages & extras builder:** Providers structure their own offering and pricing
 - **Availability calendar:** Capacity and blocked dates, tied directly into the booking flow
 - **Verified reviews:** Only customers with a completed, verified booking can leave one
-- **Four subscription tiers:** Free, Basic, Premium, and Premium+, each unlocking more visibility and tooling
+- **Four subscription tiers:** Free, Basic, Premium, and Premium+ as plan cards, with a real dialog before any paid plan change
 
 ## Admin & Operations
 
