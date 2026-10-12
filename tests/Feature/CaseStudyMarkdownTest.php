@@ -41,6 +41,14 @@ class CaseStudyMarkdownTest extends TestCase
         $this->assertNotSame($english->getContent(), $german->getContent());
     }
 
+    public function test_case_study_markdown_serves_a_slug_with_a_dot(): void
+    {
+        $response = $this->get('/case-study/way.food.md?lang=en');
+
+        $response->assertOk();
+        $response->assertSee('/case-study/way.food', false);
+    }
+
     public function test_case_study_markdown_returns_404_for_unknown_slug(): void
     {
         $this->get('/case-study/this-slug-does-not-exist-xyz.md')->assertNotFound();
