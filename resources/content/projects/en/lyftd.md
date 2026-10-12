@@ -37,17 +37,23 @@ technologies:
 media:
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_video_1.webm
-      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_1.webp
-      alt: 'lyftd.app - Workout Execution Flow'
+      src: /img/portfolio/lyftd/lyftd_portrait_video_10.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_10.webp
+      alt: 'lyftd.app - Launch Reel of the iOS App: Gym Mode, AI Coach, Stats, Exercise Library and Achievements'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_2.webp
       alt: 'lyftd.app - Branding and Logo Design'
-    - type: image
+    - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_9.webp
-      alt: 'lyftd.app - Gym Mode with Pinned Rest Bar and Undo for the Logged Set'
+      src: /img/portfolio/lyftd/lyftd_portrait_video_1.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_1.webp
+      alt: 'lyftd.app - Workout Execution Flow'
+    - type: video
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_video_9.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_9.webp
+      alt: 'lyftd.app - Gym Mode: Rolling Digits on the Load Stepper and the Rest Timer, plus and minus 15 Seconds'
     - type: video
       aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_video_4.webm
@@ -55,8 +61,60 @@ media:
       alt: 'lyftd.app - Rest Countdown as a Live Activity in the Dynamic Island and on the Lock Screen'
     - type: image
       aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_7.webp
+      alt: 'lyftd.app - Superset Execution with Rest Timer'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_4.webp
+      alt: 'lyftd.app - Workout Plan with Supersets and Warm-up Execution'
+    - type: video
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_video_3.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_3.webp
+      alt: 'lyftd.app - Exercise Library Filtering and Exercise Details Page'
+    - type: video
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_video_8.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_8.webp
+      alt: 'lyftd.app - AI Coach Spot: Asking about a Stalled Bench Press and Applying the Proposed Change'
+    - type: image
+      aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_8.webp
       alt: 'lyftd.app - AI Coach Proposal as a Status Card with the Based-on Line'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_3.webp
+      alt: 'lyftd.app - iOS App Today Screen and AI Coach Action Proposal'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_6.webp
+      alt: 'lyftd.app - Weekly AI Coach Recap'
+    - type: video
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_video_2.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_2.webp
+      alt: 'lyftd.app - Exercise Progress Chart Views'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_5.webp
+      alt: 'lyftd.app - Exercise Statistics and Volume Charts'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/lyftd/lyftd_landscape_2.webp
+      alt: 'lyftd.app - iOS App Stats, Execution and Coach Recap Screens'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/lyftd/lyftd_landscape_6.webp
+      alt: 'lyftd.app - Yearly Training Wrapped'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/lyftd/lyftd_landscape_4.webp
+      alt: 'lyftd.app - Achievements Overview'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/lyftd/lyftd_landscape_video_1.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_landscape_video_1.webp
+      alt: 'lyftd.app - Desktop Landingpage'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/lyftd/lyftd_landscape_3.webp
@@ -74,74 +132,19 @@ media:
       src: /img/portfolio/lyftd/lyftd_landscape_8.webp
       alt: 'lyftd.app - Adherence Grid over Eight Weeks for the Whole Roster'
     - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_12.webp
-      alt: 'lyftd.app - Athlete Hub in the iOS App'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_3.webp
-      alt: 'lyftd.app - iOS App Today Screen and AI Coach Action Proposal'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_4.webp
-      alt: 'lyftd.app - Workout Plan with Supersets and Warm-up Execution'
-    - type: video
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_video_3.webm
-      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_3.webp
-      alt: 'lyftd.app - Exercise Library Filtering and Exercise Details Page'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/lyftd/lyftd_landscape_2.webp
-      alt: 'lyftd.app - iOS App Stats, Execution and Coach Recap Screens'
-    - type: video
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_video_2.webm
-      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_2.webp
-      alt: 'lyftd.app - Exercise Progress Chart Views'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_6.webp
-      alt: 'lyftd.app - Weekly AI Coach Recap'
-    - type: video
-      aspectRatio: video
-      src: /img/portfolio/lyftd/lyftd_landscape_video_1.webm
-      thumbnail: /img/portfolio/lyftd/lyftd_landscape_video_1.webp
-      alt: 'lyftd.app - Desktop Landingpage'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_5.webp
-      alt: 'lyftd.app - Exercise Statistics and Volume Charts'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_7.webp
-      alt: 'lyftd.app - Superset Execution with Rest Timer'
-    - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/lyftd/lyftd_landscape_7.webp
       alt: 'lyftd.app - Trainer Analytics with Student Progress Charts'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/lyftd/lyftd_landscape_6.webp
-      alt: 'lyftd.app - Yearly Training Wrapped'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/lyftd/lyftd_landscape_4.webp
-      alt: 'lyftd.app - Achievements Overview'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/lyftd/lyftd_landscape_5.webp
-      alt: 'lyftd.app - Progress Statistics Overview'
 title: 'Smart Training, Stronger You — Workout Tracking Platform with a Native iOS App and an AI Coaching Agent'
-story_preview: 'lyftd is my passion project — a sophisticated workout tracking platform I built from scratch to manage the entire lifecycle of training programs. Now with a native iOS app, an AI coach that can act on your plan directly, and a trainer platform that runs on the iPhone too. Version 2.1 went live on September 27, 2026'
-fineprint: 'Built entirely solo as my personal sandbox for full-stack product development. From authentication flows to payment integration, from a native iOS app to an AI coaching agent with its own harness — every line of code is mine. This is where I push my limits as a developer.'
+story_preview: 'lyftd is my passion project: a workout tracking platform I built from scratch, from multi-week plans to the set in the gym. With a native iOS app, an AI coach that acts on your plan and a platform for trainers. Version 2.2 is live since October 11, 2026.'
+fineprint: 'Built entirely solo as my personal sandbox for product development and marketing. From authentication flows to payment integration, from a native iOS app to an AI coaching agent with its own harness, every line of code is mine, and so are the launch reel, the landing page and the campaign. This is where I push my limits.'
 fineprint_media: /img/portfolio/lyftd/lyftd_landscape_1.webp
 fineprint_media_alt: 'lyftd.app - Dashboard with AI Coach Recap'
 ---
 
 # I couldn't find a workout tracker I liked, so I built the one I wanted.
 
-lyftd was born out of personal frustration with existing fitness apps — they were either clunky, riddled with ads, or lacked the flexibility I needed. I wanted a tool that felt premium, worked seamlessly across all my devices, and adapted to my training style. So I built it. What started as a web app has since grown into a native iOS app and an AI coach that doesn't just talk, it acts. Version 2.1, live since September 27, 2026, is about the hour in the gym and the weeks around it.
+lyftd was born out of personal frustration with existing fitness apps — they were either clunky, riddled with ads, or lacked the flexibility I needed. I wanted a tool that felt premium, worked seamlessly across all my devices, and adapted to my training style. So I built it. What started as a web app has since grown into a native iOS app and an AI coach that doesn't just talk, it acts. Version 2.1 (September 27, 2026) was about the hour in the gym and the weeks around it. Version 2.2, live since October 11, 2026, makes Core free, lets the plan progress by itself and turns the statistics into a dashboard you read at a glance.
 
 ## The Vision
 
@@ -167,10 +170,11 @@ lyftd now ships as a real iOS app, currently in TestFlight ahead of launch. It's
 
 The planning system is built for flexibility:
 
-- **Four questions to start:** New accounts answer goal, experience, days per week and equipment before the paywall, and start with a plan that fits
+- **A questionnaire that builds the first plan:** One question per screen (goal, experience, days per week, session length, equipment, focus muscles, limitations), then an 8-week plan that opens on its first workout. Core is free without a card, and every new account starts with 14 days of Elite
+- **Automatic progression:** Per exercise, lyftd reads the last workouts with double progression. Hit the top of the rep range in every set and the load goes up next time; miss it twice and it holds or deloads. After the last set the workout says what comes next
 - **Custom Workout Plans:** Multi-week plans with configurable duration, deload weeks, and day-by-day scheduling
 - **Exercise Configuration:** Sets, reps, load, target RPE, rest times, and volume tracking per exercise
-- **Training Depth:** Supersets, warm-up ramps, myo-reps, per-side unilateral tracking, half reps, and a built-in plate calculator
+- **Training Depth:** Supersets, warm-up ramps, drop sets, myo-reps, per-side unilateral tracking, half reps, and a built-in plate calculator
 - **Freestyle Workouts:** Log a session on the fly with no plan behind it
 - **Plan Sharing & Duplication:** Share plans with viewer or editor permissions, clone entire plans, individual days, or specific exercises
 - **Units, Your Way:** kg/lbs and RPE/RIR as app-wide user settings
@@ -180,6 +184,8 @@ The execution engine is where lyftd shines. Since 2.1 it's a gym screen on both 
 - **Precision Tracking:** Log sets, reps, weight, duration, and RPE in real-time
 - **Log, then undo:** A logged set shows up at once and the rest starts in the same moment. For five seconds the rest bar offers Undo, even while the set is still waiting in the offline queue
 - **Rest Timer:** A rest bar pinned to the bottom with −15 s, +15 s, pause and skip, running natively even when the phone is locked. The screen stays on between sets, and a Live Activity puts the countdown in the Dynamic Island and on the Lock Screen
+- **Clocks That Roll:** The rest timer and the session clock turn their digits like wheels on a spring: backwards while counting down, forwards for +15 s, with tabular widths so the time never jitters. The load and rep steppers roll the same way, repeat while held and scrub when dragged
+- **Every Set at a Glance:** Next to the set being logged, the screen lists every planned set of the exercise as done, current or open, and a tap corrects a logged one
 - **Dynamic Exercise Addition:** Add new exercises mid-session — either as a one-off for the current workout or propagated to all future sessions in the plan
 - **Skip Logic:** Skip sets or entire exercises with intelligent completion tracking
 - **Auto-Completion:** Sessions from previous weeks are automatically completed with a note
@@ -214,6 +220,9 @@ A B2B layer sits on top of the consumer product: a workspace for trainers to run
 
 Comprehensive tracking to visualize your journey:
 
+- **Training Performance:** A dashboard of volume, workouts, sets and training time over 7 days, 30 days, 90 days or a year, each against the period before, with a running-total chart to scrub through and a breakdown by exercise, muscle group, plan day or weekday
+- **Muscle Zones:** Weekly working sets per muscle read against volume landmarks for your experience, on a radar, a body map and one bar per muscle group
+- **This Week as Rings:** Three activity rings on Today for workouts, sets and volume, measured against the plan
 - **Muscle Maps:** An anatomical heat map of training volume plus a recovery map showing which muscle groups are ready to train again
 - **Strength Standards & Goals:** Compare your lifts against strength standards, set lift goals, and see a trend projection toward them
 - **Wrapped:** A shareable year-in-training stat sheet, generated per year
@@ -246,4 +255,4 @@ I built a gamification layer to drive user engagement and retention. The `Achiev
 
 ## A Living Product
 
-lyftd is more than a side project — it's a real product, live on lyftd.app, with the iOS app in TestFlight ahead of its App Store launch. Release 2.0, easily the biggest since lyftd went live, took it from a web app to a platform: a native iOS app, an AI coach that acts on your plan instead of just commenting on it, and a trainer platform for coaches running their clients through it. It keeps evolving as I experiment with new techniques, giving me hands-on experience in everything from database schema design to native app development, AI agent design, and subscription management.
+lyftd is more than a side project — it's a real product, live on lyftd.app, with the iOS app in TestFlight ahead of its App Store launch. Release 2.0, easily the biggest since lyftd went live, took it from a web app to a platform: a native iOS app, an AI coach that acts on your plan instead of just commenting on it, and a trainer platform for coaches running their clients through it. Release 2.2 rebuilt every control that counts, uploads, confirms or reports back, on the web and on the iPhone alike: toasts that turn from loading into their result, hold to confirm for what Undo cannot take back, and AA contrast in both themes. It keeps evolving as I experiment with new techniques, giving me hands-on experience in everything from database schema design to native app development, AI agent design, and subscription management.
