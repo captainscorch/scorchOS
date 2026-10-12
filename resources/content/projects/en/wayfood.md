@@ -2,7 +2,7 @@
 id: 2
 slug: 'way.food'
 client: 'way.food'
-category: ['Product', 'Development']
+category: ['Product', 'Design', 'Development']
 image: /img/portfolio/wayfood/wayfood_portrait_1.webp
 color: '#ff8f8f'
 logo: 'way.food'
@@ -16,7 +16,7 @@ team:
       name: Daniel Schmier
     - src: /img/unlimited.webp
       name: unlimited.studio
-services: ['Development', 'System Architecture', 'DevOps', 'Stripe Integration', 'Technical Consulting']
+services: ['Product', 'Design', 'Development', 'System Architecture', 'DevOps', 'Stripe Integration', 'Consulting']
 technologies:
     - Laravel
     - Livewire
@@ -167,15 +167,15 @@ media:
       src: /img/portfolio/wayfood/wayfood_landscape_17.webp
       alt: 'way.food - Desktop Subscription Page with Plan Cards'
 title: 'Foodtruck & Catering Booking Platform'
-story_preview: 'Together with my team at unlimited, we built way.food from the ground up — starting as a comparison portal for foodtrucks, caterers, and party services, now grown into a full transactional booking platform with real payments on Stripe Connect. I own the technical architecture, DevOps, and full-stack development. Scaled to 1,000+ users, 300+ providers, and 7-figure traffic'
-fineprint: "From zero to market leader. I'm proud of turning a complex, multi-party marketplace into a real payments platform, complete with Stripe Connect, tax-correct invoicing, and a booking engine that carries a transaction from first message to settled payout. From strategy and product roadmap to creative direction and full-stack development — I owned every layer of this platform."
+story_preview: 'way.food started as a comparison portal for foodtrucks and caterers and is now a booking platform with payments on Stripe Connect. I designed and developed the new way.food: product, interface, architecture, DevOps and code. Scaled to 2,000+ users, 650+ providers and 7-figure traffic.'
+fineprint: "From zero to market leader. I'm proud of turning a complex, multi-party marketplace into a real payments platform, complete with Stripe Connect, tax-correct invoicing, and a booking engine that carries a transaction from first message to settled payout. From strategy and product roadmap to design and full-stack development, I own every layer of the new platform."
 fineprint_media: /img/portfolio/wayfood/wayfood_landscape_1.webp
 fineprint_media_alt: 'way.food - Landing Page'
 ---
 
 # Building a Foodtruck & Catering Booking Platform
 
-way.food started as a comparison portal for foodtrucks, caterers, and party services. It has since grown into a full transactional booking platform — currently focused on the DACH region with plans to expand worldwide. As project lead, I helped shape the product strategy, contributed to investor pitches, and served as the primary technical point of contact. My team at **unlimited** supported the startup across everything, from the initial brand identity to marketing and social media management. My core focus: owning the entire technical architecture, from strategy, system design and DevOps to payment infrastructure and full-stack development.
+way.food started as a comparison portal for foodtrucks, caterers, and party services. It has since grown into a full transactional booking platform — currently focused on the DACH region with plans to expand worldwide. As project lead, I advise the stakeholders and help make the business decisions behind the platform, from the commission and deposit model to the subscription tiers and new markets. I contributed to investor pitches and am the primary technical point of contact. Logo and brand came from my studio **unlimited**, which also supports the startup with marketing and social media. My business partner Michel worked on the design of the first version in 2024 and 2025. Since 2026, I design and develop the new way.food: product and interface design, system architecture, DevOps, payment infrastructure and full-stack development.
 
 ## Infrastructure at Scale
 
@@ -215,7 +215,7 @@ A searchable FAQ splits its answers into organisers, providers and partners, wit
 
 ## Small Parts, One System
 
-The new footer stages the brand as a food truck scene in a clay look, with the newsletter as a modal. Navigation drawer, account menu and the language and country switcher (three languages, five markets, each with its own currency) share one look. The provider forms run on components ported from Arc UI: money and number fields that format while typing, upload zones with one drag state, gliding tabs, a toast stack and confirm dialogs instead of the browser's confirm().
+I designed the interface as one system, from the landing page to the provider cockpit. The new footer stages the brand as a food truck scene in a clay look, with the newsletter as a modal. Navigation drawer, account menu and the language and country switcher (three languages, five markets, each with its own currency) share one look. The provider forms run on components ported from Arc UI: money and number fields that format while typing, upload zones with one drag state, gliding tabs, a toast stack and confirm dialogs instead of the browser's confirm().
 
 The mails got an audit of their own. Providers get at most one onboarding mail a day, the booking confirmation and the cancellation terms travel in one mail with their documents, and an admin page renders every mail the server can send, for review before it goes out.
 
@@ -266,8 +266,8 @@ For reliability, I integrated **Sentry** for real-time error tracking and perfor
 
 way.food has scaled to:
 
-- **1,000+ registered users**
-- **300+ verified providers**
+- **2,000+ registered users**
+- **650+ verified providers**
 - **Thousands of booking requests**
 - **7-figure annual traffic**
 
