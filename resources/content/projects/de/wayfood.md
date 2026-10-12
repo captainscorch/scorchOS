@@ -1,13 +1,13 @@
 ---
 slug: 'way.food'
 title: 'Foodtruck & Catering Buchungsplattform'
-story_preview: 'Zusammen mit meinem Team bei unlimited haben wir way.food von Grund auf aufgebaut. Gestartet als Vergleichsportal für Foodtrucks, Caterer und Partyservices, heute eine vollständige Buchungsplattform mit echter Zahlungsabwicklung über Stripe Connect. Ich verantworte die technische Architektur, DevOps und die Full-Stack-Entwicklung. Skaliert auf 1.000+ Nutzer, 300+ Anbieter und siebenstelligen Traffic'
-fineprint: 'Von Null zum Marktführer. Ich bin stolz darauf, einen komplexen, mehrseitigen Marktplatz in eine echte Zahlungsplattform verwandelt zu haben, mit Stripe Connect, steuerkorrekter Rechnungsstellung und einer Buchungsstrecke, die eine Transaktion von der ersten Nachricht bis zur Auszahlung trägt. Von Strategie und Produkt-Roadmap über Creative Direction bis zur Full-Stack-Entwicklung — ich war für jede Ebene dieser Plattform verantwortlich.'
+story_preview: 'way.food startete als Vergleichsportal für Foodtrucks und Caterer und ist heute eine Buchungsplattform mit Stripe Connect. Das neue way.food habe ich gestaltet und entwickelt: Produkt, Interface, Architektur, DevOps und Code. Skaliert auf 2.000+ Nutzer, 650+ Anbieter und siebenstelligen Traffic.'
+fineprint: 'Von Null zum Marktführer. Ich bin stolz darauf, einen komplexen, mehrseitigen Marktplatz in eine echte Zahlungsplattform verwandelt zu haben, mit Stripe Connect, steuerkorrekter Rechnungsstellung und einer Buchungsstrecke, die eine Transaktion von der ersten Nachricht bis zur Auszahlung trägt. Von Strategie und Produkt-Roadmap über Design bis zur Full-Stack-Entwicklung verantworte ich jede Ebene der neuen Plattform.'
 ---
 
 # Aufbau einer Buchungsplattform für Foodtrucks & Catering
 
-way.food ist als Vergleichsportal für Foodtrucks, Caterer und Partyservices gestartet. Mittlerweile ist daraus eine vollständige Buchungsplattform gewachsen, aktuell mit Fokus auf die DACH-Region und Plänen zur weltweiten Expansion. Als Projektleiter habe ich die Produktstrategie mitgestaltet, zu Investoren-Pitches beigetragen und war der primäre technische Ansprechpartner. Mein Team bei **unlimited** unterstützte das Startup in allen Bereichen, von der initialen Markenidentität bis hin zu Marketing und Social-Media-Management. Mein Kernfokus: die gesamte technische Architektur, von Strategie, Systemdesign und DevOps über Zahlungsinfrastruktur bis zur Full-Stack-Entwicklung.
+way.food ist als Vergleichsportal für Foodtrucks, Caterer und Partyservices gestartet. Mittlerweile ist daraus eine vollständige Buchungsplattform gewachsen, aktuell mit Fokus auf die DACH-Region und Plänen zur weltweiten Expansion. Als Projektleiter berate ich die Stakeholder und treffe die Geschäftsentscheidungen der Plattform mit, vom Provisions- und Anzahlungsmodell über die Abo-Stufen bis zu neuen Märkten. Ich habe an Investoren-Pitches mitgearbeitet und bin der primäre technische Ansprechpartner. Logo und Marke kommen von meinem Studio **unlimited**, das das Startup auch bei Marketing und Social Media begleitet. Am Design der ersten Version hat 2024 und 2025 mein Geschäftspartner Michel mitgewirkt. Seit 2026 gestalte und entwickle ich das neue way.food: Produkt- und Interface-Design, Systemarchitektur, DevOps, Zahlungsinfrastruktur und Full-Stack-Entwicklung.
 
 ## Infrastruktur für Skalierung
 
@@ -47,7 +47,7 @@ Ein durchsuchbares FAQ trennt seine Antworten nach Veranstaltern, Anbietern und 
 
 ## Kleine Teile, ein System
 
-Der neue Footer inszeniert die Marke als Foodtruck-Szene im Clay-Look, der Newsletter öffnet als Modal. Navigations-Drawer, Kontomenü und die Sprach- und Länderwahl (drei Sprachen, fünf Märkte, jeweils mit eigener Währung) teilen sich einen Look. Die Anbieter-Formulare laufen auf Komponenten, portiert aus Arc UI: Geld- und Zahlenfelder, die beim Tippen formatieren, Upload-Zonen mit einem einheitlichen Drag-Zustand, gleitende Tabs, ein Toast-Stack und Bestätigungsdialoge statt des Browser-confirm().
+Ich habe das Interface als ein System entworfen, von der Landingpage bis zum Anbieter-Cockpit. Der neue Footer inszeniert die Marke als Foodtruck-Szene im Clay-Look, der Newsletter öffnet als Modal. Navigations-Drawer, Kontomenü und die Sprach- und Länderwahl (drei Sprachen, fünf Märkte, jeweils mit eigener Währung) teilen sich einen Look. Die Anbieter-Formulare laufen auf Komponenten, portiert aus Arc UI: Geld- und Zahlenfelder, die beim Tippen formatieren, Upload-Zonen mit einem einheitlichen Drag-Zustand, gleitende Tabs, ein Toast-Stack und Bestätigungsdialoge statt des Browser-confirm().
 
 Auch die Mails haben ein eigenes Audit bekommen. Anbieter bekommen höchstens eine Onboarding-Mail pro Tag, Buchungsbestätigung und Stornobedingungen kommen in einer Mail mit ihren Dokumenten, und eine Admin-Seite rendert jede Mail, die der Server verschicken kann, zur Prüfung vor dem Versand.
 
@@ -98,8 +98,8 @@ Für Zuverlässigkeit habe ich **Sentry** für Echtzeit-Fehlertracking und Perfo
 
 way.food ist skaliert auf:
 
-- **1.000+ registrierte Nutzer**
-- **300+ verifizierte Anbieter**
+- **2.000+ registrierte Nutzer**
+- **650+ verifizierte Anbieter**
 - **Tausende Buchungsanfragen**
 - **Siebenstelliger jährlicher Traffic**
 
