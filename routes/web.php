@@ -21,7 +21,11 @@ Route::get('/portfolio', function () {
     return Inertia::render('Portfolio');
 })->name('portfolio');
 
-Route::get('/case-study/{slug}.md', CaseStudyMarkdownController::class)->name('case-study.markdown');
+// Symfony keeps a dot out of a parameter that is followed by ".md", so a
+// slug like "way.food" would never match without the explicit pattern.
+Route::get('/case-study/{slug}.md', CaseStudyMarkdownController::class)
+    ->where('slug', '[^/]+')
+    ->name('case-study.markdown');
 
 Route::get('/case-study/{slug}', function (ContentSlugs $contentSlugs, string $slug) {
     if (! $contentSlugs->isValidCaseStudy($slug)) {
@@ -41,7 +45,9 @@ Route::get('/playground', function () {
     return Inertia::render('Playground');
 })->name('playground');
 
-Route::get('/blog/{category}/{slug}.md', BlogPostMarkdownController::class)->name('blog-post.markdown');
+Route::get('/blog/{category}/{slug}.md', BlogPostMarkdownController::class)
+    ->where('slug', '[^/]+')
+    ->name('blog-post.markdown');
 
 Route::get('/blog/{category}/{slug}', function (ContentSlugs $contentSlugs, string $category, string $slug) {
     if (! $contentSlugs->isValidBlogPost($slug)) {
