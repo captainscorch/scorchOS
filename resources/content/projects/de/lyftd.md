@@ -1,13 +1,13 @@
 ---
 slug: lyftd
 title: 'Smart Training, Stronger You — Workout-Tracking-Plattform mit nativer iOS-App und KI-Coaching-Agent'
-story_preview: 'lyftd ist mein Passion Project — eine anspruchsvolle Workout-Tracking-Plattform, die ich von Grund auf gebaut habe, um den gesamten Lebenszyklus von Trainingsprogrammen zu managen. Jetzt mit nativer iOS-App, einem KI-Coach, der direkt auf deinem Plan handelt, und einer Trainer-Plattform, die auch auf dem iPhone läuft. Version 2.1 ist seit dem 27. September 2026 live'
-fineprint: 'Komplett alleine gebaut als meine persönliche Sandbox für Full-Stack-Produktentwicklung. Von Authentifizierungs-Flows bis zur Payment-Integration, von einer nativen iOS-App bis zu einem KI-Coaching-Agenten mit eigenem Harness — jede Zeile Code stammt von mir. Hier pushe ich meine Grenzen als Entwickler.'
+story_preview: 'lyftd ist mein Passion Project: eine Plattform für Krafttraining, von Grund auf selbst gebaut, vom mehrwöchigen Plan bis zum Satz im Gym. Mit nativer iOS-App, einem KI-Coach, der direkt auf deinem Plan handelt, und einer Plattform für Trainer. Version 2.2 ist seit dem 11. Oktober 2026 live.'
+fineprint: 'Komplett alleine gebaut als meine persönliche Sandbox für Produktentwicklung und Vermarktung. Von Authentifizierungs-Flows bis zur Payment-Integration, von einer nativen iOS-App bis zu einem KI-Coaching-Agenten mit eigenem Harness: Jede Zeile Code stammt von mir, genauso Launch-Reel, Landingpage und Kampagne. Hier pushe ich meine Grenzen.'
 ---
 
 # Ich konnte keinen Workout-Tracker finden, der mir gefiel, also habe ich meinen eigenen gebaut.
 
-lyftd entstand aus persönlicher Frustration mit bestehenden Fitness-Apps — sie waren entweder umständlich, voller Werbung oder hatten nicht die Flexibilität, die ich brauchte. Ich wollte ein Tool, das sich premium anfühlt, nahtlos auf all meinen Geräten funktioniert und sich meinem Trainingsstil anpasst. Also habe ich es gebaut. Aus der Web-App ist inzwischen eine native iOS-App geworden, dazu ein KI-Coach, der nicht nur redet, sondern handelt. Version 2.1, live seit dem 27. September 2026, dreht sich um die Stunde im Gym und die Wochen drumherum.
+lyftd entstand aus persönlicher Frustration mit bestehenden Fitness-Apps — sie waren entweder umständlich, voller Werbung oder hatten nicht die Flexibilität, die ich brauchte. Ich wollte ein Tool, das sich premium anfühlt, nahtlos auf all meinen Geräten funktioniert und sich meinem Trainingsstil anpasst. Also habe ich es gebaut. Aus der Web-App ist inzwischen eine native iOS-App geworden, dazu ein KI-Coach, der nicht nur redet, sondern handelt. Version 2.1 (27. September 2026) drehte sich um die Stunde im Gym und die Wochen drumherum. Version 2.2, live seit dem 11. Oktober 2026, macht Core kostenlos, lässt den Plan von selbst progressieren und macht aus der Statistik ein Dashboard, das man auf einen Blick liest.
 
 ## Die Vision
 
@@ -33,10 +33,11 @@ lyftd gibt es jetzt als echte iOS-App, aktuell im TestFlight vor dem Launch. Es 
 
 Das Planungssystem ist auf Flexibilität ausgelegt:
 
-- **Vier Fragen zum Start:** Neue Accounts beantworten vor der Paywall Ziel, Erfahrung, Trainingstage pro Woche und Equipment und starten mit einem passenden Plan
+- **Ein Fragebogen, der den ersten Plan baut:** Eine Frage pro Screen (Ziel, Erfahrung, Tage pro Woche, Trainingsdauer, Equipment, Fokus-Muskeln, Einschränkungen), danach ein 8-Wochen-Plan, der auf seinem ersten Workout öffnet. Core ist ohne Karte kostenlos, und jeder neue Account startet mit 14 Tagen Elite
+- **Automatische Progression:** Pro Übung liest lyftd die letzten Workouts mit Double Progression. Wer in jedem Satz das obere Ende der Wiederholungen schafft, bekommt beim nächsten Mal mehr Gewicht; wer es zweimal verfehlt, hält oder macht einen Deload. Nach dem letzten Satz sagt das Workout, was als Nächstes kommt
 - **Individuelle Workout-Pläne:** Mehrwochen-Pläne mit konfigurierbarer Dauer, Deload-Wochen und tageweiser Planung
 - **Übungskonfiguration:** Sätze, Wiederholungen, Gewicht, Ziel-RPE, Pausenzeiten und Volumen-Tracking pro Übung
-- **Trainingstiefe:** Supersätze, Warm-up-Ramps, Myo-Reps, seitengetrenntes Tracking, halbe Wiederholungen und ein eingebauter Plattenrechner
+- **Trainingstiefe:** Supersätze, Warm-up-Ramps, Drop-Sets, Myo-Reps, seitengetrenntes Tracking, halbe Wiederholungen und ein eingebauter Plattenrechner
 - **Freestyle-Workouts:** Eine Session ohne Plan im Hintergrund direkt loggen
 - **Plan-Sharing & Duplizierung:** Pläne mit Viewer- oder Editor-Berechtigungen teilen, ganze Pläne, einzelne Tage oder spezifische Übungen klonen
 - **Einheiten nach Wahl:** kg/lbs und RPE/RIR als App-weite Nutzereinstellung
@@ -46,6 +47,8 @@ Bei der Ausführung glänzt lyftd. Seit 2.1 ist sie auf beiden Plattformen ein G
 - **Präzises Tracking:** Sätze, Wiederholungen, Gewicht, Dauer und RPE in Echtzeit protokollieren
 - **Loggen, dann rückgängig:** Ein geloggter Satz steht sofort da, und die Pause startet im selben Moment. Fünf Sekunden lang bietet die Pausenleiste „Rückgängig" an, auch wenn der Satz noch in der Offline-Queue wartet
 - **Pausen-Timer:** Eine unten fixierte Pausenleiste mit −15 s, +15 s, Pause und Überspringen, läuft nativ auch bei gesperrtem Handy weiter. Das Display bleibt zwischen den Sätzen an, und eine Live Activity zeigt den Countdown in der Dynamic Island und auf dem Sperrbildschirm
+- **Uhren, die rollen:** Pausen-Timer und Session-Uhr drehen ihre Ziffern wie Räder auf einer Feder: rückwärts beim Herunterzählen, vorwärts bei +15 s, mit tabellarischen Breiten, damit die Zeit nie zittert. Die Stepper für Gewicht und Wiederholungen rollen genauso, wiederholen beim Halten und scrubben beim Ziehen
+- **Jeder Satz auf einen Blick:** Neben dem Satz, der gerade geloggt wird, listet der Screen alle geplanten Sätze der Übung als erledigt, aktuell oder offen, und ein Tipp korrigiert einen geloggten
 - **Dynamisches Hinzufügen von Übungen:** Neue Übungen mitten in der Session hinzufügen — entweder einmalig für das aktuelle Workout oder für alle zukünftigen Sessions im Plan
 - **Skip-Logik:** Sätze oder ganze Übungen überspringen mit intelligentem Completion-Tracking
 - **Auto-Vervollständigung:** Sessions aus vorherigen Wochen werden automatisch mit einem Hinweis versehen abgeschlossen
@@ -80,6 +83,9 @@ Der AI Coach hat als Post-Workout-Feedback angefangen. Heute ist er ein vollwert
 
 Umfassendes Tracking zur Visualisierung deiner Journey:
 
+- **Trainingsleistung:** Ein Dashboard aus Volumen, Workouts, Sätzen und Trainingszeit über 7 Tage, 30 Tage, 90 Tage oder ein Jahr, jeweils gegen den Zeitraum davor, mit einem Verlaufs-Chart zum Scrubben und einer Aufschlüsselung nach Übung, Muskelgruppe, Plantag oder Wochentag
+- **Muskelzonen:** Wöchentliche Arbeitssätze pro Muskel, gelesen gegen Volumen-Landmarken für die eigene Erfahrung, auf einem Radar, einer Body Map und als ein Balken pro Muskelgruppe
+- **Diese Woche als Ringe:** Drei Aktivitätsringe auf Heute für Workouts, Sätze und Volumen, gemessen am Plan
 - **Muskel-Karten:** Eine anatomische Heatmap des Trainingsvolumens plus eine Recovery-Map, die zeigt, welche Muskelgruppen wieder bereit fürs Training sind
 - **Strength Standards & Ziele:** Deine Lifts gegen Kraft-Standards vergleichen, Lift-Ziele setzen und eine Trendprojektion dorthin sehen
 - **Wrapped:** Ein teilbares Jahresrückblick-Stat-Sheet, pro Jahr generiert
@@ -112,4 +118,4 @@ Ich habe eine Gamification-Ebene gebaut, um User-Engagement und Retention zu fö
 
 ## Ein lebendes Produkt
 
-lyftd ist mehr als ein Side Project — es ist ein echtes Produkt, live auf lyftd.app, die iOS-App steckt im TestFlight vor dem Launch im App Store. Release 2.0, locker das größte seit lyftd live ist, hat aus der Web-App eine Plattform gemacht: eine native iOS-App, ein KI-Coach, der auf deinem Plan handelt statt ihn nur zu kommentieren, und eine Trainer-Plattform für Coaches, die ihre Klienten darüber betreuen. Es entwickelt sich ständig weiter, während ich mit neuen Techniken experimentiere, und gibt mir praktische Erfahrung in allem von Datenbankschema-Design über native App-Entwicklung bis zu KI-Agent-Design und Abo-Management.
+lyftd ist mehr als ein Side Project — es ist ein echtes Produkt, live auf lyftd.app, die iOS-App steckt im TestFlight vor dem Launch im App Store. Release 2.0, locker das größte seit lyftd live ist, hat aus der Web-App eine Plattform gemacht: eine native iOS-App, ein KI-Coach, der auf deinem Plan handelt statt ihn nur zu kommentieren, und eine Trainer-Plattform für Coaches, die ihre Klienten darüber betreuen. Release 2.2 hat jedes Bedienelement neu gebaut, das zählt, hochlädt, bestätigt oder zurückmeldet, im Web und auf dem iPhone gleich: Toasts, die vom Laden in ihr Ergebnis wechseln, Gedrückthalten für alles, was Rückgängig nicht zurückholt, und AA-Kontrast in beiden Themes. Es entwickelt sich ständig weiter, während ich mit neuen Techniken experimentiere, und gibt mir praktische Erfahrung in allem von Datenbankschema-Design über native App-Entwicklung bis zu KI-Agent-Design und Abo-Management.
