@@ -44,6 +44,10 @@ media:
       aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_2.webp
       alt: 'lyftd.app - Branding and Logo Design'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_3.webp
+      alt: 'lyftd.app - iOS App Today Screen and AI Coach Action Proposal'
     - type: video
       aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_video_1.webm
@@ -54,11 +58,6 @@ media:
       src: /img/portfolio/lyftd/lyftd_portrait_video_9.webm
       thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_9.webp
       alt: 'lyftd.app - Gym Mode: Rolling Digits on the Load Stepper and the Rest Timer, plus and minus 15 Seconds'
-    - type: video
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_video_4.webm
-      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_4.webp
-      alt: 'lyftd.app - Rest Countdown as a Live Activity in the Dynamic Island and on the Lock Screen'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_7.webp
@@ -69,26 +68,27 @@ media:
       alt: 'lyftd.app - Workout Plan with Supersets and Warm-up Execution'
     - type: video
       aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_video_4.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_4.webp
+      alt: 'lyftd.app - Rest Countdown as a Live Activity in the Dynamic Island and on the Lock Screen'
+    - type: video
+      aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_video_3.webm
       thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_3.webp
       alt: 'lyftd.app - Exercise Library Filtering and Exercise Details Page'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_5.webp
+      alt: 'lyftd.app - Exercise Statistics and Volume Charts'
+    - type: image
+      aspectRatio: '4/5'
+      src: /img/portfolio/lyftd/lyftd_portrait_8.webp
+      alt: 'lyftd.app - AI Coach Proposal as a Status Card with the Based-on Line'
     - type: video
       aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_video_8.webm
       thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_8.webp
       alt: 'lyftd.app - AI Coach Spot: Asking about a Stalled Bench Press and Applying the Proposed Change'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_8.webp
-      alt: 'lyftd.app - AI Coach Proposal as a Status Card with the Based-on Line'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_3.webp
-      alt: 'lyftd.app - iOS App Today Screen and AI Coach Action Proposal'
-    - type: image
-      aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_6.webp
-      alt: 'lyftd.app - Weekly AI Coach Recap'
     - type: video
       aspectRatio: '4/5'
       src: /img/portfolio/lyftd/lyftd_portrait_video_2.webm
@@ -96,8 +96,8 @@ media:
       alt: 'lyftd.app - Exercise Progress Chart Views'
     - type: image
       aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_5.webp
-      alt: 'lyftd.app - Exercise Statistics and Volume Charts'
+      src: /img/portfolio/lyftd/lyftd_portrait_6.webp
+      alt: 'lyftd.app - Weekly AI Coach Recap'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/lyftd/lyftd_landscape_2.webp
