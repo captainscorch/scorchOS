@@ -94,6 +94,10 @@ media:
       alt: 'planrivo - Desktop Print View of a Plan as a Branded A4 Sheet with QR Code'
     - type: image
       aspectRatio: '16/9'
+      src: /img/portfolio/planrivo/planrivo_landscape_17.webp
+      alt: 'planrivo - Desktop Features Bento: Plan in Under a Minute, Muscle Map Filter, Revocable Access and Practice Templates'
+    - type: image
+      aspectRatio: '16/9'
       src: /img/portfolio/planrivo/planrivo_landscape_15.webp
       alt: 'planrivo - Desktop Pricing Section with Four Tiers after the Free Pilot Phase'
     - type: image
