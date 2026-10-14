@@ -3,7 +3,7 @@ id: 7
 slug: unlimited-dock
 client: unlimited.dock
 category: ['Product', 'Design', 'Development']
-image: /img/portfolio/unlimited-dock/unlimited-dock_portrait_9.webp
+image: /img/portfolio/unlimited-dock/unlimited-dock_portrait_12.webp
 color: '#fe3312'
 logo: dock
 width: '94%'
@@ -28,35 +28,38 @@ technologies:
     - Slack API
     - MCP
     - XRechnung
-    - Laravel Forge API
     - Figma
 media:
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_1.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_35.webp
       alt: 'unlimited.dock - Task List with Status Groups and Project Properties'
     - type: video
       aspectRatio: video
       src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_1.webm
       thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_1.webp
       alt: 'unlimited.dock - Quick Add: Create a Task with the C Shortcut, Priority and Due Date'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_28.webp
+      alt: 'unlimited.dock - Dashboard: KPIs over Twelve Months, Hours Against the Prior Year'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_2.webm
-      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_2.webp
-      alt: 'unlimited.dock - Command Palette: Search a Task and Open It in the Peek Panel'
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_6.webm
+      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_6.webp
+      alt: 'unlimited.dock - Search: One Palette for Clients, Projects and Invoices, Then All Results on the Search Page'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_30.webp
+      alt: 'unlimited.dock - Budget Detail with Plan Against Actual per Position, Section and Total'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_3.webm
-      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_3.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_7.webm
+      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_7.webp
       alt: 'unlimited.dock - Timer Panel: Pick a Project and Service, Add a Note, Start the Timer'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_5.webp
-      alt: 'unlimited.dock - Budget Detail with Budget Lines, Hours and Values'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_25.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_31.webp
       alt: 'unlimited.dock - Sales Pipeline Board from New Inquiry to Negotiation'
     - type: image
       aspectRatio: '4/5'
@@ -66,14 +69,6 @@ media:
       aspectRatio: '4/5'
       src: /img/portfolio/unlimited-dock/unlimited-dock_portrait_6.webp
       alt: 'unlimited.dock - Client Invoice Page with Overdue Notice and GiroCode'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_15.webp
-      alt: 'unlimited.dock - Invoice List with Numbers, Status and Open Amounts'
-    - type: image
-      aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_16.webp
-      alt: 'unlimited.dock - Invoice Detail with Payment Reminders and Change History'
     - type: video
       aspectRatio: video
       src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_4.webm
@@ -81,28 +76,45 @@ media:
       alt: 'unlimited.dock - Cancellation: Give a Reason, Hold the Button, the Cancellation Is Issued'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_20.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_36.webp
+      alt: 'unlimited.dock - Invoice List with Numbers, Status and Open Amounts'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_37.webp
+      alt: 'unlimited.dock - Invoice Detail with Payment Reminders and Change History'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_38.webp
       alt: 'unlimited.dock - Bank Import with Automatically Matched Payments'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_17.webp
-      alt: 'unlimited.dock - Revenue Since 2018 with KPI Cards, Monthly Chart and Treemap per Client'
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_27.webp
+      alt: 'unlimited.dock - Client File with Revenue, Open Items, Payment Behaviour, Direct Debit Mandate and Hours'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_22.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_32.webp
+      alt: 'unlimited.dock - Revenue Since 2018 with KPI Cards, Monthly Chart and Treemap per Client'
+    - type: video
+      aspectRatio: video
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_5.webm
+      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_5.webp
+      alt: 'unlimited.dock - Claude Turns Call Notes into Three Tasks, Then a Checklist Item Gets Ticked by Hand'
+    - type: image
+      aspectRatio: '16/9'
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_33.webp
       alt: 'unlimited.dock - Agents Page with Claude Runs and Every Write per Run'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_23.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_39.webp
       alt: 'unlimited.dock - Connect Claude: Connector Guide for the Claude App and Claude Code'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_24.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_40.webp
       alt: 'unlimited.dock - Feed Filtered to Changes Made by Claude'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_26.webp
-      alt: 'unlimited.dock - Servers and Sites from Laravel Forge with Costs and Ubuntu Support'
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_34.webp
+      alt: 'unlimited.dock - Technik: Reachability, Incidents, Failed Deploys and the Live Version of Every Site'
     - type: image
       aspectRatio: '16/9'
       src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_7.webp
@@ -110,8 +122,8 @@ media:
 title: 'Our Studio Operating System: From First Inquiry to Paid Invoice'
 story_preview: 'unlimited.dock is the operating system I built for our studio, from the first inquiry to the paid invoice. Claude works in it too, through an MCP server and a REST API.'
 fineprint: 'Designed and built solo, in use for a five-person studio every working day. Clients, projects, tasks, amounts and hours in the screenshots are placeholders.'
-fineprint_media: /img/portfolio/unlimited-dock/unlimited-dock_landscape_9.webp
-fineprint_media_alt: 'unlimited.dock - Dashboard with Monthly KPIs, Revenue Chart and Team Week'
+fineprint_media: /img/portfolio/unlimited-dock/unlimited-dock_landscape_29.webp
+fineprint_media_alt: 'unlimited.dock - Dashboard with KPIs over Twelve Months, the Prior-Year Line and the Team Week'
 ---
 
 # Our studio ran on subscriptions. Now it runs on software I built.
@@ -126,22 +138,22 @@ This wasn't a side-by-side experiment, it was a full cutover. I wrote an import 
 
 A **Laravel** backend with a **Vue 3** frontend via **Inertia.js**, one codebase for the app. Next to it sit a **REST API** and an **MCP server** for agents. **Tailwind CSS** and **shadcn-vue** drive a fast, minimal UI, **TipTap** handles rich text with markdown as the storage format, and **MySQL** holds the data.
 
-- **Testing:** Over 2,000 PHPUnit tests run on every change. Accounting logic is not a place for surprises
+- **Testing:** Nearly 2,300 PHPUnit tests run on every change. Accounting logic is not a place for surprises
 - **PDF Engine:** Quotes, invoices and billing reports render server-side via dompdf with the studio's letterhead and typefaces
-- **Integrations:** Transactional mail through Resend, digests and warnings into Slack, the invoice archive in Google Drive, the server inventory from Laravel Forge
+- **Integrations:** Transactional mail through Resend, digests and warnings into Slack, the invoice archive in Google Drive, the server inventory synced from our hosting
 
 ## Tasks, the Linear Way
 
 The task system borrows the interaction model that makes Linear feel effortless and applies it to agency work:
 
 - **Status Rings & Peek Panel:** Scan states at a glance, open any task in a side panel without losing the list
-- **Command Palette:** Jump to any task, project or client from anywhere. The mouse is optional
+- **One Search for Everything:** Cmd+K finds tasks, clients, inquiries, quotes and invoices, whatever the role may open. Numbers like US-R-2026-011 match exactly, filter chips narrow the types, and all results sit on a search page
 - **Client-Scoped Identifiers:** Tasks are numbered per client, so a reference like a ticket number means something in a conversation
 - **Real Structure:** Subtasks with blocking, recurring tasks, milestones, priorities and private tasks that clients never see
 
 ## Built for Keyboard Speed
 
-C creates a task, Cmd+K finds any task, project or client, T starts the timer. Every list is filterable, every action has a shortcut, and the interface is tuned to a tool used dozens of times a day: latency is a feature. No marketing pages, no onboarding flows, no settings for hypothetical companies. Software for five specific people, which is exactly why it's fast.
+C creates a task, Cmd+K finds anything, T starts the timer. Every list is filterable, every action has a shortcut, and the interface is tuned to a tool used dozens of times a day: latency is a feature. No marketing pages, no onboarding flows, no settings for hypothetical companies. Software for five specific people, which is exactly why it's fast.
 
 ## Time, Capacity & Availability
 
@@ -156,6 +168,8 @@ Every hour lands on a project, optionally on a task and a budget line:
 The accounting core mirrors what we used Productive for, minus everything we never touched:
 
 - **Budget Lines & Retainers:** Fixed budgets and recurring retainer periods, with worked and billable hours tracked separately
+- **Plan Against Actual:** Every position, section and total carries a bar with its plan mark, so an overrun shows long before the invoice
+- **Pool Positions:** Several quote lines can be booked through one collective position, so a fixed price stays one number
 - **Always Computed, Never Cached:** Burn, profit and capacity are calculated on read. No denormalized numbers that drift out of sync
 - **Period Reports:** Billing-ready PDF and CSV reports per period, with a digest and budget warnings posted to Slack
 - **Privacy by Design:** Cost rates and profit never leave the server for non-admin roles, enforced by tests
@@ -172,30 +186,35 @@ Selling work and doing it live in the same tool:
 
 ## Invoicing Without Zoho
 
-Zoho Books wrote our invoices for years, on its own monthly plan, while the Dock already knew every budget, every hour and every accepted quote. The invoice was the last document still written somewhere else. So the Dock now writes it too:
+Zoho Books wrote our invoices for years, on its own annual plan, while the Dock already knew every budget, every hour and every accepted quote. The invoice was the last document still written somewhere else. So the Dock writes it now too, and Zoho Books goes in November:
 
 - **Drafts From What Exists:** An invoice starts from a client, a closed budget period or an accepted quote, including deposit, partial and final invoices
 - **Numbers That Never Repeat:** Issuing assigns a gapless number and locks the document. Corrections go through a cancellation or a credit note, and irreversible steps only fire while you hold the button
-- **Client Page:** Every invoice has a page for the client with the open amount and a GiroCode for the banking app
+- **Client Page:** Every invoice has a page for the client with the open amount and a GiroCode for the banking app, which the PDF carries too
 - **XRechnung:** Every invoice ships as PDF in German or English and as XRechnung 3.0, checked against the official KoSIT validator
-- **SEPA & Dunning:** Direct debit mandates in the client file, a collection list per debit day, two automatic payment reminders and a formal notice after approval
+- **Early Payment Discount:** Skonto from the client file lands on the PDF, the client page, the XRechnung and in the GiroCode. The bank import knows the reduced amount, and revenue and VAT follow the payment
+- **SEPA & Dunning:** The Dock fills out the direct debit mandate itself, as a one-page PDF form that goes out with the invoice to clients without one. A collection list per debit day, two automatic payment reminders and a formal notice after approval
 - **Bank Matching:** The bank statement comes in as CSV. Payments with an invoice number or from a known payer book themselves
 - **Recurring Profiles:** Hosting, licences and retainers run as profiles with a daily run, as a draft or sent straight away
 - **Audit Trail:** Every change to finance and master data lands in an append-only log with who, when, old and new value, as GoBD asks for it
 
+## The Client File
+
+Every client on one page: revenue of the last twelve months against the twelve before, open and overdue items, the average days to payment, recurring invoices with their next run, the direct debit mandate, the dunning state and the hours of the past year. While you scroll, the header folds into a slim bar with anchors to each part.
+
 ## Numbers at a Glance
 
-- **Dashboard:** Revenue this month against the same stretch last year, the recurring share, the billable ratio, hours and open items
+- **Dashboard:** One card with tabs for revenue, recurring share, billable ratio and hours, a range from one month to two years, the prior-year line and a CSV export
 - **Revenue Since 2018:** KPI cards, a monthly chart with a time window and a treemap per client
-- **Finance Report:** A monthly PDF and CSV with VAT by invoice date and by payment, filed in Drive on the first of the month
+- **Reports:** Nine finance reports, from receivables by age to revenue per client, VAT, payments and hosting, each as a PDF in the studio's look and as CSV. Saved reports file themselves in Drive and Slack on the first of the month, the year report on 1 January
 - **Hours Heatmap:** Tracked hours per person and day over twelve weeks, right in the capacity view
 
 ## Claude Works in the Dock
 
-The Dock has a second door, built for AI agents: a REST API and an MCP server with 27 tools. The same door serves Claude Code in the terminal, the Claude app on the phone and on the Mac, and jobs that run on a schedule.
+The Dock has a second door, built for AI agents: a REST API and an MCP server with 29 tools. The same door serves Claude Code in the terminal, the Claude app on the phone and on the Mac, and jobs that run on a schedule.
 
 - **On the Go:** After a client meeting, two sentences in the Claude app become a task with checklist, due date and the right project
-- **In the Terminal:** Claude Code turns call notes into tasks, comments on them, starts my timer and moves inquiries along the pipeline, without a browser tab
+- **In the Terminal:** Claude Code turns call notes into tasks, comments on them, works through my inbox, starts my timer and moves inquiries along the pipeline, without a browser tab
 - **The Person's Rights, Never More:** Every token works for one person. Claude sees exactly what that person may see: no amounts for members, no private tasks of others
 - **Every Change Signed:** Entries read "Claude (for Daniel)", and the Agents page lists every run with job, channel and each single write
 - **One Code Path:** API and MCP tools run through the same services and validation as the web app. A task feature without its agent counterpart does not ship
@@ -205,7 +224,7 @@ The model gets its context from the same payloads the interface reads. Claude an
 
 ## Hosting in View
 
-Servers and sites used to live in a spreadsheet, kept by hand and out of date a week later. Now they come from Laravel Forge every night, each site assigned to its client, each server with its monthly cost and the end of its Ubuntu support. Which client runs where is one search away.
+Servers and sites used to live in a spreadsheet, kept by hand and out of date a week later. Now the Dock syncs them with our servers every hour, each site assigned to its client, each server with its monthly cost and the end of its system support. Every five minutes it checks each site itself: whether it answers, how fast, how long its certificate holds. An outage reaches the team within minutes, the incidents of the last 30 days stay on the page, and every site shows which version is live, in red if a deploy failed.
 
 ## A Cockpit Instead of Client Logins
 
@@ -213,4 +232,4 @@ Clients don't get accounts, a deliberate decision. They get a tokenized cockpit 
 
 ## Deliberate Omissions
 
-unlimited.dock has no resource planner, no multi-currency and no client logins, and a roadmap file lists every omission on purpose. Building less is what made it possible to replace several platforms at once. Productive.io is gone, Zoho Books follows, and the spreadsheets for hosting and servers go with it. Each of them was a monthly bill for software built for thousands of other companies. What is left does everything our studio needs, and nothing anyone else's does.
+unlimited.dock has no resource planner, no multi-currency and no client logins, and a roadmap file lists every omission on purpose. Building less is what made it possible to replace several platforms at once. Productive.io is gone, Zoho Books follows, and the spreadsheets for hosting and servers go with it. Each of them was a recurring bill for software made for thousands of other companies. What is left does everything our studio needs, and nothing anyone else's does.
