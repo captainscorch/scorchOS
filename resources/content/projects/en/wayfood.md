@@ -67,9 +67,9 @@ media:
       alt: 'way.food - Desktop Provider Profile with Bestseller Packages and Live Request Box'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/wayfood/wayfood_portrait_video_1.webm
-      thumbnail: /img/portfolio/wayfood/wayfood_portrait_video_1.webp
-      alt: 'way.food - Mobile Provider Profile with Package Selection and Request Sheet'
+      src: /img/portfolio/wayfood/wayfood_portrait_video_2.webm
+      thumbnail: /img/portfolio/wayfood/wayfood_portrait_video_2.webp
+      alt: 'way.food - Mobile Booking Flow from the Search via Discover and the Provider Profile to the Request Drawer'
     - type: image
       aspectRatio: '4/5'
       src: /img/portfolio/wayfood/wayfood_portrait_4.webp
