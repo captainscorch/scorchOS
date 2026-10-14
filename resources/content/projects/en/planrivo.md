@@ -74,7 +74,7 @@ media:
       alt: 'planrivo - Desktop Dashboard with Patients, Active Plans and Feedback'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/planrivo/planrivo_landscape_18.webp
+      src: /img/portfolio/planrivo/planrivo_landscape_19.webp
       alt: 'planrivo - Statistics over Twelve Months: Open Rate at Home, Most Prescribed Exercises, Plans and Pain Scores over Time'
     - type: image
       aspectRatio: '16/9'
