@@ -26,3 +26,5 @@ yarn-error.log
 /.DS_Store
 .DS_Store
 features.idea
+/public/sitemap.xml
+/public/llms.txt
