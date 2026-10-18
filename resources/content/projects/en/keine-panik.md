@@ -7,7 +7,6 @@ image: /img/portfolio/keine-panik/keine-panik_portrait_8.webp
 color: '#ff5624'
 logo: panik
 width: '95%'
-height: 'md:aspect-[3/4]'
 spineHeight: 'h-28 md:h-32'
 date: '2026'
 website: https://keine-panik-festival.de
@@ -55,8 +54,8 @@ media:
       alt: 'Keine Panik Festival - Desktop Festival Ticket Step with the Day Schedule and the Weekend Passes'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/keine-panik/keine-panik_landscape_video_2.webm
-      thumbnail: /img/portfolio/keine-panik/keine-panik_landscape_video_2.webp
+      src: /img/portfolio/keine-panik/keine-panik_landscape_video_5.webm
+      thumbnail: /img/portfolio/keine-panik/keine-panik_landscape_video_5.webp
       alt: 'Keine Panik Festival - Desktop Ticket Flow: Weekend Passes Added, the Floating Cart Bar Opened, on to Checkout with Reserved Tickets'
     - type: image
       aspectRatio: '16/9'
@@ -84,8 +83,8 @@ media:
       alt: 'Keine Panik Festival - Desktop Site Plan in Both Views: the Grounds and the Directions with Routes from the Region'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/keine-panik/keine-panik_landscape_video_4.webm
-      thumbnail: /img/portfolio/keine-panik/keine-panik_landscape_video_4.webp
+      src: /img/portfolio/keine-panik/keine-panik_landscape_video_6.webm
+      thumbnail: /img/portfolio/keine-panik/keine-panik_landscape_video_6.webp
       alt: 'Keine Panik Festival - Desktop Site Plan Interaction: Points on the Grounds, then the Directions with the Route from Kassel'
     - type: image
       aspectRatio: '4/5'
@@ -109,8 +108,8 @@ media:
       alt: 'Keine Panik Festival - Desktop About Page as a Fuse Timeline'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/keine-panik/keine-panik_landscape_video_3.webm
-      thumbnail: /img/portfolio/keine-panik/keine-panik_landscape_video_3.webp
+      src: /img/portfolio/keine-panik/keine-panik_landscape_video_7.webm
+      thumbnail: /img/portfolio/keine-panik/keine-panik_landscape_video_7.webp
       alt: 'Keine Panik Festival - Desktop Footer from the Playlist and the Navigation down to the Wordmark, Which Burns Down Like a Fuse'
     - type: image
       aspectRatio: '16/9'
@@ -149,7 +148,7 @@ The site plan answers two questions in two views. The grounds show every stage, 
 
 ## Tickets, Camping, Merch, One Order
 
-A weekend pass, camping as a second step, merch as an upsell in the same order. The cart is a bar at the bottom of the screen, where the thumb is, not an icon in the header. It grows with every ticket, opens into a list of every line with its own stepper and leads to a checkout that reserves the tickets while the order is filled in. Price tiers overflow automatically: when a tier is sold out, the rest of the quantity moves into the next one, each tier its own line. There are no customer accounts. Every order lives behind a token URL, with tickets, invoice, calendar file and the QR codes directly in the confirmation mail, because the mail has to be enough at the gate. Stripe takes the payment with card, PayPal, Apple Pay, Google Pay and Klarna. Discount codes, free tickets for guest lists and affiliate links with attribution are in the backoffice too.
+A weekend pass, camping as a second step, merch as an upsell in the same order. The cart is a bar at the bottom of the screen, where the thumb is, not an icon in the header. It grows with every ticket, opens into a list of every line with its own stepper and leads to a checkout that reserves the tickets while the order is filled in. Price tiers overflow automatically: when a tier is sold out, the rest of the quantity moves into the next one, each tier its own line. There are no customer accounts. Every order lives behind a token URL, with tickets, invoice, calendar file and the QR codes directly in the confirmation mail, because the mail has to be enough at the gate. Every ticket also goes into Apple Wallet as a pass. Stripe takes the payment with card, PayPal, Apple Pay, Google Pay and Klarna. Discount codes, free tickets for guest lists and affiliate links with attribution are in the backoffice too.
 
 ## The Backoffice
 

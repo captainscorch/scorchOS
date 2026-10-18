@@ -7,7 +7,6 @@ image: /img/portfolio/planrivo/planrivo_portrait_5.webp
 color: '#918df6'
 logo: planrivo
 width: '95%'
-height: 'md:aspect-[3/4]'
 spineHeight: 'h-28 md:h-32'
 date: '2026'
 website: https://planrivo.de
@@ -47,8 +46,8 @@ media:
       alt: 'planrivo - Desktop Plan Builder with Filters, Exercise Picker and Dosage Steppers'
     - type: video
       aspectRatio: '16/9'
-      src: /img/portfolio/planrivo/planrivo_landscape_video_2.webm
-      thumbnail: /img/portfolio/planrivo/planrivo_landscape_video_2.webp
+      src: /img/portfolio/planrivo/planrivo_landscape_video_5.webm
+      thumbnail: /img/portfolio/planrivo/planrivo_landscape_video_5.webp
       alt: 'planrivo - Desktop Plan Builder: Searching Exercises and Adding Them to the Plan'
     - type: image
       aspectRatio: '16/9'
@@ -56,8 +55,8 @@ media:
       alt: 'planrivo - Desktop Handover Page with QR Code, Validity and Access Controls'
     - type: video
       aspectRatio: '16/9'
-      src: /img/portfolio/planrivo/planrivo_landscape_video_4.webm
-      thumbnail: /img/portfolio/planrivo/planrivo_landscape_video_4.webp
+      src: /img/portfolio/planrivo/planrivo_landscape_video_6.webm
+      thumbnail: /img/portfolio/planrivo/planrivo_landscape_video_6.webp
       alt: 'planrivo - Desktop Handover: Opening the QR Code in Fullscreen for Scanning'
     - type: video
       aspectRatio: '4/5'

@@ -11,11 +11,11 @@ Das Weingut Heck ist ein Familienweingut in Alsheim, Rheinhessen: Dieter und Lot
 
 ## Statamic unter der Haube
 
-Die Seite läuft auf Statamic mit Laravel, Inertia und Vue. Jede Seite ist ein Stapel aus Modulen, die das Weingut im CMS pflegt: Stages, Produkt-Teaser, Kartenraster, Galerien, Laufbänder und die Öffnungszeiten mit Sommer- und Wintersaison. Die Seiten rendern serverseitig, also trägt der erste Paint schon den Inhalt und die Illustrationen kommen ohne Flackern. Das Menü öffnet sich zu einer Karte mit einem Foto je Bereich, und das Kontakt-Panel markiert in den Öffnungszeiten den heutigen Tag.
+Die Seite läuft auf Statamic mit Laravel, Inertia und Vue. Jede Seite ist ein Stapel aus Modulen, die das Weingut im CMS pflegt: Stages, Produkt-Teaser, Kartenraster, Galerien, Laufbänder und die Öffnungszeiten mit Sommer- und Wintersaison, zwischen denen Besucher umschalten, um ihren Besuch vorauszuplanen. Die Seiten rendern serverseitig, also trägt der erste Paint schon den Inhalt und die Illustrationen kommen ohne Flackern. Das Menü öffnet sich zu einer Karte mit einem Foto je Bereich, und das Kontakt-Panel markiert in den Öffnungszeiten den heutigen Tag.
 
 ## Animation ohne Gewicht
 
-Das Wein-Akkordeon ist das Herzstück. Eine Flasche liegt in ihrer Zeile, und wenn die Zeile aufgeht, fliegt eine Geisterkopie rotierend in die Showcase-Pose, während sich das Panel morpht, beides auf einer Uhr. Die Form auf der Startseite zeichnet sich einmal und dreht sich pro Scroll-Abschnitt um 120 Grad. Scroll-Reveals liefern ihren versteckten Startzustand schon im Server-HTML, also springt nichts. Die Flaschenschatten gingen nach einem Profiling-Durchgang von sechs Blur-Pässen auf vier: aus zwölf langen Frames wurden null.
+Das Wein-Akkordeon ist das Herzstück. Eine Flasche liegt in ihrer Zeile, und wenn die Zeile aufgeht, fliegt eine Geisterkopie rotierend in die Showcase-Pose, über eine Collage in der Farbe des Weins, während sich das Panel morpht, beides auf einer Uhr. Die Stage der Startseite zeigt ein Weinberg-Video hinter dem HECK-Schriftzug. Es startet erst nach dem Mount und nie bei reduzierter Bewegung, also trägt das Server-HTML das Foto als Poster, und ein neues Encoding brachte den Clip von 11,5 auf 2,6 Megabyte. Die Form auf der Startseite zeichnet sich einmal und dreht sich pro Scroll-Abschnitt um 120 Grad. Scroll-Reveals liefern ihren versteckten Startzustand schon im Server-HTML, also springt nichts. Die Flaschenschatten gingen nach einem Profiling-Durchgang von sechs Blur-Pässen auf vier: aus zwölf langen Frames wurden null.
 
 ## Illustrationen fürs Handy
 

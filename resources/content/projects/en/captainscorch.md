@@ -1,5 +1,5 @@
 ---
-id: 11
+id: 12
 slug: 'captainscor.ch'
 client: 'Portfolio Website'
 category: ['Design', 'Development']
@@ -7,7 +7,6 @@ image: /img/portfolio/captainscorch/captainscorch_portrait_1.webp
 color: '#2ab193'
 logo: portfolio
 width: '88%'
-height: 'md:aspect-[4/5]'
 spineHeight: 'h-28 md:h-30'
 date: '2025 — Present'
 website: https://captainscor.ch

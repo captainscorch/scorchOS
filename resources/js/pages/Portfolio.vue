@@ -11,7 +11,7 @@ import { faTimes } from '@fortawesome/sharp-light-svg-icons';
 import { Head, Link } from '@inertiajs/vue3';
 import gsap from 'gsap';
 import { Play } from 'lucide-vue-next';
-import { computed, nextTick, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 library.add(faTimes);
@@ -33,50 +33,88 @@ const ogUrl = computed(() => {
     return '';
 });
 
+// Covers run five to a row at xl; the heights wave through each row and
+// flip every other row, so the grid keeps the rhythm of the first one
+const COVERS_PER_ROW = 5;
+const coverWaves = [
+    ['md:aspect-[3/4]', 'md:aspect-[4/6]', 'md:aspect-[4/5]', 'md:aspect-[4/6]', 'md:aspect-[3/4]'],
+    ['md:aspect-[4/5]', 'md:aspect-[3/4]', 'md:aspect-[4/6]', 'md:aspect-[3/4]', 'md:aspect-[4/5]'],
+];
+// A short last row picks symmetric slots from the wave, so it stays mirrored around its centre
+const partialRowSlots: Record<number, number[]> = { 1: [2], 2: [1, 3], 3: [0, 2, 4], 4: [0, 1, 3, 4] };
+
+const coverHeight = (index: number) => {
+    const row = Math.floor(index / COVERS_PER_ROW);
+    const column = index % COVERS_PER_ROW;
+    const rowLength = Math.min(COVERS_PER_ROW, projects.value.length - row * COVERS_PER_ROW);
+    const slot = rowLength === COVERS_PER_ROW ? column : partialRowSlots[rowLength][column];
+
+    return coverWaves[row % coverWaves.length][slot];
+};
+
 const viewMode = ref<'covers' | 'spines'>('covers');
 
 const toggleView = (mode: 'covers' | 'spines') => {
     viewMode.value = mode;
 };
 
+let spineObserver: IntersectionObserver | null = null;
+
+// Each spine drops in from just above the viewport and lands on the shelf; the
+// lowest lands first, so the stack builds from the bottom. The drop starts right
+// above the screen instead of above the page, so spines far down the shelf don't
+// shoot across thousands of pixels.
+const dropSpines = (spines: HTMLElement[], onComplete?: () => void) => {
+    gsap.fromTo(
+        spines,
+        {
+            y: (_: number, spine: HTMLElement) => -(spine.getBoundingClientRect().bottom + 80 + Math.random() * 160),
+            opacity: 1,
+            rotation: () => Math.random() * 20 - 10,
+            scale: 0.96,
+            // The hover transition-all would chase every frame otherwise
+            transition: 'none',
+        },
+        {
+            y: 0,
+            rotation: 0,
+            scale: 1,
+            duration: 1.4,
+            stagger: { each: 0.07, from: 'end' },
+            ease: 'power3.out',
+            onComplete,
+            // Keep opacity to override the opacity-0 class
+            clearProps: 'transform,transition',
+        },
+    );
+};
+
+onBeforeUnmount(() => spineObserver?.disconnect());
+
 const onEnter = (el: Element, done: () => void) => {
     if (viewMode.value === 'spines') {
-        // Spines Enter Animation (Falling Books)
+        // Spines Enter Animation (falling books)
         const spines = Array.from((el as HTMLElement).children) as HTMLElement[];
 
         // Ensure layout is calculated
         nextTick(() => {
-            spines.forEach((spine, index) => {
-                const rect = spine.getBoundingClientRect();
-                const startY = -rect.top - window.innerHeight * 1.2 - Math.random() * 200;
+            // Spines on screen fall in one go; the ones further down fall as they scroll in
+            const onScreen = spines.filter((spine) => spine.getBoundingClientRect().top < window.innerHeight);
+            const below = spines.filter((spine) => !onScreen.includes(spine));
 
-                gsap.fromTo(
-                    spine,
-                    {
-                        y: startY,
-                        opacity: 1, // Visible but off-screen
-                        rotation: Math.random() * 30 - 15,
-                        scale: 0.9,
-                        // Disable CSS transitions during GSAP animation to prevent conflicts
-                        transition: 'none',
-                    },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        rotation: 0,
-                        scale: 1,
-                        // Slower duration for a more "floating" feel, especially with large distances
-                        duration: 2.0 + Math.random() * 0.5,
-                        delay: index * 0.05,
-                        ease: 'power3.out', // Smoother easing than bounce for long falls
-                        onComplete: () => {
-                            if (index === spines.length - 1) done();
-                        },
-                        // Restore CSS transitions after animation
-                        clearProps: 'transform,rotation,scale,transition',
-                    },
-                );
-            });
+            spineObserver?.disconnect();
+            spineObserver = new IntersectionObserver(
+                (entries) => {
+                    const entering = entries.filter((entry) => entry.isIntersecting).map((entry) => entry.target as HTMLElement);
+                    entering.forEach((spine) => spineObserver?.unobserve(spine));
+                    if (entering.length) dropSpines(entering);
+                },
+                { rootMargin: '0px 0px -10% 0px' },
+            );
+            below.forEach((spine) => spineObserver?.observe(spine));
+
+            if (!onScreen.length) return done();
+            dropSpines(onScreen, done);
         });
     } else {
         // Covers Enter Animation (Fold Up)
@@ -106,6 +144,7 @@ const onEnter = (el: Element, done: () => void) => {
 };
 
 const onLeave = (el: Element, done: () => void) => {
+    spineObserver?.disconnect();
     gsap.to(el, {
         opacity: 0,
         duration: 0.3,
@@ -225,11 +264,11 @@ const onLeave = (el: Element, done: () => void) => {
                 <!-- Covers View -->
                 <div v-if="viewMode === 'covers'" key="covers" class="flex flex-wrap items-end justify-center gap-4 perspective-[1000px] md:gap-6">
                     <Link
-                        v-for="project in projects"
+                        v-for="(project, index) in projects"
                         :key="project.id"
                         :href="`/case-study/${project.slug}`"
                         class="group relative aspect-[4/5] w-[calc(50%-0.5rem)] cursor-pointer opacity-0 md:w-[calc(100%/3-1rem)] lg:w-[calc(25%-1.125rem)] xl:w-[calc(20%-1.2rem)]"
-                        :class="project.height"
+                        :class="coverHeight(index)"
                     >
                         <!-- Lift lives on the inner layer so the hovered link keeps its own hit area -->
                         <div

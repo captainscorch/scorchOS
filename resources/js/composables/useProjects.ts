@@ -25,7 +25,6 @@ export interface Project {
     color: string;
     logo: string;
     width: string;
-    height: string;
     spineHeight: string;
     date: string;
     team: ProjectTeamMember[];
@@ -51,7 +50,6 @@ interface ProjectFrontmatter {
     color: string;
     logo: string;
     width: string;
-    height: string;
     spineHeight: string;
     date: string;
     team?: ProjectTeamMember[];
@@ -124,7 +122,6 @@ function parseEnProjectMd(path: string, raw: string): Project {
         color: fm.color ?? '',
         logo: fm.logo ?? '',
         width: fm.width ?? '',
-        height: fm.height ?? '',
         spineHeight: fm.spineHeight ?? '',
         date: fm.date ?? '',
         team: Array.isArray(fm.team) ? fm.team : [],

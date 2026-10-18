@@ -4,10 +4,9 @@ slug: multidock
 client: 'multi.dock'
 category: ['Product', 'Design', 'Development']
 image: /img/portfolio/multidock/multidock_portrait_4.webp
-color: '#fe3312'
+color: '#ff7a2e'
 logo: multidock
 width: '95%'
-height: 'md:aspect-[3/4]'
 spineHeight: 'h-28 md:h-32'
 date: '2026 — Present'
 website: https://multidock.unlimited.studio
@@ -32,8 +31,8 @@ media:
       alt: 'multi.dock - Launch Film, Built from the Parts of the Site'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/multidock/multidock_landscape_video_1.webm
-      thumbnail: /img/portfolio/multidock/multidock_landscape_video_1.webp
+      src: /img/portfolio/multidock/multidock_landscape_video_4.webm
+      thumbnail: /img/portfolio/multidock/multidock_landscape_video_4.webp
       alt: 'multi.dock - Desktop Hero: the Items Fly into the Demo Dock, then Magnification, Window Previews, Weather, a Folder Stack and the Weekend Dock'
     - type: image
       aspectRatio: '16/9'

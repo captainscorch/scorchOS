@@ -1,4 +1,5 @@
 <script lang="ts">
+import { forwardCanvasPointer } from "./canvas-pointer";
 import { createRectCache } from "./rect-cache";
 
 export type PeelSide = "left" | "right" | "top" | "bottom";
@@ -222,6 +223,10 @@ export function createPeel(
 
   let wake = () => {};
   let capture = () => {};
+
+  const releasePointer = htmlInCanvas
+    ? forwardCanvasPointer(content)
+    : () => {};
 
   if (htmlInCanvas) {
     paintable.onpaint = () => capture();
@@ -610,6 +615,7 @@ export function createPeel(
     destroy() {
       destroyed = true;
       rectCache.destroy();
+      releasePointer();
       cancelAnimationFrame(raf);
       observer.disconnect();
       intersection.disconnect();

@@ -7,7 +7,6 @@ image: /img/portfolio/unlimited-dock/unlimited-dock_portrait_12.webp
 color: '#fe3312'
 logo: dock
 width: '94%'
-height: 'md:aspect-[3/4]'
 spineHeight: 'h-26 md:h-32'
 date: '2026 — Present'
 team:
@@ -36,8 +35,8 @@ media:
       alt: 'unlimited.dock - Task List with Status Groups and Project Properties'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_1.webm
-      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_1.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_8.webm
+      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_8.webp
       alt: 'unlimited.dock - Quick Add: Create a Task with the C Shortcut, Priority and Due Date'
     - type: image
       aspectRatio: '16/9'
@@ -54,8 +53,8 @@ media:
       alt: 'unlimited.dock - Budget Detail with Plan Against Actual per Position, Section and Total'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_7.webm
-      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_7.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_10.webm
+      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_10.webp
       alt: 'unlimited.dock - Timer Panel: Pick a Project and Service, Add a Note, Start the Timer'
     - type: image
       aspectRatio: '16/9'
@@ -71,8 +70,8 @@ media:
       alt: 'unlimited.dock - Client Invoice Page with Overdue Notice and GiroCode'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_4.webm
-      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_4.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_9.webm
+      thumbnail: /img/portfolio/unlimited-dock/unlimited-dock_landscape_video_9.webp
       alt: 'unlimited.dock - Cancellation: Give a Reason, Hold the Button, the Cancellation Is Issued'
     - type: image
       aspectRatio: '16/9'
