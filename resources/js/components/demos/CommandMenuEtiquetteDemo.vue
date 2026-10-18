@@ -135,7 +135,7 @@ onUnmounted(stopCountdown);
                 @click="focusInput"
                 class="h-auto w-full max-w-sm rounded-xl border border-neutral-200 bg-white shadow-lg dark:border-white/10 dark:bg-neutral-950"
             >
-                <CommandInput placeholder="Where to?" @keydown.esc="onInputEscape" />
+                <CommandInput :auto-focus="false" placeholder="Where to?" @keydown.esc="onInputEscape" />
                 <CommandList class="h-[264px] max-h-none">
                     <CommandEmpty>No results.</CommandEmpty>
                     <CommandGroup heading="Pages">

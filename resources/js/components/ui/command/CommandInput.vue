@@ -17,9 +17,12 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps<ListboxFilterProps & {
+// The palette dialog wants focus on open; inline demos opt out, or mounting them scrolls the page.
+const props = withDefaults(defineProps<ListboxFilterProps & {
   class?: HTMLAttributes["class"]
-}>()
+}>(), {
+  autoFocus: true,
+})
 
 const delegatedProps = reactiveOmit(props, "class")
 
@@ -38,7 +41,7 @@ const { filterState } = useCommand()
       v-bind="{ ...forwardedProps, ...$attrs }"
       v-model="filterState.search"
       data-slot="command-input"
-      auto-focus
+      :auto-focus="props.autoFocus"
       :class="cn('placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-xs outline-hidden disabled:cursor-not-allowed disabled:opacity-50', props.class)"
     />
   </div>
