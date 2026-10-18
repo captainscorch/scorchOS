@@ -39,6 +39,21 @@ onMounted(() => {
   if (!(currentElement.value instanceof HTMLElement))
     return
 
+  // reka-ui highlights the first item on mount via scrollIntoView, which scrolls every ancestor,
+  // the window included. Keep the scroll inside the list so an inline menu never moves the page.
+  const el = currentElement.value
+  el.scrollIntoView = () => {
+    const list = el.closest<HTMLElement>("[data-slot=command-list]")
+    if (!list)
+      return
+    const item = el.getBoundingClientRect()
+    const box = list.getBoundingClientRect()
+    if (item.top < box.top)
+      list.scrollTop -= box.top - item.top
+    else if (item.bottom > box.bottom)
+      list.scrollTop += item.bottom - box.bottom
+  }
+
   allItems.value.set(id, (currentElement.value.textContent ?? "") + " " + (props.value?.toString() ?? ""))
 
   const groupId = groupContext?.id
