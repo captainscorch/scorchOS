@@ -30,16 +30,17 @@ Das Kernprodukt ist nicht mehr das Durchstöbern, sondern die Buchung selbst. An
 
 ## Die Anbieterseite als Buchungstresen
 
-Discover zeigt jetzt Anbieter statt einzelner Pakete. Ein Klick führt auf eine Anbieterseite, neu gebaut als Hub: Galerie, Bewertungen, Bestseller-Pakete und eine Anfrage-Box, die Datum und Gästezahl aus der Suche übernimmt. Wer ein Paket übernimmt und Extras dazunimmt, sieht Gesamtpreis, Anzahlung, Personal und Anfahrt Zeile für Zeile, bevor überhaupt eine Adresse eingetippt ist. Passt die Gästezahl nicht zum Paket, gibt es eine Korrektur mit einem Tipp statt einer Fehlermeldung.
+Discover zeigt jetzt Anbieter statt einzelner Pakete. Ein Klick öffnet die Anbieterseite in einem neuen Tab, die Suche bleibt offen. Die Anbieterseite funktioniert als Hub: eine flache Galerie, Logo und Name mit einer Zeile Eckdaten (auch, wie viele Gäste das Team pro Stunde versorgt), drei Kennzahlen, Bestseller-Pakete, Bewertungen und am Ende ähnliche Anbieter. Sobald die Galerie wegscrollt, bleibt oben eine Abschnittsleiste stehen und markiert, wo man gerade ist. Die Anfrage-Box übernimmt Datum und Gästezahl aus der Suche und bestätigt beides direkt unter dem jeweiligen Feld. Wer ein Paket übernimmt und Extras dazunimmt, sieht Gesamtpreis, Anzahlung, Personal und Anfahrt Zeile für Zeile, bevor überhaupt eine Adresse eingetippt ist. Passt die Gästezahl nicht zum Paket, gibt es eine Korrektur mit einem Tipp statt einer Fehlermeldung.
 
 - **Such-Pill:** Wo, Wann und Wie viele in einer Leiste, Kalender und Gästezahl öffnen sich direkt darunter
 - **Bottom Sheets auf dem Handy:** Anfrage-Box, Discover-Filter und Navigation öffnen als Drawer vom unteren Rand
 - **Buchungsmodal:** Anlass, Extras, Eventadresse und Bedingungen in einem Schritt, danach direkt in den Stripe-Checkout
-- **Ehrlich bei der Verfügbarkeit:** Ist an einem Tag nur noch ein Slot frei, sagen es Karte und Anfrage-Box
+- **Ehrlich bei der Verfügbarkeit:** Die Discover-Karte sagt, wie viele der gewählten Tage noch frei sind, die Anfrage-Box hakt Termin und Gästezahl ab
+- **Bewertungen mit Gesicht:** Wer bewertet, entscheidet, ob Vorname und Initial erscheinen, namentliche Bewertungen bekommen einen Avatar mit Initiale
 
 ## Verhandeln im Chat
 
-Nicht jedes Event passt in ein Paket. Für alles Individuelle öffnet die Anfrage einen Chat zwischen Kunde und Anbieter, und der Anbieter antwortet mit einem verbindlichen Angebot: Preis pro Gast, Personal, Anfahrt, Extras und Anzahlung, aufgeschlüsselt wie bei einer Direktbuchung und als PDF abrufbar. Der Kunde nimmt es im Chat an oder lehnt ab und zahlt die Anzahlung direkt dort. Der Anbieter sieht denselben Verlauf von der anderen Seite, mit seiner Auszahlung statt des Kundenpreises und Buttons zum Korrigieren oder Zurückziehen. Telefonnummer und E-Mail bleiben verborgen, bis die Buchung bezahlt ist, damit der Auftrag nicht an der Plattform vorbeiläuft.
+Nicht jedes Event passt in ein Paket. Für alles Individuelle öffnet die Anfrage einen Chat zwischen Kunde und Anbieter, und der Anbieter antwortet mit einem verbindlichen Angebot: Preis pro Gast, Personal, Anfahrt, Extras und Anzahlung, aufgeschlüsselt wie bei einer Direktbuchung und als PDF abrufbar, auch nach der Bestätigung. Der Kunde nimmt es im Chat an oder lehnt ab und zahlt die Anzahlung direkt dort. Der Anbieter sieht denselben Verlauf von der anderen Seite, mit seiner Auszahlung statt des Kundenpreises und Buttons zum Korrigieren oder Zurückziehen. Telefonnummer und E-Mail bleiben verborgen, bis die Buchung bezahlt ist, damit der Auftrag nicht an der Plattform vorbeiläuft.
 
 ## Antworten vor den Fragen
 

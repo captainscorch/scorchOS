@@ -168,7 +168,7 @@ const jsonLd = computed(() => {
 
 // Portfolio folder structure
 const productSlugs = ['lyftd', 'way.food', 'unlimited-dock'];
-const developmentSlugs = ['tamplen'];
+const developmentSlugs = ['weingut-heck'];
 
 const productProjects = computed(() => {
     return productSlugs.map((slug) => getProject(slug)).filter((p): p is NonNullable<typeof p> => p != null);
@@ -202,8 +202,14 @@ const togglePastWork = () => {
 
 const pastWorkLinks = [
     { url: 'https://omarchy.org', label: 'Omarchy', image: '/img/projects/omarchy-thumbnail.webp', alt: 'Omarchy' },
-    { url: 'https://way.food', label: 'way.food', image: '/img/projects/wayfood-thumbnail.webp', alt: 'way.food' },
-    { url: 'https://theloz.co', label: 'The Loz', image: '/img/projects/loz-thumbnail.webp', alt: 'The Loz' },
+    { url: 'https://way.food', label: 'way.food', image: '/img/projects/wayfood-thumbnail-4.webp', alt: 'way.food' },
+    {
+        url: 'https://keine-panik-festival.de',
+        label: 'Keine Panik',
+        image: '/img/projects/keine-panik-thumbnail-3.webp',
+        alt: 'Keine Panik Festival',
+    },
+    { url: 'https://theloz.co', label: 'The Loz', image: '/img/projects/loz-thumbnail-2.webp', alt: 'The Loz' },
     { url: 'https://icemaenner.com', label: 'Icemänner', image: '/img/projects/icemaenner-thumbnail.webp', alt: 'Icemänner' },
     { url: 'https://www.hubner-group.com', label: 'HÜBNER Group', image: '/img/projects/hubner-group-thumbnail.webp', alt: 'HÜBNER Group' },
     // { url: 'https://dixxhardseltzer.com', label: 'Dixx', image: '/img/projects/dixxhardseltzer-thumbnail.webp', alt: 'Dixx Hard Seltzer' },
@@ -213,14 +219,13 @@ const pastWorkLinks = [
         image: '/img/projects/tamplenplasticsurgery-thumbnail.webp',
         alt: 'Tamplen Plastic Surgery',
     },
-    { url: 'https://cale-design.com', label: 'cale design', image: '/img/projects/caledesign-thumbnail.webp', alt: 'cale design' },
+    { url: 'https://cale-design.com', label: 'cale design', image: '/img/projects/caledesign-thumbnail-2.webp', alt: 'cale design' },
     {
         url: 'https://messtechnik-sassner.de',
         label: 'Sassner Mess- und Ortungstechnik',
         image: '/img/projects/messtechnik-sassner-thumbnail.webp',
         alt: 'Sassner Mess- und Ortungstechnik',
     },
-    { url: 'https://icc-offroad.de', label: 'ICC Offroad', image: '/img/projects/icc-offroad-thumbnail.webp', alt: 'ICC Offroad' },
 ];
 
 const isCardOpen = ref(false);

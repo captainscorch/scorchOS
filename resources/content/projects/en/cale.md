@@ -1,13 +1,12 @@
 ---
-id: 10
+id: 11
 slug: cale
 client: 'cale design'
 category: ['Development', 'Photography', 'Marketing']
-image: /img/portfolio/cale/cale_portrait_1.webp
+image: /img/portfolio/cale/cale_portrait_5.webp
 color: '#CAB58B'
 logo: cale
 width: '92%'
-height: 'md:aspect-[4/6]'
 spineHeight: 'h-28 md:h-34'
 date: '2025 - 2026'
 website: https://cale-design.com
@@ -32,17 +31,17 @@ media:
       alt: 'cale design - Desktop Landingpage Scroll-Through: Hero, Product Videos, Own Designs, Theme Grid, Rooms & Looks, Selection, FAQ, Blog'
     - type: image
       aspectRatio: '4/5'
-      src: /img/portfolio/cale/cale_portrait_2.webp
+      src: /img/portfolio/cale/cale_portrait_6.webp
       alt: 'cale design - Mobile Product Page and Cart Drawer with Free Shipping Bar and Upsell'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/cale/cale_landscape_video_1.webm
-      thumbnail: /img/portfolio/cale/cale_landscape_video_1.webp
+      src: /img/portfolio/cale/cale_landscape_video_6.webm
+      thumbnail: /img/portfolio/cale/cale_landscape_video_6.webp
       alt: 'cale design - Desktop Customer Flow: Colour Pick, Add to Cart, Free Gift, Cart Drawer, Checkout'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/cale/cale_portrait_video_1.webm
-      thumbnail: /img/portfolio/cale/cale_portrait_video_1.webp
+      src: /img/portfolio/cale/cale_portrait_video_2.webm
+      thumbnail: /img/portfolio/cale/cale_portrait_video_2.webp
       alt: 'cale design - Mobile Add to Cart Flow with Free Gift Modal and Cart Drawer'
     - type: image
       aspectRatio: '16/9'
@@ -54,8 +53,8 @@ media:
       alt: 'cale design - Desktop Theme Grid with Six Photo Tiles from Own Product and Interior Photography'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/cale/cale_landscape_video_3.webm
-      thumbnail: /img/portfolio/cale/cale_landscape_video_3.webp
+      src: /img/portfolio/cale/cale_landscape_video_7.webm
+      thumbnail: /img/portfolio/cale/cale_landscape_video_7.webp
       alt: 'cale design - Desktop Shop the Room: Curated Room Looks and a Room Collection with Shoppable Photo Hotspots'
     - type: image
       aspectRatio: '4/5'
@@ -90,7 +89,7 @@ media:
 title: 'Minimalist Shopify Store for Premium Furniture & home accessories'
 story_preview: 'A minimalist, by Scandinavian design and interior aesthetic inspired Shopify store for cale design — premium furniture and home accessories. Featuring 800+ products, interactive 3D renders, AI-generated lifestyle imagery, and a fully integrated omnichannel setup with POS and performance marketing'
 fineprint: 'Full-service e-commerce from lens to checkout. Development, photography, 3D visualization, POS integration, and performance marketing — all unified under one minimalist design system built to scale.'
-fineprint_media: /img/portfolio/cale/cale_landscape_4.webp
+fineprint_media: /img/portfolio/cale/cale_landscape_8.webp
 fineprint_media_alt: 'cale design - Desktop Product Page ELVA Multi-Shelf'
 ---
 

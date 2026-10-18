@@ -1,5 +1,5 @@
 ---
-id: 16
+id: 17
 slug: gastroenterologie-kassel
 client: 'Gastroenterologie Kassel'
 category: ['Design', 'Development', 'Branding']
@@ -7,7 +7,6 @@ image: /img/portfolio/gastrokassel/gastrokassel_portrait_2.webp
 color: '#1b1b18'
 logo: gastro
 width: '85%'
-height: 'md:aspect-[4/5]'
 spineHeight: h-32
 date: '2026'
 website: https://gastroenterologie-kassel.com
@@ -31,8 +30,8 @@ media:
       alt: 'Gastroenterologie Kassel - Desktop Hero Area'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/gastrokassel/gastrokassel_portrait_video_2.webm
-      thumbnail: /img/portfolio/gastrokassel/gastrokassel_portrait_video_2.webp
+      src: /img/portfolio/gastrokassel/gastrokassel_portrait_video_4.webm
+      thumbnail: /img/portfolio/gastrokassel/gastrokassel_portrait_video_4.webp
       alt: 'Gastroenterologie Kassel - Mobile Contact Form Interaction'
     - type: image
       aspectRatio: '4/5'
@@ -57,8 +56,8 @@ media:
       alt: 'Gastroenterologie Kassel - Mobile Contact Page and Contact Form'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/gastrokassel/gastrokassel_portrait_video_1.webm
-      thumbnail: /img/portfolio/gastrokassel/gastrokassel_portrait_video_1.webp
+      src: /img/portfolio/gastrokassel/gastrokassel_portrait_video_3.webm
+      thumbnail: /img/portfolio/gastrokassel/gastrokassel_portrait_video_3.webp
       alt: 'Gastroenterologie Kassel - Mobile Hamburger Menu Animation'
     - type: image
       aspectRatio: '4/5'

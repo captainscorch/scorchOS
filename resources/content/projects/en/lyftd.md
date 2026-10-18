@@ -7,7 +7,6 @@ image: /img/portfolio/lyftd/lyftd_portrait_1.webp
 color: '#fc6612'
 logo: lyftd
 width: '100%'
-height: 'md:aspect-[4/6]'
 spineHeight: 'h-26 md:h-32'
 date: '2024 — Present'
 website: https://lyftd.app
@@ -50,13 +49,13 @@ media:
       alt: 'lyftd.app - iOS App Today Screen and AI Coach Action Proposal'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_video_1.webm
-      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_1.webp
+      src: /img/portfolio/lyftd/lyftd_portrait_video_11.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_11.webp
       alt: 'lyftd.app - Workout Execution Flow'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_video_9.webm
-      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_9.webp
+      src: /img/portfolio/lyftd/lyftd_portrait_video_14.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_14.webp
       alt: 'lyftd.app - Gym Mode: Rolling Digits on the Load Stepper and the Rest Timer, plus and minus 15 Seconds'
     - type: image
       aspectRatio: '4/5'
@@ -73,8 +72,8 @@ media:
       alt: 'lyftd.app - Rest Countdown as a Live Activity in the Dynamic Island and on the Lock Screen'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_video_3.webm
-      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_3.webp
+      src: /img/portfolio/lyftd/lyftd_portrait_video_13.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_13.webp
       alt: 'lyftd.app - Exercise Library Filtering and Exercise Details Page'
     - type: image
       aspectRatio: '4/5'
@@ -91,8 +90,8 @@ media:
       alt: 'lyftd.app - AI Coach Spot: Asking about a Stalled Bench Press and Applying the Proposed Change'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/lyftd/lyftd_portrait_video_2.webm
-      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_2.webp
+      src: /img/portfolio/lyftd/lyftd_portrait_video_12.webm
+      thumbnail: /img/portfolio/lyftd/lyftd_portrait_video_12.webp
       alt: 'lyftd.app - Exercise Progress Chart Views'
     - type: image
       aspectRatio: '4/5'

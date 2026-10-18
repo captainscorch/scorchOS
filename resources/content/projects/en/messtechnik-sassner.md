@@ -7,7 +7,6 @@ image: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_6.webp
 color: '#e4312b'
 logo: sassner
 width: '85%'
-height: 'md:aspect-[3/4]'
 spineHeight: h-32
 date: '2026'
 website: https://messtechnik-sassner.de

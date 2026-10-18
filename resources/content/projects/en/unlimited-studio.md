@@ -1,5 +1,5 @@
 ---
-id: 12
+id: 10
 slug: unlimited-studio
 client: unlimited.studio
 category: ['Design', 'Development', 'Product']
@@ -7,7 +7,6 @@ image: /img/portfolio/unlimited-studio/unlimited-studio_portrait_11.webp
 color: '#fe3312'
 logo: unlimited
 width: '95%'
-height: 'md:aspect-[3/4]'
 spineHeight: 'h-28 md:h-32'
 date: '2018 — Present'
 website: https://unlimited.studio
@@ -49,8 +48,8 @@ media:
       alt: 'unlimited.studio - Playground: the Studio in Kassel as a Walkable 3D Room, Right after Entering'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/unlimited-studio/unlimited-studio_landscape_video_2.webm
-      thumbnail: /img/portfolio/unlimited-studio/unlimited-studio_landscape_video_2.webp
+      src: /img/portfolio/unlimited-studio/unlimited-studio_landscape_video_7.webm
+      thumbnail: /img/portfolio/unlimited-studio/unlimited-studio_landscape_video_7.webp
       alt: 'unlimited.studio - Playground: Entering the 3D Studio, the Stations from the Orange Wall to the Desks, a Desk Raised and unlimited.os Started'
     - type: image
       aspectRatio: '16/9'
@@ -62,13 +61,13 @@ media:
       alt: 'unlimited.studio - unlimited.gpt in Detail: an Answer about the Process with Intro Call and Contact Form'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/unlimited-studio/unlimited-studio_portrait_video_1.webm
-      thumbnail: /img/portfolio/unlimited-studio/unlimited-studio_portrait_video_1.webp
+      src: /img/portfolio/unlimited-studio/unlimited-studio_portrait_video_2.webm
+      thumbnail: /img/portfolio/unlimited-studio/unlimited-studio_portrait_video_2.webp
       alt: 'unlimited.studio - Mobile unlimited.gpt: Two Questions, Then the Consultant Prepares the Inquiry'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/unlimited-studio/unlimited-studio_landscape_video_3.webm
-      thumbnail: /img/portfolio/unlimited-studio/unlimited-studio_landscape_video_3.webp
+      src: /img/portfolio/unlimited-studio/unlimited-studio_landscape_video_6.webm
+      thumbnail: /img/portfolio/unlimited-studio/unlimited-studio_landscape_video_6.webp
       alt: 'unlimited.studio - Desktop Contact Form: Details, Pricing Model and Service Categories, up to the Send Button'
     - type: image
       aspectRatio: '16/9'
