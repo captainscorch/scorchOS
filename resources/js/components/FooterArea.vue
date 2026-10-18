@@ -373,13 +373,15 @@ onUnmounted(() => {
             </div>
         </div>
 
-        <!-- Only the page floor peels; the notes card stays out of the capture so its cipher survives -->
+        <!-- Only the page floor peels; the notes card stays out of the capture so its cipher survives.
+             The zone stays inside the sheet's bottom padding: a curl that starts at the bottom bar
+             blocks its links while the pointer is on them -->
         <div v-if="canPeel" ref="peelRef" class="peel-bleed">
             <Peel
                 side="bottom"
                 mode="cursor"
                 :reveal="240"
-                :zone="196"
+                :zone="100"
                 :curl="320"
                 :bow="30"
                 :shade="0.12"

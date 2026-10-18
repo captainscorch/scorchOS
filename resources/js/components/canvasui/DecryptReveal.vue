@@ -1,4 +1,5 @@
 <script lang="ts">
+import { forwardCanvasPointer } from "./canvas-pointer";
 import { createRectCache } from "./rect-cache";
 
 export interface DecryptRevealOptions {
@@ -526,10 +527,18 @@ export function createDecryptReveal(
   let cellsDirty = true;
   let wake = () => {};
 
+  const releasePointer = htmlInCanvas
+    ? forwardCanvasPointer(content)
+    : () => {};
+
   if (htmlInCanvas) {
     paintable.onpaint = () => {
       try {
         sourceCtx!.reset();
+        // The canvas rounds a fractional box up to whole pixels; the sliver the
+        // content doesn't cover would read as an edge and grow a column of glyphs
+        sourceCtx!.fillStyle = config.background;
+        sourceCtx!.fillRect(0, 0, source.width, source.height);
         sourceCtx!.drawElementImage!(content, 0, 0);
         contentDirty = true;
         wake();
@@ -1024,6 +1033,7 @@ export function createDecryptReveal(
     destroy() {
       destroyed = true;
       rectCache.destroy();
+      releasePointer();
       cancelAnimationFrame(raf);
       observer.disconnect();
       intersection.disconnect();
