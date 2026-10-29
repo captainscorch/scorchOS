@@ -31,8 +31,8 @@ media:
       alt: 'Sassner Mess- und Ortungstechnik - Desktop Landingpage'
     - type: video
       aspectRatio: '4/5'
-      src: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_video_2.webm
-      thumbnail: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_video_2.webp
+      src: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_video_3.webm
+      thumbnail: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_video_3.webp
       alt: 'Sassner Mess- und Ortungstechnik - Logo Animation: the Drop Lands, the Arcs Draw, a Thermal Scan Turns to Night'
     - type: image
       aspectRatio: '4/5'
@@ -52,8 +52,8 @@ media:
       alt: 'Sassner Mess- und Ortungstechnik - Work Jacket Mockup'
     - type: video
       aspectRatio: video
-      src: /img/portfolio/messtechnik-sassner/messtechniksassner_landscape_video_2.webm
-      thumbnail: /img/portfolio/messtechnik-sassner/messtechniksassner_landscape_video_2.webp
+      src: /img/portfolio/messtechnik-sassner/messtechniksassner_landscape_video_3.webm
+      thumbnail: /img/portfolio/messtechnik-sassner/messtechniksassner_landscape_video_3.webp
       alt: 'Sassner Mess- und Ortungstechnik - Logo Animation in Landscape'
     - type: image
       aspectRatio: '16/9'
