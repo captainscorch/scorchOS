@@ -89,6 +89,30 @@ const dropSpines = (spines: HTMLElement[], onComplete?: () => void) => {
     );
 };
 
+// Spines scrolled into view drop only a short way onto the shelf. A full drop
+// from above the viewport would fly each one across the spines already
+// visible, which reads as jerky while scrolling.
+const settleSpines = (spines: HTMLElement[]) => {
+    gsap.fromTo(
+        spines,
+        {
+            y: () => -(60 + Math.random() * 40),
+            opacity: 0,
+            rotation: () => Math.random() * 6 - 3,
+            transition: 'none',
+        },
+        {
+            y: 0,
+            opacity: 1,
+            rotation: 0,
+            duration: 0.8,
+            stagger: { each: 0.08, from: 'end' },
+            ease: 'power3.out',
+            clearProps: 'transform,transition',
+        },
+    );
+};
+
 onBeforeUnmount(() => spineObserver?.disconnect());
 
 const onEnter = (el: Element, done: () => void) => {
@@ -107,9 +131,9 @@ const onEnter = (el: Element, done: () => void) => {
                 (entries) => {
                     const entering = entries.filter((entry) => entry.isIntersecting).map((entry) => entry.target as HTMLElement);
                     entering.forEach((spine) => spineObserver?.unobserve(spine));
-                    if (entering.length) dropSpines(entering);
+                    if (entering.length) settleSpines(entering);
                 },
-                { rootMargin: '0px 0px -10% 0px' },
+                { rootMargin: '0px 0px -5% 0px' },
             );
             below.forEach((spine) => spineObserver?.observe(spine));
 
