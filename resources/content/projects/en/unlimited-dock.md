@@ -3,7 +3,7 @@ id: 10
 slug: unlimited-dock
 client: unlimited.dock
 category: ['Product', 'Design', 'Development']
-image: /img/portfolio/unlimited-dock/unlimited-dock_portrait_18.webp
+image: /img/portfolio/unlimited-dock/unlimited-dock_portrait_21.webp
 color: '#fe3312'
 logo: dock
 width: '94%'
@@ -104,7 +104,7 @@ media:
       alt: 'unlimited.dock - Agents Page with Claude Runs and Every Write per Run'
     - type: image
       aspectRatio: '16/9'
-      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_39.webp
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_42.webp
       alt: 'unlimited.dock - Connect Claude: Connector Guide for the Claude App and Claude Code'
     - type: image
       aspectRatio: '16/9'
@@ -116,10 +116,14 @@ media:
       alt: 'unlimited.dock - Technik: Reachability, Incidents, Failed Deploys and the Live Version of Every Site'
     - type: image
       aspectRatio: '16/9'
+      src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_41.webp
+      alt: 'unlimited.dock - Hosting Table with Filters for Service, Web Server and Backup'
+    - type: image
+      aspectRatio: '16/9'
       src: /img/portfolio/unlimited-dock/unlimited-dock_landscape_7.webp
       alt: 'unlimited.dock - Client Cockpit with Retainer Budget and Hours This Month'
 title: 'Our Studio Operating System: From First Inquiry to Paid Invoice'
-story_preview: 'unlimited.dock is the operating system I built for our studio, from the first inquiry to the paid invoice. Claude works in it too, through an MCP server and a REST API.'
+story_preview: 'unlimited.dock is the operating system I built for our studio, from the first inquiry to the paid invoice. It also writes every invoice, and Claude works in it too, through an MCP server and a REST API.'
 fineprint: 'Designed and built solo, in use for a five-person studio every working day. Clients, projects, tasks, amounts and hours in the screenshots are placeholders.'
 fineprint_media: /img/portfolio/unlimited-dock/unlimited-dock_landscape_29.webp
 fineprint_media_alt: 'unlimited.dock - Dashboard with KPIs over Twelve Months, the Prior-Year Line and the Team Week'
@@ -127,7 +131,7 @@ fineprint_media_alt: 'unlimited.dock - Dashboard with KPIs over Twelve Months, t
 
 # Our studio ran on subscriptions. Now it runs on software I built.
 
-For years our studio ran on rented software. Productive.io held tasks, time and budgets, Zoho Books wrote the invoices, and spreadsheets kept track of hosting and servers. Every tool billed each month, none of them knew the others, and one client lived in four places. Linear had the interaction model I wanted, but no idea what an agency budget is. So I built unlimited.dock: one system shaped around how our studio works, from the first inquiry to the paid invoice.
+For years our studio ran on rented software. Productive.io held tasks, time and budgets, Zoho Books wrote the invoices, and spreadsheets kept track of hosting and servers. Every tool billed each month, none of them knew the others, and one client lived in four places. Linear had the interaction model I wanted, but no idea what an agency budget is. So I built unlimited.dock: one system shaped around how our studio works, from the first inquiry to the paid invoice. Productive.io was the first subscription to go. The Dock now writes every invoice too.
 
 ## Replacing Productive.io Outright
 
@@ -137,9 +141,11 @@ This wasn't a side-by-side experiment, it was a full cutover. I wrote an import 
 
 A **Laravel** backend with a **Vue 3** frontend via **Inertia.js**, one codebase for the app. Next to it sit a **REST API** and an **MCP server** for agents. **Tailwind CSS** and **shadcn-vue** drive a fast, minimal UI, **TipTap** handles rich text with markdown as the storage format, and **MySQL** holds the data.
 
-- **Testing:** Nearly 2,300 PHPUnit tests run on every change. Accounting logic is not a place for surprises
+- **Testing:** More than 2,600 PHPUnit tests run on every change. Accounting logic is not a place for surprises
 - **PDF Engine:** Quotes, invoices and billing reports render server-side via dompdf with the studio's letterhead and typefaces
 - **Integrations:** Transactional mail through Resend, digests and warnings into Slack, the invoice archive in Google Drive, the server inventory synced from our hosting
+- **Our Platform:** Change requests from the client portal of our website platform arrive as tasks, and their status flows back to the portal. A paid order opens the setup task
+- **Sign-in:** Two-factor authentication with an authenticator app is mandatory for everyone, passkeys come on top
 
 ## Tasks, the Linear Way
 
@@ -183,23 +189,32 @@ Selling work and doing it live in the same tool:
 - **Public Quote Page:** Clients accept or decline on a tokenized page. No login, no PDF ping-pong, with view tracking that filters out mail-scanner bots
 - **The Automated Part:** An accepted quote turns into a project with budgets created from its line items. The handover from sales to delivery is a single click
 
-## Invoicing Without Zoho
+## Replacing Zoho Books Outright
 
-Zoho Books wrote our invoices for years, on its own annual plan, while the Dock already knew every budget, every hour and every accepted quote. The invoice was the last document still written somewhere else. So the Dock writes it now too, and Zoho Books goes in November:
+Zoho Books wrote our invoices for eight years, while the Dock already knew every budget, every hour and every accepted quote. The invoice was the last document still written somewhere else. So I moved it the same way as Productive: archive first, then the cutover. The Dock took over the whole Zoho archive, with payments, original PDFs, recurring profiles and direct debit mandates, and has written every invoice itself since.
 
 - **Drafts From What Exists:** An invoice starts from a client, a closed budget period or an accepted quote, including deposit, partial and final invoices
 - **Numbers That Never Repeat:** Issuing assigns a gapless number and locks the document. Corrections go through a cancellation or a credit note, and irreversible steps only fire while you hold the button
+- **Check Before Sending:** Invoice, profile and quote can be previewed as PDF and as the client page, the mail too. Salutation and sign-off are editable, CC recipients come from the client file
 - **Client Page:** Every invoice has a page for the client with the open amount and a GiroCode for the banking app, which the PDF carries too
 - **XRechnung:** Every invoice ships as PDF in German or English and as XRechnung 3.0, checked against the official KoSIT validator
+- **Clients Abroad:** Invoices to countries outside the EU carry the reverse-charge note automatically
 - **Early Payment Discount:** Skonto from the client file lands on the PDF, the client page, the XRechnung and in the GiroCode. The bank import knows the reduced amount, and revenue and VAT follow the payment
-- **SEPA & Dunning:** The Dock fills out the direct debit mandate itself, as a one-page PDF form that goes out with the invoice to clients without one. A collection list per debit day, two automatic payment reminders and a formal notice after approval
-- **Bank Matching:** The bank statement comes in as CSV. Payments with an invoice number or from a known payer book themselves
-- **Recurring Profiles:** Hosting, licences and retainers run as profiles with a daily run, as a draft or sent straight away
+- **Direct Debit:** The Dock fills out the SEPA mandate itself, as a one-page PDF form that goes out with the invoice to clients without one. All mandates sit in one overview, the invoice editor already shows the coverage, and a collection list per debit day sums it up
+- **Returned Debits:** A returned debit triggers no dunning letter. The invoice waits until someone has talked to the client, then it is collected again or switched to bank transfer
+- **Dunning:** Two automatic payment reminders and a formal notice after approval. The run can be previewed before anything goes out, and an old Zoho invoice gets dunned with its original PDF
+- **Bank Matching:** The bank statement comes in as CSV. Payments with an invoice number or from a known payer book themselves. For a similar name, a few euros missing or several invoices in one transfer, the Dock suggests the match, and the rest goes to bank fees in one click
+- **Recurring Profiles:** Hosting, licences and retainers run as profiles with a daily run. A retainer's flat fee comes from its profile, the period invoice only carries the extra hours. For now every run lands as a draft and gets a look before it goes out
+- **Card Payments:** Stripe sales of our website platform arrive as their own documents with the original PDF, in revenue and in VAT
 - **Audit Trail:** Every change to finance and master data lands in an append-only log with who, when, old and new value, as GoBD asks for it
+
+## Finance Without an Extra Tool
+
+Bookkeeping categories and financial planning now run in the Dock too, as a separate area with its own permissions.
 
 ## The Client File
 
-Every client on one page: revenue of the last twelve months against the twelve before, open and overdue items, the average days to payment, recurring invoices with their next run, the direct debit mandate, the dunning state and the hours of the past year. While you scroll, the header folds into a slim bar with anchors to each part.
+Every client on one page: revenue of the last twelve months against the twelve before, open and overdue items, the average days to payment, recurring invoices with their next run, the direct debit mandate, the dunning state and the hours of the past year. While you scroll, the header folds into a slim bar with anchors to each part. A timeline lists documents, payments, mandates, quotes, inquiries, projects and master data changes, depending on the role. A card shows the client's websites and hosting, and documents and quotes download as ZIP or CSV.
 
 ## Numbers at a Glance
 
@@ -210,7 +225,7 @@ Every client on one page: revenue of the last twelve months against the twelve b
 
 ## Claude Works in the Dock
 
-The Dock has a second door, built for AI agents: a REST API and an MCP server with 29 tools. The same door serves Claude Code in the terminal, the Claude app on the phone and on the Mac, and jobs that run on a schedule.
+The Dock has a second door, built for AI agents: a REST API and an MCP server with 30 tools. The same door serves Claude Code in the terminal, the Claude app on the phone and on the Mac, and jobs that run on a schedule.
 
 - **On the Go:** After a client meeting, two sentences in the Claude app become a task with checklist, due date and the right project
 - **In the Terminal:** Claude Code turns call notes into tasks, comments on them, works through my inbox, starts my timer and moves inquiries along the pipeline, without a browser tab
@@ -223,7 +238,9 @@ The model gets its context from the same payloads the interface reads. Claude an
 
 ## Hosting in View
 
-Servers and sites used to live in a spreadsheet, kept by hand and out of date a week later. Now the Dock syncs them with our servers every hour, each site assigned to its client, each server with its monthly cost and the end of its system support. Every five minutes it checks each site itself: whether it answers, how fast, how long its certificate holds. An outage reaches the team within minutes, the incidents of the last 30 days stay on the page, and every site shows which version is live, in red if a deploy failed.
+Servers and sites used to live in a spreadsheet, kept by hand and out of date a week later. Now the Dock syncs them with our servers every hour and assigns each site to its client itself. Every server shows its monthly cost, the end of its system support and its patch level, with a traffic light per server on top. The hosting cost sheet moved in as well, as a table with filters per attribute, an evaluation by provider, cost type and service, and a CSV export.
+
+Every five minutes the Dock checks each site itself: whether it answers, how fast, how long its certificate holds. An outage reaches the team within minutes, the incidents of the last 30 days stay on the page, and every site shows which version is live, in red if a deploy failed. On top of that runs a security early warning: it matches official advisories and a public vulnerability database against what runs on our live sites, reports every warning once and opens a task for the critical ones.
 
 ## A Cockpit Instead of Client Logins
 
@@ -231,4 +248,4 @@ Clients don't get accounts, a deliberate decision. They get a tokenized cockpit 
 
 ## Deliberate Omissions
 
-unlimited.dock has no resource planner, no multi-currency and no client logins, and a roadmap file lists every omission on purpose. Building less is what made it possible to replace several platforms at once. Productive.io is gone, Zoho Books follows, and the spreadsheets for hosting and servers go with it. Each of them was a recurring bill for software made for thousands of other companies. What is left does everything our studio needs, and nothing anyone else's does.
+unlimited.dock has no resource planner, no multi-currency and no client logins, and a roadmap file lists every omission on purpose. Building less is what made it possible to replace several platforms at once. Productive.io and Zoho Books are replaced, and so are the spreadsheets for hosting and servers. Each of them was a recurring bill for software made for thousands of other companies. What is left does everything our studio needs, and nothing anyone else's does.

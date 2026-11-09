@@ -3,7 +3,7 @@ id: 3
 slug: keine-panik
 client: 'Keine Panik Festival'
 category: ['Product', 'Design', 'Development']
-image: /img/portfolio/keine-panik/keine-panik_portrait_11.webp
+image: /img/portfolio/keine-panik/keine-panik_portrait_16.webp
 color: '#ff5624'
 logo: panik
 width: '95%'

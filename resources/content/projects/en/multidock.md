@@ -3,7 +3,7 @@ id: 6
 slug: multidock
 client: 'multi.dock'
 category: ['Product', 'Design', 'Development']
-image: /img/portfolio/multidock/multidock_portrait_5.webp
+image: /img/portfolio/multidock/multidock_portrait_9.webp
 color: '#ff7a2e'
 logo: multidock
 width: '95%'

@@ -3,7 +3,7 @@ id: 13
 slug: hof-bissee
 client: 'Hof Bissee'
 category: ['Design', 'Development']
-image: /img/portfolio/hof-bissee/hof-bissee_portrait_12.webp
+image: /img/portfolio/hof-bissee/hof-bissee_portrait_15.webp
 color: '#27352A'
 logo: bissee
 width: '92%'

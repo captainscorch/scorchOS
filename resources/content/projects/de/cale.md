@@ -23,7 +23,7 @@ Mit **800+ Produkten** von Möbeln über Kerzen bis hin zu Textilien und Accesso
 
 ## Fotografie & Post-Produktion
 
-Über die Entwicklung hinaus habe ich **Produktfotografie und Post-Editing** übernommen — für visuelle Konsistenz im gesamten Katalog und um Assets zu erstellen, die konvertieren.
+Über die Entwicklung hinaus habe ich **Produktfotografie und Post-Editing** übernommen — für visuelle Konsistenz im gesamten Katalog und um Assets zu erstellen, die konvertieren. Eine Auswahl aus den Shoots zeigt die [Fotografie Case Study](/case-study/cale-photography).
 
 ## Omnichannel-Infrastruktur
 

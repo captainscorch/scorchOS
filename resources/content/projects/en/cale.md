@@ -2,7 +2,7 @@
 id: 16
 slug: cale
 client: 'cale design'
-category: ['Development', 'Photography', 'Marketing']
+category: ['Development', 'Marketing']
 image: /img/portfolio/cale/cale_portrait_16.webp
 color: '#CAB58B'
 logo: cale
@@ -111,7 +111,7 @@ With **800+ products** spanning furniture, candles, textiles, and accessories, t
 
 ## Photography & Post-Production
 
-Beyond development, I handled **product photography and post-editing** — ensuring visual consistency across the entire catalog and to create assets that convert.
+Beyond development, I handled **product photography and post-editing** — ensuring visual consistency across the entire catalog and to create assets that convert. A selection from the shoots is in the [photography case study](/case-study/cale-photography).
 
 ## Omnichannel Infrastructure
 
