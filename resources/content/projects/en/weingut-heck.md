@@ -1,9 +1,9 @@
 ---
-id: 3
+id: 8
 slug: weingut-heck
 client: 'Weingut Heck'
 category: ['Development']
-image: /img/portfolio/weingut-heck/weingut-heck_portrait_13.webp
+image: /img/portfolio/weingut-heck/weingut-heck_portrait_16.webp
 color: '#a40904'
 logo: heck
 width: '95%'

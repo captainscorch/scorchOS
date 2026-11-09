@@ -1,9 +1,9 @@
 ---
-id: 12
+id: 14
 slug: 'captainscor.ch'
 client: 'Portfolio Website'
 category: ['Design', 'Development']
-image: /img/portfolio/captainscorch/captainscorch_portrait_1.webp
+image: /img/portfolio/captainscorch/captainscorch_portrait_8.webp
 color: '#2ab193'
 logo: portfolio
 width: '88%'

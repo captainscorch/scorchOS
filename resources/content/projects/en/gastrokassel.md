@@ -1,9 +1,9 @@
 ---
-id: 17
+id: 19
 slug: gastroenterologie-kassel
 client: 'Gastroenterologie Kassel'
 category: ['Design', 'Development', 'Branding']
-image: /img/portfolio/gastrokassel/gastrokassel_portrait_2.webp
+image: /img/portfolio/gastrokassel/gastrokassel_portrait_11.webp
 color: '#1b1b18'
 logo: gastro
 width: '85%'

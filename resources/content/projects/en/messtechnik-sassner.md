@@ -1,9 +1,9 @@
 ---
-id: 13
+id: 15
 slug: messtechnik-sassner
 client: 'Sassner Mess- und Ortungstechnik'
 category: ['Design', 'Development', 'Branding']
-image: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_6.webp
+image: /img/portfolio/messtechnik-sassner/messtechniksassner_portrait_7.webp
 color: '#e4312b'
 logo: sassner
 width: '85%'

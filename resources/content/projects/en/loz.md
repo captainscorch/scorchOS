@@ -1,9 +1,9 @@
 ---
-id: 6
+id: 7
 slug: loz
 client: Loz
 category: Development
-image: /img/portfolio/loz/loz_portrait_1.webp
+image: /img/portfolio/loz/loz_portrait_5.webp
 color: '#6F7BD4'
 logo: loz
 width: '95%'

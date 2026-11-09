@@ -1,9 +1,9 @@
 ---
-id: 18
+id: 20
 slug: stadtwerke-havelberg
 client: 'Stadtwerke Havelberg'
 category: ['Concept', 'Design', 'Development']
-image: /img/portfolio/stadtwerke-havelberg/stadtwerke-havelberg_portrait_5.webp
+image: /img/portfolio/stadtwerke-havelberg/stadtwerke-havelberg_portrait_9.webp
 color: '#bb3045'
 logo: havelberg
 width: '90%'

@@ -3,7 +3,7 @@ id: 2
 slug: 'way.food'
 client: 'way.food'
 category: ['Product', 'Design', 'Development']
-image: /img/portfolio/wayfood/wayfood_portrait_27.webp
+image: /img/portfolio/wayfood/wayfood_portrait_28.webp
 color: '#ff8f8f'
 logo: 'way.food'
 width: '90%'

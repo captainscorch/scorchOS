@@ -3,7 +3,7 @@ id: 5
 slug: tamplen
 client: 'Tamplen Plastic Surgery'
 category: ['Design', 'Development', 'Marketing']
-image: /img/portfolio/tamplen/tamplen_portrait_1.webp
+image: /img/portfolio/tamplen/tamplen_portrait_9.webp
 color: '#b89b7e'
 logo: tamplen
 width: '80%'
