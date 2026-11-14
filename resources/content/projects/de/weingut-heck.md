@@ -7,7 +7,7 @@ fineprint: 'Das Design kam von [Marie Grob](https://mariegrob.com) und [Jacky Gr
 
 # Ein Design, das nicht stillhält
 
-Das Weingut Heck ist ein Familienweingut in Alsheim, Rheinhessen: Dieter und Lotte Heck, die Söhne schon im Keller. Die neue Seite hatte ein Design, bevor sie einen Entwickler hatte, von [Marie Grob](https://mariegrob.com), Fotografin und Motion Designerin in Mainz, und [Jacky Grob](https://jackygrob.com), Designerin in Potsdam: Aquarell-Flecken, Halbton-Illustrationen, Sticker, Laufbänder, Flaschen, die auf der Seite liegen und sich aufstellen, wenn man ihre Zeile öffnet. Meine Aufgabe war, genau das zu bauen, Pixel für Pixel, und es schnell zu machen.
+Das Weingut Heck ist ein Familienweingut in Alsheim, Rheinhessen: Dieter und Lotte Heck, die Söhne schon im Keller. Das Design der neuen Seite stand schon, von [Marie Grob](https://mariegrob.com), Fotografin und Motion Designerin in Mainz, und [Jacky Grob](https://jackygrob.com), Designerin in Potsdam: Aquarell-Flecken, Halbton-Illustrationen, Sticker, Laufbänder, Flaschen, die auf der Seite liegen und sich aufstellen, wenn man ihre Zeile öffnet. Dann fiel der Entwickler aus, und ich bin eingesprungen. Meine Aufgabe war, genau das zu bauen, Pixel für Pixel, und es schnell zu machen.
 
 ## Statamic unter der Haube
 

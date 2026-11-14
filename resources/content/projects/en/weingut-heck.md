@@ -105,7 +105,7 @@ fineprint_media_alt: 'Weingut Heck - Desktop Home Stage with the HECK Wordmark o
 
 # A Design That Does Not Sit Still
 
-Weingut Heck is a family winery in Alsheim, Rheinhessen: Dieter and Lotte Heck, the sons already in the cellar. The new site had a design before it had a developer, by [Marie Grob](https://mariegrob.com), photographer and motion designer in Mainz, and [Jacky Grob](https://jackygrob.com), designer in Potsdam: watercolour blobs, halftone illustrations, stickers, marquees, bottles that lie on the page and stand up when you open their row. My job was to build exactly that, pixel for pixel, and make it fast.
+Weingut Heck is a family winery in Alsheim, Rheinhessen: Dieter and Lotte Heck, the sons already in the cellar. The design of the new site was already done, by [Marie Grob](https://mariegrob.com), photographer and motion designer in Mainz, and [Jacky Grob](https://jackygrob.com), designer in Potsdam: watercolour blobs, halftone illustrations, stickers, marquees, bottles that lie on the page and stand up when you open their row. Then the developer dropped out, and I stepped in. My job was to build exactly that, pixel for pixel, and make it fast.
 
 ## Statamic Under the Hood
 
