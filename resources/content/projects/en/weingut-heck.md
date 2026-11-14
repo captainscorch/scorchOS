@@ -97,7 +97,7 @@ media:
       src: /img/portfolio/weingut-heck/weingut-heck_landscape_28.webp
       alt: 'Weingut Heck - Desktop News Page with the Newsletter Stage'
 title: 'Website Relaunch for a Family Winery in Rheinhessen'
-story_preview: 'A new website for Weingut Heck in Alsheim: a design full of watercolour, halftone illustration and stickers, built as a Statamic site with server-side rendering, scroll-driven animation, an age gate and a newsletter with double opt-in.'
+story_preview: 'A new website for Weingut Heck in Alsheim: a design like a collage of torn paper, halftone illustration and stickers, built as a Statamic site with server-side rendering, scroll-driven animation, an age gate and a newsletter with double opt-in.'
 fineprint: 'The design came from [Marie Grob](https://mariegrob.com) and [Jacky Grob](https://jackygrob.com). I built the site, from the CMS and the animation system to the age gate, the cookie consent and the newsletter.'
 fineprint_media: /img/portfolio/weingut-heck/weingut-heck_landscape_29.webp
 fineprint_media_alt: 'Weingut Heck - Desktop Home Stage with the HECK Wordmark over the Vineyard Photo'
@@ -105,7 +105,7 @@ fineprint_media_alt: 'Weingut Heck - Desktop Home Stage with the HECK Wordmark o
 
 # A Design That Does Not Sit Still
 
-Weingut Heck is a family winery in Alsheim, Rheinhessen: Dieter and Lotte Heck, the sons already in the cellar. The design of the new site was already done, by [Marie Grob](https://mariegrob.com), photographer and motion designer in Mainz, and [Jacky Grob](https://jackygrob.com), designer in Potsdam: watercolour blobs, halftone illustrations, stickers, marquees, bottles that lie on the page and stand up when you open their row. Then the developer dropped out, and I stepped in. My job was to build exactly that, pixel for pixel, and make it fast.
+Weingut Heck is a family winery in Alsheim, Rheinhessen: Dieter and Lotte Heck, the sons already in the cellar. The design of the new site was already done, by [Marie Grob](https://mariegrob.com), photographer and motion designer in Mainz, and [Jacky Grob](https://jackygrob.com), designer in Potsdam: a collage of torn paper, colour splashes, halftone illustrations, stickers and marquees, plus bottles that lie on the page and stand up when you open their row. Then the developer dropped out, and I stepped in. My job was to build exactly that, pixel for pixel, and make it fast.
 
 ## Statamic Under the Hood
 

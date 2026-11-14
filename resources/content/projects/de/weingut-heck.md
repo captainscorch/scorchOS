@@ -1,13 +1,13 @@
 ---
 slug: weingut-heck
 title: 'Website-Relaunch für ein Familienweingut in Rheinhessen'
-story_preview: 'Eine neue Website für das Weingut Heck in Alsheim: ein Design voller Aquarell, Halbton-Illustration und Sticker, gebaut als Statamic-Seite mit serverseitigem Rendering, Scroll-Animationen, Age-Gate und Newsletter mit Double-Opt-in.'
+story_preview: 'Eine neue Website für das Weingut Heck in Alsheim: ein Design wie eine Collage aus gerissenem Papier, Halbton-Illustration und Stickern, gebaut als Statamic-Seite mit serverseitigem Rendering, Scroll-Animationen, Age-Gate und Newsletter mit Double-Opt-in.'
 fineprint: 'Das Design kam von [Marie Grob](https://mariegrob.com) und [Jacky Grob](https://jackygrob.com). Ich habe die Seite gebaut, vom CMS und dem Animationssystem bis zu Age-Gate, Cookie-Consent und Newsletter.'
 ---
 
 # Ein Design, das nicht stillhält
 
-Das Weingut Heck ist ein Familienweingut in Alsheim, Rheinhessen: Dieter und Lotte Heck, die Söhne schon im Keller. Das Design der neuen Seite stand schon, von [Marie Grob](https://mariegrob.com), Fotografin und Motion Designerin in Mainz, und [Jacky Grob](https://jackygrob.com), Designerin in Potsdam: Aquarell-Flecken, Halbton-Illustrationen, Sticker, Laufbänder, Flaschen, die auf der Seite liegen und sich aufstellen, wenn man ihre Zeile öffnet. Dann fiel der Entwickler aus, und ich bin eingesprungen. Meine Aufgabe war, genau das zu bauen, Pixel für Pixel, und es schnell zu machen.
+Das Weingut Heck ist ein Familienweingut in Alsheim, Rheinhessen: Dieter und Lotte Heck, die Söhne schon im Keller. Das Design der neuen Seite stand schon, von [Marie Grob](https://mariegrob.com), Fotografin und Motion Designerin in Mainz, und [Jacky Grob](https://jackygrob.com), Designerin in Potsdam: eine Collage aus gerissenem Papier, Farbflecken, Halbton-Illustrationen, Stickern und Laufbändern, dazu Flaschen, die auf der Seite liegen und sich aufstellen, wenn man ihre Zeile öffnet. Dann fiel der Entwickler aus, und ich bin eingesprungen. Meine Aufgabe war, genau das zu bauen, Pixel für Pixel, und es schnell zu machen.
 
 ## Statamic unter der Haube
 

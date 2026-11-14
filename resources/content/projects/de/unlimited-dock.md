@@ -7,7 +7,7 @@ fineprint: 'Allein designt und entwickelt, jeden Arbeitstag im Einsatz für ein 
 
 # Unser Studio lief auf Abos. Jetzt läuft es auf Software, die ich entwickelt habe.
 
-Jahrelang lief unser Studio auf gemieteter Software. Productive.io hielt Tasks, Zeiten und Budgets, Zoho Books schrieb die Rechnungen, und Tabellen führten Buch über Hosting und Server. Jedes Tool rechnete monatlich ab, keins kannte das andere, und ein Kunde lebte an vier Orten. Linear hatte das Interaktionsmodell, das ich wollte, aber keine Ahnung, was ein Agentur-Budget ist. Also habe ich unlimited.dock entwickelt: ein System, zugeschnitten auf die Arbeitsweise unseres Studios, von der ersten Anfrage bis zur bezahlten Rechnung. Productive.io war das erste Abo, das ging. Inzwischen schreibt das Dock auch jede Rechnung.
+Jahrelang lief unser Studio auf gemieteter Software. Productive.io hielt Tasks, Zeiten und Budgets, Zoho Books schrieb die Rechnungen, und Tabellen führten Buch über Hosting und Server. Jedes Tool rechnete monatlich ab, keins kannte das andere, und Kundendaten und Projektinformationen lagen an vier Orten. Linear hatte das Interaktionsmodell, das ich wollte, aber keine Ahnung, was ein Agentur-Budget ist. Also habe ich unlimited.dock entwickelt: ein System, zugeschnitten auf die Arbeitsweise unseres Studios, von der ersten Anfrage bis zur bezahlten Rechnung. Productive.io war das erste Abo, das ging. Inzwischen schreibt das Dock auch jede Rechnung.
 
 ## Productive.io komplett ersetzt
 

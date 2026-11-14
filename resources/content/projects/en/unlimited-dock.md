@@ -131,7 +131,7 @@ fineprint_media_alt: 'unlimited.dock - Dashboard with KPIs over Twelve Months, t
 
 # Our studio ran on subscriptions. Now it runs on software I built.
 
-For years our studio ran on rented software. Productive.io held tasks, time and budgets, Zoho Books wrote the invoices, and spreadsheets kept track of hosting and servers. Every tool billed each month, none of them knew the others, and one client lived in four places. Linear had the interaction model I wanted, but no idea what an agency budget is. So I built unlimited.dock: one system shaped around how our studio works, from the first inquiry to the paid invoice. Productive.io was the first subscription to go. The Dock now writes every invoice too.
+For years our studio ran on rented software. Productive.io held tasks, time and budgets, Zoho Books wrote the invoices, and spreadsheets kept track of hosting and servers. Every tool billed each month, none of them knew the others, and client data and project information sat in four places. Linear had the interaction model I wanted, but no idea what an agency budget is. So I built unlimited.dock: one system shaped around how our studio works, from the first inquiry to the paid invoice. Productive.io was the first subscription to go. The Dock now writes every invoice too.
 
 ## Replacing Productive.io Outright
 
