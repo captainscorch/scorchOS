@@ -1,13 +1,13 @@
 ---
 slug: lyftd
 title: 'Smart Training, Stronger You — Workout-Tracking-Plattform mit nativer iOS-App und KI-Coaching-Agent'
-story_preview: 'lyftd ist mein Passion Project: eine Plattform für Krafttraining, von Grund auf selbst gebaut, vom mehrwöchigen Plan bis zum Satz im Gym. Mit nativer iOS-App, einem KI-Coach, der direkt auf deinem Plan handelt, und einer Plattform für Trainer. Version 2.2 ist seit dem 11. Oktober 2026 live.'
+story_preview: 'lyftd ist mein Passion Project: eine Plattform für Krafttraining, von Grund auf selbst gebaut, vom mehrwöchigen Plan bis zum Satz im Gym. Mit nativer iOS-App, einem KI-Coach, der direkt auf deinem Plan handelt, und einer Plattform für Trainer. Version 2.2 ist live.'
 fineprint: 'Komplett alleine gebaut als meine persönliche Sandbox für Produktentwicklung und Vermarktung. Von Authentifizierungs-Flows bis zur Payment-Integration, von einer nativen iOS-App bis zu einem KI-Coaching-Agenten mit eigenem Harness: Jede Zeile Code stammt von mir, genauso Launch-Reel, Landingpage und Kampagne. Hier pushe ich meine Grenzen.'
 ---
 
 # Ich konnte keinen Workout-Tracker finden, der mir gefiel, also habe ich meinen eigenen gebaut.
 
-lyftd entstand aus persönlicher Frustration mit bestehenden Fitness-Apps — sie waren entweder umständlich, voller Werbung oder hatten nicht die Flexibilität, die ich brauchte. Ich wollte ein Tool, das sich premium anfühlt, nahtlos auf all meinen Geräten funktioniert und sich meinem Trainingsstil anpasst. Also habe ich es gebaut. Aus der Web-App ist inzwischen eine native iOS-App geworden, dazu ein KI-Coach, der nicht nur redet, sondern handelt. Version 2.1 (27. September 2026) drehte sich um die Stunde im Gym und die Wochen drumherum. Version 2.2, live seit dem 11. Oktober 2026, macht Core kostenlos, lässt den Plan von selbst progressieren und macht aus der Statistik ein Dashboard, das man auf einen Blick liest.
+lyftd entstand aus persönlicher Frustration mit bestehenden Fitness-Apps — sie waren entweder umständlich, voller Werbung oder hatten nicht die Flexibilität, die ich brauchte. Ich wollte ein Tool, das sich premium anfühlt, nahtlos auf all meinen Geräten funktioniert und sich meinem Trainingsstil anpasst. Also habe ich es gebaut. Aus der Web-App ist inzwischen eine native iOS-App geworden, dazu ein KI-Coach, der nicht nur redet, sondern handelt. Version 2.1 drehte sich um die Stunde im Gym und die Wochen drumherum. Version 2.2 macht Core kostenlos, lässt den Plan von selbst progressieren und macht aus der Statistik ein Dashboard, das man auf einen Blick liest.
 
 ## Die Vision
 

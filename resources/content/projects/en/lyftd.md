@@ -135,7 +135,7 @@ media:
       src: /img/portfolio/lyftd/lyftd_landscape_7.webp
       alt: 'lyftd.app - Trainer Analytics with Student Progress Charts'
 title: 'Smart Training, Stronger You — Workout Tracking Platform with a Native iOS App and an AI Coaching Agent'
-story_preview: 'lyftd is my passion project: a workout tracking platform I built from scratch, from multi-week plans to the set in the gym. With a native iOS app, an AI coach that acts on your plan and a platform for trainers. Version 2.2 is live since October 11, 2026.'
+story_preview: 'lyftd is my passion project: a workout tracking platform I built from scratch, from multi-week plans to the set in the gym. With a native iOS app, an AI coach that acts on your plan and a platform for trainers. Version 2.2 is live.'
 fineprint: 'Built entirely solo as my personal sandbox for product development and marketing. From authentication flows to payment integration, from a native iOS app to an AI coaching agent with its own harness, every line of code is mine, and so are the launch reel, the landing page and the campaign. This is where I push my limits.'
 fineprint_media: /img/portfolio/lyftd/lyftd_landscape_1.webp
 fineprint_media_alt: 'lyftd.app - Dashboard with AI Coach Recap'
@@ -143,7 +143,7 @@ fineprint_media_alt: 'lyftd.app - Dashboard with AI Coach Recap'
 
 # I couldn't find a workout tracker I liked, so I built the one I wanted.
 
-lyftd was born out of personal frustration with existing fitness apps — they were either clunky, riddled with ads, or lacked the flexibility I needed. I wanted a tool that felt premium, worked seamlessly across all my devices, and adapted to my training style. So I built it. What started as a web app has since grown into a native iOS app and an AI coach that doesn't just talk, it acts. Version 2.1 (September 27, 2026) was about the hour in the gym and the weeks around it. Version 2.2, live since October 11, 2026, makes Core free, lets the plan progress by itself and turns the statistics into a dashboard you read at a glance.
+lyftd was born out of personal frustration with existing fitness apps — they were either clunky, riddled with ads, or lacked the flexibility I needed. I wanted a tool that felt premium, worked seamlessly across all my devices, and adapted to my training style. So I built it. What started as a web app has since grown into a native iOS app and an AI coach that doesn't just talk, it acts. Version 2.1 was about the hour in the gym and the weeks around it. Version 2.2 makes Core free, lets the plan progress by itself and turns the statistics into a dashboard you read at a glance.
 
 ## The Vision
 
